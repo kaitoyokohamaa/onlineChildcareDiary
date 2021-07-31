@@ -5,7 +5,7 @@
 
 - [Next.js](https://nextjs.org/)
 - [ChakraUI](https://chakra-ui.com/)
-- [Firebase]https://firebase.google.com/?gclid=Cj0KCQjw6ZOIBhDdARIsAMf8YyHL3sDQSF1bs7B-k-1cOFPXQSQRJpo9n_rSx-qabll60dfORnU-hRYaAr9UEALw_wcB&gclsrc=aw.ds)
+- [Firebase](https://firebase.google.com/?gclid=Cj0KCQjw6ZOIBhDdARIsAMf8YyHL3sDQSF1bs7B-k-1cOFPXQSQRJpo9n_rSx-qabll60dfORnU-hRYaAr9UEALw_wcB&gclsrc=aw.ds)
 
 ## 課題
 作ろうと思ったきっかけとして、保育が異常にアナログであったため。
