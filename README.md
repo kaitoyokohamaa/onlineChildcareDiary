@@ -1,6 +1,13 @@
-<h1>卒業制作オンライン保育日誌</h1>
+## 卒業制作オンライン保育日誌
 オンラインで日誌を記入でき、先方の先生とやりとりができる。
-<h2>課題</h2>
+
+## 使用技術
+
+- [Next.js](https://nextjs.org/)
+- [ChakraUI](https://chakra-ui.com/)
+- [Firebase]https://firebase.google.com/?gclid=Cj0KCQjw6ZOIBhDdARIsAMf8YyHL3sDQSF1bs7B-k-1cOFPXQSQRJpo9n_rSx-qabll60dfORnU-hRYaAr9UEALw_wcB&gclsrc=aw.ds)
+
+## 課題
 作ろうと思ったきっかけとして、保育が異常にアナログであったため。
 例えば、実習生が振り返りとして書く実習日誌では三千文字以上の文言を手書きで書かないといけない。修正テープは禁止。ボールペンで書かないといけないからまずは下書き。漢字を間違ってはならない。8時間実習した後の疲れ切ってる時間で日誌を完成しないといけない。
 などの課題がある。
@@ -9,7 +16,7 @@
 主要機能は以下の通りである。
 
 </br>
-
+## 機能一覧
 <li>新規登録機能</li>
 <li>ログイン機能</li>
 <li>チャット機能</li>
@@ -20,3 +27,4 @@
 <li>保育園、幼稚園追加機能</li>
 <li>保育園一覧</li>
 <li>幼稚園一覧</li>
+
