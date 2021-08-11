@@ -7,7 +7,7 @@ export default function Home() {
   return (
     <Box>
       <Flex>
-        <Flex className="left" h="100vh" bg="blue.400" w="50%" pt="25%" pl="3">
+        <Flex h="100vh" bg="blue.400" w="50%" pt="25%" pl="3">
           <Box>
             <Heading as="h3" size="lg" color="white" mb={5}>
               保育実習生のためのオンライン日誌
@@ -15,25 +15,27 @@ export default function Home() {
           </Box>
         </Flex>
 
-        <Flex className="right" w="50%" pt="15%">
+        <Flex className="right" w="50%" pt="15%" justify="center">
           <Box>
-            <Flex>
-              <Box w="10%" alignItems="bottom">
+            <Flex align="center">
+              <Box w="10%">
                 <img src="img/phoenix.png" />
               </Box>
-              <Heading as="h5" size="md" color="blue.400">
-                SMART DIARY PHOENIX
-              </Heading>
+              <Box textAlign="center">
+                <Heading as="h5" size="md" color="blue.400">
+                  SMART DIARY PHOENIX
+                </Heading>
+              </Box>
             </Flex>
-            <Box m={{ base: 1, sm: 10 }}>
-              <label>ユーザーネーム</label>
+            <Box my={10}>
+              <label>メールアドレス</label>
               <Input />
             </Box>
-            <Box m={{ base: 1, sm: 10 }}>
+            <Box my={10}>
               <label>パスワード</label>
               <Input />
             </Box>
-            <Box m={{ base: 1, sm: 10 }}>
+            <Box>
               <Button
                 colorScheme="blue"
                 size="lg"
