@@ -1,25 +1,8 @@
 const path = require("path");
 
-const nextConfig = {
-  distDir: "./.next",
-
+module.exports = {
   webpack: (config) => {
-    config.resolve.symlinks = false;
-
-    return (
-      config,
-      {
-        resolve: {
-          alias: {
-            "": path.resolve(__dirname),
-          },
-        },
-      }
-    );
-  },
-  images: {
-    domains: [],
+    config.resolve.alias[""] = path.resolve(__dirname);
+    return config;
   },
 };
-
-module.exports = nextConfig;

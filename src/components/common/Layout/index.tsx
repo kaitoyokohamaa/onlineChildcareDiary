@@ -1,6 +1,6 @@
 import { Sidebar } from "./sidebar";
 import { VFC } from "react";
-type Props = { children: React.ReactChildren };
+type Props = { children?: React.ReactNode };
 export const Layout: VFC<Props> = ({ children }) => {
   return (
     <div>
