@@ -1,9 +1,24 @@
-import React from "react";
+import { VFC } from "react";
 import { Button } from "components/common/button";
-export const Sidebar = () => {
+import { Box, Flex, Heading } from "@chakra-ui/layout";
+
+export const Sidebar: VFC = () => {
   return (
-    <div>
-      <Button>日誌登録</Button>
-    </div>
+    <Box>
+      <Box textAlign="center">
+        <Heading as="h5" size="md" color="white">
+          SMART DIARY PHOENIX
+        </Heading>
+      </Box>
+      <Box>
+        <Button>日誌登録</Button>
+      </Box>
+      <Box>
+        <Button>日誌登録</Button>
+      </Box>
+      <Box>
+        <Button>日誌登録</Button>
+      </Box>
+    </Box>
   );
 };
