@@ -6,7 +6,7 @@ export const Layout: VFC<Props> = ({ children }) => {
   return (
     <Box>
       <Flex>
-        <Flex h="100vh" bg="blue.400" w="20%" pl="3">
+        <Flex h="100vh" bg="#273673">
           <Box>
             <Sidebar />
           </Box>

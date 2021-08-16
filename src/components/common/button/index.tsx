@@ -1,8 +1,6 @@
 import { VFC } from "react";
-type Props = {
-  styles?: string;
-  children: React.ReactNode;
-};
-export const Button: VFC<Props> = ({ styles, children }) => {
-  return <button className={styles}>{children}</button>;
+import { Button, ButtonProps } from "@chakra-ui/react";
+
+export const Button_: VFC<ButtonProps> = (props) => {
+  return <Button {...props}></Button>;
 };

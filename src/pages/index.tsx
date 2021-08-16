@@ -1,6 +1,6 @@
 import { Button } from "@chakra-ui/button";
 import { Box, Flex, Heading } from "@chakra-ui/layout";
-import { Input, chakra } from "@chakra-ui/react";
+import { Input } from "@chakra-ui/react";
 import React from "react";
 
 export default function Index() {

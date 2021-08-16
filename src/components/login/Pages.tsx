@@ -1,13 +1,13 @@
 import { Button } from "@chakra-ui/button";
 import { Box, Flex, Heading } from "@chakra-ui/layout";
-import { Input, chakra } from "@chakra-ui/react";
+import { Input, Link as Links } from "@chakra-ui/react";
 import React from "react";
-
+import Link from "next/link";
 export const Pages = () => {
   return (
     <Box>
       <Flex>
-        <Flex h="100vh" bg="blue.400" w="50%" pt="25%" pl="3">
+        <Flex h="100vh" bg="#273673" w="50%" pt="25%" pl="3">
           <Box>
             <Heading as="h3" size="lg" color="white" mb={5}>
               保育実習生のためのオンライン日誌
@@ -22,7 +22,7 @@ export const Pages = () => {
                 <img src="img/phoenix.png" />
               </Box>
               <Box textAlign="center">
-                <Heading as="h5" size="md" color="blue.400">
+                <Heading as="h5" size="md" color="#273673">
                   SMART DIARY PHOENIX
                 </Heading>
               </Box>
@@ -38,6 +38,7 @@ export const Pages = () => {
             <Box>
               <Button
                 colorScheme="blue"
+                bg="#273673"
                 size="lg"
                 px="40"
                 py={{ lg: 8 }}
@@ -46,6 +47,12 @@ export const Pages = () => {
               >
                 サインイン
               </Button>
+            </Box>
+            <Box textAlign="center">
+              初めてのログインはこちら
+              <Link href="/signup">
+                <Links color="blue.500">新規登録</Links>
+              </Link>
             </Box>
           </Box>
         </Flex>
