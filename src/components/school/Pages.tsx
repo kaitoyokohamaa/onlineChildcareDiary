@@ -1,25 +1,16 @@
 import React from "react";
-import { MdLocalLibrary } from "react-icons/md";
+import { MdSchool } from "react-icons/md";
 import { Box, Flex, Heading, HStack, Text, Divider } from "@chakra-ui/layout";
-import {
-  Table,
-  Thead,
-  Tbody,
-  Tfoot,
-  Tr,
-  Th,
-  Td,
-  TableCaption,
-} from "@chakra-ui/react";
+import { Table, Thead, Tbody, Tr, Th, Td } from "@chakra-ui/react";
 export const Pages = () => {
   return (
     <Box mt="10">
       <Flex alignItems="center">
         <Box bg="#F8F8F8" p="2" borderRadius="md">
-          <MdLocalLibrary color=" #9FD0E8" />
+          <MdSchool color=" #9FD0E8" />
         </Box>
         <Text pl="8" fontWeight="bold">
-          日誌一覧
+          保育園一覧
         </Text>
       </Flex>
       <Divider mt="5" />
@@ -27,49 +18,49 @@ export const Pages = () => {
         <Thead>
           <Tr>
             <Th>保育園名</Th>
-            <Th>日付</Th>
+            <Th>住所</Th>
             <Th isNumeric></Th>
           </Tr>
         </Thead>
         <Tbody>
           <Tr>
             <Td>ひまわり保育園</Td>
-            <Td>2021/09/31</Td>
+            <Td>東京都北区赤羽台１丁目７−１１</Td>
             <Td isNumeric>詳しくみる</Td>
           </Tr>
           <Tr>
             <Td>ひまわり保育園</Td>
-            <Td>2021/09/31</Td>
+            <Td>東京都北区赤羽台１丁目７−１１</Td>
             <Td isNumeric>詳しくみる</Td>
           </Tr>
           <Tr>
             <Td>ひまわり保育園</Td>
-            <Td>2021/09/31</Td>
+            <Td>東京都北区赤羽台１丁目７−１１</Td>
             <Td isNumeric>詳しくみる</Td>
           </Tr>
           <Tr>
             <Td>ひまわり保育園</Td>
-            <Td>2021/09/31</Td>
+            <Td>東京都北区赤羽台１丁目７−１１</Td>
             <Td isNumeric>詳しくみる</Td>
           </Tr>
           <Tr>
             <Td>ひまわり保育園</Td>
-            <Td>2021/09/31</Td>
+            <Td>東京都北区赤羽台１丁目７−１１</Td>
             <Td isNumeric>詳しくみる</Td>
           </Tr>
           <Tr>
             <Td>ひまわり保育園</Td>
-            <Td>2021/09/31</Td>
+            <Td>東京都北区赤羽台１丁目７−１１</Td>
             <Td isNumeric>詳しくみる</Td>
           </Tr>
           <Tr>
             <Td>ひまわり保育園</Td>
-            <Td>2021/09/31</Td>
+            <Td>東京都北区赤羽台１丁目７−１１</Td>
             <Td isNumeric>詳しくみる</Td>
           </Tr>
           <Tr>
-            <Td>ひまわり保育園</Td>
-            <Td>2021/09/31</Td>
+            <Td>太陽保育園</Td>
+            <Td>東京都北区赤羽台１丁目７−１１</Td>
             <Td isNumeric>詳しくみる</Td>
           </Tr>
         </Tbody>
