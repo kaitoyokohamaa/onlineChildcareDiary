@@ -15,7 +15,7 @@ export const Pages = () => {
           </Box>
         </Flex>
 
-        <Flex className="right" w="50%" pt="15%" justify="center">
+        <Flex w="50%" pt="15%" justify="center">
           <Box>
             <Flex align="center">
               <Box w="10%">

@@ -1,9 +1,9 @@
 import { VFC } from "react";
+import Link from "next/link";
 import { Button_ } from "components/common/button";
-
-import { SidebarLink } from "components/common/Layout/sidebarLink";
+import { SidebarLink } from "components/common/layout/sidebarLink";
 import { Box, Flex, Heading, HStack, Text } from "@chakra-ui/layout";
-import { MdLocalLibrary, MdSchool, MdEdit, MdChatBubble } from "react-icons/md";
+import { MdLocalLibrary, MdSchool, MdChatBubble } from "react-icons/md";
 import { IoLogOut } from "react-icons/io5";
 import { VscGear } from "react-icons/vsc";
 
@@ -22,42 +22,58 @@ export const Sidebar: VFC = () => {
       </Box>
       <Box py={4} _hover={{ bg: "#FFFFFF1A 0% 0% no-repeat padding-box" }}>
         <SidebarLink color="white">
-          <Flex justify="center">
-            <HStack w="50%">
-              <MdLocalLibrary size={20} />
-              <Text>日誌一覧</Text>
-            </HStack>
-          </Flex>
+          <Link href="/diary">
+            <a>
+              <Flex justify="center">
+                <HStack w="50%">
+                  <MdLocalLibrary size={20} />
+                  <Text>日誌一覧</Text>
+                </HStack>
+              </Flex>
+            </a>
+          </Link>
         </SidebarLink>
       </Box>
       <Box py={4} _hover={{ bg: "#FFFFFF1A 0% 0% no-repeat padding-box" }}>
         <SidebarLink color="white">
-          <Flex justify="center">
-            <HStack w="50%">
-              <MdSchool size={20} />
-              <Text>保育園一覧</Text>
-            </HStack>
-          </Flex>
+          <Link href="/school">
+            <a>
+              <Flex justify="center">
+                <HStack w="50%">
+                  <MdSchool size={20} />
+                  <Text>保育園一覧</Text>
+                </HStack>
+              </Flex>
+            </a>
+          </Link>
         </SidebarLink>
       </Box>
       <Box py={4} _hover={{ bg: "#FFFFFF1A 0% 0% no-repeat padding-box" }}>
         <SidebarLink color="white">
-          <Flex justify="center">
-            <HStack w="50%">
-              <MdChatBubble size={20} />
-              <Text>チャット</Text>
-            </HStack>
-          </Flex>
+          <Link href="/home">
+            <a>
+              <Flex justify="center">
+                <HStack w="50%">
+                  <MdChatBubble size={20} />
+                  <Text>チャット</Text>
+                </HStack>
+              </Flex>
+            </a>
+          </Link>
         </SidebarLink>
       </Box>
       <Box py={4} _hover={{ bg: "#FFFFFF1A 0% 0% no-repeat padding-box" }}>
         <SidebarLink color="white">
-          <Flex justify="center">
-            <HStack w="50%">
-              <VscGear size={20} />
-              <Text>設定</Text>
-            </HStack>
-          </Flex>
+          <Link href="/home">
+            <a>
+              <Flex justify="center">
+                <HStack w="50%">
+                  <VscGear size={20} />
+                  <Text>設定</Text>
+                </HStack>
+              </Flex>
+            </a>
+          </Link>
         </SidebarLink>
       </Box>
       <Box
