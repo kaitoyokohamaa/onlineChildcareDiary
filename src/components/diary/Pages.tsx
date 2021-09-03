@@ -1,16 +1,7 @@
 import React from "react";
 import { MdLocalLibrary } from "react-icons/md";
-import { Box, Flex, Heading, HStack, Text, Divider } from "@chakra-ui/layout";
-import {
-  Table,
-  Thead,
-  Tbody,
-  Tfoot,
-  Tr,
-  Th,
-  Td,
-  TableCaption,
-} from "@chakra-ui/react";
+import { Box, Flex, Text, Divider } from "@chakra-ui/layout";
+import { Table, Thead, Tbody, Tr, Th, Td } from "@chakra-ui/react";
 export const Pages = () => {
   return (
     <Box mt="10">
