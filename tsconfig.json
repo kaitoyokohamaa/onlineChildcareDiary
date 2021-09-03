@@ -15,7 +15,7 @@
     "jsx": "preserve",
     "types": ["@emotion/react/types/css-prop"],
     "downlevelIteration": true,
-    "baseUrl": "src/",
+    "baseUrl": "./",
     "paths": {
       "*": ["./*"]
     }
