@@ -1,4 +1,3 @@
-import { VFC } from "react";
 import { Avator } from "components/common/avator";
 import {
   Input,

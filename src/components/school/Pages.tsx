@@ -1,6 +1,6 @@
 import React from "react";
 import { MdSchool } from "react-icons/md";
-import { Box, Flex, Heading, HStack, Text, Divider } from "@chakra-ui/layout";
+import { Box, Flex, Text, Divider } from "@chakra-ui/layout";
 import { Table, Thead, Tbody, Tr, Th, Td } from "@chakra-ui/react";
 export const Pages = () => {
   return (
