@@ -9,6 +9,7 @@ import {
 } from "@chakra-ui/react";
 
 import { MdSearch } from "react-icons/md";
+
 export const Header = () => {
   return (
     <Box w="100%">
