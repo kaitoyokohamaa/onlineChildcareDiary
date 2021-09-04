@@ -1,5 +1,5 @@
-import { Header } from "/src/components/common/layout/header";
-import { Sidebar } from "/src/components/common/layout/sidebar";
+import { Header } from "src/components/common/layout/header";
+import { Sidebar } from "src/components/common/layout/sidebar";
 import { VFC } from "react";
 import { Box, Flex } from "@chakra-ui/layout";
 
