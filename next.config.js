@@ -1,9 +1,17 @@
 const path = require("path");
 
 module.exports = {
-  webpack: (config) => {
+  distDir: "./.next",
+  webpack: config => {
     config.resolve.alias[""] = path.resolve(__dirname);
-    return config;
+    return {
+      config,
+      resolve: {
+        alias: {
+          "": path.resolve(__dirname),
+        },
+      },
+    };
   },
   images: {
     domains: ["images.unsplash.com"],

@@ -4,6 +4,7 @@ import { VFC } from "react";
 import { Box, Flex } from "@chakra-ui/layout";
 
 type Props = { children?: React.ReactNode };
+
 export const Layout: VFC<Props> = ({ children }) => {
   return (
     <Box>
