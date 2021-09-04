@@ -1,4 +1,4 @@
-import { Avator } from "/src/components/common/avator";
+import { Avator } from "@/components/common/avator";
 import {
   Input,
   Box,
