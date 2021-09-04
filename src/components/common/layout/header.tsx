@@ -7,12 +7,12 @@ import {
   InputGroup,
   InputRightElement,
 } from "@chakra-ui/react";
-
+import { VFC } from "react";
 import { MdSearch } from "react-icons/md";
 
-export const Header = () => {
+export const Header: VFC = () => {
   return (
-    <Box w="100%">
+    <Box w="100%" px={16}>
       <Flex justify="space-between">
         <Box w="50%">
           <InputGroup>

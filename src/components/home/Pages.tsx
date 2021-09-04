@@ -1,10 +1,10 @@
-import React from "react";
+import { VFC } from "react";
 import { Box, Flex, Text, Divider } from "@chakra-ui/layout";
 import { MdLocalLibrary } from "react-icons/md";
 import Link from "next/link";
-export const Pages = () => {
+export const Pages: VFC = () => {
   return (
-    <Box>
+    <Box px={16}>
       <Box mt={10}>
         <Text fontWeight="bold">新規作成</Text>
       </Box>

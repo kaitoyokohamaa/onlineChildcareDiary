@@ -1,5 +1,6 @@
-import React from "react";
+import { NextPage } from "next";
 import { Pages } from "@/components/login/Pages";
-export default function Logins() {
+const Login: NextPage = () => {
   return <Pages />;
-}
+};
+export default Login;

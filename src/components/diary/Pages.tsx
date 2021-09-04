@@ -1,10 +1,10 @@
-import React from "react";
+import { VFC } from "react";
 import { MdLocalLibrary } from "react-icons/md";
 import { Box, Flex, Text, Divider } from "@chakra-ui/layout";
 import { Table, Thead, Tbody, Tr, Th, Td } from "@chakra-ui/react";
-export const Pages = () => {
+export const Pages: VFC = () => {
   return (
-    <Box mt="10">
+    <Box mt="10" px={16}>
       <Flex alignItems="center">
         <Box bg="#F8F8F8" p="2" borderRadius="md">
           <MdLocalLibrary color=" #9FD0E8" />
@@ -23,6 +23,16 @@ export const Pages = () => {
           </Tr>
         </Thead>
         <Tbody>
+          <Tr>
+            <Td>ひまわり保育園</Td>
+            <Td>2021/09/31</Td>
+            <Td isNumeric>詳しくみる</Td>
+          </Tr>
+          <Tr>
+            <Td>ひまわり保育園</Td>
+            <Td>2021/09/31</Td>
+            <Td isNumeric>詳しくみる</Td>
+          </Tr>
           <Tr>
             <Td>ひまわり保育園</Td>
             <Td>2021/09/31</Td>

@@ -1,7 +1,7 @@
-import React from "react";
+import { VFC } from "react";
 
 import { Image } from "@chakra-ui/react";
-export const Avator = () => {
+export const Avator: VFC = () => {
   return (
     <Image
       borderRadius="full"
