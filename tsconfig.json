@@ -1,7 +1,6 @@
 {
   "compilerOptions": {
-    "target": "esnext",
-    "noUnusedLocals": false,
+    "target": "es5",
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
@@ -12,9 +11,9 @@
     "module": "esnext",
     "moduleResolution": "node",
     "resolveJsonModule": true,
-    "jsxImportSource": "@emotion/react",
     "isolatedModules": true,
     "jsx": "preserve",
+    "types": ["@emotion/react/types/css-prop"],
     "downlevelIteration": true,
     "baseUrl": "./",
     "paths": {
