@@ -1,7 +1,7 @@
 import { VFC } from "react";
 import Link from "next/link";
-import { Button_ } from "components/common/button";
-import { SidebarLink } from "components/common/layout/sidebarLink";
+import { Button_ } from "@/components/common/button";
+import { SidebarLink } from "./sidebarLink";
 import { Box, Flex, Heading, HStack, Text } from "@chakra-ui/layout";
 import { MdLocalLibrary, MdSchool, MdChatBubble } from "react-icons/md";
 import { IoLogOut } from "react-icons/io5";

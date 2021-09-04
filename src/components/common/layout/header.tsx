@@ -1,5 +1,4 @@
-import { VFC } from "react";
-import { Avator } from "components/common/avator";
+import { Avator } from "@/components/common/avator";
 import {
   Input,
   Box,
@@ -10,6 +9,7 @@ import {
 } from "@chakra-ui/react";
 
 import { MdSearch } from "react-icons/md";
+
 export const Header = () => {
   return (
     <Box w="100%">

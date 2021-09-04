@@ -15,11 +15,11 @@
     "jsx": "preserve",
     "types": ["@emotion/react/types/css-prop"],
     "downlevelIteration": true,
-    "baseUrl": "src/",
+    "baseUrl": "./",
     "paths": {
-      "/*": ["./*"]
+      "@/*": ["src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "include": ["next-env.d.ts", "pages/**/*", "src/**/*", "next.config.js"],
   "exclude": ["node_modules"]
 }

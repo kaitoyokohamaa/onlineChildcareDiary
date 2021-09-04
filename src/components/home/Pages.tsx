@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Flex, Heading, HStack, Text, Divider } from "@chakra-ui/layout";
+import { Box, Flex, Text, Divider } from "@chakra-ui/layout";
 import { MdLocalLibrary } from "react-icons/md";
 import Link from "next/link";
 export const Pages = () => {
