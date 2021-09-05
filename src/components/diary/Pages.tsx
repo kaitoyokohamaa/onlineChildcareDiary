@@ -2,6 +2,7 @@ import { VFC } from "react";
 import { MdLocalLibrary } from "react-icons/md";
 import { Box, Flex, Text, Divider } from "@chakra-ui/layout";
 import { Table, Thead, Tbody, Tr, Th, Td } from "@chakra-ui/react";
+import Link from "next/link";
 export const Pages: VFC = () => {
   return (
     <Box mt="10" px={16}>
@@ -14,7 +15,7 @@ export const Pages: VFC = () => {
         </Text>
       </Flex>
       <Divider mt="5" />
-      <Table variant="striped" colorScheme="twitter" _hover={{}}>
+      <Table variant="striped" colorScheme="twitter">
         <Thead>
           <Tr>
             <Th>保育園名</Th>
@@ -23,56 +24,20 @@ export const Pages: VFC = () => {
           </Tr>
         </Thead>
         <Tbody>
-          <Tr>
-            <Td>ひまわり保育園</Td>
-            <Td>2021/09/31</Td>
-            <Td isNumeric>詳しくみる</Td>
-          </Tr>
-          <Tr>
-            <Td>ひまわり保育園</Td>
-            <Td>2021/09/31</Td>
-            <Td isNumeric>詳しくみる</Td>
-          </Tr>
-          <Tr>
-            <Td>ひまわり保育園</Td>
-            <Td>2021/09/31</Td>
-            <Td isNumeric>詳しくみる</Td>
-          </Tr>
-          <Tr>
-            <Td>ひまわり保育園</Td>
-            <Td>2021/09/31</Td>
-            <Td isNumeric>詳しくみる</Td>
-          </Tr>
-          <Tr>
-            <Td>ひまわり保育園</Td>
-            <Td>2021/09/31</Td>
-            <Td isNumeric>詳しくみる</Td>
-          </Tr>
-          <Tr>
-            <Td>ひまわり保育園</Td>
-            <Td>2021/09/31</Td>
-            <Td isNumeric>詳しくみる</Td>
-          </Tr>
-          <Tr>
-            <Td>ひまわり保育園</Td>
-            <Td>2021/09/31</Td>
-            <Td isNumeric>詳しくみる</Td>
-          </Tr>
-          <Tr>
-            <Td>ひまわり保育園</Td>
-            <Td>2021/09/31</Td>
-            <Td isNumeric>詳しくみる</Td>
-          </Tr>
-          <Tr>
-            <Td>ひまわり保育園</Td>
-            <Td>2021/09/31</Td>
-            <Td isNumeric>詳しくみる</Td>
-          </Tr>
-          <Tr>
-            <Td>ひまわり保育園</Td>
-            <Td>2021/09/31</Td>
-            <Td isNumeric>詳しくみる</Td>
-          </Tr>
+          {[...Array(10)].map(() => {
+            return (
+              <Tr
+                _hover={{
+                  boxShadow: "dark-lg",
+                  p: "14",
+                }}
+              >
+                <Td>ひまわり保育園</Td>
+                <Td>2021/09/31</Td>
+                <Td isNumeric>詳細</Td>
+              </Tr>
+            );
+          })}
         </Tbody>
       </Table>
     </Box>
