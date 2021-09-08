@@ -3786,6 +3786,11 @@ react-clientside-effect@^1.2.2:
   dependencies:
     "@babel/runtime" "^7.12.13"
 
+react-datasheet@^1.4.9:
+  version "1.4.9"
+  resolved "https://registry.yarnpkg.com/react-datasheet/-/react-datasheet-1.4.9.tgz#fe1c1adcccb62f07a94262ac1c3a8a285740694a"
+  integrity sha512-/UoIw/bnqeFT205IE+eESm0APLUnSl0ZPqG6mrKszgNB578cm+06GuPg79UxFOiobVeWXtrLwa/yNUQc+OiOfQ==
+
 react-dom@^17.0.2:
   version "17.0.2"
   resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-17.0.2.tgz#ecffb6845e3ad8dbfcdc498f0d0a939736502c23"
