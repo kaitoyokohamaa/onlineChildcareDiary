@@ -20,14 +20,7 @@ export const Header: VFC = () => {
   return (
     <Box w="100%" px={16}>
       <Flex justify="space-between">
-        <Box w="50%">
-          <InputGroup>
-            <Input placeholder={"検索"} />
-            <InputRightElement>
-              <MdSearch size={20} />
-            </InputRightElement>
-          </InputGroup>
-        </Box>
+        <Box w="50%"></Box>
         <Menu>
           <MenuButton as={Button} bg="#fff">
             <Box>
