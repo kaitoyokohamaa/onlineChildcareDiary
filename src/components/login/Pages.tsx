@@ -1,9 +1,9 @@
 import { Button } from "@chakra-ui/button";
 import { Box, Flex, Heading } from "@chakra-ui/layout";
 import { Input, Link as Links } from "@chakra-ui/react";
-import React from "react";
+import { VFC } from "react";
 import Link from "next/link";
-export const Pages = () => {
+export const Pages: VFC = () => {
   return (
     <Box>
       <Flex>

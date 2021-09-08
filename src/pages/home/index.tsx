@@ -1,10 +1,11 @@
-import React from "react";
+import { NextPage } from "next";
 import { Layout } from "@/components/common/layout";
 import { Pages } from "@/components/home/Pages";
-export default function Home() {
+const Home: NextPage = () => {
   return (
-    <Layout>
+    <Layout isHeader>
       <Pages />
     </Layout>
   );
-}
+};
+export default Home;

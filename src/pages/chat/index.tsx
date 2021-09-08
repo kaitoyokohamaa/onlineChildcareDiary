@@ -1,11 +1,11 @@
 import { NextPage } from "next";
 import { Layout } from "@/components/common/layout";
-import { Pages } from "@/components/school/Pages";
-const School: NextPage = () => {
+import { Pages } from "@/components/chat/Pages";
+const Chat: NextPage = () => {
   return (
-    <Layout isHeader>
+    <Layout>
       <Pages />
     </Layout>
   );
 };
-export default School;
+export default Chat;

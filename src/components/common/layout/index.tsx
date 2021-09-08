@@ -3,9 +3,9 @@ import { Sidebar } from "./sidebar";
 import { VFC } from "react";
 import { Box, Flex } from "@chakra-ui/layout";
 
-type Props = { children?: React.ReactNode };
+type Props = { children?: React.ReactNode; isHeader?: boolean };
 
-export const Layout: VFC<Props> = ({ children }) => {
+export const Layout: VFC<Props> = ({ children, isHeader }) => {
   return (
     <Box>
       <Flex w="100%">
@@ -16,11 +16,13 @@ export const Layout: VFC<Props> = ({ children }) => {
           </Box>
         </Flex>
         {/* contents */}
-        <Flex w="80%" px={16}>
+        <Flex w="80%">
           <Box w="100%">
-            <Box mt="10">
-              <Header />
-            </Box>
+            {isHeader && (
+              <Box mt="10">
+                <Header />
+              </Box>
+            )}
             <Box>{children}</Box>
           </Box>
         </Flex>

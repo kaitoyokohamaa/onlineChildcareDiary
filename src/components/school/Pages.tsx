@@ -1,10 +1,11 @@
-import React from "react";
+import { VFC } from "react";
 import { MdSchool } from "react-icons/md";
 import { Box, Flex, Text, Divider } from "@chakra-ui/layout";
 import { Table, Thead, Tbody, Tr, Th, Td } from "@chakra-ui/react";
-export const Pages = () => {
+import Link from "next/link";
+export const Pages: VFC = () => {
   return (
-    <Box mt="10">
+    <Box mt="10" px={16}>
       <Flex alignItems="center">
         <Box bg="#F8F8F8" p="2" borderRadius="md">
           <MdSchool color=" #9FD0E8" />
@@ -23,46 +24,32 @@ export const Pages = () => {
           </Tr>
         </Thead>
         <Tbody>
-          <Tr>
-            <Td>ひまわり保育園</Td>
-            <Td>東京都北区赤羽台１丁目７−１１</Td>
-            <Td isNumeric>詳しくみる</Td>
-          </Tr>
-          <Tr>
-            <Td>ひまわり保育園</Td>
-            <Td>東京都北区赤羽台１丁目７−１１</Td>
-            <Td isNumeric>詳しくみる</Td>
-          </Tr>
-          <Tr>
-            <Td>ひまわり保育園</Td>
-            <Td>東京都北区赤羽台１丁目７−１１</Td>
-            <Td isNumeric>詳しくみる</Td>
-          </Tr>
-          <Tr>
-            <Td>ひまわり保育園</Td>
-            <Td>東京都北区赤羽台１丁目７−１１</Td>
-            <Td isNumeric>詳しくみる</Td>
-          </Tr>
-          <Tr>
-            <Td>ひまわり保育園</Td>
-            <Td>東京都北区赤羽台１丁目７−１１</Td>
-            <Td isNumeric>詳しくみる</Td>
-          </Tr>
-          <Tr>
-            <Td>ひまわり保育園</Td>
-            <Td>東京都北区赤羽台１丁目７−１１</Td>
-            <Td isNumeric>詳しくみる</Td>
-          </Tr>
-          <Tr>
-            <Td>ひまわり保育園</Td>
-            <Td>東京都北区赤羽台１丁目７−１１</Td>
-            <Td isNumeric>詳しくみる</Td>
-          </Tr>
-          <Tr>
-            <Td>太陽保育園</Td>
-            <Td>東京都北区赤羽台１丁目７−１１</Td>
-            <Td isNumeric>詳しくみる</Td>
-          </Tr>
+          {[...Array(10)].map(() => {
+            return (
+              <Tr
+                _hover={{
+                  boxShadow: "dark-lg",
+                  p: "14",
+                }}
+              >
+                <Td>
+                  <Link href="/school/detail">
+                    <a>ひまわり保育園</a>
+                  </Link>
+                </Td>
+                <Td>
+                  <Link href="/school/detail">
+                    <a>東京都北区赤羽台１丁目７−１１</a>
+                  </Link>
+                </Td>
+                <Td isNumeric>
+                  <Link href="/school/detail">
+                    <a>詳細</a>
+                  </Link>
+                </Td>
+              </Tr>
+            );
+          })}
         </Tbody>
       </Table>
     </Box>
