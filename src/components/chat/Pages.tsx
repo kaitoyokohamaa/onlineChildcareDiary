@@ -8,13 +8,13 @@ import { ChatForm } from "@/components/chat/chatForm";
 
 export const Pages: VFC = () => {
   return (
-    <Box p={0}>
+    <Box p={0} borderTop="2px" borderColor="#E9E9E9" mt="20px">
       <Flex>
         <ChatSidebar />
         <Flex w="75%" justifyContent="center">
           <Box w="95%">
             <ChatHeader />
-            <Box h="75vh" overflow="scroll">
+            <Box h="65vh" overflow="scroll">
               <Chat />
             </Box>
             <Box mt="4">
