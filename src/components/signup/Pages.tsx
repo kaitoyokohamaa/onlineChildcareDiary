@@ -2,10 +2,10 @@ import { Button } from "@chakra-ui/button";
 import { Box, Flex, Heading } from "@chakra-ui/layout";
 import { Input, Link as Links } from "@chakra-ui/react";
 import { VFC, useState } from "react";
+import { useRouter } from "next/router";
 import Link from "next/link";
 import firebase from "@/lib/firebase";
 import { userRef } from "@/lib/firestore";
-import { useRouter } from "next/router";
 export const Pages: VFC = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -13,13 +13,26 @@ export const Pages: VFC = () => {
   const submitHandler = () => {
     firebase
       .auth()
-      .signInWithEmailAndPassword(email, password)
-      .then(() => {
+      .createUserWithEmailAndPassword(email, password)
+      .then(res => {
+        const users = { uid: [res.user?.uid], address: res.user.email };
+        // Todo UIDを保存する。
         userRef().onSnapshot(contents => {
-          router.push(`/home`);
+          if (!contents.size) {
+            userRef().add(users);
+          }
+          contents.forEach(userDocs => {
+            if (!userDocs.data().uid[0].includes(res.user.uid)) {
+              userRef().add(users);
+            }
+          });
+
           setEmail("");
           setPassword("");
         });
+      })
+      .then(() => {
+        router.push(`/home`);
       })
       .catch(err => {
         console.log(err);
@@ -75,13 +88,13 @@ export const Pages: VFC = () => {
                 mb={10}
                 onClick={submitHandler}
               >
-                サインイン
+                新規登録
               </Button>
             </Box>
             <Box textAlign="center">
-              初めてのログインはこちら
-              <Link href="/signup">
-                <Links color="blue.500">新規登録</Links>
+              ログインの方は
+              <Link href="/login">
+                <Links color="blue.500">こちら</Links>
               </Link>
             </Box>
           </Box>

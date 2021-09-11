@@ -5,7 +5,7 @@ const IndexPage: NextPage = () => null;
 export const getServerSideProps = async () => {
   return {
     redirect: {
-      destination: "/home",
+      destination: "/login",
       permanent: false,
     },
   };
