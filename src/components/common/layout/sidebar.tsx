@@ -12,10 +12,18 @@ import {
 import { IoLogOut } from "react-icons/io5";
 import { VscGear } from "react-icons/vsc";
 import { useRouter } from "next/router";
-
+import firebase from "@/lib/firebase";
 export const Sidebar: VFC = () => {
   const router = useRouter();
-
+  const signOutHandler = () => {
+    firebase
+      .auth()
+      .signOut()
+      .then(() => {
+        alert("ログアウトしました");
+        router.push("/login");
+      });
+  };
   return (
     <Box w="100%" px={4}>
       <Box textAlign="center">
@@ -30,28 +38,7 @@ export const Sidebar: VFC = () => {
           </Link>
         </Button_>
       </Box>
-      <Box
-        py={4}
-        _hover={{ bg: "#FFFFFF1A 0% 0% no-repeat padding-box" }}
-        borderLeft={router.asPath === "/post" && "4px"}
-        borderColor={router.asPath === "/post" && "#56A9D3"}
-        bg={
-          router.asPath === "/post" && "#FFFFFF1A 0% 0% no-repeat padding-box"
-        }
-      >
-        <SidebarLink color={router.asPath === "/psot" ? "#84B9D4" : "white"}>
-          <Link href="/post">
-            <a>
-              <Flex justify="center" mx={router.asPath === "/post" && -1.5}>
-                <HStack w="50%">
-                  <MdLocalPostOffice size={20} />
-                  <Text>投稿一覧</Text>
-                </HStack>
-              </Flex>
-            </a>
-          </Link>
-        </SidebarLink>
-      </Box>
+
       <Box
         py={4}
         _hover={{ bg: "#FFFFFF1A 0% 0% no-repeat padding-box" }}
@@ -119,7 +106,7 @@ export const Sidebar: VFC = () => {
         </SidebarLink>
       </Box>
       <Box
-        py={router.asPath === "/edit" ? -4 : 4}
+        py={4}
         _hover={{ bg: "#FFFFFF1A 0% 0% no-repeat padding-box" }}
         borderLeft={router.asPath === "/edit" && "4px"}
         borderColor={router.asPath === "/edit" && "#56A9D3"}
@@ -145,6 +132,7 @@ export const Sidebar: VFC = () => {
         bottom={-250}
         position="relative"
         _hover={{ bg: "#FFFFFF1A 0% 0% no-repeat padding-box" }}
+        onClick={signOutHandler}
       >
         <SidebarLink color="white">
           <Flex justify="center">
