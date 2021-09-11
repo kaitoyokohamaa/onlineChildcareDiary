@@ -5,7 +5,7 @@ export const ChatSidebar: VFC = () => {
   return (
     <Flex w="25%">
       <Box w="100%" h="87vh" overflow="scroll">
-        {[...Array(9)].map(() => {
+        {[...Array(1)].map(() => {
           return (
             <Box border="2px" borderColor="#F8F8F8" py={4} px="10">
               <Flex alignItems="center">
@@ -15,7 +15,7 @@ export const ChatSidebar: VFC = () => {
                   </Avatar>
                 </Stack>
                 <Box pl="3">
-                  <Text fontWeight="bold">斉藤</Text>
+                  <Text fontWeight="bold">斉藤タカシ</Text>
                   <Text fontSize="sm" color="#707070">
                     本日の日誌を確認しました。
                   </Text>

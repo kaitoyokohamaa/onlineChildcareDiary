@@ -76,7 +76,7 @@ export const Sidebar: VFC = () => {
               <Flex justify="center" mx={router.asPath === "/school" && -1.5}>
                 <HStack w="50%">
                   <MdSchool size={20} />
-                  <Text>保育園一覧</Text>
+                  <Text>実習先情報</Text>
                 </HStack>
               </Flex>
             </a>
