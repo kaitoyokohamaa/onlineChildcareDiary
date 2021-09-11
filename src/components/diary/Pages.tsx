@@ -18,7 +18,6 @@ export const Pages: VFC = () => {
       <Table variant="striped" colorScheme="twitter">
         <Thead>
           <Tr>
-            <Th>保育園名</Th>
             <Th>日付</Th>
             <Th isNumeric></Th>
           </Tr>
@@ -32,8 +31,7 @@ export const Pages: VFC = () => {
                   p: "14",
                 }}
               >
-                <Td>ひまわり保育園</Td>
-                <Td>2021/09/31</Td>
+                <Td>2021/09/31(第1週目)</Td>
                 <Td isNumeric>詳細</Td>
               </Tr>
             );
