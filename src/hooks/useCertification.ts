@@ -1,6 +1,5 @@
 import {useState} from 'react'
 import {useRouter} from 'next/router'
-
 import firebase from '@/lib/firebase'
 import {userRef} from '@/lib/firestore'
 export const UseCertification = () => {
@@ -22,5 +21,20 @@ export const UseCertification = () => {
 				console.log(err)
 			})
 	}
-	return {signupHandler, setEmail, setPassword, email, password} as const
+	const signinHandler = () => {
+		firebase
+			.auth()
+			.signInWithEmailAndPassword(email, password)
+			.then((res) => {
+				const users = {uid: [res.user?.uid], address: res.user.email}
+				userRef().add(users)
+			})
+			.then(() => {
+				router.push(`/home`)
+			})
+			.catch((err) => {
+				console.log(err)
+			})
+	}
+	return {signupHandler, signinHandler, setEmail, setPassword, email, password} as const
 }
