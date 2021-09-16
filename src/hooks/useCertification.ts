@@ -25,10 +25,6 @@ export const UseCertification = () => {
 		firebase
 			.auth()
 			.signInWithEmailAndPassword(email, password)
-			.then((res) => {
-				const users = {uid: [res.user?.uid], address: res.user.email}
-				userRef().add(users)
-			})
 			.then(() => {
 				router.push(`/home`)
 			})

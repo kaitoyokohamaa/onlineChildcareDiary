@@ -1,27 +1,46 @@
 import {Box, Flex, Text, Divider} from '@chakra-ui/layout'
 import {Input, Textarea, Button} from '@chakra-ui/react'
 import {DiaryTabel} from './diaryTabel'
-import {useState} from 'react'
+import {useState, useEffect} from 'react'
 import {registerRef} from '@/lib/firestore'
+import {v1 as uuidv1} from 'uuid'
+import {MdLocalLibrary} from 'react-icons/md'
 export const Pages = () => {
 	const [rows, setRows] = useState([])
-	const [date, setDate] = useState('')
-	const [childActivities, setChildActivities] = useState('')
-	const [assistance, setAssistance] = useState('')
-	const [activitesAndAwareness, setActivitesAndAwareness] = useState('')
+	const [size, setSize] = useState<number>()
+
+	useEffect(() => {
+		registerRef()
+			.get()
+			.then((res) => {
+				setSize(res.size)
+			})
+	}, [rows])
+
 	const addRow = () => {
-		rows && setRows([...rows, {date, childActivities, assistance, activitesAndAwareness}])
+		rows &&
+			setRows([...rows, {id: uuidv1(), date: '', childActivities: '', assistance: '', activitesAndAwareness: ''}])
+		if (size === 0) {
+			registerRef().add({id: uuidv1(), date: '', childActivities: '', assistance: '', activitesAndAwareness: ''})
+		} else {
+			registerRef().doc('Fn3Zcvk9TrONz153Gocs').update({rows})
+		}
 	}
 
-	const onSave = () => {
-		registerRef().doc('SJBmrO3jwNKQ1W8lamgf').update({tableDate: rows})
-	}
+	// const onSave = () => {
+
+	// }
 
 	return (
 		<Box mt="10" px={16}>
-			<Text pl="8" fontWeight="bold">
-				日誌登録
-			</Text>
+			<Flex alignItems="center">
+				<Box bg="#F8F8F8" p="2" borderRadius="md">
+					<MdLocalLibrary color=" #9FD0E8" />
+				</Box>
+				<Text pl="8" fontWeight="bold">
+					日誌登録
+				</Text>
+			</Flex>
 			<Divider mt="5" />
 			<Box overflow="scroll" h="79vh">
 				<Box my="8">
@@ -47,17 +66,7 @@ export const Pages = () => {
 				</Box>
 				<Box my="8">
 					<Text fontWeight="bold">実習内容</Text>
-					<DiaryTabel
-						date={date}
-						childActivities={childActivities}
-						assistance={assistance}
-						activitesAndAwareness={activitesAndAwareness}
-						rows={rows}
-						setDate={setDate}
-						setChildActivities={setChildActivities}
-						setAssistance={setAssistance}
-						setActivitesAndAwareness={setActivitesAndAwareness}
-					/>
+					<DiaryTabel rows={rows} />
 				</Box>
 
 				<Box my="8">
@@ -66,9 +75,9 @@ export const Pages = () => {
 							<Button w="32" bg="#9FD0E8" color="#fff" _hover={{bg: '##9FD0E8'}} onClick={addRow}>
 								+ 行を追加
 							</Button>
-							<Button ml="3" w="32" bg="#9FD0E8" color="#fff" _hover={{bg: '##9FD0E8'}} onClick={onSave}>
+							{/* <Button ml="3" w="32" bg="#9FD0E8" color="#fff" _hover={{bg: '##9FD0E8'}} onClick={onSave}>
 								保存する
-							</Button>
+							</Button> */}
 						</Box>
 					</Flex>
 				</Box>
