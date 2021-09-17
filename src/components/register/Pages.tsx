@@ -2,34 +2,24 @@ import {Box, Flex, Text, Divider} from '@chakra-ui/layout'
 import {Input, Textarea, Button} from '@chakra-ui/react'
 import {DiaryTabel} from './diaryTabel'
 import {useState, useEffect} from 'react'
-import {registerRef} from '@/lib/firestore'
+import {registerRef, tablesRef} from '@/lib/firestore'
+import firebase from 'firebase/app'
+
 import {v1 as uuidv1} from 'uuid'
 import {MdLocalLibrary} from 'react-icons/md'
 export const Pages = () => {
-	const [rows, setRows] = useState([])
-	const [size, setSize] = useState<number>()
-
-	useEffect(() => {
-		registerRef()
-			.get()
-			.then((res) => {
-				setSize(res.size)
-			})
-	}, [rows])
-
 	const addRow = () => {
-		rows &&
-			setRows([...rows, {id: uuidv1(), date: '', childActivities: '', assistance: '', activitesAndAwareness: ''}])
-		if (size === 0) {
-			registerRef().add({id: uuidv1(), date: '', childActivities: '', assistance: '', activitesAndAwareness: ''})
-		} else {
-			registerRef().doc('Fn3Zcvk9TrONz153Gocs').update({rows})
-		}
+		console.log('add')
+		tablesRef().add({
+			DocID: 'x8ALuDIKjcAn7U4M3lQt',
+			id: uuidv1(),
+			date: '',
+			childActivities: '',
+			assistance: '',
+			activitesAndAwareness: '',
+			createdAt: firebase.firestore.Timestamp.now()
+		})
 	}
-
-	// const onSave = () => {
-
-	// }
 
 	return (
 		<Box mt="10" px={16}>
@@ -66,7 +56,7 @@ export const Pages = () => {
 				</Box>
 				<Box my="8">
 					<Text fontWeight="bold">実習内容</Text>
-					<DiaryTabel rows={rows} />
+					<DiaryTabel />
 				</Box>
 
 				<Box my="8">
@@ -75,9 +65,6 @@ export const Pages = () => {
 							<Button w="32" bg="#9FD0E8" color="#fff" _hover={{bg: '##9FD0E8'}} onClick={addRow}>
 								+ 行を追加
 							</Button>
-							{/* <Button ml="3" w="32" bg="#9FD0E8" color="#fff" _hover={{bg: '##9FD0E8'}} onClick={onSave}>
-								保存する
-							</Button> */}
 						</Box>
 					</Flex>
 				</Box>

@@ -1,10 +1,15 @@
 import {Flex, Text, Box} from '@chakra-ui/layout'
-import {Button, Input} from '@chakra-ui/react'
+import {Input} from '@chakra-ui/react'
 import {useState} from 'react'
 import {MdEdit} from 'react-icons/md'
+import {tablesRef} from '@/lib/firestore'
 export const DiaryDateForm = ({...props}) => {
-	const [isEdit, setIsEdit] = useState<boolean>(false)
+	const [isEdit, setIsEdit] = useState<boolean>(true)
 	const [date, setDate] = useState<string>('')
+	const onSave = () => {
+		setIsEdit(true)
+		tablesRef().doc(props.id).update({date})
+	}
 
 	return (
 		<Box>
@@ -16,7 +21,7 @@ export const DiaryDateForm = ({...props}) => {
 			) : (
 				<Box w="100%">
 					<Input
-						onBlur={() => setIsEdit(true)}
+						onBlur={onSave}
 						type="time"
 						onChange={(e) => {
 							setDate(e.target.value)

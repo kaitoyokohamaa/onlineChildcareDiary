@@ -11,3 +11,6 @@ export const userRef = () => {
 export const registerRef = () => {
 	return firestore().collection('User').doc('vewLQsKPplaDwy3EYZo8').collection('register')
 }
+export const tablesRef = () => {
+	return firestore().collection('User').doc('vewLQsKPplaDwy3EYZo8').collection('tables')
+}
