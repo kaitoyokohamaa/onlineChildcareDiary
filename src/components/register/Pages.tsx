@@ -7,17 +7,38 @@ import firebase from 'firebase/app'
 
 import {v1 as uuidv1} from 'uuid'
 import {MdLocalLibrary} from 'react-icons/md'
-export const Pages = () => {
+export const Pages = ({projectID}) => {
+	const [count, setCount] = useState('')
+	const [day, setDay] = useState('')
+	const [studentName, setStudentName] = useState('')
+	const [assignedName, setAssignedName] = useState('')
+	const [leader, setLeader] = useState('')
+	const [goal, setGoal] = useState('')
+	const [trainingContent, setTrainingContent] = useState([])
+	const [feeling, setFeeling] = useState('')
+
 	const addRow = () => {
-		console.log('add')
 		tablesRef().add({
-			DocID: 'x8ALuDIKjcAn7U4M3lQt',
+			projectID,
 			id: uuidv1(),
 			date: '',
 			childActivities: '',
 			assistance: '',
 			activitesAndAwareness: '',
 			createdAt: firebase.firestore.Timestamp.now()
+		})
+	}
+
+	const submitHandler = () => {
+		registerRef().add({
+			count,
+			day,
+			studentName,
+			assignedName,
+			leader,
+			goal,
+			trainingContent,
+			feeling
 		})
 	}
 
@@ -36,27 +57,36 @@ export const Pages = () => {
 				<Box my="8">
 					<Text fontWeight="bold">日付／名前</Text>
 					<Flex mt="2">
-						<Input type="number" placeholder="第何日目" />
-						<Input type="date" placeholder="日付" ml="10" />
-						<Input type="text" placeholder="実習生氏名" ml="10" />
+						<Input onChange={(e) => setCount(e.target.value)} type="number" placeholder="第何日目" />
+						<Input onChange={(e) => setDay(e.target.value)} type="date" placeholder="日付" ml="10" />
+						<Input
+							onChange={(e) => setStudentName(e.target.value)}
+							type="text"
+							placeholder="実習生氏名"
+							ml="10"
+						/>
 					</Flex>
 				</Box>
 				<Box my="8">
 					<Text fontWeight="bold">配属先/指導者</Text>
 					<Flex mt="2">
-						<Input type="text" placeholder="配属先" />
-						<Input type="text" placeholder="指導者名" ml="10" />
+						<Input onChange={(e) => setAssignedName(e.target.value)} type="text" placeholder="配属先" />
+						<Input onChange={(e) => setLeader(e.target.value)} type="text" placeholder="指導者名" ml="10" />
 					</Flex>
 				</Box>
 				<Box my="8">
 					<Text fontWeight="bold">本日の目標</Text>
 					<Flex mt="2">
-						<Textarea type="text" placeholder="本日の目標" />
+						<Textarea onChange={(e) => setGoal(e.target.value)} type="text" placeholder="本日の目標" />
 					</Flex>
 				</Box>
 				<Box my="8">
 					<Text fontWeight="bold">実習内容</Text>
-					<DiaryTabel />
+					<DiaryTabel
+						projectID={projectID}
+						setTrainingContent={setTrainingContent}
+						trainingContent={trainingContent}
+					/>
 				</Box>
 
 				<Box my="8">
@@ -71,14 +101,15 @@ export const Pages = () => {
 				<Box my="8">
 					<Text fontWeight="bold">実習所感(特に印象に残ったこと、考察、課題、反省など)</Text>
 					<Flex mt="2">
-						<Textarea type="text" placeholder="本日の目標" />
+						<Textarea onChange={(e) => setFeeling(e.target.value)} type="text" placeholder="本日の目標" />
 					</Flex>
 				</Box>
 
 				<Box my="8">
 					<Flex w="100%" mt="2" gap={6}>
 						<Box textAlign="right" w="100%" bg="#FCFCFC 0% 0% no-repeat padding-box;" p="10">
-							<Button
+							{/* todo:一時保存機能 */}
+							{/* <Button
 								ml="3"
 								w="32"
 								variant="outline"
@@ -89,9 +120,16 @@ export const Pages = () => {
 								color="#273264"
 							>
 								一時保存
-							</Button>
-							<Button w="32" ml="3" bg="#273264" color="#fff" _hover={{bg: '#141933'}}>
-								完了
+							</Button> */}
+							<Button
+								onClick={submitHandler}
+								w="32"
+								ml="3"
+								bg="#273264"
+								color="#fff"
+								_hover={{bg: '#141933'}}
+							>
+								保存する
 							</Button>
 						</Box>
 					</Flex>

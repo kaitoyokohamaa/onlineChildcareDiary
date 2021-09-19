@@ -3,20 +3,28 @@ import {DiaryForm} from './diaryForm'
 import {DiaryDateForm} from './diaryDateForm'
 import {tablesRef} from '@/lib/firestore'
 import {useEffect, useState} from 'react'
-export const DiaryTabel = () => {
+export const DiaryTabel = ({projectID, setTrainingContent, trainingContent}) => {
 	const [rows, setRows] = useState([])
 	let rowArray = []
+	let trainigContensArray = []
 	useEffect(() => {
 		tablesRef()
 			.orderBy('createdAt', 'asc')
 			.onSnapshot((res) => {
 				res.forEach((item) => {
 					rowArray.push({table: item.data(), tableID: item.id})
+					if (item.data().projectID === projectID) {
+						trainigContensArray.push({table: item.data()})
+					}
 				})
 				const result = rowArray.filter((element, index) => {
 					return rowArray.findIndex((e) => e.table.id === element.table.id) === index
 				})
+				const resultContentsArray = trainigContensArray.filter((element, index) => {
+					return trainigContensArray.findIndex((e) => e.table.id === element.table.id) === index
+				})
 				setRows(result)
+				setTrainingContent(resultContentsArray)
 			})
 	}, [])
 
@@ -32,26 +40,32 @@ export const DiaryTabel = () => {
 			</Thead>
 			{rows?.map((res) => {
 				return (
-					<Tbody border="2px">
-						<Tr>
-							<Td border="1px" w="9">
-								<DiaryDateForm id={res.tableID} date={res.table.date} />
-							</Td>
-							<Td border="1px">
-								<DiaryForm id={res.tableID} contents={res.table.childActivities} isChildActivities />
-							</Td>
-							<Td border="1px">
-								<DiaryForm id={res.tableID} contents={res.table.assistance} isAssistance />
-							</Td>
-							<Td border="1px">
-								<DiaryForm
-									id={res.tableID}
-									contents={res.table.activitesAndAwareness}
-									isActivitesAndAwareness
-								/>
-							</Td>
-						</Tr>
-					</Tbody>
+					res.table.projectID === projectID && (
+						<Tbody border="2px">
+							<Tr>
+								<Td border="1px" w="9">
+									<DiaryDateForm id={res.tableID} date={res.table.date} />
+								</Td>
+								<Td border="1px">
+									<DiaryForm
+										id={res.tableID}
+										contents={res.table.childActivities}
+										isChildActivities
+									/>
+								</Td>
+								<Td border="1px">
+									<DiaryForm id={res.tableID} contents={res.table.assistance} isAssistance />
+								</Td>
+								<Td border="1px">
+									<DiaryForm
+										id={res.tableID}
+										contents={res.table.activitesAndAwareness}
+										isActivitesAndAwareness
+									/>
+								</Td>
+							</Tr>
+						</Tbody>
+					)
 				)
 			})}
 		</Table>

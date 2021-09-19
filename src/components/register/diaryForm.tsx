@@ -1,4 +1,4 @@
-import {Flex, Text, Box} from '@chakra-ui/layout'
+import {Flex, Text} from '@chakra-ui/layout'
 import {Textarea} from '@chakra-ui/react'
 import {useState} from 'react'
 import {MdEdit} from 'react-icons/md'
