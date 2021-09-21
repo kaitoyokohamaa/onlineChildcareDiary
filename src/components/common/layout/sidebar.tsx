@@ -34,18 +34,18 @@ export const Sidebar: VFC = () => {
 					</Link>
 				</Button_>
 			</Box>
-
+			{console.log(typeof router.asPath)}
 			<Box
 				py={4}
 				_hover={{bg: '#FFFFFF1A 0% 0% no-repeat padding-box'}}
-				borderLeft={router.asPath === '/diary' && '4px'}
-				borderColor={router.asPath === '/diary' && '#56A9D3'}
-				bg={router.asPath === '/diary' && '#FFFFFF1A 0% 0% no-repeat padding-box'}
+				borderLeft={router.asPath.indexOf('/diary') !== -1 && '4px'}
+				borderColor={router.asPath.indexOf('/diary') !== -1 && '#56A9D3'}
+				bg={router.asPath.indexOf('/diary') !== -1 && '#FFFFFF1A 0% 0% no-repeat padding-box'}
 			>
-				<SidebarLink color={router.asPath === '/diary' ? '#84B9D4' : 'white'}>
+				<SidebarLink color={router.asPath.indexOf('/diary') !== -1 ? '#84B9D4' : 'white'}>
 					<Link href="/diary">
 						<a>
-							<Flex justify="center" mx={router.asPath === '/diary' && -1.5}>
+							<Flex justify="center" mx={router.asPath.indexOf('/diary') !== -1 && -1.5}>
 								<HStack w="50%">
 									<MdLocalLibrary size={20} />
 									<Text>日誌</Text>
