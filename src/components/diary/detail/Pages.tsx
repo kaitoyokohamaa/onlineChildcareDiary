@@ -1,7 +1,8 @@
 import {VFC} from 'react'
-import GenShinNormal from '@/fonts/GenShinGothic-Normal.ttf'
+import GenShinNormal from '../../../fonts/GenShinGothic-Normal.ttf'
 import {PDFViewer} from '@react-pdf/renderer'
 import {Document, Page, View, StyleSheet, Text, Font} from '@react-pdf/renderer'
+
 const Pages: VFC = () => {
 	Font.register({
 		family: '源真ゴシック',

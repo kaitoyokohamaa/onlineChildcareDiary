@@ -109,7 +109,7 @@ export const Pages = ({projectID}) => {
 					<Flex w="100%" mt="2" gap={6}>
 						<Box textAlign="right" w="100%" bg="#FCFCFC 0% 0% no-repeat padding-box;" p="10">
 							{/* todo:一時保存機能 */}
-							{/* <Button
+							<Button
 								ml="3"
 								w="32"
 								variant="outline"
@@ -120,7 +120,7 @@ export const Pages = ({projectID}) => {
 								color="#273264"
 							>
 								一時保存
-							</Button> */}
+							</Button>
 							<Button
 								onClick={submitHandler}
 								w="32"
