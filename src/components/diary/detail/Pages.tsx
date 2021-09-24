@@ -1,49 +1,22 @@
-import {VFC} from 'react'
-import GenShinNormal from '../../../fonts/GenShinGothic-Normal.ttf'
-import {PDFViewer} from '@react-pdf/renderer'
-import {Document, Page, View, StyleSheet, Text, Font} from '@react-pdf/renderer'
+import React from 'react'
+import dynamic from 'next/dynamic'
+import {MdLocalLibrary} from 'react-icons/md'
+import {Box, Flex, Text, Divider} from '@chakra-ui/layout'
 
-const Pages: VFC = () => {
-	Font.register({
-		family: '源真ゴシック',
-		fonts: [
-			{
-				src: GenShinNormal,
-				fontStyle: 'normal',
-				fontWeight: 'normal'
-			}
-		]
-	})
-	const styles = StyleSheet.create({
-		page: {
-			flexDirection: 'row',
-			backgroundColor: '#E4E4E4',
-			fontFamily: '源真ゴシック'
-		},
-		section: {
-			margin: 10,
-			padding: 10,
-			flexGrow: 1
-		}
-	})
-
+const PDF = dynamic(() => import('./pdf').then((mod) => mod.Pdf), {ssr: false})
+export const Pages = () => {
 	return (
-		<Document>
-			<Page size="A4" style={styles.page}>
-				<View style={styles.section}>
-					<Text>桜保育園</Text>
-				</View>
-				<View style={styles.section}>
-					<Text>Section #2</Text>
-				</View>
-			</Page>
-		</Document>
-	)
-}
-export const ClientDetails = () => {
-	return (
-		<PDFViewer>
-			<Pages />
-		</PDFViewer>
+		<div>
+			<Flex alignItems="center">
+				<Box bg="#F8F8F8" p="2" borderRadius="md">
+					<MdLocalLibrary color=" #9FD0E8" />
+				</Box>
+				<Text pl="8" fontWeight="bold">
+					日誌
+				</Text>
+			</Flex>
+			<Divider mt="5" />
+			<PDF />
+		</div>
 	)
 }
