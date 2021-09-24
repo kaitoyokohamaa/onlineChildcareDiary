@@ -40,19 +40,18 @@ const styles = StyleSheet.create({
 	impressions: {
 		width: '100%',
 		borderWidth: 1,
-		borderRightWidth: 0,
-		padding: '10 50'
+		borderRightWidth: 0
 	},
 	// table
 	table: {
-		width: '96%'
+		width: '100%'
 	},
 	tableRow: {
 		margin: 'auto',
 		flexDirection: 'row'
 	},
 	tableCol: {
-		width: '26.1%',
+		width: '25%',
 		borderStyle: 'solid',
 		whiteSpace: 'pre-wrap',
 		border: 1,
