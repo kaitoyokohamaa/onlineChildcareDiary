@@ -45,7 +45,6 @@ const styles = StyleSheet.create({
 	},
 	// table
 	table: {
-		display: 'table',
 		width: '96%'
 	},
 	tableRow: {
