@@ -20,7 +20,6 @@
       "@/*": ["src/*"]
     }
   },
-  "include": ["next-env.d.ts", "pages/**/*", "src/**/*", "next.config.js",
-  "font.d.ts"],
+  "include": ["next-env.d.ts", "pages/**/*", "src/**/*", "next.config.js","font.d.ts"],
   "exclude": ["node_modules"]
 }
