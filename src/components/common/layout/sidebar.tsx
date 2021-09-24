@@ -29,33 +29,34 @@ export const Sidebar: VFC = () => {
 			</Box>
 			<Box textAlign="center" my={8}>
 				<Button_ bg="#9FD0E8" color="white" _hover={{bg: '#54b5e4'}}>
-					<Link href={`register/${uuidv1()}`}>
+					<Link href={`/register/${uuidv1()}`}>
 						<a>＋日誌登録</a>
 					</Link>
 				</Button_>
 			</Box>
-
+			{console.log(typeof router.asPath)}
 			<Box
 				py={4}
 				_hover={{bg: '#FFFFFF1A 0% 0% no-repeat padding-box'}}
-				borderLeft={router.asPath === '/diary' && '4px'}
-				borderColor={router.asPath === '/diary' && '#56A9D3'}
-				bg={router.asPath === '/diary' && '#FFFFFF1A 0% 0% no-repeat padding-box'}
+				borderLeft={router.asPath.indexOf('/diary') !== -1 && '4px'}
+				borderColor={router.asPath.indexOf('/diary') !== -1 && '#56A9D3'}
+				bg={router.asPath.indexOf('/diary') !== -1 && '#FFFFFF1A 0% 0% no-repeat padding-box'}
 			>
-				<SidebarLink color={router.asPath === '/diary' ? '#84B9D4' : 'white'}>
+				<SidebarLink color={router.asPath.indexOf('/diary') !== -1 ? '#84B9D4' : 'white'}>
 					<Link href="/diary">
 						<a>
-							<Flex justify="center" mx={router.asPath === '/diary' && -1.5}>
+							<Flex justify="center" mx={router.asPath.indexOf('/diary') !== -1 && -1.5}>
 								<HStack w="50%">
 									<MdLocalLibrary size={20} />
-									<Text>日誌一覧</Text>
+									<Text>日誌</Text>
 								</HStack>
 							</Flex>
 						</a>
 					</Link>
 				</SidebarLink>
 			</Box>
-			<Box
+			{/* TODO 実習先情報の作成(大学生教授用の画面作成までいけた場合のみ)*/}
+			{/* <Box
 				py={4}
 				_hover={{bg: '#FFFFFF1A 0% 0% no-repeat padding-box'}}
 				borderLeft={router.asPath === '/school' && '4px'}
@@ -74,7 +75,7 @@ export const Sidebar: VFC = () => {
 						</a>
 					</Link>
 				</SidebarLink>
-			</Box>
+			</Box> */}
 			<Box
 				py={4}
 				_hover={{bg: '#FFFFFF1A 0% 0% no-repeat padding-box'}}
@@ -117,7 +118,7 @@ export const Sidebar: VFC = () => {
 			</Box>
 			<Box
 				py={4}
-				bottom={-250}
+				bottom={-350}
 				position="relative"
 				_hover={{bg: '#FFFFFF1A 0% 0% no-repeat padding-box'}}
 				onClick={signOutHandler}
