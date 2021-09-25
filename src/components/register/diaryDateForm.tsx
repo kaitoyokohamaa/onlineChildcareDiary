@@ -1,14 +1,16 @@
 import {Flex, Text, Box} from '@chakra-ui/layout'
 import {Input} from '@chakra-ui/react'
-import {useState} from 'react'
+import {useState, useContext} from 'react'
 import {MdEdit} from 'react-icons/md'
 import {tablesRef} from '@/lib/firestore'
+import {AuthContext} from '@/contexts/AuthContext'
 export const DiaryDateForm = ({...props}) => {
 	const [isEdit, setIsEdit] = useState<boolean>(true)
 	const [date, setDate] = useState<string>('')
+	const dockey = useContext(AuthContext)
 	const onSave = () => {
 		setIsEdit(true)
-		tablesRef().doc(props.id).update({date})
+		tablesRef(dockey).doc(props.id).update({date})
 	}
 
 	return (

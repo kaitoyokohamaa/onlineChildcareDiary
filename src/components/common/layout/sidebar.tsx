@@ -34,7 +34,6 @@ export const Sidebar: VFC = () => {
 					</Link>
 				</Button_>
 			</Box>
-			{console.log(typeof router.asPath)}
 			<Box
 				py={4}
 				_hover={{bg: '#FFFFFF1A 0% 0% no-repeat padding-box'}}

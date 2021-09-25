@@ -8,9 +8,13 @@ export const userRef = () => {
 	return firestore().collection('User')
 }
 
-export const registerRef = () => {
-	return firestore().collection('User').doc('vewLQsKPplaDwy3EYZo8').collection('register')
+export const userIdRef = (uid: string) => {
+	return firestore().collection('User').where('uid', 'array-contains', uid)
 }
-export const tablesRef = () => {
-	return firestore().collection('User').doc('vewLQsKPplaDwy3EYZo8').collection('tables')
+
+export const registerRef = (docKey: string) => {
+	return firestore().collection('User').doc(docKey).collection('register')
+}
+export const tablesRef = (docKey: string) => {
+	return firestore().collection('User').doc(docKey).collection('tables')
 }

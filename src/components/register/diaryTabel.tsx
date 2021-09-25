@@ -1,14 +1,16 @@
-import {Table, Thead, Tbody, Tr, Th, Td, Button} from '@chakra-ui/react'
+import {Table, Thead, Tbody, Tr, Th, Td} from '@chakra-ui/react'
 import {DiaryForm} from './diaryForm'
 import {DiaryDateForm} from './diaryDateForm'
 import {tablesRef} from '@/lib/firestore'
-import {useEffect, useState} from 'react'
+import {useEffect, useState, useContext} from 'react'
+import {AuthContext} from '@/contexts/AuthContext'
 export const DiaryTabel = ({projectID, setTrainingContent, trainingContent}) => {
 	const [rows, setRows] = useState([])
 	let rowArray = []
 	let trainigContensArray = []
+	const dockey = useContext(AuthContext)
 	useEffect(() => {
-		tablesRef()
+		tablesRef(dockey)
 			.orderBy('createdAt', 'asc')
 			.onSnapshot((res) => {
 				res.forEach((item) => {

@@ -1,10 +1,10 @@
 import {Box, Flex, Text, Divider} from '@chakra-ui/layout'
 import {Input, Textarea, Button} from '@chakra-ui/react'
 import {DiaryTabel} from './diaryTabel'
-import {useState, useEffect} from 'react'
+import {useState, useContext} from 'react'
 import {registerRef, tablesRef} from '@/lib/firestore'
 import firebase from 'firebase/app'
-
+import {AuthContext} from '@/contexts/AuthContext'
 import {v1 as uuidv1} from 'uuid'
 import {MdLocalLibrary} from 'react-icons/md'
 export const Pages = ({projectID}) => {
@@ -16,9 +16,9 @@ export const Pages = ({projectID}) => {
 	const [goal, setGoal] = useState('')
 	const [trainingContent, setTrainingContent] = useState([])
 	const [feeling, setFeeling] = useState('')
-
+	const dockey = useContext(AuthContext)
 	const addRow = () => {
-		tablesRef().add({
+		tablesRef(dockey).add({
 			projectID,
 			id: uuidv1(),
 			date: '',
@@ -30,7 +30,7 @@ export const Pages = ({projectID}) => {
 	}
 
 	const submitHandler = () => {
-		registerRef().add({
+		registerRef(dockey).add({
 			count,
 			day,
 			studentName,
