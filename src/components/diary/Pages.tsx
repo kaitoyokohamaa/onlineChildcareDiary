@@ -1,15 +1,18 @@
-import {VFC} from 'react'
+import {VFC, useContext, useEffect, useState} from 'react'
 import {MdLocalLibrary} from 'react-icons/md'
 import {Box, Flex, Text, Divider} from '@chakra-ui/layout'
 import {Table, Thead, Tbody, Tr, Th, Td, Checkbox} from '@chakra-ui/react'
 import Link from 'next/link'
-import {useEffect, useState} from 'react'
+
 import {registerRef} from '@/lib/firestore'
+import {AuthContext} from '@/contexts/AuthContext'
 export const Pages: VFC = () => {
 	const [diaries, setDiaries] = useState([])
+	const dockey = useContext(AuthContext)
 	let diariesArray = []
+
 	useEffect(() => {
-		registerRef().onSnapshot((res) => {
+		registerRef(dockey).onSnapshot((res) => {
 			res.forEach((item) => {
 				diariesArray.push({diary: item.data(), docID: item.id})
 			})
