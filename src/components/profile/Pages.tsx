@@ -10,6 +10,7 @@ export const Pages = () => {
 	return (
 		<Box mt="10" px={16} overflow="scroll" h="85vh">
 			<Text
+				fontWeight="bold"
 				w="100%"
 				fontSize="18px"
 				position="relative"
@@ -44,12 +45,6 @@ export const Pages = () => {
 								src={'https://avatars0.githubusercontent.com/u/1164541?v=4'}
 								alt={'Author'}
 							/>
-							{/* <Text py="2" textAlign="center" fontWeight="bold">
-								田中ジョニー
-							</Text>
-							<Tag size="lg" colorScheme="red" borderRadius="full">
-								<TagLabel>22卒</TagLabel>
-							</Tag> */}
 						</Box>
 
 						<Box pl="5">
@@ -61,7 +56,7 @@ export const Pages = () => {
 							>
 								田中ジョニー
 							</Heading>
-							<Text color={'gray.500'} pt="2">
+							<Text color={'gray.500'} pt="5">
 								初めまして、自分は都内に通う大学4年生です。最後の実習なので頑張ります。
 								最近はBTSにハマってます。
 								また、小学校の頃からサッカーを続けており、大学でもサッカー部に所属していました。ポジションはずっとゴールキーパーで、大学時代は守護神と呼ばれていました。
@@ -71,6 +66,85 @@ export const Pages = () => {
 					</Flex>
 				</Box>
 			</Center>
+			<Box
+				w="100%"
+				bg={useColorModeValue('white', 'gray.900')}
+				boxShadow={'2xl'}
+				rounded={'2xl'}
+				overflow={'hidden'}
+				p="14"
+			>
+				<Flex>
+					<Box>
+						<Heading
+							color={useColorModeValue('gray.700', 'white')}
+							fontSize={'2xl'}
+							fontWeight="bold"
+							fontFamily={'body'}
+							mb="10"
+						>
+							基本情報
+						</Heading>
+					</Box>
+				</Flex>
+				<Flex>
+					{/* 大学名 */}
+					<Box>
+						<Text fontWeight="bold" color="#5D5A5A">
+							大学
+						</Text>
+						<Text fontWeight="bold" color="#273264" pt="2">
+							東洋大学
+						</Text>
+					</Box>
+					{/* 性別 */}
+					<Box pl="12">
+						<Text fontWeight="bold" color="#5D5A5A">
+							性別
+						</Text>
+						<Text fontWeight="bold" color="#273264" pt="2">
+							男
+						</Text>
+					</Box>
+					{/* 生年月日 */}
+					<Box pl="12">
+						<Text fontWeight="bold" color="#5D5A5A">
+							生年月日
+						</Text>
+						<Text fontWeight="bold" color="#273264" pt="2">
+							3月13日
+						</Text>
+					</Box>
+					{/* メールアドレス */}
+					<Box pl="12">
+						<Text fontWeight="bold" color="#5D5A5A">
+							メールアドレス
+						</Text>
+						<Text fontWeight="bold" color="#273264" pt="2">
+							s1A121700885@toyo.jp
+						</Text>
+					</Box>
+					{/* 電話アドレス */}
+					<Box pl="12">
+						<Text fontWeight="bold" color="#5D5A5A">
+							電話
+						</Text>
+						<Text fontWeight="bold" color="#273264" pt="2">
+							080-7436-3133
+						</Text>
+					</Box>
+
+					{/* 過去の実習先(あれば)*/}
+					<Box pl="12">
+						<Text fontWeight="bold" color="#5D5A5A">
+							過去の実習先
+						</Text>
+						<Text fontWeight="bold" color="#273264" pt="2">
+							たんぽぽ保育園
+						</Text>
+					</Box>
+				</Flex>
+			</Box>
 			<Box textAlign="end">
 				<Button background="#F5F5F5" color="#5D5A5A" textAlign="right" mt="10" onClick={editHandler}>
 					プロフィールを編集する

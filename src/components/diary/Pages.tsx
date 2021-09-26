@@ -8,7 +8,7 @@ import {registerRef} from '@/lib/firestore'
 import {AuthContext} from '@/contexts/AuthContext'
 export const Pages: VFC = () => {
 	const [diaries, setDiaries] = useState([])
-	const dockey = useContext(AuthContext)
+	const {dockey} = useContext(AuthContext)
 	let diariesArray = []
 
 	useEffect(() => {

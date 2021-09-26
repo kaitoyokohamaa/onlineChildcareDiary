@@ -7,7 +7,7 @@ import {AuthContext} from '@/contexts/AuthContext'
 export const DiaryForm = ({...props}) => {
 	const [isEdit, setIsEdit] = useState<boolean>(true)
 	const [state, setState] = useState<string>(props.contents)
-	const dockey = useContext(AuthContext)
+	const {dockey} = useContext(AuthContext)
 	const onSave = async () => {
 		setIsEdit(true)
 		props.isChildActivities && tablesRef(dockey).doc(props.id).update({childActivities: state})

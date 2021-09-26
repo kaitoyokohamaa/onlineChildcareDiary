@@ -8,7 +8,7 @@ export const DiaryTabel = ({projectID, setTrainingContent, trainingContent}) => 
 	const [rows, setRows] = useState([])
 	let rowArray = []
 	let trainigContensArray = []
-	const dockey = useContext(AuthContext)
+	const {dockey} = useContext(AuthContext)
 	useEffect(() => {
 		tablesRef(dockey)
 			.orderBy('createdAt', 'asc')
