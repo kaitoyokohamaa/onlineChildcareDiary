@@ -2,11 +2,16 @@ import {Box, Flex, Center, Heading, Text} from '@chakra-ui/layout'
 import {Avatar, useColorModeValue, Tag, TagLabel, Button} from '@chakra-ui/react'
 import Image from 'next/image'
 import {useRouter} from 'next/router'
+import {useContext} from 'react'
+import {AuthContext} from '@/contexts/AuthContext'
 export const Pages = () => {
 	const router = useRouter()
 	const editHandler = () => {
 		router.push('profile/edit')
 	}
+	const {loginUser} = useContext(AuthContext)
+	const address = loginUser?.email
+	const subName = address.substr(1, 11)
 	return (
 		<Box mt="10" px={16} overflow="scroll" h="85vh">
 			<Text
@@ -54,7 +59,7 @@ export const Pages = () => {
 								fontWeight="bold"
 								fontFamily={'body'}
 							>
-								田中ジョニー
+								{subName}
 							</Heading>
 							<Text color={'gray.500'} pt="5">
 								初めまして、自分は都内に通う大学4年生です。最後の実習なので頑張ります。
@@ -121,7 +126,7 @@ export const Pages = () => {
 							メールアドレス
 						</Text>
 						<Text fontWeight="bold" color="#273264" pt="2">
-							s1A121700885@toyo.jp
+							{address}
 						</Text>
 					</Box>
 					{/* 電話アドレス */}

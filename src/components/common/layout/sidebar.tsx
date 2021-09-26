@@ -3,14 +3,16 @@ import Link from 'next/link'
 import {Button_} from '@/components/common/button'
 import {SidebarLink} from './sidebarLink'
 import {Box, Flex, Heading, HStack, Text} from '@chakra-ui/layout'
-import {MdLocalLibrary, MdSchool, MdChatBubble} from 'react-icons/md'
+import {MdLocalLibrary, MdChatBubble} from 'react-icons/md'
 import {IoLogOut} from 'react-icons/io5'
 import {VscGear} from 'react-icons/vsc'
 import {useRouter} from 'next/router'
 import firebase from '@/lib/firebase'
 import {v1 as uuidv1} from 'uuid'
+
 export const Sidebar: VFC = () => {
 	const router = useRouter()
+
 	const signOutHandler = () => {
 		firebase
 			.auth()
