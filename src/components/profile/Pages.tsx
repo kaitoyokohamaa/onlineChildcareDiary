@@ -1,10 +1,7 @@
 import {Box, Flex, Center, Heading, Text} from '@chakra-ui/layout'
-import {Avatar, useColorModeValue, Tag, TagLabel, Button} from '@chakra-ui/react'
-import Image from 'next/image'
+import {Avatar, useColorModeValue, Button} from '@chakra-ui/react'
+
 import {useRouter} from 'next/router'
-import {useContext, useEffect} from 'react'
-import {AuthContext} from '@/contexts/AuthContext'
-import {userIdRef} from '@/lib/firestore'
 
 export const Pages = ({users}) => {
 	const router = useRouter()
