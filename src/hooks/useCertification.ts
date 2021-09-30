@@ -11,7 +11,17 @@ export const UseCertification = () => {
 			.auth()
 			.createUserWithEmailAndPassword(email, password)
 			.then((res) => {
-				const users = {uid: [res.user?.uid], address: res.user.email}
+				const users = {
+					uid: [res.user?.uid],
+					address: res.user.email,
+					cellphoneNumber: null,
+					selfIntroduction: null,
+					name: null,
+					dispayImage: null,
+					birthday: null,
+					practicalTraining: null,
+					sex: null
+				}
 				userRef().add(users)
 			})
 			.then(() => {

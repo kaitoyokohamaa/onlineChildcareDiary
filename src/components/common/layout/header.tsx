@@ -1,13 +1,15 @@
 import {Avator} from '@/components/common/avator'
 import {Input, Box, Flex, Text, Menu, Button, MenuButton, MenuList, MenuItem} from '@chakra-ui/react'
-import {VFC, useContext} from 'react'
+import {VFC, useContext, useEffect} from 'react'
 import Link from 'next/link'
 import {MdSearch} from 'react-icons/md'
 import {AuthContext} from '@/contexts/AuthContext'
+import {userIdRef} from '@/lib/firestore'
 export const Header: VFC = () => {
-	const {loginUser} = useContext(AuthContext)
+	const {loginUser, dockey} = useContext(AuthContext)
 	const address = loginUser?.email
-	const subName = address.substr(1, 11)
+	const subName = address?.substring(0, address.indexOf('@'))
+
 	return (
 		<Box w="100%" px={16}>
 			<Flex justify="space-between">
@@ -28,7 +30,7 @@ export const Header: VFC = () => {
 					</MenuButton>
 					<MenuList>
 						<MenuItem>
-							<Link href="/profile">
+							<Link href={`/profile/${dockey}`}>
 								<a>プロフィール</a>
 							</Link>
 						</MenuItem>

@@ -2,16 +2,16 @@ import {Box, Flex, Center, Heading, Text} from '@chakra-ui/layout'
 import {Avatar, useColorModeValue, Tag, TagLabel, Button} from '@chakra-ui/react'
 import Image from 'next/image'
 import {useRouter} from 'next/router'
-import {useContext} from 'react'
+import {useContext, useEffect} from 'react'
 import {AuthContext} from '@/contexts/AuthContext'
-export const Pages = () => {
+import {userIdRef} from '@/lib/firestore'
+
+export const Pages = ({users}) => {
 	const router = useRouter()
 	const editHandler = () => {
 		router.push('profile/edit')
 	}
-	const {loginUser} = useContext(AuthContext)
-	const address = loginUser?.email
-	const subName = address.substr(1, 11)
+
 	return (
 		<Box mt="10" px={16} overflow="scroll" h="85vh">
 			<Text
@@ -47,7 +47,7 @@ export const Pages = () => {
 						<Box>
 							<Avatar
 								size="2xl"
-								src={'https://avatars0.githubusercontent.com/u/1164541?v=4'}
+								src={users.image ? users.image : 'https://avatars0.githubusercontent.com/u/1164541?v=4'}
 								alt={'Author'}
 							/>
 						</Box>
@@ -59,13 +59,10 @@ export const Pages = () => {
 								fontWeight="bold"
 								fontFamily={'body'}
 							>
-								{subName}
+								{users.name ? users.name : '未記入'}
 							</Heading>
 							<Text color={'gray.500'} pt="5">
-								初めまして、自分は都内に通う大学4年生です。最後の実習なので頑張ります。
-								最近はBTSにハマってます。
-								また、小学校の頃からサッカーを続けており、大学でもサッカー部に所属していました。ポジションはずっとゴールキーパーで、大学時代は守護神と呼ばれていました。
-								サッカーでの経験からは、ピッチ全体を後ろから見渡す視野の広さ、状況を観察する冷静さなどを身に付けました。面接では冷静さを活かしながら、本来の実力を発揮してアピールしたいと考えています。本日は、よろしくお願い致します。
+								{users.selfIntroduction ? users.selfIntroduction : '未記入'}
 							</Text>
 						</Box>
 					</Flex>
@@ -108,7 +105,7 @@ export const Pages = () => {
 							性別
 						</Text>
 						<Text fontWeight="bold" color="#273264" pt="2">
-							男
+							{users.sex ? users.sex : '未記入'}
 						</Text>
 					</Box>
 					{/* 生年月日 */}
@@ -117,7 +114,7 @@ export const Pages = () => {
 							生年月日
 						</Text>
 						<Text fontWeight="bold" color="#273264" pt="2">
-							3月13日
+							{users.birthday ? users.birthday : '未記入'}
 						</Text>
 					</Box>
 					{/* メールアドレス */}
@@ -126,7 +123,7 @@ export const Pages = () => {
 							メールアドレス
 						</Text>
 						<Text fontWeight="bold" color="#273264" pt="2">
-							{address}
+							{users.address ? users.address : '未記入'}
 						</Text>
 					</Box>
 					{/* 電話アドレス */}
@@ -135,17 +132,17 @@ export const Pages = () => {
 							電話
 						</Text>
 						<Text fontWeight="bold" color="#273264" pt="2">
-							080-7436-3133
+							{users.cellphoneNumber ? users.cellphoneNumber : '未記入'}
 						</Text>
 					</Box>
 
-					{/* 過去の実習先(あれば)*/}
+					{/* 実習先*/}
 					<Box pl="12">
 						<Text fontWeight="bold" color="#5D5A5A">
-							過去の実習先
+							実習先
 						</Text>
 						<Text fontWeight="bold" color="#273264" pt="2">
-							たんぽぽ保育園
+							{users.practicalTraining ? users.practicalTraining : '未記入'}
 						</Text>
 					</Box>
 				</Flex>

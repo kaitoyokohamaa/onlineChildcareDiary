@@ -37,7 +37,7 @@ export const Sidebar: VFC = () => {
 				</Button_>
 			</Box>
 			<Box
-				py={4}
+				py={6}
 				_hover={{bg: '#FFFFFF1A 0% 0% no-repeat padding-box'}}
 				borderLeft={router.asPath.indexOf('/diary') !== -1 && '4px'}
 				borderColor={router.asPath.indexOf('/diary') !== -1 && '#56A9D3'}
@@ -78,7 +78,7 @@ export const Sidebar: VFC = () => {
 				</SidebarLink>
 			</Box> */}
 			<Box
-				py={4}
+				py={6}
 				_hover={{bg: '#FFFFFF1A 0% 0% no-repeat padding-box'}}
 				borderLeft={router.asPath === '/chat' && '4px'}
 				borderColor={router.asPath === '/chat' && '#56A9D3'}
@@ -98,7 +98,7 @@ export const Sidebar: VFC = () => {
 				</SidebarLink>
 			</Box>
 			<Box
-				py={4}
+				py={6}
 				_hover={{bg: '#FFFFFF1A 0% 0% no-repeat padding-box'}}
 				borderLeft={router.asPath === '/edit' && '4px'}
 				borderColor={router.asPath === '/edit' && '#56A9D3'}
@@ -118,7 +118,7 @@ export const Sidebar: VFC = () => {
 				</SidebarLink>
 			</Box>
 			<Box
-				py={4}
+				py={6}
 				bottom={-350}
 				position="relative"
 				_hover={{bg: '#FFFFFF1A 0% 0% no-repeat padding-box'}}
