@@ -1,50 +1,43 @@
-import { Avator } from "@/components/common/avator";
-import {
-  Input,
-  Box,
-  Flex,
-  Text,
-  InputGroup,
-  InputRightElement,
-  Menu,
-  Button,
-  MenuButton,
-  MenuList,
-  MenuItem,
-} from "@chakra-ui/react";
-import { VFC } from "react";
-import Link from "next/link";
-import { MdSearch } from "react-icons/md";
-
+import {Avator} from '@/components/common/avator'
+import {Input, Box, Flex, Text, Menu, Button, MenuButton, MenuList, MenuItem} from '@chakra-ui/react'
+import {VFC, useContext, useEffect} from 'react'
+import Link from 'next/link'
+import {MdSearch} from 'react-icons/md'
+import {AuthContext} from '@/contexts/AuthContext'
+import {userIdRef} from '@/lib/firestore'
 export const Header: VFC = () => {
-  return (
-    <Box w="100%" px={16}>
-      <Flex justify="space-between">
-        <Box w="50%"></Box>
-        <Menu>
-          <MenuButton as={Button} bg="#fff">
-            <Box>
-              <Flex>
-                <Avator />
-                <Box pl={2}>
-                  <Text fontSize="md" fontWeight="bold">
-                    田中ジョニー
-                  </Text>
-                  <Text fontSize="sm">22卒</Text>
-                </Box>
-              </Flex>
-            </Box>
-          </MenuButton>
-          <MenuList>
-            <MenuItem>
-              <Link href="/profile">
-                <a>プロフィール</a>
-              </Link>
-            </MenuItem>
-            <MenuItem>ログアウト</MenuItem>
-          </MenuList>
-        </Menu>
-      </Flex>
-    </Box>
-  );
-};
+	const {loginUser, dockey} = useContext(AuthContext)
+	const address = loginUser?.email
+	const subName = address?.substring(0, address.indexOf('@'))
+
+	return (
+		<Box w="100%" px={16}>
+			<Flex justify="space-between">
+				<Box w="50%"></Box>
+				<Menu>
+					<MenuButton as={Button} bg="#fff">
+						<Box>
+							<Flex>
+								<Avator />
+								<Box pl={2}>
+									<Text fontSize="md" fontWeight="bold">
+										{subName}
+									</Text>
+									<Text fontSize="sm">東洋大学</Text>
+								</Box>
+							</Flex>
+						</Box>
+					</MenuButton>
+					<MenuList>
+						<MenuItem>
+							<Link href={`/profile/${dockey}`}>
+								<a>プロフィール</a>
+							</Link>
+						</MenuItem>
+						<MenuItem>ログアウト</MenuItem>
+					</MenuList>
+				</Menu>
+			</Flex>
+		</Box>
+	)
+}

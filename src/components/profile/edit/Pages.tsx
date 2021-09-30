@@ -1,17 +1,16 @@
 import {Box, Flex, Center, Heading, Text} from '@chakra-ui/layout'
-import {Avatar, useColorModeValue, Tag, TagLabel, Button} from '@chakra-ui/react'
+import {Avatar, useColorModeValue, Input, Button, Textarea} from '@chakra-ui/react'
 import Image from 'next/image'
 import {useRouter} from 'next/router'
-import {useContext, useEffect} from 'react'
+import {useContext, useState} from 'react'
 import {AuthContext} from '@/contexts/AuthContext'
-import {userIdRef} from '@/lib/firestore'
-
-export const Pages = ({users}) => {
+import {Dropzone} from '@/components/common/dropzone'
+export const Pages = () => {
 	const router = useRouter()
-	const editHandler = () => {
-		router.push('profile/edit')
-	}
-
+	const {loginUser} = useContext(AuthContext)
+	const address = loginUser?.email
+	const subName = address?.substring(0, address.indexOf('@'))
+	const [name, setName] = useState<string>(subName)
 	return (
 		<Box mt="10" px={16} overflow="scroll" h="85vh">
 			<Text
@@ -31,7 +30,7 @@ export const Pages = ({users}) => {
 					content: '" "'
 				}}
 			>
-				プロフィール
+				プロフィール編集
 			</Text>
 
 			<Center py={6}>
@@ -45,25 +44,28 @@ export const Pages = ({users}) => {
 				>
 					<Flex>
 						<Box>
-							<Avatar
-								size="2xl"
-								src={users.image ? users.image : 'https://avatars0.githubusercontent.com/u/1164541?v=4'}
-								alt={'Author'}
-							/>
+							<Dropzone />
 						</Box>
 
-						<Box pl="5">
-							<Heading
+						<Box w="90%" pl="5">
+							<Input
+								value={name}
 								color={useColorModeValue('gray.700', 'white')}
 								fontSize={'2xl'}
 								fontWeight="bold"
 								fontFamily={'body'}
-							>
-								{users.name ? users.name : '未記入'}
-							</Heading>
-							<Text color={'gray.500'} pt="5">
-								{users.selfIntroduction ? users.selfIntroduction : '未記入'}
-							</Text>
+								onChange={(e) => setName(e.target.value)}
+							></Input>
+							<Textarea
+								w="full"
+								rows={10}
+								value="初めまして、自分は都内に通う大学4年生です。最後の実習なので頑張ります。
+								最近はBTSにハマってます。
+								また、小学校の頃からサッカーを続けており、大学でもサッカー部に所属していました。ポジションはずっとゴールキーパーで、大学時代は守護神と呼ばれていました。
+								サッカーでの経験からは、ピッチ全体を後ろから見渡す視野の広さ、状況を観察する冷静さなどを身に付けました。面接では冷静さを活かしながら、本来の実力を発揮してアピールしたいと考えています。本日は、よろしくお願い致します。"
+								color={'gray.500'}
+								mt="5"
+							></Textarea>
 						</Box>
 					</Flex>
 				</Box>
@@ -95,61 +97,49 @@ export const Pages = ({users}) => {
 						<Text fontWeight="bold" color="#5D5A5A">
 							大学
 						</Text>
-						<Text fontWeight="bold" color="#273264" pt="2">
-							東洋大学
-						</Text>
+						<Input fontWeight="bold" color="#273264" mt="2"></Input>
 					</Box>
 					{/* 性別 */}
 					<Box pl="12">
 						<Text fontWeight="bold" color="#5D5A5A">
 							性別
 						</Text>
-						<Text fontWeight="bold" color="#273264" pt="2">
-							{users.sex ? users.sex : '未記入'}
-						</Text>
+						<Input fontWeight="bold" color="#273264" mt="2"></Input>
 					</Box>
 					{/* 生年月日 */}
 					<Box pl="12">
 						<Text fontWeight="bold" color="#5D5A5A">
 							生年月日
 						</Text>
-						<Text fontWeight="bold" color="#273264" pt="2">
-							{users.birthday ? users.birthday : '未記入'}
-						</Text>
+						<Input fontWeight="bold" color="#273264" mt="2"></Input>
 					</Box>
 					{/* メールアドレス */}
 					<Box pl="12">
 						<Text fontWeight="bold" color="#5D5A5A">
 							メールアドレス
 						</Text>
-						<Text fontWeight="bold" color="#273264" pt="2">
-							{users.address ? users.address : '未記入'}
-						</Text>
+						<Input fontWeight="bold" color="#273264" mt="2"></Input>
 					</Box>
 					{/* 電話アドレス */}
 					<Box pl="12">
 						<Text fontWeight="bold" color="#5D5A5A">
 							電話
 						</Text>
-						<Text fontWeight="bold" color="#273264" pt="2">
-							{users.cellphoneNumber ? users.cellphoneNumber : '未記入'}
-						</Text>
+						<Input fontWeight="bold" color="#273264" mt="2"></Input>
 					</Box>
 
-					{/* 実習先*/}
+					{/* 過去の実習先(あれば)*/}
 					<Box pl="12">
 						<Text fontWeight="bold" color="#5D5A5A">
-							実習先
+							過去の実習先
 						</Text>
-						<Text fontWeight="bold" color="#273264" pt="2">
-							{users.practicalTraining ? users.practicalTraining : '未記入'}
-						</Text>
+						<Input fontWeight="bold" color="#273264" mt="2"></Input>
 					</Box>
 				</Flex>
 			</Box>
 			<Box textAlign="end">
-				<Button background="#F5F5F5" color="#5D5A5A" textAlign="right" mt="10" onClick={editHandler}>
-					プロフィールを編集する
+				<Button background="#F5F5F5" color="#5D5A5A" textAlign="right" mt="10">
+					プロフィールを保存する
 				</Button>
 			</Box>
 		</Box>

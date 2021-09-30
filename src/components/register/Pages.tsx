@@ -16,7 +16,7 @@ export const Pages = ({projectID}) => {
 	const [goal, setGoal] = useState('')
 	const [trainingContent, setTrainingContent] = useState([])
 	const [feeling, setFeeling] = useState('')
-	const dockey = useContext(AuthContext)
+	const {dockey} = useContext(AuthContext)
 	const addRow = () => {
 		tablesRef(dockey).add({
 			projectID,

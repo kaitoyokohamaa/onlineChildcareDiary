@@ -7,7 +7,7 @@ import {AuthContext} from '@/contexts/AuthContext'
 export const DiaryDateForm = ({...props}) => {
 	const [isEdit, setIsEdit] = useState<boolean>(true)
 	const [date, setDate] = useState<string>('')
-	const dockey = useContext(AuthContext)
+	const {dockey} = useContext(AuthContext)
 	const onSave = () => {
 		setIsEdit(true)
 		tablesRef(dockey).doc(props.id).update({date})
