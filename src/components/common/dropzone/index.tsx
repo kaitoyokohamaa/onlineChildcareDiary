@@ -29,9 +29,7 @@ const rejectStyle = {
 }
 export const Dropzone = () => {
 	const {getRootProps, getInputProps, isDragActive, isDragAccept, isDragReject} = useDropzone({accept: 'image/*'})
-	const onDrop = useCallback((acceptedFiles) => {
-		console.log(acceptedFiles)
-	}, [])
+	const onDrop = useCallback((acceptedFiles) => {}, [])
 	const style = useMemo(
 		() => ({
 			...baseStyle,
