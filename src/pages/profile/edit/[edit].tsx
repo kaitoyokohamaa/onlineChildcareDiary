@@ -1,13 +1,13 @@
-import {Pages} from '@/components/profile/Pages'
+import {Pages} from '@/components/profile/edit/Pages'
 import {Layout} from '@/components/common/layout'
 import {adminUsersRef} from '@/lib/nodedb'
 import {GetStaticProps, GetStaticPropsContext} from 'next'
 export const getStaticProps: GetStaticProps = async (context: GetStaticPropsContext) => {
-	const user = await adminUsersRef(String(context.params.profile)).get()
-
+	const user = await adminUsersRef(String(context.params.edit)).get()
 	return {
 		props: {
-			user: user.data()
+			user: user.data(),
+			id: context.params.edit
 		},
 		revalidate: 20
 	}
@@ -18,10 +18,10 @@ export async function getStaticPaths() {
 		fallback: 'blocking'
 	}
 }
-export default function index({user}) {
+export default function index({user, id}) {
 	return (
 		<Layout isHeader>
-			<Pages user={user} />
+			<Pages user={user} id={id} />
 		</Layout>
 	)
 }

@@ -1,16 +1,46 @@
 import {Box, Flex, Center, Heading, Text} from '@chakra-ui/layout'
 import {Avatar, useColorModeValue, Input, Button, Textarea} from '@chakra-ui/react'
-import Image from 'next/image'
+
 import {useRouter} from 'next/router'
-import {useContext, useState} from 'react'
+import {useState, useContext, useEffect} from 'react'
 import {AuthContext} from '@/contexts/AuthContext'
 import {Dropzone} from '@/components/common/dropzone'
-export const Pages = () => {
+import {userfiledRef} from '@/lib/firestore'
+export const Pages = ({user, id}) => {
 	const router = useRouter()
-	const {loginUser} = useContext(AuthContext)
-	const address = loginUser?.email
-	const subName = address?.substring(0, address.indexOf('@'))
-	const [name, setName] = useState<string>(subName)
+	const {dockey} = useContext(AuthContext)
+	const [name, setName] = useState<string>()
+	const [address, setAddress] = useState<string>()
+	const [birthday, setBirthday] = useState<string>()
+	const [cellphoneNumber, setCellphoneNumber] = useState<string>()
+	const [practicalTraining, setPracticalTraining] = useState<string>()
+	const [sex, setSex] = useState<string>()
+	const [selfIntroduction, setSelfIntroduction] = useState<string>()
+	const [dispayImage, setDispayImage] = useState<string>()
+	useEffect(() => {
+		setName(user.name)
+		setAddress(user.address)
+		setBirthday(user.birthday)
+		setCellphoneNumber(user.cellphoneNumber)
+		setPracticalTraining(user.practicalTraining)
+		setSex(user.sex)
+		setSelfIntroduction(user.selfIntroduction)
+	}, [])
+	const submitHandler = async () => {
+		console.log(selfIntroduction)
+		console.log(name)
+		await userfiledRef(id).update({
+			name,
+			address,
+			birthday,
+			cellphoneNumber,
+			sex,
+			selfIntroduction,
+			practicalTraining
+		})
+
+		router.push(`/profile/${dockey}`)
+	}
 	return (
 		<Box mt="10" px={16} overflow="scroll" h="85vh">
 			<Text
@@ -59,12 +89,10 @@ export const Pages = () => {
 							<Textarea
 								w="full"
 								rows={10}
-								value="初めまして、自分は都内に通う大学4年生です。最後の実習なので頑張ります。
-								最近はBTSにハマってます。
-								また、小学校の頃からサッカーを続けており、大学でもサッカー部に所属していました。ポジションはずっとゴールキーパーで、大学時代は守護神と呼ばれていました。
-								サッカーでの経験からは、ピッチ全体を後ろから見渡す視野の広さ、状況を観察する冷静さなどを身に付けました。面接では冷静さを活かしながら、本来の実力を発揮してアピールしたいと考えています。本日は、よろしくお願い致します。"
+								value={selfIntroduction}
 								color={'gray.500'}
 								mt="5"
+								onChange={(e) => setSelfIntroduction(e.target.value)}
 							></Textarea>
 						</Box>
 					</Flex>
@@ -97,48 +125,78 @@ export const Pages = () => {
 						<Text fontWeight="bold" color="#5D5A5A">
 							大学
 						</Text>
-						<Input fontWeight="bold" color="#273264" mt="2"></Input>
+						<Input value="東洋大学" fontWeight="bold" color="#273264" mt="2"></Input>
 					</Box>
 					{/* 性別 */}
 					<Box pl="12">
 						<Text fontWeight="bold" color="#5D5A5A">
 							性別
 						</Text>
-						<Input fontWeight="bold" color="#273264" mt="2"></Input>
+						<Input
+							value={sex}
+							fontWeight="bold"
+							color="#273264"
+							mt="2"
+							onChange={(e) => setSex(e.target.value)}
+						></Input>
 					</Box>
 					{/* 生年月日 */}
 					<Box pl="12">
 						<Text fontWeight="bold" color="#5D5A5A">
 							生年月日
 						</Text>
-						<Input fontWeight="bold" color="#273264" mt="2"></Input>
+						<Input
+							value={birthday}
+							fontWeight="bold"
+							color="#273264"
+							mt="2"
+							onChange={(e) => setBirthday(e.target.value)}
+						></Input>
 					</Box>
 					{/* メールアドレス */}
 					<Box pl="12">
 						<Text fontWeight="bold" color="#5D5A5A">
 							メールアドレス
 						</Text>
-						<Input fontWeight="bold" color="#273264" mt="2"></Input>
+						<Input
+							value={address}
+							onChange={(e) => setAddress(e.target.value)}
+							fontWeight="bold"
+							color="#273264"
+							mt="2"
+						></Input>
 					</Box>
 					{/* 電話アドレス */}
 					<Box pl="12">
 						<Text fontWeight="bold" color="#5D5A5A">
-							電話
+							電話番号
 						</Text>
-						<Input fontWeight="bold" color="#273264" mt="2"></Input>
+						<Input
+							value={cellphoneNumber}
+							onChange={(e) => setCellphoneNumber(e.target.value)}
+							fontWeight="bold"
+							color="#273264"
+							mt="2"
+						></Input>
 					</Box>
 
-					{/* 過去の実習先(あれば)*/}
+					{/* 実習先*/}
 					<Box pl="12">
 						<Text fontWeight="bold" color="#5D5A5A">
-							過去の実習先
+							実習先
 						</Text>
-						<Input fontWeight="bold" color="#273264" mt="2"></Input>
+						<Input
+							value={practicalTraining}
+							onChange={(e) => setPracticalTraining(e.target.value)}
+							fontWeight="bold"
+							color="#273264"
+							mt="2"
+						></Input>
 					</Box>
 				</Flex>
 			</Box>
 			<Box textAlign="end">
-				<Button background="#F5F5F5" color="#5D5A5A" textAlign="right" mt="10">
+				<Button background="#F5F5F5" color="#5D5A5A" textAlign="right" mt="10" onClick={submitHandler}>
 					プロフィールを保存する
 				</Button>
 			</Box>
