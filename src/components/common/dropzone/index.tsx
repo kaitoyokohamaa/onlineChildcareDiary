@@ -28,8 +28,13 @@ const rejectStyle = {
 	borderColor: '#ff1744'
 }
 export const Dropzone = () => {
-	const {getRootProps, getInputProps, isDragActive, isDragAccept, isDragReject} = useDropzone({accept: 'image/*'})
-	const onDrop = useCallback((acceptedFiles) => {}, [])
+	const onDrop = useCallback((acceptedFiles) => {
+		console.log(acceptedFiles)
+	}, [])
+	const {getRootProps, getInputProps, isDragActive, isDragAccept, isDragReject} = useDropzone({
+		accept: 'image/*',
+		onDrop
+	})
 	const style = useMemo(
 		() => ({
 			...baseStyle,

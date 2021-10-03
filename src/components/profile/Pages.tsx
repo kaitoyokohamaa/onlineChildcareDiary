@@ -1,9 +1,10 @@
+import {VFC} from 'react'
+import {User} from '@/models/user'
 import {Box, Flex, Center, Heading, Text} from '@chakra-ui/layout'
-import {Avatar, useColorModeValue, Button} from '@chakra-ui/react'
-
+import {Avatar, useColorModeValue, Button, Divider} from '@chakra-ui/react'
 import {useRouter} from 'next/router'
 import Link from 'next/link'
-export const Pages = ({user}) => {
+export const Pages: VFC<{user: User}> = ({user}) => {
 	const router = useRouter()
 	const currentPath = router.asPath
 	const editPath = currentPath.replace('profile', 'edit')
@@ -42,7 +43,11 @@ export const Pages = ({user}) => {
 						<Box>
 							<Avatar
 								size="2xl"
-								src={user.image ? user.image : 'https://avatars0.githubusercontent.com/u/1164541?v=4'}
+								src={
+									user.dispayImage
+										? user.dispayImage
+										: 'https://avatars0.githubusercontent.com/u/1164541?v=4'
+								}
 								alt={'Author'}
 							/>
 						</Box>
@@ -70,6 +75,7 @@ export const Pages = ({user}) => {
 				rounded={'2xl'}
 				overflow={'hidden'}
 				p="14"
+				my="10"
 			>
 				<Flex>
 					<Box>
@@ -86,64 +92,62 @@ export const Pages = ({user}) => {
 				</Flex>
 				<Flex>
 					{/* 大学名 */}
-					<Box>
-						<Text fontWeight="bold" color="#5D5A5A">
+					<Box w="18%">
+						<Text fontWeight="bold" color="#273264">
 							大学
 						</Text>
-						<Text fontWeight="bold" color="#273264" pt="2">
-							東洋大学
-						</Text>
+						<Text pt="2">東洋大学</Text>
 					</Box>
 					{/* 性別 */}
-					<Box pl="12">
-						<Text fontWeight="bold" color="#5D5A5A">
+					<Box w="18%">
+						<Text fontWeight="bold" color="#273264">
 							性別
 						</Text>
-						<Text fontWeight="bold" color="#273264" pt="2">
-							{user.sex ? user.sex : '未記入'}
-						</Text>
+						<Text pt="2">{user.sex ? user.sex : '未記入'}</Text>
 					</Box>
 					{/* 生年月日 */}
-					<Box pl="12">
-						<Text fontWeight="bold" color="#5D5A5A">
+					<Box w="18%">
+						<Text fontWeight="bold" color="#273264">
 							生年月日
 						</Text>
-						<Text fontWeight="bold" color="#273264" pt="2">
-							{user.birthday ? user.birthday : '未記入'}
-						</Text>
+						<Text pt="2">{user.birthday ? user.birthday : '未記入'}</Text>
 					</Box>
 					{/* メールアドレス */}
-					<Box pl="12">
-						<Text fontWeight="bold" color="#5D5A5A">
+					<Box>
+						<Text fontWeight="bold" color="#273264">
 							メールアドレス
 						</Text>
-						<Text fontWeight="bold" color="#273264" pt="2">
-							{user.address ? user.address : '未記入'}
-						</Text>
+						<Text pt="2">{user.address ? user.address : '未記入'}</Text>
 					</Box>
+				</Flex>
+				<Divider mt="10" colorScheme="blue" size="2xl" />
+				<Flex pt="10">
 					{/* 電話アドレス */}
-					<Box pl="12">
-						<Text fontWeight="bold" color="#5D5A5A">
+					<Box w="18%">
+						<Text fontWeight="bold" color="#273264">
 							電話
 						</Text>
-						<Text fontWeight="bold" color="#273264" pt="2">
-							{user.cellphoneNumber ? user.cellphoneNumber : '未記入'}
-						</Text>
+						<Text pt="2">{user.cellphoneNumber ? user.cellphoneNumber : '未記入'}</Text>
 					</Box>
 
 					{/* 実習先*/}
-					<Box pl="12">
-						<Text fontWeight="bold" color="#5D5A5A">
+					<Box>
+						<Text fontWeight="bold" color="#273264">
 							実習先
 						</Text>
-						<Text fontWeight="bold" color="#273264" pt="2">
-							{user.practicalTraining ? user.practicalTraining : '未記入'}
-						</Text>
+						<Text pt="2">{user.practicalTraining ? user.practicalTraining : '未記入'}</Text>
 					</Box>
 				</Flex>
 			</Box>
 			<Box textAlign="end">
-				<Button background="#F5F5F5" color="#5D5A5A" textAlign="right" mt="10">
+				<Button
+					background="#263773"
+					color="#fff"
+					_hover={{background: '#1c2956'}}
+					textAlign="right"
+					my="1"
+					mb="10"
+				>
 					<Link href={`/profile${editPath}`}>
 						<a>プロフィールを編集する</a>
 					</Link>

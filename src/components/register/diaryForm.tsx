@@ -1,12 +1,14 @@
+import {VFC} from 'react'
 import {Flex, Text} from '@chakra-ui/layout'
 import {Textarea} from '@chakra-ui/react'
 import {useState, useContext} from 'react'
 import {MdEdit} from 'react-icons/md'
 import {tablesRef} from '@/lib/firestore'
 import {AuthContext} from '@/contexts/AuthContext'
-export const DiaryForm = ({...props}) => {
+import {DiaryFormProps} from '@/models/diary'
+export const DiaryForm: VFC<DiaryFormProps> = ({...props}) => {
 	const [isEdit, setIsEdit] = useState<boolean>(true)
-	const [state, setState] = useState<string>(props.contents)
+	const [state, setState] = useState<string>(props.content)
 	const {dockey} = useContext(AuthContext)
 	const onSave = async () => {
 		setIsEdit(true)

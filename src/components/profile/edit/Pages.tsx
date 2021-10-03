@@ -1,14 +1,16 @@
+import {VFC} from 'react'
 import {Box, Flex, Center, Heading, Text} from '@chakra-ui/layout'
-import {Avatar, useColorModeValue, Input, Button, Textarea} from '@chakra-ui/react'
-
+import {Select, useColorModeValue, FormControl, FormLabel, Input, Button, Textarea} from '@chakra-ui/react'
+import {EditUser} from '@/models/user'
 import {useRouter} from 'next/router'
 import {useState, useContext, useEffect} from 'react'
 import {AuthContext} from '@/contexts/AuthContext'
 import {Dropzone} from '@/components/common/dropzone'
 import {userfiledRef} from '@/lib/firestore'
-export const Pages = ({user, id}) => {
+
+export const Pages: VFC<EditUser> = ({user, id}) => {
 	const router = useRouter()
-	const {dockey} = useContext(AuthContext)
+	const {dockey, setDisplayName} = useContext(AuthContext)
 	const [name, setName] = useState<string>()
 	const [address, setAddress] = useState<string>()
 	const [birthday, setBirthday] = useState<string>()
@@ -26,9 +28,8 @@ export const Pages = ({user, id}) => {
 		setSex(user.sex)
 		setSelfIntroduction(user.selfIntroduction)
 	}, [])
+
 	const submitHandler = async () => {
-		console.log(selfIntroduction)
-		console.log(name)
 		await userfiledRef(id).update({
 			name,
 			address,
@@ -120,71 +121,67 @@ export const Pages = ({user, id}) => {
 					</Box>
 				</Flex>
 				<Flex>
-					{/* 大学名 */}
-					<Box>
-						<Text fontWeight="bold" color="#5D5A5A">
-							大学
-						</Text>
-						<Input value="東洋大学" fontWeight="bold" color="#273264" mt="2"></Input>
-					</Box>
 					{/* 性別 */}
-					<Box pl="12">
-						<Text fontWeight="bold" color="#5D5A5A">
+					<FormControl w="20%">
+						<FormLabel fontWeight="bold" color="#5D5A5A">
 							性別
-						</Text>
-						<Input
-							value={sex}
-							fontWeight="bold"
-							color="#273264"
-							mt="2"
-							onChange={(e) => setSex(e.target.value)}
-						></Input>
-					</Box>
+						</FormLabel>
+						<Select fontWeight="bold" color="#273264" pt="2" onChange={(e) => setSex(e.target.value)}>
+							<option value="">選んでください</option>
+							<option value="男">男</option>
+							<option value="女">女</option>
+						</Select>
+					</FormControl>
 					{/* 生年月日 */}
-					<Box pl="12">
-						<Text fontWeight="bold" color="#5D5A5A">
+					<FormControl pl="4" w="20%">
+						<FormLabel fontWeight="bold" color="#5D5A5A">
 							生年月日
-						</Text>
+						</FormLabel>
 						<Input
 							value={birthday}
+							type="date"
 							fontWeight="bold"
 							color="#273264"
 							mt="2"
 							onChange={(e) => setBirthday(e.target.value)}
 						></Input>
-					</Box>
+					</FormControl>
 					{/* メールアドレス */}
-					<Box pl="12">
-						<Text fontWeight="bold" color="#5D5A5A">
+					<FormControl pl="4" w="20%">
+						<FormLabel fontWeight="bold" color="#5D5A5A">
 							メールアドレス
-						</Text>
+						</FormLabel>
 						<Input
 							value={address}
 							onChange={(e) => setAddress(e.target.value)}
 							fontWeight="bold"
 							color="#273264"
 							mt="2"
+							w="full"
 						></Input>
-					</Box>
+					</FormControl>
+				</Flex>
+				<Flex mt="10">
 					{/* 電話アドレス */}
-					<Box pl="12">
-						<Text fontWeight="bold" color="#5D5A5A">
+					<FormControl w="20%">
+						<FormLabel fontWeight="bold" color="#5D5A5A">
 							電話番号
-						</Text>
+						</FormLabel>
 						<Input
+							type="tel"
 							value={cellphoneNumber}
 							onChange={(e) => setCellphoneNumber(e.target.value)}
 							fontWeight="bold"
 							color="#273264"
 							mt="2"
 						></Input>
-					</Box>
+					</FormControl>
 
 					{/* 実習先*/}
-					<Box pl="12">
-						<Text fontWeight="bold" color="#5D5A5A">
+					<FormControl pl="4" w="20%">
+						<FormLabel fontWeight="bold" color="#5D5A5A">
 							実習先
-						</Text>
+						</FormLabel>
 						<Input
 							value={practicalTraining}
 							onChange={(e) => setPracticalTraining(e.target.value)}
@@ -192,11 +189,19 @@ export const Pages = ({user, id}) => {
 							color="#273264"
 							mt="2"
 						></Input>
-					</Box>
+					</FormControl>
 				</Flex>
 			</Box>
 			<Box textAlign="end">
-				<Button background="#F5F5F5" color="#5D5A5A" textAlign="right" mt="10" onClick={submitHandler}>
+				<Button
+					background="#263773"
+					color="#fff"
+					_hover={{background: '#1c2956'}}
+					textAlign="right"
+					mt="10"
+					mb="10"
+					onClick={submitHandler}
+				>
 					プロフィールを保存する
 				</Button>
 			</Box>
