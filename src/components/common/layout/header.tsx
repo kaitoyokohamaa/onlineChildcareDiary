@@ -1,12 +1,12 @@
-import {Avator} from '@/components/common/avator'
+import {Avatar} from '@/components/common/avator'
 import {Input, Box, Flex, Text, Menu, Button, MenuButton, MenuList, MenuItem} from '@chakra-ui/react'
 import {VFC, useContext, useEffect} from 'react'
 import Link from 'next/link'
-import {MdSearch} from 'react-icons/md'
+
 import {AuthContext} from '@/contexts/AuthContext'
-import {userIdRef} from '@/lib/firestore'
+
 export const Header: VFC = () => {
-	const {loginUser, dockey} = useContext(AuthContext)
+	const {loginUser, dockey, displayName, image} = useContext(AuthContext)
 	const address = loginUser?.email
 	const subName = address?.substring(0, address.indexOf('@'))
 
@@ -15,13 +15,13 @@ export const Header: VFC = () => {
 			<Flex justify="space-between">
 				<Box w="50%"></Box>
 				<Menu>
-					<MenuButton as={Button} bg="#fff">
+					<MenuButton as={Button} background="#f5f9ff">
 						<Box>
 							<Flex>
-								<Avator />
+								<Avatar image={image} />
 								<Box pl={2}>
 									<Text fontSize="md" fontWeight="bold">
-										{subName}
+										{displayName ? displayName : subName}
 									</Text>
 									<Text fontSize="sm">東洋大学</Text>
 								</Box>

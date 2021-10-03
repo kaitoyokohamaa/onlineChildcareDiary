@@ -12,6 +12,10 @@ export const userIdRef = (uid: string) => {
 	return firestore().collection('User').where('uid', 'array-contains', uid)
 }
 
+export const userfiledRef = (docKey: string) => {
+	return firestore().collection('User').doc(docKey)
+}
+
 export const registerRef = (docKey: string) => {
 	return firestore().collection('User').doc(docKey).collection('register')
 }

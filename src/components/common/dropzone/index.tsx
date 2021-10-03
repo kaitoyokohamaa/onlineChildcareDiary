@@ -1,6 +1,8 @@
-import React, {useCallback, useMemo} from 'react'
+import React, {useCallback, useMemo, useContext, useEffect, useState} from 'react'
 import {useDropzone} from 'react-dropzone'
-
+import {saveStorageRef, storageRef} from '@/lib/firestorage'
+import {AuthContext} from '@/contexts/AuthContext'
+import {userfiledRef} from '@/lib/firestore'
 const baseStyle = {
 	flex: 1,
 	display: 'flex',
@@ -28,8 +30,27 @@ const rejectStyle = {
 	borderColor: '#ff1744'
 }
 export const Dropzone = () => {
-	const {getRootProps, getInputProps, isDragActive, isDragAccept, isDragReject} = useDropzone({accept: 'image/*'})
-	const onDrop = useCallback((acceptedFiles) => {}, [])
+	const {loginUser, dockey} = useContext(AuthContext)
+
+	const onDrop = useCallback(async (acceptedFiles) => {
+		if (loginUser?.uid) {
+			await saveStorageRef(loginUser?.uid, acceptedFiles)
+
+			const ref = storageRef().ref().child(`images/${loginUser?.uid}/${acceptedFiles[0].name}`)
+
+			await ref.getDownloadURL().then((dispayImage) => {
+				console.log(dispayImage)
+				userfiledRef(dockey).update({
+					dispayImage
+				})
+			})
+		}
+	}, [])
+
+	const {getRootProps, getInputProps, isDragActive, isDragAccept, isDragReject} = useDropzone({
+		accept: 'image/*',
+		onDrop
+	})
 	const style = useMemo(
 		() => ({
 			...baseStyle,

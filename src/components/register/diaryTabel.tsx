@@ -1,10 +1,12 @@
+import {VFC} from 'react'
 import {Table, Thead, Tbody, Tr, Th, Td} from '@chakra-ui/react'
 import {DiaryForm} from './diaryForm'
 import {DiaryDateForm} from './diaryDateForm'
 import {tablesRef} from '@/lib/firestore'
 import {useEffect, useState, useContext} from 'react'
 import {AuthContext} from '@/contexts/AuthContext'
-export const DiaryTabel = ({projectID, setTrainingContent, trainingContent}) => {
+import {DiaryTabelProps} from '@/models/diary'
+export const DiaryTabel: VFC<DiaryTabelProps> = ({projectID, setTrainingContent, trainingContent}) => {
 	const [rows, setRows] = useState([])
 	let rowArray = []
 	let trainigContensArray = []
@@ -25,6 +27,7 @@ export const DiaryTabel = ({projectID, setTrainingContent, trainingContent}) => 
 				const resultContentsArray = trainigContensArray.filter((element, index) => {
 					return trainigContensArray.findIndex((e) => e.table.id === element.table.id) === index
 				})
+				console.log(resultContentsArray)
 				setRows(result)
 				setTrainingContent(resultContentsArray)
 			})
@@ -49,19 +52,15 @@ export const DiaryTabel = ({projectID, setTrainingContent, trainingContent}) => 
 									<DiaryDateForm id={res.tableID} date={res.table.date} />
 								</Td>
 								<Td border="1px">
-									<DiaryForm
-										id={res.tableID}
-										contents={res.table.childActivities}
-										isChildActivities
-									/>
+									<DiaryForm id={res.tableID} content={res.table.childActivities} isChildActivities />
 								</Td>
 								<Td border="1px">
-									<DiaryForm id={res.tableID} contents={res.table.assistance} isAssistance />
+									<DiaryForm id={res.tableID} content={res.table.assistance} isAssistance />
 								</Td>
 								<Td border="1px">
 									<DiaryForm
 										id={res.tableID}
-										contents={res.table.activitesAndAwareness}
+										content={res.table.activitesAndAwareness}
 										isActivitesAndAwareness
 									/>
 								</Td>

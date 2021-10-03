@@ -1,14 +1,13 @@
+import {VFC} from 'react'
+import {User} from '@/models/user'
 import {Box, Flex, Center, Heading, Text} from '@chakra-ui/layout'
-import {Avatar, useColorModeValue, Button} from '@chakra-ui/react'
-
+import {Avatar, useColorModeValue, Button, Divider} from '@chakra-ui/react'
 import {useRouter} from 'next/router'
-
-export const Pages = ({users}) => {
+import Link from 'next/link'
+export const Pages: VFC<{user: User}> = ({user}) => {
 	const router = useRouter()
-	const editHandler = () => {
-		router.push('profile/edit')
-	}
-
+	const currentPath = router.asPath
+	const editPath = currentPath.replace('profile', 'edit')
 	return (
 		<Box mt="10" px={16} overflow="scroll" h="85vh">
 			<Text
@@ -42,11 +41,7 @@ export const Pages = ({users}) => {
 				>
 					<Flex>
 						<Box>
-							<Avatar
-								size="2xl"
-								src={users.image ? users.image : 'https://avatars0.githubusercontent.com/u/1164541?v=4'}
-								alt={'Author'}
-							/>
+							<Avatar size="2xl" src={user.dispayImage} alt={'Author'} />
 						</Box>
 
 						<Box pl="5">
@@ -56,10 +51,10 @@ export const Pages = ({users}) => {
 								fontWeight="bold"
 								fontFamily={'body'}
 							>
-								{users.name ? users.name : '未記入'}
+								{user.name ? user.name : '未記入'}
 							</Heading>
 							<Text color={'gray.500'} pt="5">
-								{users.selfIntroduction ? users.selfIntroduction : '未記入'}
+								{user.selfIntroduction ? user.selfIntroduction : '未記入'}
 							</Text>
 						</Box>
 					</Flex>
@@ -72,6 +67,7 @@ export const Pages = ({users}) => {
 				rounded={'2xl'}
 				overflow={'hidden'}
 				p="14"
+				my="10"
 			>
 				<Flex>
 					<Box>
@@ -88,65 +84,65 @@ export const Pages = ({users}) => {
 				</Flex>
 				<Flex>
 					{/* 大学名 */}
-					<Box>
-						<Text fontWeight="bold" color="#5D5A5A">
+					<Box w="18%">
+						<Text fontWeight="bold" color="#273264">
 							大学
 						</Text>
-						<Text fontWeight="bold" color="#273264" pt="2">
-							東洋大学
-						</Text>
+						<Text pt="2">東洋大学</Text>
 					</Box>
 					{/* 性別 */}
-					<Box pl="12">
-						<Text fontWeight="bold" color="#5D5A5A">
+					<Box w="18%">
+						<Text fontWeight="bold" color="#273264">
 							性別
 						</Text>
-						<Text fontWeight="bold" color="#273264" pt="2">
-							{users.sex ? users.sex : '未記入'}
-						</Text>
+						<Text pt="2">{user.sex ? user.sex : '未記入'}</Text>
 					</Box>
 					{/* 生年月日 */}
-					<Box pl="12">
-						<Text fontWeight="bold" color="#5D5A5A">
+					<Box w="18%">
+						<Text fontWeight="bold" color="#273264">
 							生年月日
 						</Text>
-						<Text fontWeight="bold" color="#273264" pt="2">
-							{users.birthday ? users.birthday : '未記入'}
-						</Text>
+						<Text pt="2">{user.birthday ? user.birthday : '未記入'}</Text>
 					</Box>
 					{/* メールアドレス */}
-					<Box pl="12">
-						<Text fontWeight="bold" color="#5D5A5A">
+					<Box>
+						<Text fontWeight="bold" color="#273264">
 							メールアドレス
 						</Text>
-						<Text fontWeight="bold" color="#273264" pt="2">
-							{users.address ? users.address : '未記入'}
-						</Text>
+						<Text pt="2">{user.address ? user.address : '未記入'}</Text>
 					</Box>
+				</Flex>
+				<Divider mt="10" colorScheme="blue" size="2xl" />
+				<Flex pt="10">
 					{/* 電話アドレス */}
-					<Box pl="12">
-						<Text fontWeight="bold" color="#5D5A5A">
+					<Box w="18%">
+						<Text fontWeight="bold" color="#273264">
 							電話
 						</Text>
-						<Text fontWeight="bold" color="#273264" pt="2">
-							{users.cellphoneNumber ? users.cellphoneNumber : '未記入'}
-						</Text>
+						<Text pt="2">{user.cellphoneNumber ? user.cellphoneNumber : '未記入'}</Text>
 					</Box>
 
 					{/* 実習先*/}
-					<Box pl="12">
-						<Text fontWeight="bold" color="#5D5A5A">
+					<Box>
+						<Text fontWeight="bold" color="#273264">
 							実習先
 						</Text>
-						<Text fontWeight="bold" color="#273264" pt="2">
-							{users.practicalTraining ? users.practicalTraining : '未記入'}
-						</Text>
+						<Text pt="2">{user.practicalTraining ? user.practicalTraining : '未記入'}</Text>
 					</Box>
 				</Flex>
 			</Box>
 			<Box textAlign="end">
-				<Button background="#F5F5F5" color="#5D5A5A" textAlign="right" mt="10" onClick={editHandler}>
-					プロフィールを編集する
+				<Button
+					background="#263773"
+					color="#fff"
+					_hover={{background: '#1c2956'}}
+					textAlign="right"
+					my="1"
+					mb="10"
+				>
+					<Link href={`/profile${editPath}`}>
+						<a>プロフィールを編集する</a>
+					</Link>
 				</Button>
 			</Box>
 		</Box>

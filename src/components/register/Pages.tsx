@@ -7,15 +7,16 @@ import firebase from 'firebase/app'
 import {AuthContext} from '@/contexts/AuthContext'
 import {v1 as uuidv1} from 'uuid'
 import {MdLocalLibrary} from 'react-icons/md'
+import {Table} from '@/models/diary'
 export const Pages = ({projectID}) => {
-	const [count, setCount] = useState('')
-	const [day, setDay] = useState('')
-	const [studentName, setStudentName] = useState('')
-	const [assignedName, setAssignedName] = useState('')
-	const [leader, setLeader] = useState('')
-	const [goal, setGoal] = useState('')
-	const [trainingContent, setTrainingContent] = useState([])
-	const [feeling, setFeeling] = useState('')
+	const [count, setCount] = useState<string>('')
+	const [day, setDay] = useState<string>('')
+	const [studentName, setStudentName] = useState<string>('')
+	const [assignedName, setAssignedName] = useState<string>('')
+	const [leader, setLeader] = useState<string>('')
+	const [goal, setGoal] = useState<string>('')
+	const [trainingContent, setTrainingContent] = useState<Table[]>([])
+	const [feeling, setFeeling] = useState<string>('')
 	const {dockey} = useContext(AuthContext)
 	const addRow = () => {
 		tablesRef(dockey).add({
