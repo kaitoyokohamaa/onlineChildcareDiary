@@ -14,6 +14,6 @@ module.exports = withFonts({
     return config;
   },
   images: {
-    domains: ["images.unsplash.com"],
+    domains: ["images.unsplash.com","firebasestorage.googleapis.com"],
   },
 });

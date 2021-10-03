@@ -21,7 +21,12 @@ export const UseAuthContext = ({children}) => {
 			if (user) {
 				userIdRef(user.uid).onSnapshot((res) => res.forEach((item) => setDocKey(item.id)))
 				setLoginUser(user)
-				userIdRef(user.uid).onSnapshot((res) => res.forEach((item) => setDisplayName(item.data().name)))
+
+				userIdRef(user.uid).onSnapshot((res) =>
+					res.forEach((item) => {
+						return setDisplayName(item.data().name), setImage(item.data().dispayImage)
+					})
+				)
 				if (router.asPath === '/signup' || router.asPath === '/login') {
 					router.push(`/home`)
 				}

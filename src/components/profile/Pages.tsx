@@ -41,15 +41,7 @@ export const Pages: VFC<{user: User}> = ({user}) => {
 				>
 					<Flex>
 						<Box>
-							<Avatar
-								size="2xl"
-								src={
-									user.dispayImage
-										? user.dispayImage
-										: 'https://avatars0.githubusercontent.com/u/1164541?v=4'
-								}
-								alt={'Author'}
-							/>
+							<Avatar size="2xl" src={user.dispayImage} alt={'Author'} />
 						</Box>
 
 						<Box pl="5">

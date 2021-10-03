@@ -27,6 +27,7 @@ export const Pages: VFC<EditUser> = ({user, id}) => {
 		setPracticalTraining(user.practicalTraining)
 		setSex(user.sex)
 		setSelfIntroduction(user.selfIntroduction)
+		setDispayImage(user.dispayImage)
 	}, [])
 
 	const submitHandler = async () => {
