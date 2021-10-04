@@ -10,7 +10,7 @@ export const Layout: VFC<Props> = ({children, isHeader}) => {
     <Box>
       <Flex w="100%">
         {/* Sidebar */}
-        <Flex w="20%" h="100vh" bg="#273673">
+        <Flex h="100vh" bg="#273673">
           <Box>
             <Sidebar />
           </Box>
@@ -19,7 +19,7 @@ export const Layout: VFC<Props> = ({children, isHeader}) => {
         <Flex w="80%">
           <Box w="100%">
             {isHeader && (
-              <Box mt="10">
+              <Box mt="5">
                 <Header />
               </Box>
             )}

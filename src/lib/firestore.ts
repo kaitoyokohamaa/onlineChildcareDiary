@@ -1,24 +1,30 @@
 import firebase from './firebase'
 
 export const firestore = () => {
-	return firebase.firestore()
+  return firebase.firestore()
 }
 
 export const userRef = () => {
-	return firestore().collection('User')
+  return firestore().collection('User')
 }
 
 export const userIdRef = (uid: string) => {
-	return firestore().collection('User').where('uid', 'array-contains', uid)
+  return (
+    uid && firestore().collection('User').where('uid', 'array-contains', uid)
+  )
 }
 
 export const userfiledRef = (docKey: string) => {
-	return firestore().collection('User').doc(docKey)
+  return docKey && firestore().collection('User').doc(docKey)
 }
 
 export const registerRef = (docKey: string) => {
-	return firestore().collection('User').doc(docKey).collection('register')
+  return (
+    docKey && firestore().collection('User').doc(docKey).collection('register')
+  )
 }
 export const tablesRef = (docKey: string) => {
-	return firestore().collection('User').doc(docKey).collection('tables')
+  return (
+    docKey && firestore().collection('User').doc(docKey).collection('tables')
+  )
 }

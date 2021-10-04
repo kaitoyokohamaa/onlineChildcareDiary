@@ -9,7 +9,7 @@ export const Pages: VFC<{user: User}> = ({user}) => {
   const currentPath = router.asPath
   const editPath = currentPath.replace('profile', 'edit')
   return (
-    <Box mt="10" px={16} overflow="scroll" h="85vh">
+    <Box mt="2" px={16} overflow="scroll" h="85vh">
       <Text
         fontWeight="bold"
         w="100%"
