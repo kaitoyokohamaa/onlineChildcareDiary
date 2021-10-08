@@ -1,26 +1,14 @@
-import {VFC, useContext, useEffect, useState} from 'react'
+import {useRouter} from 'next/router'
+import {VFC} from 'react'
 import {MdLocalLibrary} from 'react-icons/md'
 import {Box, Flex, Text, Divider} from '@chakra-ui/layout'
 import {Table, Thead, Tbody, Tr, Th, Td, Checkbox} from '@chakra-ui/react'
 import Link from 'next/link'
 
-import {registerRef} from '@/lib/firestore'
-import {AuthContext} from '@/contexts/AuthContext'
-export const Pages: VFC = () => {
-  const [diaries, setDiaries] = useState([])
-  const {dockey} = useContext(AuthContext)
-  let diariesArray = []
-
-  useEffect(() => {
-    dockey &&
-      registerRef(dockey).onSnapshot((res) => {
-        res.forEach((item) => {
-          diariesArray.push({diary: item.data(), docID: item.id})
-        })
-        setDiaries(diariesArray)
-      })
-  }, [])
-
+import {Register} from '@/models/register'
+export const Pages: VFC<{diary: Register}> = ({diary}) => {
+  const router = useRouter()
+  const userKey = router.query.diary
   return (
     <Box mt="10" px={16}>
       <Flex alignItems="center">
@@ -43,10 +31,11 @@ export const Pages: VFC = () => {
           </Tr>
         </Thead>
         <Tbody>
-          {diaries.length ? (
-            diaries.map((res) => {
+          {diary.length ? (
+            diary.map((res, i) => {
               return (
                 <Tr
+                  key={i}
                   _hover={{
                     background: '#f5f7f9',
                     p: '14'
@@ -55,12 +44,13 @@ export const Pages: VFC = () => {
                   <Th>
                     <Checkbox />
                   </Th>
+
                   <Td color="#273264" fontWeight="bold" cursor="pointer">
-                    <Link href={`diary/detail/${res.docID}`}>
+                    <Link href={`/diary/detail/${res.id}/${userKey}`}>
                       <a>ひまわり保育園</a>
                     </Link>
                   </Td>
-                  <Td>{`${res.diary.day}`}</Td>
+                  <Td>{`${res.diaryData.day}`}</Td>
                 </Tr>
               )
             })

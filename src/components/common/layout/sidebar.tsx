@@ -1,5 +1,6 @@
-import {VFC} from 'react'
+import {VFC, useContext} from 'react'
 import Link from 'next/link'
+import {AuthContext} from '@/contexts/AuthContext'
 import {Button_} from '@/components/common/button'
 import {SidebarLink} from './sidebarLink'
 import {Box, Flex, Heading, HStack, Text} from '@chakra-ui/layout'
@@ -9,8 +10,8 @@ import {VscGear} from 'react-icons/vsc'
 import {useRouter} from 'next/router'
 import firebase from '@/lib/firebase'
 import {v1 as uuidv1} from 'uuid'
-
 export const Sidebar: VFC = () => {
+  const {dockey} = useContext(AuthContext)
   const router = useRouter()
 
   const signOutHandler = () => {
@@ -36,6 +37,7 @@ export const Sidebar: VFC = () => {
           </Link>
         </Button_>
       </Box>
+      {/* 日誌 */}
       <Box
         _hover={{bg: '#FFFFFF1A 0% 0% no-repeat padding-box'}}
         borderLeft={router.asPath.indexOf('/diary') !== -1 && '4px'}
@@ -48,7 +50,7 @@ export const Sidebar: VFC = () => {
         <SidebarLink
           color={router.asPath.indexOf('/diary') !== -1 ? '#84B9D4' : 'white'}
         >
-          <Link href="/diary">
+          <Link href={`/diary/${dockey}`}>
             <a>
               <Flex
                 justify="center"
@@ -84,6 +86,9 @@ export const Sidebar: VFC = () => {
 					</Link>
 				</SidebarLink>
 			</Box> */}
+      {/* 
+      チャット
+       */}
       <Box
         _hover={{bg: '#FFFFFF1A 0% 0% no-repeat padding-box'}}
         borderLeft={router.asPath === '/chat' && '4px'}

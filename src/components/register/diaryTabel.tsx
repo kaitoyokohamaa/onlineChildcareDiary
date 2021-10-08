@@ -32,6 +32,7 @@ export const DiaryTabel: VFC<DiaryTabelProps> = ({
               index
             )
           })
+
           const resultContentsArray = trainigContensArray.filter(
             (element, index) => {
               return (
@@ -41,7 +42,7 @@ export const DiaryTabel: VFC<DiaryTabelProps> = ({
               )
             }
           )
-          console.log(resultContentsArray)
+
           setRows(result)
           setTrainingContent(resultContentsArray)
         })

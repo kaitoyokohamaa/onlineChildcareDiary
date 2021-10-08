@@ -1,13 +1,13 @@
-import { VFC } from "react";
-import { Avatar, AvatarBadge, Stack } from "@chakra-ui/react";
-import { Box, Flex, Text } from "@chakra-ui/layout";
+import {VFC} from 'react'
+import {Avatar, AvatarBadge, Stack} from '@chakra-ui/react'
+import {Box, Flex, Text} from '@chakra-ui/layout'
 export const ChatSidebar: VFC = () => {
   return (
     <Flex w="25%">
       <Box w="100%" h="87vh" overflow="scroll">
-        {[...Array(1)].map(() => {
+        {[...Array(1)].map((i) => {
           return (
-            <Box border="2px" borderColor="#F8F8F8" py={4} px="10">
+            <Box key={i} border="2px" borderColor="#F8F8F8" py={4} px="10">
               <Flex alignItems="center">
                 <Stack spacing={4}>
                   <Avatar src="https://bit.ly/dan-abramov">
@@ -22,9 +22,9 @@ export const ChatSidebar: VFC = () => {
                 </Box>
               </Flex>
             </Box>
-          );
+          )
         })}
       </Box>
     </Flex>
-  );
-};
+  )
+}
