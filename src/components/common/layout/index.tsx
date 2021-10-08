@@ -6,27 +6,27 @@ import {Box, Flex} from '@chakra-ui/layout'
 type Props = {children?: React.ReactNode; isHeader?: boolean}
 
 export const Layout: VFC<Props> = ({children, isHeader}) => {
-	return (
-		<Box background="#f5f9ff">
-			<Flex w="100%">
-				{/* Sidebar */}
-				<Flex w="20%" h="100vh" bg="#273673">
-					<Box>
-						<Sidebar />
-					</Box>
-				</Flex>
-				{/* contents */}
-				<Flex w="80%">
-					<Box w="100%">
-						{isHeader && (
-							<Box mt="10">
-								<Header />
-							</Box>
-						)}
-						<Box>{children}</Box>
-					</Box>
-				</Flex>
-			</Flex>
-		</Box>
-	)
+  return (
+    <Box>
+      <Flex w="100%">
+        {/* Sidebar */}
+        <Flex h="100vh" bg="#273673">
+          <Box>
+            <Sidebar />
+          </Box>
+        </Flex>
+        {/* contents */}
+        <Flex w="80%">
+          <Box w="100%">
+            {isHeader && (
+              <Box mt="5">
+                <Header />
+              </Box>
+            )}
+            <Box>{children}</Box>
+          </Box>
+        </Flex>
+      </Flex>
+    </Box>
+  )
 }
