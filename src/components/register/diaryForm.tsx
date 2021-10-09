@@ -1,4 +1,4 @@
-import {VFC} from 'react'
+import {VFC, useEffect} from 'react'
 import {Flex, Text} from '@chakra-ui/layout'
 import {Textarea} from '@chakra-ui/react'
 import {useState, useContext} from 'react'
@@ -10,15 +10,31 @@ export const DiaryForm: VFC<DiaryFormProps> = ({...props}) => {
   const [isEdit, setIsEdit] = useState<boolean>(true)
   const [state, setState] = useState<string>(props.content)
   const {dockey} = useContext(AuthContext)
+  let diaries = []
   const onSave = async () => {
     setIsEdit(true)
     props.isChildActivities &&
-      tablesRef(dockey).doc(props.id).update({childActivities: state})
+      (await tablesRef(dockey).doc(props.id).update({childActivities: state}))
     props.isAssistance &&
-      tablesRef(dockey).doc(props.id).update({assistance: state})
+      (await tablesRef(dockey).doc(props.id).update({assistance: state}))
     props.isActivitesAndAwareness &&
-      tablesRef(dockey).doc(props.id).update({activitesAndAwareness: state})
+      (await tablesRef(dockey)
+        .doc(props.id)
+        .update({activitesAndAwareness: state}))
+
+    tablesRef(dockey)
+      .orderBy('createdAt', 'asc')
+      .onSnapshot((res) => {
+        res.forEach((item) => {
+          if (item.data().projectID === props.projectID) {
+            const id = item.id
+            diaries.push({tableID: id, tableData: item.data()})
+          }
+        })
+      })
+    props.setTrainingContent(diaries)
   }
+
   return (
     <div>
       {isEdit ? (
