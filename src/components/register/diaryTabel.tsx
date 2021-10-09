@@ -11,42 +11,32 @@ export const DiaryTabel: VFC<DiaryTabelProps> = ({
   setTrainingContent,
   trainingContent
 }) => {
-  const [rows, setRows] = useState([])
-  let rowArray = []
+  const [diaries, setDiaries] = useState([])
   let trainigContensArray = []
   const {dockey} = useContext(AuthContext)
+  // タイミングやよな。
   useEffect(() => {
     dockey &&
       tablesRef(dockey)
         .orderBy('createdAt', 'asc')
         .onSnapshot((res) => {
           res.forEach((item) => {
-            rowArray.push({table: item.data(), tableID: item.id})
             if (item.data().projectID === projectID) {
-              trainigContensArray.push({table: item.data()})
+              const id = item.id
+              trainigContensArray.push({tableID: id, tableData: item.data()})
             }
           })
-          const result = rowArray.filter((element, index) => {
-            return (
-              rowArray.findIndex((e) => e.table.id === element.table.id) ===
-              index
-            )
-          })
-
-          const resultContentsArray = trainigContensArray.filter(
-            (element, index) => {
-              return (
-                trainigContensArray.findIndex(
-                  (e) => e.table.id === element.table.id
-                ) === index
-              )
-            }
+          //重複処理。最初のtableid === tableidにマッチしたやつだけをfindIndexで確かめているから重複を排除することができる。
+          const result = trainigContensArray.filter(
+            (res, i) =>
+              trainigContensArray.findIndex(
+                (item) => item.tableID === res.tableID
+              ) === i
           )
 
-          setRows(result)
-          setTrainingContent(resultContentsArray)
+          setDiaries(result)
         })
-  }, [])
+  }, [dockey])
 
   return (
     <Table border="2px">
@@ -58,33 +48,48 @@ export const DiaryTabel: VFC<DiaryTabelProps> = ({
           <Th>実習生の活動気づき</Th>
         </Tr>
       </Thead>
-      {rows?.map((res) => {
+      {diaries?.map((res) => {
         return (
-          res.table.projectID === projectID && (
+          res.tableData.projectID === projectID && (
             <Tbody border="2px">
               <Tr>
                 <Td border="1px" w="9">
-                  <DiaryDateForm id={res.tableID} date={res.table.date} />
+                  <DiaryDateForm
+                    id={res.tableID}
+                    date={res.tableData.date}
+                    projectID={projectID}
+                    setTrainingContent={setTrainingContent}
+                    trainingContent={trainingContent}
+                  />
                 </Td>
                 <Td border="1px">
                   <DiaryForm
                     id={res.tableID}
-                    content={res.table.childActivities}
+                    content={res.tableData.childActivities}
                     isChildActivities
+                    projectID={projectID}
+                    setTrainingContent={setTrainingContent}
+                    trainingContent={trainingContent}
                   />
                 </Td>
                 <Td border="1px">
                   <DiaryForm
                     id={res.tableID}
-                    content={res.table.assistance}
+                    content={res.tableData.assistance}
                     isAssistance
+                    projectID={projectID}
+                    setTrainingContent={setTrainingContent}
+                    trainingContent={trainingContent}
                   />
                 </Td>
                 <Td border="1px">
                   <DiaryForm
                     id={res.tableID}
-                    content={res.table.activitesAndAwareness}
+                    content={res.tableData.activitesAndAwareness}
                     isActivitesAndAwareness
+                    projectID={projectID}
+                    setTrainingContent={setTrainingContent}
+                    trainingContent={trainingContent}
                   />
                 </Td>
               </Tr>

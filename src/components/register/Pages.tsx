@@ -43,8 +43,6 @@ export const Pages = ({projectID}) => {
     })
   }
 
-  console.log(trainingContent)
-
   return (
     <Box mt="10" px={16}>
       <Flex alignItems="center">
