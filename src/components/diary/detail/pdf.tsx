@@ -10,7 +10,7 @@ import {
   Font,
   PDFViewer
 } from '@react-pdf/renderer'
-import {DetailDiary} from '@/models/register'
+import {DetailDiary} from '@/models/diary/register'
 const styles = StyleSheet.create({
   page: {
     width: '100%',

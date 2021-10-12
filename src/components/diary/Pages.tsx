@@ -5,12 +5,12 @@ import {Box, Flex, Text, Divider} from '@chakra-ui/layout'
 import {Table, Thead, Tbody, Tr, Th, Td, Checkbox} from '@chakra-ui/react'
 import Link from 'next/link'
 
-import {Register} from '@/models/register'
+import {Register} from '@/models/diary/register'
 export const Pages: VFC<{diary: Register}> = ({diary}) => {
   const router = useRouter()
   const userKey = router.query.diary
   return (
-    <Box mt="10" px={16}>
+    <Box mt="10" px={16} h="85vh" overflow="scroll">
       <Flex alignItems="center">
         <Box bg="#F8F8F8" p="2" borderRadius="md">
           <MdLocalLibrary color=" #9FD0E8" />

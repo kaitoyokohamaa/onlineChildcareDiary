@@ -1,5 +1,5 @@
 export type Table = {
-  tableData: {
+  tableData?: {
     activitesAndAwareness?: string
     assistance?: string
     childActivities?: string
@@ -8,10 +8,10 @@ export type Table = {
     id?: string
     projectID?: string
   }
-  tableID: string
+  tableID?: string
 }
 export type DiaryTabelProps = {
-  projectID: string
+  projectID?: string
   setTrainingContent: React.Dispatch<React.SetStateAction<Table[]>>
   trainingContent: Table[]
 }

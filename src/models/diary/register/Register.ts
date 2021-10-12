@@ -15,7 +15,7 @@ export type Register = {
 
 export type DetailDiary = {
   feeling: string
-  trainingContent: [Table]
+  trainingContent: Table[]
   assignedName: string
   count: string
   studentName: string
