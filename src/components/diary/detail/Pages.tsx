@@ -3,7 +3,8 @@ import dynamic from 'next/dynamic'
 import {MdLocalLibrary} from 'react-icons/md'
 import {Box, Flex, Text, Divider} from '@chakra-ui/layout'
 import {Button} from '@chakra-ui/react'
-import {DetailDiary} from '@/models/register'
+import {DetailDiary} from '@/models/diary/register'
+import {useRouter} from 'next/router'
 const PDF = dynamic<{detailDiary: DetailDiary}>(
   () => import('./pdf').then((mod) => mod.Pdf),
   {
@@ -11,6 +12,9 @@ const PDF = dynamic<{detailDiary: DetailDiary}>(
   }
 )
 export const Pages: VFC<{detailDiary: DetailDiary}> = ({detailDiary}) => {
+  const router = useRouter()
+  const docKey = router.query.slug[0]
+  const uid = router.query.slug[1]
   return (
     <Box mt="10" px={16}>
       <Flex alignItems="center">
@@ -21,7 +25,23 @@ export const Pages: VFC<{detailDiary: DetailDiary}> = ({detailDiary}) => {
           2021年１１月２０日（火）
         </Text>
         <Box textAlign="right" m="0 0 0 auto">
-          <Button background="#F5F5F5" color="#5D5A5A">
+          <Button
+            background="#F5F5F5"
+            color="#5D5A5A"
+            mr="2"
+            onClick={() => {
+              router.push(`/diary/edit/${docKey}/${uid}`)
+            }}
+          >
+            編集する
+          </Button>
+          <Button
+            background="#F5F5F5"
+            color="#5D5A5A"
+            onClick={() => {
+              router.push(`/diary/${uid}`)
+            }}
+          >
             日誌一覧にもどる
           </Button>
         </Box>

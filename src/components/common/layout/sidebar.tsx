@@ -32,7 +32,7 @@ export const Sidebar: VFC = () => {
       </Box>
       <Box textAlign="center" my={8}>
         <Button_ bg="#9FD0E8" color="white" _hover={{bg: '#54b5e4'}}>
-          <Link href={`/register/${uuidv1()}`}>
+          <Link href={`/diary/register/${uuidv1()}`}>
             <a>＋日誌登録</a>
           </Link>
         </Button_>

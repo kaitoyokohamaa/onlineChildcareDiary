@@ -2,7 +2,7 @@ import {NextPage, GetStaticProps, GetStaticPropsContext} from 'next'
 import {Layout} from '@/components/common/layout'
 import {Pages} from '@/components/diary/Pages'
 import {adminRegisterRef} from '@/lib/nodedb'
-import {Register} from '@/models/register'
+import {Register} from '@/models/diary/register'
 
 export const getStaticProps: GetStaticProps = async (
   context: GetStaticPropsContext
