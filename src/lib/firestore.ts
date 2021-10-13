@@ -28,3 +28,11 @@ export const tablesRef = (docKey: string) => {
     docKey && firestore().collection('User').doc(docKey).collection('tables')
   )
 }
+
+export const adminRegisterDetailRef = (userKey: string, detailKey: string) => {
+  return firestore()
+    .collection('User')
+    .doc(userKey)
+    .collection('register')
+    .doc(detailKey)
+}
