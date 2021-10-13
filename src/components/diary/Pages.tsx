@@ -1,14 +1,28 @@
 import {useRouter} from 'next/router'
-import {VFC} from 'react'
+import {VFC, useState} from 'react'
 import {MdLocalLibrary} from 'react-icons/md'
-import {Box, Flex, Text, Divider} from '@chakra-ui/layout'
+import {Box, Flex, Text, Divider, Stack} from '@chakra-ui/layout'
 import {Table, Thead, Tbody, Tr, Th, Td, Checkbox} from '@chakra-ui/react'
 import Link from 'next/link'
-
+import {AlertDialogPop} from '@/components/common/dialog/alertDialog'
 import {Register} from '@/models/diary/register'
 export const Pages: VFC<{diary: Register}> = ({diary}) => {
+  const [isClicked, setIsClicked] = useState<boolean>(false)
+  const [currentCheckedId, setCurrentCheckedId] = useState<string>('')
   const router = useRouter()
   const userKey = router.query.diary
+  const onClickHandler = (
+    e: React.ChangeEvent<HTMLInputElement>,
+    id: string
+  ) => {
+    if (e.target.checked) {
+      setIsClicked(true)
+      setCurrentCheckedId(id)
+    } else {
+      setIsClicked(false)
+      setCurrentCheckedId('')
+    }
+  }
   return (
     <Box mt="10" px={16} h="85vh" overflow="scroll">
       <Flex alignItems="center">
@@ -42,7 +56,7 @@ export const Pages: VFC<{diary: Register}> = ({diary}) => {
                   }}
                 >
                   <Th>
-                    <Checkbox />
+                    <Checkbox onChange={(e) => onClickHandler(e, res.id)} />
                   </Th>
 
                   <Td color="#273264" fontWeight="bold" cursor="pointer">
@@ -59,6 +73,31 @@ export const Pages: VFC<{diary: Register}> = ({diary}) => {
           )}
         </Tbody>
       </Table>
+      {isClicked && (
+        <Stack
+          direction={['column', 'row']}
+          spacing="24px"
+          ml="-16"
+          px="10"
+          w="full"
+          py="8"
+          background="#fcf2e0"
+          position="fixed"
+          bottom="0"
+          alignItems="center"
+          justifyContent="space-evenly"
+        >
+          <Box>
+            <Text>1件の日誌を選択</Text>
+          </Box>
+          <Box>
+            <AlertDialogPop
+              currentCheckedId={currentCheckedId}
+              userKey={userKey}
+            />
+          </Box>
+        </Stack>
+      )}
     </Box>
   )
 }
