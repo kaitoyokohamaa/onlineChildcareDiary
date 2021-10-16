@@ -29,7 +29,7 @@ export async function getStaticPaths() {
 const Detail: NextPage<{detailDiary: DetailDiary}> = ({detailDiary}) => {
   return (
     <Layout isHeader>
-      <Pages detailDiary={detailDiary} />
+      <Pages isUser detailDiary={detailDiary} />
     </Layout>
   )
 }

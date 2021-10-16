@@ -23,3 +23,8 @@ export type DetailDiary = {
   day: string
   leader: string
 }
+
+export type isUserDetailDiary = {
+  detailDiary: DetailDiary
+  isUser?: boolean
+}

@@ -1,14 +1,31 @@
 import {useRouter} from 'next/router'
-import {VFC, useState} from 'react'
+import {VFC, useState, useEffect} from 'react'
 import {MdLocalLibrary} from 'react-icons/md'
 import {Box, Flex, Text, Divider, Stack} from '@chakra-ui/layout'
-import {Table, Thead, Tbody, Tr, Th, Td, Checkbox} from '@chakra-ui/react'
+import {
+  Table,
+  Thead,
+  Tbody,
+  Tr,
+  Th,
+  Td,
+  Checkbox,
+  Button
+} from '@chakra-ui/react'
 import Link from 'next/link'
 import {AlertDialogPop} from '@/components/common/dialog/alertDialog'
 import {Register} from '@/models/diary/register'
+import {CopyToClipboard} from 'react-copy-to-clipboard'
 export const Pages: VFC<{diary: Register}> = ({diary}) => {
   const [isClicked, setIsClicked] = useState<boolean>(false)
+  const [isCopied, setIsCopied] = useState<boolean>(false)
   const [currentCheckedId, setCurrentCheckedId] = useState<string>('')
+
+  useEffect(() => {
+    setTimeout(() => {
+      setIsCopied(false)
+    }, 500)
+  }, [isCopied])
   const router = useRouter()
   const userKey = router.query.diary
   const onClickHandler = (
@@ -40,8 +57,9 @@ export const Pages: VFC<{diary: Register}> = ({diary}) => {
             <Th>
               <Checkbox />
             </Th>
-            <Th>保育園名</Th>
+            <Th>担当クラス</Th>
             <Th>実習日</Th>
+            <Th>リンクをコピー</Th>
           </Tr>
         </Thead>
         <Tbody>
@@ -61,10 +79,44 @@ export const Pages: VFC<{diary: Register}> = ({diary}) => {
 
                   <Td color="#273264" fontWeight="bold" cursor="pointer">
                     <Link href={`/diary/detail/${res.id}/${userKey}`}>
-                      <a>ひまわり保育園</a>
+                      <a>2歳児クラス</a>
                     </Link>
                   </Td>
                   <Td>{`${res.diaryData.day}`}</Td>
+                  <Td>
+                    <CopyToClipboard
+                      // 本番環境のパスに入れ替え
+                      text={`https://phoenixdiary.vercel.app/diary/detail/${res.id}/${userKey}`}
+                      onCopy={() => setIsCopied(true)}
+                    >
+                      <Button
+                        as="button"
+                        height="24px"
+                        lineHeight="1.2"
+                        transition="all 0.2s cubic-bezier(.08,.52,.52,1)"
+                        border="1px"
+                        px="8px"
+                        borderRadius="2px"
+                        fontSize="14px"
+                        fontWeight="semibold"
+                        bg="#f5f6f7"
+                        borderColor="#ccd0d5"
+                        color="#4b4f56"
+                        _hover={{bg: '#ebedf0'}}
+                        _active={{
+                          bg: '#dddfe2',
+                          transform: 'scale(0.98)',
+                          borderColor: '#bec3c9'
+                        }}
+                        _focus={{
+                          boxShadow:
+                            '0 0 1px 2px rgba(88, 144, 255, .75), 0 1px 1px rgba(0, 0, 0, .15)'
+                        }}
+                      >
+                        {isCopied ? 'リンクのコピー完了' : 'リンクをコピーする'}
+                      </Button>
+                    </CopyToClipboard>
+                  </Td>
                 </Tr>
               )
             })
