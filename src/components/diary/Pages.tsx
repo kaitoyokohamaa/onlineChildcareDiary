@@ -86,7 +86,7 @@ export const Pages: VFC<{diary: Register}> = ({diary}) => {
                   <Td>
                     <CopyToClipboard
                       // 本番環境のパスに入れ替え
-                      text={`https://phoenixdiary.vercel.app/diary/detail/${res.id}/${userKey}`}
+                      text={`https://online-childcare-diary-nv53p7fn9-kaitoyokohamaa.vercel.app/diary/detail/${res.id}/${userKey}`}
                       onCopy={() => setIsCopied(true)}
                     >
                       <Button
