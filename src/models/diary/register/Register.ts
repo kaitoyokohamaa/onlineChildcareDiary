@@ -26,5 +26,4 @@ export type DetailDiary = {
 
 export type isUserDetailDiary = {
   detailDiary: DetailDiary
-  isUser?: boolean
 }

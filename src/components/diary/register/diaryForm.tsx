@@ -36,11 +36,11 @@ export const DiaryForm: VFC<DiaryFormProps> = ({...props}) => {
   }
 
   return (
-    <div>
+    <>
       {isEdit ? (
         <Flex>
           <Text whiteSpace="pre-wrap">{state}</Text>
-          <MdEdit onClick={() => setIsEdit(false)} />
+          {!props.isTeacher && <MdEdit onClick={() => setIsEdit(false)} />}
         </Flex>
       ) : (
         <div>
@@ -54,6 +54,6 @@ export const DiaryForm: VFC<DiaryFormProps> = ({...props}) => {
           />
         </div>
       )}
-    </div>
+    </>
   )
 }

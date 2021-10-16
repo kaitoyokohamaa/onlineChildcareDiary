@@ -1,5 +1,5 @@
 import {NextPage, GetStaticProps, GetStaticPropsContext} from 'next'
-import {Layout} from '@/components/common/layout'
+
 import {Pages} from '@/components/diary/edit/Pages'
 import {adminRegisterDetailRef} from '@/lib/nodedb'
 import {EditType} from '@/models/diary/edit'
@@ -34,13 +34,11 @@ const Edit: NextPage<EditType> = ({
   registerDetailDocKey
 }) => {
   return (
-    <Layout isHeader>
-      <Pages
-        detailDiary={detailDiary}
-        projectID={projectID}
-        registerDetailDocKey={registerDetailDocKey}
-      />
-    </Layout>
+    <Pages
+      detailDiary={detailDiary}
+      projectID={projectID}
+      registerDetailDocKey={registerDetailDocKey}
+    />
   )
 }
 export default Edit

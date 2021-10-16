@@ -9,7 +9,8 @@ import {DiaryTabelProps} from '@/models/diary'
 export const DiaryTabel: VFC<DiaryTabelProps> = ({
   projectID,
   setTrainingContent,
-  trainingContent
+  trainingContent,
+  isTeacher
 }) => {
   const [diaries, setDiaries] = useState([])
   let trainigContensArray = []
@@ -48,7 +49,7 @@ export const DiaryTabel: VFC<DiaryTabelProps> = ({
           <Th>実習生の活動気づき</Th>
         </Tr>
       </Thead>
-      {diaries?.map((res) => {
+      {trainingContent?.map((res) => {
         return (
           res.tableData.projectID === projectID && (
             <Tbody border="2px">
@@ -60,6 +61,7 @@ export const DiaryTabel: VFC<DiaryTabelProps> = ({
                     projectID={projectID}
                     setTrainingContent={setTrainingContent}
                     trainingContent={trainingContent}
+                    isTeacher={isTeacher}
                   />
                 </Td>
                 <Td border="1px">
@@ -70,6 +72,7 @@ export const DiaryTabel: VFC<DiaryTabelProps> = ({
                     projectID={projectID}
                     setTrainingContent={setTrainingContent}
                     trainingContent={trainingContent}
+                    isTeacher={isTeacher}
                   />
                 </Td>
                 <Td border="1px">
@@ -80,6 +83,7 @@ export const DiaryTabel: VFC<DiaryTabelProps> = ({
                     projectID={projectID}
                     setTrainingContent={setTrainingContent}
                     trainingContent={trainingContent}
+                    isTeacher={isTeacher}
                   />
                 </Td>
                 <Td border="1px">
@@ -90,6 +94,7 @@ export const DiaryTabel: VFC<DiaryTabelProps> = ({
                     projectID={projectID}
                     setTrainingContent={setTrainingContent}
                     trainingContent={trainingContent}
+                    isTeacher={isTeacher}
                   />
                 </Td>
               </Tr>

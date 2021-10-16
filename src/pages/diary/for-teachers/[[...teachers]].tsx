@@ -1,13 +1,13 @@
 import {NextPage, GetStaticProps, GetStaticPropsContext} from 'next'
-import {Layout} from '@/components/common/layout'
-import {Pages} from '@/components/diary/edit/Pages'
+
+import {Pages} from '@/components/diary/for-teachers/Pages'
 import {adminRegisterDetailRef} from '@/lib/nodedb'
 import {EditType} from '@/models/diary/edit'
 export const getStaticProps: GetStaticProps = async (
   context: GetStaticPropsContext
 ) => {
-  const registerDetailDocKey = context.params.edit[0]
-  const userDocKey = context.params.edit[1]
+  const registerDetailDocKey = context.params.teachers[0]
+  const userDocKey = context.params.teachers[1]
   const diaryRef = await adminRegisterDetailRef(
     String(userDocKey),
     String(registerDetailDocKey)
@@ -34,13 +34,11 @@ const ForTeachers: NextPage<EditType> = ({
   registerDetailDocKey
 }) => {
   return (
-    <Layout isHeader>
-      <Pages
-        detailDiary={detailDiary}
-        projectID={projectID}
-        registerDetailDocKey={registerDetailDocKey}
-      />
-    </Layout>
+    <Pages
+      detailDiary={detailDiary}
+      projectID={projectID}
+      registerDetailDocKey={registerDetailDocKey}
+    />
   )
 }
 export default ForTeachers

@@ -87,7 +87,28 @@ export const Sidebar: VFC = () => {
           </Link>
         </SidebarLink>
       </Box>
-
+      {/* 日誌 */}
+      <Box
+        _hover={{bg: '#FFFFFF1A 0% 0% no-repeat padding-box'}}
+        borderLeft={router.asPath === '/chat' && '4px'}
+        borderColor={router.asPath === '/chat' && '#56A9D3'}
+        bg={
+          router.asPath === '/chat' && '#FFFFFF1A 0% 0% no-repeat padding-box'
+        }
+      >
+        <SidebarLink color={router.asPath === '/chat' ? '#84B9D4' : 'white'}>
+          <Link href="/chat">
+            <a>
+              <Flex justify="center" mx={router.asPath === '/chat' && -1.5}>
+                <HStack w="50%">
+                  <MdChatBubble size={20} />
+                  <Text py={6}>日誌(添削)</Text>
+                </HStack>
+              </Flex>
+            </a>
+          </Link>
+        </SidebarLink>
+      </Box>
       {/* 
       チャット
        */}
@@ -134,7 +155,7 @@ export const Sidebar: VFC = () => {
         </SidebarLink>
       </Box>
       <Box
-        bottom={-250}
+        bottom={-150}
         position="relative"
         _hover={{bg: '#FFFFFF1A 0% 0% no-repeat padding-box'}}
         onClick={signOutHandler}
