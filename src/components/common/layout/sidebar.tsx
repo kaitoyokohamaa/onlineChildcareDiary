@@ -37,6 +37,49 @@ export const Sidebar: VFC = () => {
           </Link>
         </Button_>
       </Box>
+      <Box
+        _hover={{bg: '#FFFFFF1A 0% 0% no-repeat padding-box'}}
+        borderLeft={router.asPath === '/home' && '4px'}
+        borderColor={router.asPath === '/home' && '#56A9D3'}
+        bg={
+          router.asPath === '/home' && '#FFFFFF1A 0% 0% no-repeat padding-box'
+        }
+      >
+        <SidebarLink color={router.asPath === '/home' ? '#84B9D4' : 'white'}>
+          <Link href="/home">
+            <a>
+              <Flex justify="center" mx={router.asPath === '/home' && -1.5}>
+                <HStack w="50%">
+                  <MdLocalLibrary size={20} />
+                  <Text py={6}>ホーム</Text>
+                </HStack>
+              </Flex>
+            </a>
+          </Link>
+        </SidebarLink>
+      </Box>
+      {/* TODO 実習先情報の作成(大学生教授用の画面作成までいけた場合のみ)*/}
+      <Box
+        _hover={{bg: '#FFFFFF1A 0% 0% no-repeat padding-box'}}
+        borderLeft={router.asPath === '/school' && '4px'}
+        borderColor={router.asPath === '/school' && '#56A9D3'}
+        bg={
+          router.asPath === '/school' && '#FFFFFF1A 0% 0% no-repeat padding-box'
+        }
+      >
+        <SidebarLink color={router.asPath === '/school' ? '#84B9D4' : 'white'}>
+          <Link href="/school">
+            <a>
+              <Flex justify="center" mx={router.asPath === '/school' && -1.5}>
+                <HStack w="50%">
+                  <MdLocalLibrary size={20} />
+                  <Text py={6}>実習しおり</Text>
+                </HStack>
+              </Flex>
+            </a>
+          </Link>
+        </SidebarLink>
+      </Box>
       {/* 日誌 */}
       <Box
         _hover={{bg: '#FFFFFF1A 0% 0% no-repeat padding-box'}}
@@ -65,27 +108,7 @@ export const Sidebar: VFC = () => {
           </Link>
         </SidebarLink>
       </Box>
-      {/* TODO 実習先情報の作成(大学生教授用の画面作成までいけた場合のみ)*/}
-      {/* <Box
-				py={4}
-				_hover={{bg: '#FFFFFF1A 0% 0% no-repeat padding-box'}}
-				borderLeft={router.asPath === '/school' && '4px'}
-				borderColor={router.asPath === '/school' && '#56A9D3'}
-				bg={router.asPath === '/school' && '#FFFFFF1A 0% 0% no-repeat padding-box'}
-			>
-				<SidebarLink color={router.asPath === '/school' ? '#84B9D4' : 'white'}>
-					<Link href="/school">
-						<a>
-							<Flex justify="center" mx={router.asPath === '/school' && -1.5}>
-								<HStack w="50%">
-									<MdSchool size={20} />
-									<Text>実習先情報</Text>
-								</HStack>
-							</Flex>
-						</a>
-					</Link>
-				</SidebarLink>
-			</Box> */}
+
       {/* 
       チャット
        */}
@@ -132,7 +155,7 @@ export const Sidebar: VFC = () => {
         </SidebarLink>
       </Box>
       <Box
-        bottom={-350}
+        bottom={-150}
         position="relative"
         _hover={{bg: '#FFFFFF1A 0% 0% no-repeat padding-box'}}
         onClick={signOutHandler}

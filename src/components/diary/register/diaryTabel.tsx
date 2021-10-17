@@ -6,14 +6,23 @@ import {tablesRef} from '@/lib/firestore'
 import {useEffect, useState, useContext} from 'react'
 import {AuthContext} from '@/contexts/AuthContext'
 import {DiaryTabelProps} from '@/models/diary'
+import {useRouter} from 'next/router'
 export const DiaryTabel: VFC<DiaryTabelProps> = ({
   projectID,
   setTrainingContent,
-  trainingContent
+  trainingContent,
+  isTeacher
 }) => {
   const [diaries, setDiaries] = useState([])
+  const [dockey, setDocKey] = useState('')
   let trainigContensArray = []
-  const {dockey} = useContext(AuthContext)
+  const router = useRouter()
+
+  useEffect(() => {
+    isTeacher
+      ? setDocKey(router.query.teachers[1])
+      : setDocKey(router.query.edit[1])
+  }, [dockey])
   // タイミングやよな。
   useEffect(() => {
     dockey &&
@@ -33,7 +42,6 @@ export const DiaryTabel: VFC<DiaryTabelProps> = ({
                 (item) => item.tableID === res.tableID
               ) === i
           )
-
           setDiaries(result)
         })
   }, [dockey])
@@ -70,6 +78,8 @@ export const DiaryTabel: VFC<DiaryTabelProps> = ({
                     projectID={projectID}
                     setTrainingContent={setTrainingContent}
                     trainingContent={trainingContent}
+                    isTeacher={isTeacher}
+                    dockey={dockey}
                   />
                 </Td>
                 <Td border="1px">
@@ -80,6 +90,8 @@ export const DiaryTabel: VFC<DiaryTabelProps> = ({
                     projectID={projectID}
                     setTrainingContent={setTrainingContent}
                     trainingContent={trainingContent}
+                    isTeacher={isTeacher}
+                    dockey={dockey}
                   />
                 </Td>
                 <Td border="1px">
@@ -90,6 +102,8 @@ export const DiaryTabel: VFC<DiaryTabelProps> = ({
                     projectID={projectID}
                     setTrainingContent={setTrainingContent}
                     trainingContent={trainingContent}
+                    isTeacher={isTeacher}
+                    dockey={dockey}
                   />
                 </Td>
               </Tr>

@@ -8,13 +8,14 @@ import {
   Button,
   MenuButton,
   MenuList,
-  MenuItem
+  MenuItem,
+  AvatarBadge
 } from '@chakra-ui/react'
-import {VFC, useContext, useEffect} from 'react'
+import {VFC, useContext} from 'react'
 import Link from 'next/link'
 
 import {AuthContext} from '@/contexts/AuthContext'
-
+import {MdNotifications} from 'react-icons/md'
 export const Header: VFC = () => {
   const {loginUser, dockey, displayName, image} = useContext(AuthContext)
   const address = loginUser?.email
@@ -22,12 +23,16 @@ export const Header: VFC = () => {
 
   return (
     <Box w="100%" px={16}>
-      <Flex justify="space-between">
-        <Box w="50%"></Box>
+      <Flex justify="flex-end" alignItems="center">
+        <MdNotifications
+          cursor="pointer"
+          color="#263773"
+          size={30}
+        ></MdNotifications>
         <Menu>
           <MenuButton as={Button} background="#fff">
             <Box>
-              <Flex>
+              <Flex justifyItems="center" alignItems="center">
                 <Avatar image={image} />
                 <Box pl={2}>
                   <Text fontSize="md" fontWeight="bold">

@@ -22,4 +22,9 @@ export type DetailDiary = {
   goal: string
   day: string
   leader: string
+  feedback?: string
+}
+
+export type isUserDetailDiary = {
+  detailDiary: DetailDiary
 }

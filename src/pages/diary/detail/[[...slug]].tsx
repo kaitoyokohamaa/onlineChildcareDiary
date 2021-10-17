@@ -1,5 +1,5 @@
 import React from 'react'
-import {Layout} from '@/components/common/layout'
+
 import {Pages} from '@/components/diary/detail/Pages'
 import {NextPage, GetStaticProps, GetStaticPropsContext} from 'next'
 import {adminRegisterDetailRef} from '@/lib/nodedb'
@@ -27,10 +27,6 @@ export async function getStaticPaths() {
   }
 }
 const Detail: NextPage<{detailDiary: DetailDiary}> = ({detailDiary}) => {
-  return (
-    <Layout isHeader>
-      <Pages detailDiary={detailDiary} />
-    </Layout>
-  )
+  return <Pages detailDiary={detailDiary} />
 }
 export default Detail

@@ -6,7 +6,7 @@ import {tablesRef} from '@/lib/firestore'
 import {AuthContext} from '@/contexts/AuthContext'
 export const DiaryDateForm = ({...props}) => {
   const [isEdit, setIsEdit] = useState<boolean>(true)
-  const [date, setDate] = useState<string>('')
+  const [date, setDate] = useState<string>(props.date)
   const {dockey} = useContext(AuthContext)
   let diaries = []
   const onSave = async () => {
@@ -29,12 +29,15 @@ export const DiaryDateForm = ({...props}) => {
     <Box>
       {isEdit ? (
         <Flex>
-          <Text whiteSpace="pre-wrap">{date}</Text>
-          <MdEdit onClick={() => setIsEdit(false)} />
+          <Text value={date} whiteSpace="pre-wrap">
+            {date}
+          </Text>
+          {!props.isTeacher && <MdEdit onClick={() => setIsEdit(false)} />}
         </Flex>
       ) : (
         <Box w="100%">
           <Input
+            value={date}
             onBlur={onSave}
             type="time"
             onChange={(e) => {

@@ -1,5 +1,4 @@
 import {NextPage, GetStaticProps, GetStaticPropsContext} from 'next'
-import {Layout} from '@/components/common/layout'
 import {Pages} from '@/components/diary/Pages'
 import {adminRegisterRef} from '@/lib/nodedb'
 import {Register} from '@/models/diary/register'
@@ -29,10 +28,6 @@ export async function getStaticPaths() {
 }
 
 const Diary: NextPage<{diary: Register}> = ({diary}) => {
-  return (
-    <Layout isHeader>
-      <Pages diary={diary} />
-    </Layout>
-  )
+  return <Pages diary={diary} />
 }
 export default Diary

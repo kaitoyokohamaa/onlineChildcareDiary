@@ -1,13 +1,13 @@
 import {NextPage, GetStaticProps, GetStaticPropsContext} from 'next'
 
-import {Pages} from '@/components/diary/edit/Pages'
+import {Pages} from '@/components/diary/for-teachers/Pages'
 import {adminRegisterDetailRef} from '@/lib/nodedb'
 import {EditType} from '@/models/diary/edit'
 export const getStaticProps: GetStaticProps = async (
   context: GetStaticPropsContext
 ) => {
-  const registerDetailDocKey = context.params.edit[0]
-  const userDocKey = context.params.edit[1]
+  const registerDetailDocKey = context.params.teachers[0]
+  const userDocKey = context.params.teachers[1]
   const diaryRef = await adminRegisterDetailRef(
     String(userDocKey),
     String(registerDetailDocKey)
@@ -28,7 +28,7 @@ export async function getStaticPaths() {
   }
 }
 
-const Edit: NextPage<EditType> = ({
+const ForTeachers: NextPage<EditType> = ({
   detailDiary,
   projectID,
   registerDetailDocKey
@@ -41,4 +41,4 @@ const Edit: NextPage<EditType> = ({
     />
   )
 }
-export default Edit
+export default ForTeachers

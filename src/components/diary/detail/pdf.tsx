@@ -71,6 +71,9 @@ const styles = StyleSheet.create({
     margin: 'auto',
     marginTop: 5,
     fontSize: 10
+  },
+  correct: {
+    color: 'red'
   }
 })
 const Pages: VFC<{detailDiary: DetailDiary}> = ({detailDiary}) => {
@@ -153,12 +156,24 @@ const Pages: VFC<{detailDiary: DetailDiary}> = ({detailDiary}) => {
                   </View>
                   <View style={styles.tableCol}>
                     <Text>{res.tableData.childActivities}</Text>
+                    <Text style={styles.correct}>
+                      {res.tableData.childActivitiesFeedback &&
+                        res.tableData.childActivitiesFeedback}
+                    </Text>
                   </View>
                   <View style={styles.tableCol}>
                     <Text>{res.tableData.activitesAndAwareness}</Text>
+                    <Text style={styles.correct}>
+                      {res.tableData.activitesAndAwarenessFeedback &&
+                        res.tableData.activitesAndAwarenessFeedback}
+                    </Text>
                   </View>
                   <View style={styles.tableCol}>
                     <Text>{res.tableData.assistance}</Text>
+                    <Text style={styles.correct}>
+                      {res.tableData.assistanceFeedback &&
+                        res.tableData.assistanceFeedback}
+                    </Text>
                   </View>
                 </View>
               )
@@ -173,6 +188,20 @@ const Pages: VFC<{detailDiary: DetailDiary}> = ({detailDiary}) => {
             <View style={styles.section}>
               <View style={styles.impressions}>
                 <Text>{detailDiary.feeling}</Text>
+              </View>
+            </View>
+            <View style={styles.section}>
+              <View style={styles.impressions}>
+                <Text>指導者からのことば</Text>
+              </View>
+            </View>
+            <View style={styles.section}>
+              <View style={styles.impressions}>
+                <Text>
+                  {detailDiary.feedback
+                    ? detailDiary.feedback
+                    : 'リンクを保育士に共有して添削と指導者からのことばを書いてもらいましょう。'}
+                </Text>
               </View>
             </View>
           </View>

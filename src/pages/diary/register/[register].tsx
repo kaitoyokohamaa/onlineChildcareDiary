@@ -1,5 +1,5 @@
 import {NextPage} from 'next'
-import {Layout} from '@/components/common/layout'
+
 import {Pages} from '@/components/diary/register/Pages'
 export async function getServerSideProps(context) {
   const id = context.query.register
@@ -12,10 +12,6 @@ type ProjectID = {
   id: string
 }
 const School: NextPage<ProjectID> = ({id}) => {
-  return (
-    <Layout isHeader>
-      <Pages projectID={id} />
-    </Layout>
-  )
+  return <Pages projectID={id} />
 }
 export default School
