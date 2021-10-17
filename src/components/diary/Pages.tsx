@@ -10,7 +10,6 @@ import {
   Th,
   Td,
   Checkbox,
-  Button,
   useToast
 } from '@chakra-ui/react'
 import Link from 'next/link'

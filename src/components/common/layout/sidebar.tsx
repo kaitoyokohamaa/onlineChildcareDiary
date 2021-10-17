@@ -4,7 +4,7 @@ import {AuthContext} from '@/contexts/AuthContext'
 import {Button_} from '@/components/common/button'
 import {SidebarLink} from './sidebarLink'
 import {Box, Flex, Heading, HStack, Text} from '@chakra-ui/layout'
-import {MdLocalLibrary, MdChatBubble} from 'react-icons/md'
+import {MdLocalLibrary, MdChatBubble, MdHome, MdBook} from 'react-icons/md'
 import {IoLogOut} from 'react-icons/io5'
 import {VscGear} from 'react-icons/vsc'
 import {useRouter} from 'next/router'
@@ -39,18 +39,19 @@ export const Sidebar: VFC = () => {
       </Box>
       <Box
         _hover={{bg: '#FFFFFF1A 0% 0% no-repeat padding-box'}}
-        borderLeft={router.asPath === '/home' && '4px'}
-        borderColor={router.asPath === '/home' && '#56A9D3'}
+        borderLeft={router.asPath.indexOf('/home') !== -1 && '4px'}
+        borderColor={router.asPath.indexOf('/home') !== -1 && '#56A9D3'}
         bg={
-          router.asPath === '/home' && '#FFFFFF1A 0% 0% no-repeat padding-box'
+          router.asPath.indexOf('/home') !== -1 &&
+          '#FFFFFF1A 0% 0% no-repeat padding-box'
         }
       >
         <SidebarLink color={router.asPath === '/home' ? '#84B9D4' : 'white'}>
-          <Link href="/home">
+          <Link href={`/home/${dockey}`}>
             <a>
               <Flex justify="center" mx={router.asPath === '/home' && -1.5}>
                 <HStack w="50%">
-                  <MdLocalLibrary size={20} />
+                  <MdHome size={20} />
                   <Text py={6}>ホーム</Text>
                 </HStack>
               </Flex>
@@ -72,7 +73,7 @@ export const Sidebar: VFC = () => {
             <a>
               <Flex justify="center" mx={router.asPath === '/school' && -1.5}>
                 <HStack w="50%">
-                  <MdLocalLibrary size={20} />
+                  <MdBook size={20} />
                   <Text py={6}>実習しおり</Text>
                 </HStack>
               </Flex>
