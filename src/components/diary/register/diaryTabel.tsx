@@ -74,6 +74,7 @@ export const DiaryTabel: VFC<DiaryTabelProps> = ({
                   <DiaryForm
                     id={res.tableID}
                     content={res.tableData.childActivities}
+                    correctedContent={res.tableData.childActivitiesFeedback}
                     isChildActivities
                     projectID={projectID}
                     setTrainingContent={setTrainingContent}
@@ -92,6 +93,7 @@ export const DiaryTabel: VFC<DiaryTabelProps> = ({
                     trainingContent={trainingContent}
                     isTeacher={isTeacher}
                     dockey={dockey}
+                    correctedContent={res.tableData.assistanceFeedback}
                   />
                 </Td>
                 <Td border="1px">
@@ -104,6 +106,9 @@ export const DiaryTabel: VFC<DiaryTabelProps> = ({
                     trainingContent={trainingContent}
                     isTeacher={isTeacher}
                     dockey={dockey}
+                    correctedContent={
+                      res.tableData.activitesAndAwarenessFeedback
+                    }
                   />
                 </Td>
               </Tr>

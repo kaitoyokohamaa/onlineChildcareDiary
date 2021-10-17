@@ -34,7 +34,7 @@ const Form = ({onCancel, onSave}) => {
 
 export const PopoverForm = ({state, ...props}) => {
   const {onOpen, onClose, isOpen} = useDisclosure()
-  const [text, setText] = useState<string>('')
+  const [text, setText] = useState<string>(props.correctedContent)
   const firstFieldRef = useRef(null)
   let diaries = []
   const onSave = async () => {
