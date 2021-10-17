@@ -29,5 +29,6 @@ export type DiaryFormProps = {
   setTrainingContent?: React.Dispatch<React.SetStateAction<Table[]>>
   trainingContent?: Table[]
   isTeacher?: boolean
-  dockey:string
+  dockey: string
+  correctedContent: string
 }

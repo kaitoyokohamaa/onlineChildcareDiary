@@ -27,7 +27,7 @@ export const Pages: VFC<EditType> = ({
   const router = useRouter()
 
   const dockey = router.query.teachers[1]
-  console.log(trainingContent)
+
   const submitHandler = () => {
     registerRef(dockey).doc(registerDetailDocKey).update({
       feedback,

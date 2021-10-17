@@ -5,7 +5,7 @@ import {Textarea, useDisclosure, Box} from '@chakra-ui/react'
 import {useState, useContext} from 'react'
 import {MdEdit} from 'react-icons/md'
 import {tablesRef} from '@/lib/firestore'
-import {AuthContext} from '@/contexts/AuthContext'
+
 import {DiaryFormProps} from '@/models/diary'
 import {PopoverForm} from '@/components/common/popover-form'
 export const DiaryForm: VFC<DiaryFormProps> = ({...props}) => {
