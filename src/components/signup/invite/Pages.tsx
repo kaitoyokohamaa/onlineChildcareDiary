@@ -3,10 +3,11 @@ import {Box, Flex, Heading} from '@chakra-ui/layout'
 import {Input, Link as Links} from '@chakra-ui/react'
 import {VFC} from 'react'
 import Link from 'next/link'
-import {UseCertification} from '@/hooks/useCertification'
-export const Pages: VFC = () => {
+import {UseInviteCertification} from '@/hooks/useCertification'
+export const Pages: VFC<{inviteKey: string}> = ({inviteKey}) => {
   const {email, setEmail, setPassword, password, signupHandler} =
-    UseCertification()
+    UseInviteCertification(inviteKey)
+
   return (
     <Box>
       <Flex>
