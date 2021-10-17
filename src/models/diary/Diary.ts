@@ -2,7 +2,10 @@ export type Table = {
   tableData?: {
     activitesAndAwareness?: string
     assistance?: string
+    childActivitiesFeedback: string
+    assistanceFeedback: string
     childActivities?: string
+    activitesAndAwarenessFeedback: string
     createdAt?: Date
     date?: Date
     id?: string
@@ -26,4 +29,5 @@ export type DiaryFormProps = {
   setTrainingContent?: React.Dispatch<React.SetStateAction<Table[]>>
   trainingContent?: Table[]
   isTeacher?: boolean
+  dockey:string
 }

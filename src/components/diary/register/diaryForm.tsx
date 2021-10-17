@@ -1,28 +1,35 @@
-import {VFC, useEffect} from 'react'
+import {VFC, useRef} from 'react'
 import {Flex, Text} from '@chakra-ui/layout'
-import {Textarea} from '@chakra-ui/react'
+import {Textarea, useDisclosure, Box} from '@chakra-ui/react'
+
 import {useState, useContext} from 'react'
 import {MdEdit} from 'react-icons/md'
 import {tablesRef} from '@/lib/firestore'
 import {AuthContext} from '@/contexts/AuthContext'
 import {DiaryFormProps} from '@/models/diary'
+import {PopoverForm} from '@/components/common/popover-form'
 export const DiaryForm: VFC<DiaryFormProps> = ({...props}) => {
   const [isEdit, setIsEdit] = useState<boolean>(true)
   const [state, setState] = useState<string>(props.content)
-  const {dockey} = useContext(AuthContext)
+
+  const CustomWrapper = ({children}) =>
+    props.isTeacher ? <Box>{children}</Box> : <Flex>{children}</Flex>
+
   let diaries = []
   const onSave = async () => {
     setIsEdit(true)
     props.isChildActivities &&
-      (await tablesRef(dockey).doc(props.id).update({childActivities: state}))
+      (await tablesRef(props.dockey)
+        .doc(props.id)
+        .update({childActivities: state}))
     props.isAssistance &&
-      (await tablesRef(dockey).doc(props.id).update({assistance: state}))
+      (await tablesRef(props.dockey).doc(props.id).update({assistance: state}))
     props.isActivitesAndAwareness &&
-      (await tablesRef(dockey)
+      (await tablesRef(props.dockey)
         .doc(props.id)
         .update({activitesAndAwareness: state}))
 
-    tablesRef(dockey)
+    tablesRef(props.dockey)
       .orderBy('createdAt', 'asc')
       .onSnapshot((res) => {
         res.forEach((item) => {
@@ -38,10 +45,16 @@ export const DiaryForm: VFC<DiaryFormProps> = ({...props}) => {
   return (
     <>
       {isEdit ? (
-        <Flex>
-          <Text whiteSpace="pre-wrap">{state}</Text>
-          {!props.isTeacher && <MdEdit onClick={() => setIsEdit(false)} />}
-        </Flex>
+        <CustomWrapper>
+          {!props.isTeacher && <Text whiteSpace="pre-wrap">{state}</Text>}
+          <>
+            {!props.isTeacher ? (
+              <MdEdit onClick={() => setIsEdit(false)} />
+            ) : (
+              <PopoverForm state={state} {...props} />
+            )}
+          </>
+        </CustomWrapper>
       ) : (
         <div>
           <Textarea

@@ -37,6 +37,27 @@ export const Sidebar: VFC = () => {
           </Link>
         </Button_>
       </Box>
+      <Box
+        _hover={{bg: '#FFFFFF1A 0% 0% no-repeat padding-box'}}
+        borderLeft={router.asPath === '/home' && '4px'}
+        borderColor={router.asPath === '/home' && '#56A9D3'}
+        bg={
+          router.asPath === '/home' && '#FFFFFF1A 0% 0% no-repeat padding-box'
+        }
+      >
+        <SidebarLink color={router.asPath === '/home' ? '#84B9D4' : 'white'}>
+          <Link href="/home">
+            <a>
+              <Flex justify="center" mx={router.asPath === '/home' && -1.5}>
+                <HStack w="50%">
+                  <MdLocalLibrary size={20} />
+                  <Text py={6}>ホーム</Text>
+                </HStack>
+              </Flex>
+            </a>
+          </Link>
+        </SidebarLink>
+      </Box>
       {/* TODO 実習先情報の作成(大学生教授用の画面作成までいけた場合のみ)*/}
       <Box
         _hover={{bg: '#FFFFFF1A 0% 0% no-repeat padding-box'}}
@@ -87,28 +108,7 @@ export const Sidebar: VFC = () => {
           </Link>
         </SidebarLink>
       </Box>
-      {/* 日誌 */}
-      <Box
-        _hover={{bg: '#FFFFFF1A 0% 0% no-repeat padding-box'}}
-        borderLeft={router.asPath === '/chat' && '4px'}
-        borderColor={router.asPath === '/chat' && '#56A9D3'}
-        bg={
-          router.asPath === '/chat' && '#FFFFFF1A 0% 0% no-repeat padding-box'
-        }
-      >
-        <SidebarLink color={router.asPath === '/chat' ? '#84B9D4' : 'white'}>
-          <Link href="/chat">
-            <a>
-              <Flex justify="center" mx={router.asPath === '/chat' && -1.5}>
-                <HStack w="50%">
-                  <MdChatBubble size={20} />
-                  <Text py={6}>日誌(添削)</Text>
-                </HStack>
-              </Flex>
-            </a>
-          </Link>
-        </SidebarLink>
-      </Box>
+
       {/* 
       チャット
        */}

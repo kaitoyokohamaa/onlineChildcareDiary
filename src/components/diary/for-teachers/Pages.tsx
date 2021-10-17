@@ -1,11 +1,10 @@
 import {Box, Flex, Text, Divider} from '@chakra-ui/layout'
-import {Input, Textarea, Button} from '@chakra-ui/react'
+import {Textarea, Button} from '@chakra-ui/react'
 import {DiaryTabel} from '@/components/diary/register/diaryTabel'
-import {useState, useContext} from 'react'
-import {registerRef, tablesRef} from '@/lib/firestore'
+import {useState} from 'react'
+import {registerRef} from '@/lib/firestore'
 import firebase from 'firebase/app'
-import {AuthContext} from '@/contexts/AuthContext'
-import {v1 as uuidv1} from 'uuid'
+
 import {MdLocalLibrary} from 'react-icons/md'
 import {Table} from '@/models/diary'
 import {VFC} from 'react'
@@ -17,44 +16,23 @@ export const Pages: VFC<EditType> = ({
   projectID,
   registerDetailDocKey
 }) => {
-  const [count, setCount] = useState<string>(detailDiary.count)
-  const [day, setDay] = useState<string>(detailDiary.day)
-  const [studentName, setStudentName] = useState<string>(
-    detailDiary.studentName
-  )
-  const [assignedName, setAssignedName] = useState<string>(
-    detailDiary.assignedName
-  )
-  const [leader, setLeader] = useState<string>(detailDiary.leader)
-  const [goal, setGoal] = useState<string>(detailDiary.goal)
   const [trainingContent, setTrainingContent] = useState<Table[]>(
     detailDiary.trainingContent
   )
-  const [feeling, setFeeling] = useState<string>(detailDiary.feeling)
-  const {dockey} = useContext(AuthContext)
-  const router = useRouter()
-  // const addRow = () => {
-  //   tablesRef(dockey).add({
-  //     projectID,
-  //     id: uuidv1(),
-  //     date: '',
-  //     childActivities: '',
-  //     assistance: '',
-  //     activitesAndAwareness: '',
-  //     createdAt: firebase.firestore.Timestamp.now()
-  //   })
-  // }
 
+  const [feedback, setFeedback] = useState<string>(
+    detailDiary.feedback ? detailDiary.feedback : ''
+  )
+
+  const router = useRouter()
+
+  const dockey = router.query.teachers[1]
+  console.log(trainingContent)
   const submitHandler = () => {
     registerRef(dockey).doc(registerDetailDocKey).update({
-      count,
-      day,
-      studentName,
-      assignedName,
-      leader,
-      goal,
+      feedback,
       trainingContent,
-      feeling
+      updateAt: firebase.firestore.Timestamp.now()
     })
 
     router.push(`/diary/detail/${registerDetailDocKey}/${dockey}`)
@@ -76,7 +54,7 @@ export const Pages: VFC<EditType> = ({
         <Box my="8">
           <Text fontWeight="bold">実習内容</Text>
           <DiaryTabel
-            isTeacher
+            isTeacher={true}
             projectID={projectID}
             setTrainingContent={setTrainingContent}
             trainingContent={trainingContent}
@@ -86,7 +64,12 @@ export const Pages: VFC<EditType> = ({
         <Box my="8">
           <Text fontWeight="bold">指導者からのことば</Text>
           <Flex mt="2">
-            <Textarea type="text" placeholder="本日の目標" />
+            <Textarea
+              value={feedback}
+              onChange={(e) => setFeedback(e.target.value)}
+              type="text"
+              placeholder="指導者からのことば"
+            />
           </Flex>
         </Box>
 
@@ -98,19 +81,6 @@ export const Pages: VFC<EditType> = ({
               bg="#FCFCFC 0% 0% no-repeat padding-box;"
               p="10"
             >
-              {/* todo:一時保存機能 */}
-              {/* <Button
-                ml="3"
-                w="32"
-                variant="outline"
-                colorScheme="blue"
-                border="1px"
-                borderColor="#273264"
-                bg="#fff"
-                color="#273264"
-              >
-                一時保存
-              </Button> */}
               <Button
                 onClick={submitHandler}
                 w="32"
@@ -119,7 +89,7 @@ export const Pages: VFC<EditType> = ({
                 color="#fff"
                 _hover={{bg: '#141933'}}
               >
-                添削する
+                保存する
               </Button>
             </Box>
           </Flex>

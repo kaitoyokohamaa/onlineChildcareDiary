@@ -10,23 +10,21 @@ import {
   Th,
   Td,
   Checkbox,
-  Button
+  Button,
+  useToast
 } from '@chakra-ui/react'
 import Link from 'next/link'
 import {AlertDialogPop} from '@/components/common/dialog/alertDialog'
 import {Register} from '@/models/diary/register'
 import {CopyToClipboard} from 'react-copy-to-clipboard'
 import {Layout} from '@/components/common/layout'
+import {MdContentCopy} from 'react-icons/md'
 export const Pages: VFC<{diary: Register}> = ({diary}) => {
   const [isClicked, setIsClicked] = useState<boolean>(false)
-  const [isCopied, setIsCopied] = useState<boolean>(false)
-  const [currentCheckedId, setCurrentCheckedId] = useState<string>('')
 
-  useEffect(() => {
-    setTimeout(() => {
-      setIsCopied(false)
-    }, 500)
-  }, [isCopied])
+  const [currentCheckedId, setCurrentCheckedId] = useState<string>('')
+  const toast = useToast()
+
   const router = useRouter()
   const userKey = router.query.diary
   const onClickHandler = (
@@ -87,38 +85,19 @@ export const Pages: VFC<{diary: Register}> = ({diary}) => {
                     <Td>{`${res.diaryData.day}`}</Td>
                     <Td>
                       <CopyToClipboard
+                        cursor="pointer"
                         // 本番環境のパスに入れ替え→もしisUserじゃなかったら保育士の先生が編集できるデザインに変更する。
                         text={`https://online-childcare-diary-nv53p7fn9-kaitoyokohamaa.vercel.app/diary/detail/${res.id}/${userKey}`}
-                        onCopy={() => setIsCopied(true)}
                       >
-                        <Button
-                          as="button"
-                          height="24px"
-                          lineHeight="1.2"
-                          transition="all 0.2s cubic-bezier(.08,.52,.52,1)"
-                          border="1px"
-                          px="8px"
-                          borderRadius="2px"
-                          fontSize="14px"
-                          fontWeight="semibold"
-                          bg="#f5f6f7"
-                          borderColor="#ccd0d5"
-                          color="#4b4f56"
-                          _hover={{bg: '#ebedf0'}}
-                          _active={{
-                            bg: '#dddfe2',
-                            transform: 'scale(0.98)',
-                            borderColor: '#bec3c9'
-                          }}
-                          _focus={{
-                            boxShadow:
-                              '0 0 1px 2px rgba(88, 144, 255, .75), 0 1px 1px rgba(0, 0, 0, .15)'
-                          }}
-                        >
-                          {isCopied
-                            ? 'リンクのコピー完了'
-                            : 'リンクをコピーする'}
-                        </Button>
+                        <MdContentCopy
+                          onClick={() =>
+                            toast({
+                              title: `コピーしました`,
+                              position: 'bottom',
+                              isClosable: true
+                            })
+                          }
+                        />
                       </CopyToClipboard>
                     </Td>
                   </Tr>

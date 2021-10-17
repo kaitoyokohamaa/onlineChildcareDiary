@@ -88,6 +88,10 @@ export const Pages: VFC = () => {
                 </Link>
               </Box>
             </Flex>
+            <Box mt={10}>
+              <Text fontWeight="bold">招待URL作成</Text>
+            </Box>
+            <Divider my="4" />
           </Box>
         </Box>
       </Box>

@@ -25,8 +25,11 @@ export const Pages = ({projectID}) => {
       id: uuidv1(),
       date: '',
       childActivities: '',
+      childActivitiesFeedback: '',
       assistance: '',
+      assistanceFeedback: '',
       activitesAndAwareness: '',
+      activitesAndAwarenessFeedback: '',
       createdAt: firebase.firestore.Timestamp.now()
     })
   }
@@ -40,7 +43,9 @@ export const Pages = ({projectID}) => {
       leader,
       goal,
       trainingContent,
-      feeling
+      feeling,
+      createdAt: firebase.firestore.Timestamp.now(),
+      updatedAt: null
     })
   }
 
@@ -111,6 +116,7 @@ export const Pages = ({projectID}) => {
               projectID={projectID}
               setTrainingContent={setTrainingContent}
               trainingContent={trainingContent}
+              isTeacher={false}
             />
           </Box>
 

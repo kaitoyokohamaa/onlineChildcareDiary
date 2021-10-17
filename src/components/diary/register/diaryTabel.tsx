@@ -6,6 +6,7 @@ import {tablesRef} from '@/lib/firestore'
 import {useEffect, useState, useContext} from 'react'
 import {AuthContext} from '@/contexts/AuthContext'
 import {DiaryTabelProps} from '@/models/diary'
+import {useRouter} from 'next/router'
 export const DiaryTabel: VFC<DiaryTabelProps> = ({
   projectID,
   setTrainingContent,
@@ -13,8 +14,15 @@ export const DiaryTabel: VFC<DiaryTabelProps> = ({
   isTeacher
 }) => {
   const [diaries, setDiaries] = useState([])
+  const [dockey, setDocKey] = useState('')
   let trainigContensArray = []
-  const {dockey} = useContext(AuthContext)
+  const router = useRouter()
+
+  useEffect(() => {
+    isTeacher
+      ? setDocKey(router.query.teachers[1])
+      : setDocKey(router.query.edit[1])
+  }, [dockey])
   // タイミングやよな。
   useEffect(() => {
     dockey &&
@@ -34,7 +42,6 @@ export const DiaryTabel: VFC<DiaryTabelProps> = ({
                 (item) => item.tableID === res.tableID
               ) === i
           )
-
           setDiaries(result)
         })
   }, [dockey])
@@ -49,7 +56,7 @@ export const DiaryTabel: VFC<DiaryTabelProps> = ({
           <Th>実習生の活動気づき</Th>
         </Tr>
       </Thead>
-      {trainingContent?.map((res) => {
+      {diaries?.map((res) => {
         return (
           res.tableData.projectID === projectID && (
             <Tbody border="2px">
@@ -61,7 +68,6 @@ export const DiaryTabel: VFC<DiaryTabelProps> = ({
                     projectID={projectID}
                     setTrainingContent={setTrainingContent}
                     trainingContent={trainingContent}
-                    isTeacher={isTeacher}
                   />
                 </Td>
                 <Td border="1px">
@@ -73,6 +79,7 @@ export const DiaryTabel: VFC<DiaryTabelProps> = ({
                     setTrainingContent={setTrainingContent}
                     trainingContent={trainingContent}
                     isTeacher={isTeacher}
+                    dockey={dockey}
                   />
                 </Td>
                 <Td border="1px">
@@ -84,6 +91,7 @@ export const DiaryTabel: VFC<DiaryTabelProps> = ({
                     setTrainingContent={setTrainingContent}
                     trainingContent={trainingContent}
                     isTeacher={isTeacher}
+                    dockey={dockey}
                   />
                 </Td>
                 <Td border="1px">
@@ -95,6 +103,7 @@ export const DiaryTabel: VFC<DiaryTabelProps> = ({
                     setTrainingContent={setTrainingContent}
                     trainingContent={trainingContent}
                     isTeacher={isTeacher}
+                    dockey={dockey}
                   />
                 </Td>
               </Tr>
