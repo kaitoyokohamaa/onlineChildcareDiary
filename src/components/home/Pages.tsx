@@ -99,14 +99,14 @@ export const Pages: VFC<{inviteKey: string}> = ({inviteKey}) => {
               {/* 本番環境への書き換えをしよう */}
               <Input
                 w="30%"
-                value={`https://online-childcare-diary-git-feature-invite-kaitoyokohamaa.vercel.app/signup/invite/${inviteKey}`}
+                value={`https://phoenixdiary.vercel.app/signup/invite/${inviteKey}`}
                 isReadOnly
                 mr="3"
               />
               <CopyToClipboard
                 cursor="pointer"
                 // 本番環境のパスに入れ替え→もしisUserじゃなかったら保育士の先生が編集できるデザインに変更する。
-                text={`https://online-childcare-diary-git-feature-invite-kaitoyokohamaa.vercel.app/signup/invite/${inviteKey}`}
+                text={`https://phoenixdiary.vercel.app/signup/invite/${inviteKey}`}
               >
                 <Button
                   _hover={{backgroundColor: '#F8F8F8'}}
