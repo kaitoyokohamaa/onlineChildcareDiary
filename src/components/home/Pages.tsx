@@ -1,9 +1,12 @@
 import {VFC} from 'react'
 import {Box, Flex, Text, Divider} from '@chakra-ui/layout'
+import {Input, Button, useToast} from '@chakra-ui/react'
 import {MdLocalLibrary} from 'react-icons/md'
 import Link from 'next/link'
 import {Layout} from '@/components/common/layout'
-export const Pages: VFC = () => {
+import {CopyToClipboard} from 'react-copy-to-clipboard'
+export const Pages: VFC<{inviteKey: string}> = ({inviteKey}) => {
+  const toast = useToast()
   return (
     <Layout isHeader>
       <Box px={16}>
@@ -92,6 +95,39 @@ export const Pages: VFC = () => {
               <Text fontWeight="bold">招待URL作成</Text>
             </Box>
             <Divider my="4" />
+            <Flex>
+              {/* 本番環境への書き換えをしよう */}
+              <Input
+                w="30%"
+                value={`https://phoenixdiary.vercel.app/signup/invite/${inviteKey}`}
+                isReadOnly
+                mr="3"
+              />
+              <CopyToClipboard
+                cursor="pointer"
+                // 本番環境のパスに入れ替え→もしisUserじゃなかったら保育士の先生が編集できるデザインに変更する。
+                text={`https://phoenixdiary.vercel.app/signup/invite/${inviteKey}`}
+              >
+                <Button
+                  _hover={{backgroundColor: '#F8F8F8'}}
+                  backgroundColor="#F9FBFB"
+                  borderRadius="md"
+                  alignItems="center"
+                  border="2px solid #e4eaf1"
+                  boxSizing="border-box"
+                  textAlign="center"
+                  onClick={() =>
+                    toast({
+                      title: `コピーしました`,
+                      position: 'bottom',
+                      isClosable: true
+                    })
+                  }
+                >
+                  コピー
+                </Button>
+              </CopyToClipboard>
+            </Flex>
           </Box>
         </Box>
       </Box>
