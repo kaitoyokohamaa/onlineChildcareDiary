@@ -1,8 +1,8 @@
 import {Button} from '@chakra-ui/button'
 import {Box, Flex, Heading} from '@chakra-ui/layout'
-import {Input, Link as Links} from '@chakra-ui/react'
+import {Input} from '@chakra-ui/react'
 import {VFC} from 'react'
-import Link from 'next/link'
+
 import {UseInviteCertification} from '@/hooks/useCertification'
 export const Pages: VFC<{inviteKey: string}> = ({inviteKey}) => {
   const {email, setEmail, setPassword, password, signupHandler} =
@@ -14,7 +14,7 @@ export const Pages: VFC<{inviteKey: string}> = ({inviteKey}) => {
         <Flex h="100vh" bg="#273673" w="50%" pt="25%" pl="3">
           <Box>
             <Heading as="h3" size="lg" color="white" mb={5}>
-              保育実習生のためのオンライン日誌
+              招待用 URLヘようこそ
             </Heading>
           </Box>
         </Flex>
@@ -22,9 +22,6 @@ export const Pages: VFC<{inviteKey: string}> = ({inviteKey}) => {
         <Flex w="50%" pt="15%" justify="center">
           <Box>
             <Flex align="center">
-              <Box w="10%">
-                <img src="img/phoenix.png" />
-              </Box>
               <Box textAlign="center">
                 <Heading as="h5" size="md" color="#273673">
                   SMART DIARY PHOENIX
@@ -60,12 +57,6 @@ export const Pages: VFC<{inviteKey: string}> = ({inviteKey}) => {
               >
                 新規登録
               </Button>
-            </Box>
-            <Box textAlign="center">
-              ログインの方は
-              <Link href="/login">
-                <Links color="blue.500">こちら</Links>
-              </Link>
             </Box>
           </Box>
         </Flex>

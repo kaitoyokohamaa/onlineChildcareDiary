@@ -19,9 +19,6 @@ export const UseAuthContext = ({children}) => {
   useEffect(() => {
     firebase.auth().onAuthStateChanged(async (user: firebase.default.User) => {
       if (user) {
-        userIdRef(user.uid).onSnapshot((res) =>
-          res.forEach((item) => setDocKey(item.id))
-        )
         setLoginUser(user)
 
         userIdRef(user.uid).onSnapshot((res) =>
@@ -32,10 +29,15 @@ export const UseAuthContext = ({children}) => {
             )
           })
         )
+        userIdRef(user.uid).onSnapshot((res) => {
+          res.forEach((item) => {
+            setDocKey(item.id)
 
-        if (router.asPath === '/signup' || router.asPath === '/login') {
-          router.push(`/home`)
-        }
+            if (router.asPath === '/signup' || router.asPath === '/login') {
+              router.push(`/home/${item.id}`)
+            }
+          })
+        })
       } else if (router.asPath.indexOf('/invite') === -1) {
         router.push(`/signup`)
       }
