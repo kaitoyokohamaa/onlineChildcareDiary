@@ -29,3 +29,9 @@ export const adminRegisterDetailRef = (userKey: string, detailKey: string) => {
 export const adminTablesRef = (docKey: string) => {
   return firestore().collection('User').doc(docKey).collection('tables')
 }
+
+export const chatRef = (docKey: string) => {
+  return (
+    docKey && firestore().collection('User').doc(docKey).collection('chats')
+  )
+}

@@ -23,6 +23,19 @@ export const registerRef = (docKey: string) => {
     docKey && firestore().collection('User').doc(docKey).collection('register')
   )
 }
+
+export const chatRef = (docKey: string) => {
+  return (
+    docKey && firestore().collection('User').doc(docKey).collection('chats')
+  )
+}
+
+export const messageChatRef = (docKey: string, chatId: string) => {
+  return (
+    docKey &&
+    firestore().collection('User').doc(docKey).collection('chat').doc(chatId)
+  )
+}
 export const tablesRef = (docKey: string) => {
   return (
     docKey && firestore().collection('User').doc(docKey).collection('tables')

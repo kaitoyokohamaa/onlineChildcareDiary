@@ -2,15 +2,12 @@ import {VFC} from 'react'
 
 import {ChatText} from '@/components/chat/chatText'
 
-export const Chat: VFC = () => {
+export const Chat: VFC = ({chatMessages}) => {
   return (
     <>
-      <ChatText
-        isTeacher={true}
-        text={`ありがとうfrrrrr
-      ore
-      多fkrforこ`}
-      />
+      {chatMessages.map((res) => {
+        return <ChatText key={res.id} isTeacher={false} text={res.chats.text} />
+      })}
       <ChatText
         isTeacher={false}
         text={`ありがとう

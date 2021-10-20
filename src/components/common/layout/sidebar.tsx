@@ -122,7 +122,7 @@ export const Sidebar: VFC = () => {
         }
       >
         <SidebarLink color={router.asPath === '/chat' ? '#84B9D4' : 'white'}>
-          <Link href="/chat">
+          <Link href={`/chat/${dockey}`}>
             <a>
               <Flex justify="center" mx={router.asPath === '/chat' && -1.5}>
                 <HStack w="50%">
