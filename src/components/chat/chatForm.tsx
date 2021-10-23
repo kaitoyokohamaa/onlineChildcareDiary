@@ -22,6 +22,7 @@ export const ChatForm: VFC = () => {
         senderId: dockey,
         sentAt: firebase.firestore.Timestamp.now()
       })
+    setText('')
   }
   return (
     <>
@@ -29,7 +30,7 @@ export const ChatForm: VFC = () => {
         <InputLeftElement>
           <MdAddBox color="#56A9D3" size="30" />
         </InputLeftElement>
-        <Input onChange={(e) => setText(e.target.value)} />
+        <Input value={text} onChange={(e) => setText(e.target.value)} />
         <InputRightElement>
           <MdSend color="#56A9D3" size="30" onClick={submitHandler} />
         </InputRightElement>

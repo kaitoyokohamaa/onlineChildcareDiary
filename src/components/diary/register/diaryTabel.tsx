@@ -1,9 +1,9 @@
-import {VFC} from 'react'
+import {VFC, useContext} from 'react'
 import {Table, Thead, Tbody, Tr, Th, Td} from '@chakra-ui/react'
 import {DiaryForm} from './diaryForm'
 import {DiaryDateForm} from './diaryDateForm'
 import {tablesRef} from '@/lib/firestore'
-import {useEffect, useState, useContext} from 'react'
+import {useEffect, useState} from 'react'
 import {AuthContext} from '@/contexts/AuthContext'
 import {DiaryTabelProps} from '@/models/diary'
 import {useRouter} from 'next/router'
@@ -14,37 +14,36 @@ export const DiaryTabel: VFC<DiaryTabelProps> = ({
   isTeacher
 }) => {
   const [diaries, setDiaries] = useState([])
-  const [dockey, setDocKey] = useState('')
-  let trainigContensArray = []
+  const [key, setKey] = useState('')
+  const {dockey} = useContext(AuthContext)
   const router = useRouter()
 
   useEffect(() => {
-    isTeacher
-      ? setDocKey(router.query.teachers[1])
-      : setDocKey(router.query.edit[1])
-  }, [dockey])
+    if (isTeacher) {
+      isTeacher
+        ? setKey(router.query.teachers[1])
+        : setKey(router.query.edit[1])
+    } else {
+      setKey(dockey)
+    }
+  }, [key])
   // タイミングやよな。
   useEffect(() => {
-    dockey &&
-      tablesRef(dockey)
+    key &&
+      tablesRef(key)
         .orderBy('createdAt', 'asc')
         .onSnapshot((res) => {
+          let trainigContensArray = []
           res.forEach((item) => {
             if (item.data().projectID === projectID) {
               const id = item.id
               trainigContensArray.push({tableID: id, tableData: item.data()})
             }
           })
-          //重複処理。最初のtableid === tableidにマッチしたやつだけをfindIndexで確かめているから重複を排除することができる。
-          const result = trainigContensArray.filter(
-            (res, i) =>
-              trainigContensArray.findIndex(
-                (item) => item.tableID === res.tableID
-              ) === i
-          )
-          setDiaries(result)
+
+          setDiaries(trainigContensArray)
         })
-  }, [dockey])
+  }, [key])
 
   return (
     <Table border="2px">

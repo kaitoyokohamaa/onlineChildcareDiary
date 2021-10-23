@@ -1,21 +1,14 @@
 import {NextPage, GetStaticProps, GetStaticPropsContext} from 'next'
-import {chatRef} from '@/lib/nodedb'
+
 import {Pages} from '@/components/chat/Pages'
 
 export const getStaticProps: GetStaticProps = async (
   context: GetStaticPropsContext
 ) => {
-  const Key = context.params.chat
+  const chatKey = context.params.chat
 
-  const chatMessages = await chatRef(String(Key)).get()
-  const chats = chatMessages.docs.map((item) => {
-    const data = {chats: item.data(), id: item.id}
-    return data
-  })
-
-  const parsedChats = JSON.parse(JSON.stringify(chats))
   return {
-    props: {parsedChats},
+    props: {chatKey},
     revalidate: 30
   }
 }
@@ -25,8 +18,7 @@ export async function getStaticPaths() {
     fallback: 'blocking'
   }
 }
-
-const Chat: NextPage = ({parsedChats}) => {
-  return <Pages chatMessages={parsedChats} />
+const Chat: NextPage<{chatKey: string}> = ({chatKey}) => {
+  return <Pages chatKey={chatKey} />
 }
 export default Chat
