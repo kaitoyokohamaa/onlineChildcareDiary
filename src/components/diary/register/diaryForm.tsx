@@ -1,8 +1,8 @@
-import {VFC, useRef} from 'react'
+import {VFC} from 'react'
 import {Flex, Text} from '@chakra-ui/layout'
-import {Textarea, useDisclosure, Box} from '@chakra-ui/react'
+import {Textarea, Box} from '@chakra-ui/react'
 
-import {useState, useContext} from 'react'
+import {useState} from 'react'
 import {MdEdit} from 'react-icons/md'
 import {tablesRef} from '@/lib/firestore'
 
@@ -15,7 +15,6 @@ export const DiaryForm: VFC<DiaryFormProps> = ({...props}) => {
   const CustomWrapper = ({children}) =>
     props.isTeacher ? <Box>{children}</Box> : <Flex>{children}</Flex>
 
-  let diaries = []
   const onSave = async () => {
     setIsEdit(true)
     props.isChildActivities &&
@@ -32,14 +31,15 @@ export const DiaryForm: VFC<DiaryFormProps> = ({...props}) => {
     tablesRef(props.dockey)
       .orderBy('createdAt', 'asc')
       .onSnapshot((res) => {
+        let diaries = []
         res.forEach((item) => {
           if (item.data().projectID === props.projectID) {
             const id = item.id
             diaries.push({tableID: id, tableData: item.data()})
           }
         })
+        props.setTrainingContent(diaries)
       })
-    props.setTrainingContent(diaries)
   }
 
   return (

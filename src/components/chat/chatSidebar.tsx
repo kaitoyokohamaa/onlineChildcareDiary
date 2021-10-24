@@ -1,7 +1,7 @@
 import {VFC} from 'react'
 import {Avatar, AvatarBadge, Stack} from '@chakra-ui/react'
 import {Box, Flex, Text} from '@chakra-ui/layout'
-export const ChatSidebar: VFC = () => {
+export const ChatSidebar: VFC<{lastMessage: string}> = ({lastMessage}) => {
   return (
     <Flex w="25%">
       <Box w="100%" h="87vh" overflow="scroll">
@@ -17,7 +17,9 @@ export const ChatSidebar: VFC = () => {
                 <Box pl="3">
                   <Text fontWeight="bold">斉藤タカシ</Text>
                   <Text fontSize="sm" color="#707070">
-                    本日の日誌を確認しました。
+                    {lastMessage.length > 15
+                      ? lastMessage.substr(0, 15) + '...'
+                      : lastMessage}
                   </Text>
                 </Box>
               </Flex>
