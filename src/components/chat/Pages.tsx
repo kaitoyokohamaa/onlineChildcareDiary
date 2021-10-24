@@ -8,7 +8,9 @@ import {ChatForm} from '@/components/chat/chatForm'
 import {Layout} from '@/components/common/layout'
 import {Messages} from '@/models/chat'
 export const Pages: VFC<{chatKey: string}> = ({chatKey}) => {
+  
   const [chatMessages, setChatMessages] = useState<Messages[]>([])
+  const [lastMessage, setLastMessage] = useState<string>('')
 
   useEffect(() => {
     chatRef(chatKey)
@@ -27,12 +29,22 @@ export const Pages: VFC<{chatKey: string}> = ({chatKey}) => {
         })
         setChatMessages(chatMessagesArray)
       })
+
+    chatRef(chatKey)
+      .orderBy('sentAt', 'desc')
+      .limit(1)
+      .onSnapshot((res) => {
+        res.forEach((item) => {
+          setLastMessage(item.data().text)
+        })
+      })
   }, [chatKey])
+
   return (
     <Layout isHeader>
       <Box p={0} borderTop="2px" borderColor="#E9E9E9" mt="20px">
         <Flex>
-          <ChatSidebar />
+          <ChatSidebar lastMessage={lastMessage} />
           <Flex w="75%" justifyContent="center">
             <Box w="95%">
               <ChatHeader />
