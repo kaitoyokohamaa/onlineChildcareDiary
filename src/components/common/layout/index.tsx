@@ -3,16 +3,20 @@ import {Sidebar} from './sidebar'
 import {VFC} from 'react'
 import {Box, Flex} from '@chakra-ui/layout'
 
-type Props = {children?: React.ReactNode; isHeader?: boolean}
+type Props = {
+  children?: React.ReactNode
+  isHeader?: boolean
+  isTeacher?: boolean
+}
 
-export const Layout: VFC<Props> = ({children, isHeader}) => {
+export const Layout: VFC<Props> = ({children, isHeader, isTeacher}) => {
   return (
     <Box>
       <Flex w="100%">
         {/* Sidebar */}
         <Flex h="100vh" bg="#273673">
           <Box>
-            <Sidebar />
+            <Sidebar isTeacher={isTeacher} />
           </Box>
         </Flex>
         {/* contents */}
