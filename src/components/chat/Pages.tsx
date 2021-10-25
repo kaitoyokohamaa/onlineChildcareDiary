@@ -6,9 +6,8 @@ import {ChatHeader} from '@/components/chat/chatHeader'
 import {Chat} from '@/components/chat/chat'
 import {ChatForm} from '@/components/chat/chatForm'
 import {Layout} from '@/components/common/layout'
-import {Messages} from '@/models/chat'
-export const Pages: VFC<{chatKey: string}> = ({chatKey}) => {
-  
+import {Messages, ChatsProps} from '@/models/chat'
+export const Pages: VFC<ChatsProps> = ({chatKey, data}) => {
   const [chatMessages, setChatMessages] = useState<Messages[]>([])
   const [lastMessage, setLastMessage] = useState<string>('')
 
@@ -44,10 +43,14 @@ export const Pages: VFC<{chatKey: string}> = ({chatKey}) => {
     <Layout isHeader>
       <Box p={0} borderTop="2px" borderColor="#E9E9E9" mt="20px">
         <Flex>
-          <ChatSidebar lastMessage={lastMessage} />
+          <ChatSidebar
+            lastMessage={lastMessage}
+            name={data.name}
+            image={data.dispayImage}
+          />
           <Flex w="75%" justifyContent="center">
             <Box w="95%">
-              <ChatHeader />
+              <ChatHeader image={data.dispayImage} name={data.name} />
               <Box h="65vh" overflow="scroll">
                 <Chat chatMessages={chatMessages} />
               </Box>
