@@ -12,6 +12,7 @@ export const AuthContext = React.createContext({
 })
 export const UseAuthContext = ({children}) => {
   const [dockey, setDocKey] = useState(null)
+
   const [loginUser, setLoginUser] = useState(null)
   const [displayName, setDisplayName] = useState<string>('')
   const [image, setImage] = useState<string>(null)

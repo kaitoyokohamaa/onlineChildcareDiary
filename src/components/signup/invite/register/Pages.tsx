@@ -1,11 +1,32 @@
 import {Button} from '@chakra-ui/button'
-import {Box, Flex, Heading} from '@chakra-ui/layout'
+import {Box, Heading} from '@chakra-ui/layout'
 import {Input, Divider, FormControl, FormLabel, HStack} from '@chakra-ui/react'
-import {VFC} from 'react'
+import {VFC, useState} from 'react'
 import {Layout} from '@/components/common/layout'
 import {Dropzone} from '@/components/common/dropzone'
-import {UseInviteCertification} from '@/hooks/useCertification'
-export const Pages: VFC = () => {
+
+import {invitedUserRef} from '@/lib/firestore'
+export const Pages: VFC<{inviteKey: string; teacherId: string}> = ({
+  inviteKey,
+  teacherId
+}) => {
+  const [name, setName] = useState<string>('')
+  const [email, setEmail] = useState<string>('')
+  const [department, setDepartment] = useState<string>('')
+  const [post, setPost] = useState<string>('')
+  const [number, setNumber] = useState<string>('')
+  const [birthday, setBirthday] = useState<string>('')
+  console.log(teacherId)
+  const submitHandler = () => {
+    invitedUserRef(inviteKey).doc(teacherId).update({
+      name,
+      email,
+      department,
+      post,
+      number,
+      birthday
+    })
+  }
   return (
     <Layout isTeacher>
       <Box p="10">
@@ -16,7 +37,7 @@ export const Pages: VFC = () => {
 
         <FormControl w="17%">
           <FormLabel>画像</FormLabel>
-          <Dropzone />
+          <Dropzone inviteKey={inviteKey} isTeacher teacherId={teacherId} />
         </FormControl>
         <Divider my="4" />
         <Box mt="6">
@@ -24,11 +45,16 @@ export const Pages: VFC = () => {
             {/* <Flex w="90%"> */}
             <FormControl id="email">
               <FormLabel>名前</FormLabel>
-              <Input variant="flushed" placeholder="名前" />
+              <Input
+                onChange={(e) => setName(e.target.value)}
+                variant="flushed"
+                placeholder="名前"
+              />
             </FormControl>
             <FormControl id="email">
               <FormLabel>メールアドレス</FormLabel>
               <Input
+                onChange={(e) => setEmail(e.target.value)}
                 type="email"
                 placeholder="メールアドレス"
                 variant="flushed"
@@ -39,21 +65,37 @@ export const Pages: VFC = () => {
           <HStack spacing="24px" mt="10">
             <FormControl id="email">
               <FormLabel>所属</FormLabel>
-              <Input variant="flushed" placeholder="テスト園" />
+              <Input
+                onChange={(e) => setDepartment(e.target.value)}
+                variant="flushed"
+                placeholder="テスト園"
+              />
             </FormControl>
             <FormControl id="email">
               <FormLabel>役職</FormLabel>
-              <Input variant="flushed" placeholder="役職" />
+              <Input
+                onChange={(e) => setPost(e.target.value)}
+                variant="flushed"
+                placeholder="役職"
+              />
             </FormControl>
           </HStack>
           <HStack spacing="24px" mt="10">
             <FormControl id="email">
               <FormLabel>電話番号</FormLabel>
-              <Input variant="flushed" placeholder="電話番号" />
+              <Input
+                onChange={(e) => setNumber(e.target.value)}
+                variant="flushed"
+                placeholder="電話番号"
+              />
             </FormControl>
             <FormControl id="email">
               <FormLabel>生年月日</FormLabel>
-              <Input variant="flushed" placeholder="生年月日" />
+              <Input
+                onChange={(e) => setBirthday(e.target.value)}
+                variant="flushed"
+                placeholder="生年月日"
+              />
             </FormControl>
           </HStack>
         </Box>
@@ -65,6 +107,7 @@ export const Pages: VFC = () => {
             color="white"
             borderRadius="40"
             px="8"
+            onClick={submitHandler}
           >
             登録する
           </Button>

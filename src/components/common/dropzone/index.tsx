@@ -1,14 +1,8 @@
-import React, {
-  useCallback,
-  useMemo,
-  useContext,
-  useEffect,
-  useState
-} from 'react'
+import React, {useCallback, useMemo, useContext, VFC} from 'react'
 import {useDropzone} from 'react-dropzone'
 import {saveStorageRef, storageRef} from '@/lib/firestorage'
 import {AuthContext} from '@/contexts/AuthContext'
-import {userfiledRef} from '@/lib/firestore'
+import {userfiledRef, invitedUserRef} from '@/lib/firestore'
 const baseStyle = {
   flex: 1,
   display: 'flex',
@@ -35,24 +29,36 @@ const acceptStyle = {
 const rejectStyle = {
   borderColor: '#ff1744'
 }
-export const Dropzone = () => {
+export const Dropzone: VFC<{
+  isTeacher?: boolean
+  teacherId?: string
+  inviteKey?: string
+}> = ({isTeacher, teacherId, inviteKey}) => {
   const {loginUser, dockey} = useContext(AuthContext)
 
-  const onDrop = useCallback(async (acceptedFiles) => {
-    if (loginUser?.uid) {
-      await saveStorageRef(loginUser?.uid, acceptedFiles)
+  const onDrop = useCallback(
+    async (acceptedFiles) => {
+      if (loginUser?.uid) {
+        await saveStorageRef(loginUser?.uid, acceptedFiles)
 
-      const ref = storageRef()
-        .ref()
-        .child(`images/${loginUser?.uid}/${acceptedFiles[0].name}`)
+        const ref = await storageRef()
+          .ref()
+          .child(`images/${loginUser?.uid}/${acceptedFiles[0].name}`)
 
-      await ref.getDownloadURL().then((dispayImage) => {
-        userfiledRef(dockey).update({
-          dispayImage
+        await ref.getDownloadURL().then((dispayImage) => {
+          console.log(dispayImage)
+          isTeacher
+            ? invitedUserRef(inviteKey).doc(teacherId).update({
+                dispayImage
+              })
+            : userfiledRef(dockey).update({
+                dispayImage
+              })
         })
-      })
-    }
-  }, [])
+      }
+    },
+    [loginUser]
+  )
 
   const {
     getRootProps,

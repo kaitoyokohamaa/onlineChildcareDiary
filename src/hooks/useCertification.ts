@@ -1,7 +1,7 @@
 import {useState} from 'react'
 import {useRouter} from 'next/router'
 import firebase from '@/lib/firebase'
-import {userRef} from '@/lib/firestore'
+import {userRef, invitedUserRef} from '@/lib/firestore'
 
 export const UseCertification = () => {
   const [email, setEmail] = useState<string>('')
@@ -58,15 +58,25 @@ export const UseInviteCertification = (id: string) => {
   const [password, setPassword] = useState<string>('')
   const router = useRouter()
   const signupHandler = async () => {
-    // const signUp = await firebase
-    //   .auth()
-    //   .createUserWithEmailAndPassword(email, password)
+    const signUp = await firebase
+      .auth()
+      .createUserWithEmailAndPassword(email, password)
 
-    // const teacherUid = signUp.user.uid
-    // const userInfo = (await userRef().doc(id).get()).data()
-    // const studentUid = await userInfo.uid[0]
-    // const newUidArrary = [studentUid, teacherUid]
-    // await userRef().doc(id).update({uid: newUidArrary})
+    const teacherUid = signUp.user.uid
+    const userInfo = (await userRef().doc(id).get()).data()
+    const studentUid = await userInfo.uid[0]
+    const newUidArrary = [studentUid, teacherUid]
+    await userRef().doc(id).update({uid: newUidArrary})
+    const users = {
+      uid: teacherUid,
+      email: null,
+      number: null,
+      name: null,
+      dispayImage: null,
+      birthday: null,
+      post: null
+    }
+    invitedUserRef(id).add(users)
     router.push(`/signup/invite/register/${id}`)
   }
   return {
