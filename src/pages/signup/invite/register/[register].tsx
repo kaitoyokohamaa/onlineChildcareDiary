@@ -8,9 +8,9 @@ export const getStaticProps: GetStaticProps = async (
   const inviteKey = context.params.register
   const teacherInfo = await invitedUserRef(String(inviteKey)).get()
   const teacherId = teacherInfo.docs.map((res) => res.id)[0]
-
+  const teacherUid = teacherInfo.docs.map((res) => res.data().uid)[0]
   return {
-    props: {inviteKey, teacherId},
+    props: {inviteKey, teacherId, teacherUid},
     revalidate: 20
   }
 }
@@ -21,10 +21,17 @@ export async function getStaticPaths() {
   }
 }
 
-const Login: NextPage<{inviteKey: string; teacherId: string}> = ({
-  inviteKey,
-  teacherId
-}) => {
-  return <Pages inviteKey={inviteKey} teacherId={teacherId} />
+const Login: NextPage<{
+  inviteKey: string
+  teacherId: string
+  teacherUid: string
+}> = ({inviteKey, teacherId, teacherUid}) => {
+  return (
+    <Pages
+      inviteKey={inviteKey}
+      teacherId={teacherId}
+      teacherUid={teacherUid}
+    />
+  )
 }
 export default Login

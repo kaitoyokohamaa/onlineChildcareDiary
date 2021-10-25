@@ -4,27 +4,33 @@ import {Input, Divider, FormControl, FormLabel, HStack} from '@chakra-ui/react'
 import {VFC, useState} from 'react'
 import {Layout} from '@/components/common/layout'
 import {Dropzone} from '@/components/common/dropzone'
+import {invitedUserRef, teacherRef} from '@/lib/firestore'
 
-import {invitedUserRef} from '@/lib/firestore'
-export const Pages: VFC<{inviteKey: string; teacherId: string}> = ({
-  inviteKey,
-  teacherId
-}) => {
+export const Pages: VFC<{
+  inviteKey: string
+  teacherId: string
+  teacherUid: string
+}> = ({inviteKey, teacherId, teacherUid}) => {
   const [name, setName] = useState<string>('')
   const [email, setEmail] = useState<string>('')
   const [department, setDepartment] = useState<string>('')
   const [post, setPost] = useState<string>('')
   const [number, setNumber] = useState<string>('')
   const [birthday, setBirthday] = useState<string>('')
-  console.log(teacherId)
+
   const submitHandler = () => {
     invitedUserRef(inviteKey).doc(teacherId).update({
+      name
+    })
+    teacherRef().add({
       name,
       email,
       department,
       post,
       number,
-      birthday
+      birthday,
+      id: teacherId,
+      uid: teacherUid
     })
   }
   return (
