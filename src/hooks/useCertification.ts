@@ -58,16 +58,16 @@ export const UseInviteCertification = (id: string) => {
   const [password, setPassword] = useState<string>('')
   const router = useRouter()
   const signupHandler = async () => {
-    const signUp = await firebase
-      .auth()
-      .createUserWithEmailAndPassword(email, password)
+    // const signUp = await firebase
+    //   .auth()
+    //   .createUserWithEmailAndPassword(email, password)
 
-    const teacherUid = signUp.user.uid
-    const userInfo = (await userRef().doc(id).get()).data()
-    const studentUid = await userInfo.uid[0]
-    const newUidArrary = [studentUid, teacherUid]
-    await userRef().doc(id).update({uid: newUidArrary})
-    router.push('/chat')
+    // const teacherUid = signUp.user.uid
+    // const userInfo = (await userRef().doc(id).get()).data()
+    // const studentUid = await userInfo.uid[0]
+    // const newUidArrary = [studentUid, teacherUid]
+    // await userRef().doc(id).update({uid: newUidArrary})
+    router.push(`/signup/invite/register/${id}`)
   }
   return {
     signupHandler,

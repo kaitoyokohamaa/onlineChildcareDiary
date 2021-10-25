@@ -16,7 +16,7 @@ const baseStyle = {
   alignItems: 'center',
   padding: '65px',
   borderWidth: 2,
-  borderRadius: '100%',
+  // borderRadius: '100%',
   borderColor: '#eeeeee',
   borderStyle: 'dashed',
   backgroundColor: '#fafafa',
