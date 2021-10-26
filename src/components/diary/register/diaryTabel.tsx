@@ -22,11 +22,11 @@ export const DiaryTabel: VFC<DiaryTabelProps> = ({
     if (isTeacher) {
       isTeacher
         ? setKey(router.query.teachers[1])
-        : setKey(router.query.edit[1])
+        : setKey(router.query.teachers[0])
     } else {
       setKey(dockey)
     }
-  }, [key])
+  }, [isTeacher])
   // タイミングやよな。
   useEffect(() => {
     key &&
@@ -79,7 +79,7 @@ export const DiaryTabel: VFC<DiaryTabelProps> = ({
                     setTrainingContent={setTrainingContent}
                     trainingContent={trainingContent}
                     isTeacher={isTeacher}
-                    dockey={dockey}
+                    dockey={key}
                   />
                 </Td>
                 <Td border="1px">
@@ -91,7 +91,7 @@ export const DiaryTabel: VFC<DiaryTabelProps> = ({
                     setTrainingContent={setTrainingContent}
                     trainingContent={trainingContent}
                     isTeacher={isTeacher}
-                    dockey={dockey}
+                    dockey={key}
                     correctedContent={res.tableData.assistanceFeedback}
                   />
                 </Td>
@@ -104,7 +104,7 @@ export const DiaryTabel: VFC<DiaryTabelProps> = ({
                     setTrainingContent={setTrainingContent}
                     trainingContent={trainingContent}
                     isTeacher={isTeacher}
-                    dockey={dockey}
+                    dockey={key}
                     correctedContent={
                       res.tableData.activitesAndAwarenessFeedback
                     }

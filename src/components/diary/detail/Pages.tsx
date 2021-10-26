@@ -35,8 +35,9 @@ export const Pages: VFC<isUserDetailDiary> = ({detailDiary}) => {
   useEffect(() => {
     dockey &&
       (async () => {
-        const userInfo = await userRef().doc(dockey).get()
+        const userInfo = await userRef().doc(uid).get()
         if (userInfo.data().uid[0] === loginUser.uid) {
+          console.log(userInfo.data().uid[0])
           setIsUser(true)
         }
       })()
