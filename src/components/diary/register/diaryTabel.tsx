@@ -50,9 +50,9 @@ export const DiaryTabel: VFC<DiaryTabelProps> = ({
       <Thead border="1px">
         <Tr>
           <Th>時間</Th>
-          <Th>子供の活動</Th>
-          <Th>指導者の援助環境構成</Th>
-          <Th>実習生の活動気づき</Th>
+          <Th>入所児・利用者の 生活の様子</Th>
+          <Th>職員の対応</Th>
+          <Th>実習生としての対応</Th>
         </Tr>
       </Thead>
       {diaries?.map((res) => {

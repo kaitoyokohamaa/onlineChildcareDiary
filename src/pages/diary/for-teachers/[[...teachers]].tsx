@@ -14,7 +14,7 @@ export const getStaticProps: GetStaticProps = async (
   ).get()
 
   const detailDiary = JSON.parse(JSON.stringify(diaryRef.data()))
-  const projectID = diaryRef.data().trainingContent[0].tableData.projectID
+  const projectID = diaryRef.data()?.trainingContent[0]?.tableData.projectID
 
   return {
     props: {detailDiary, projectID, registerDetailDocKey},

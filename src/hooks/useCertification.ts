@@ -76,11 +76,23 @@ export const UseInviteCertification = (id: string) => {
 
     router.push(`/signup/invite/register/${id}`)
   }
+  const signinHandler = () => {
+    firebase
+      .auth()
+      .signInWithEmailAndPassword(email, password)
+      .then(() => {
+        router.push(`/home/teacher`)
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+  }
   return {
     signupHandler,
     setEmail,
     setPassword,
     email,
-    password
+    password,
+    signinHandler
   } as const
 }

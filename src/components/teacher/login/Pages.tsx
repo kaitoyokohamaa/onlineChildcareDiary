@@ -3,18 +3,19 @@ import {Box, Flex, Heading} from '@chakra-ui/layout'
 import {Input, Link as Links} from '@chakra-ui/react'
 import {VFC} from 'react'
 import Link from 'next/link'
-import {UseCertification} from '@/hooks/useCertification'
+import {UseInviteCertification} from '@/hooks/useCertification'
 import Image from 'next/image'
+import {Badge} from '@chakra-ui/react'
 export const Pages: VFC = () => {
   const {email, setEmail, setPassword, password, signinHandler} =
-    UseCertification()
+    UseInviteCertification()
   return (
     <Box>
       <Flex>
         <Box h="100vh" bg="#273673" w="50%" pl="3">
           <Box textAlign="left" pt="10" pl="10">
             <Heading as="h5" size="md" color="white">
-              SMART DIARY PHOENIX
+              SMART DIARY PHOENIX <Badge>保育士用</Badge>
             </Heading>
           </Box>
           <Box pt="48">
