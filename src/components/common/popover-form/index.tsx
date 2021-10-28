@@ -14,7 +14,7 @@ import {
   Text
 } from '@chakra-ui/react'
 import {EditIcon} from '@chakra-ui/icons'
-import {useState, useRef, forwardRef} from 'react'
+import {useState, useRef} from 'react'
 
 import {tablesRef} from '@/lib/firestore'
 const Form = ({onCancel, onSave}) => {

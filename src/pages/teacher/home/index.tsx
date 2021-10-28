@@ -1,6 +1,6 @@
 import {NextPage} from 'next'
 
-import {Pages} from '@/components/home/teacher/Pages'
+import {Pages} from '@/components/teacher/home/Pages'
 
 const Home: NextPage = () => {
   return <Pages />

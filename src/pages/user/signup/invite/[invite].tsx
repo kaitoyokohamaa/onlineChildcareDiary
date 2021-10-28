@@ -1,20 +1,20 @@
 import {NextPage} from 'next'
-import {Pages} from '@/components/signup/invite/Pages'
+import {Pages} from '@/components/user/signup/invite/Pages'
 import {GetStaticProps, GetStaticPropsContext} from 'next'
 export const getStaticProps: GetStaticProps = async (
-  context: GetStaticPropsContext
+  context: GetStaticPropsContext,
 ) => {
   const inviteKey = context.params.invite
 
   return {
     props: {inviteKey},
-    revalidate: 20
+    revalidate: 20,
   }
 }
 export async function getStaticPaths() {
   return {
     paths: [],
-    fallback: 'blocking'
+    fallback: 'blocking',
   }
 }
 const Login: NextPage<{inviteKey: string}> = ({inviteKey}) => {

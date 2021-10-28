@@ -1,25 +1,25 @@
 import {NextPage} from 'next'
-import {Pages} from '@/components/profile/Pages'
+import {Pages} from '@/components/user/profile/Pages'
 
 import {adminUsersRef} from '@/lib/nodedb'
 import {GetStaticProps, GetStaticPropsContext} from 'next'
 import {User} from '@/models/user'
 export const getStaticProps: GetStaticProps = async (
-  context: GetStaticPropsContext
+  context: GetStaticPropsContext,
 ) => {
   const user = await adminUsersRef(String(context.params.profile)).get()
 
   return {
     props: {
-      user: user.data()
+      user: user.data(),
     },
-    revalidate: 20
+    revalidate: 20,
   }
 }
 export async function getStaticPaths() {
   return {
     paths: [],
-    fallback: 'blocking'
+    fallback: 'blocking',
   }
 }
 

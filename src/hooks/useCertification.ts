@@ -76,6 +76,20 @@ export const UseInviteCertification = (id: string) => {
 
     router.push(`/signup/invite/register/${id}`)
   }
+
+  return {
+    signupHandler,
+    setEmail,
+    setPassword,
+    email,
+    password
+  } as const
+}
+
+export const UseTeacherCertification = () => {
+  const [email, setEmail] = useState<string>('')
+  const [password, setPassword] = useState<string>('')
+  const router = useRouter()
   const signinHandler = () => {
     firebase
       .auth()
@@ -87,12 +101,12 @@ export const UseInviteCertification = (id: string) => {
         console.log(err)
       })
   }
+
   return {
-    signupHandler,
+    signinHandler,
     setEmail,
     setPassword,
     email,
-    password,
-    signinHandler
+    password
   } as const
 }

@@ -55,7 +55,7 @@ export const Sidebar: VFC<{isTeacher?: boolean}> = ({isTeacher}) => {
               <SidebarLink
                 color={router.asPath === '/home' ? '#84B9D4' : 'white'}
               >
-                <Link href={`/home/${dockey}`}>
+                <Link href={`/user/home/${dockey}`}>
                   <a>
                     <Flex
                       justify="center"
@@ -168,7 +168,7 @@ export const Sidebar: VFC<{isTeacher?: boolean}> = ({isTeacher}) => {
               <SidebarLink
                 color={router.asPath === '/edit' ? '#84B9D4' : 'white'}
               >
-                <Link href="/edit">
+                <Link href="user/edit">
                   <a>
                     <Flex
                       justify="center"

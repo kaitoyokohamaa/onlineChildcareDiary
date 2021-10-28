@@ -5,7 +5,7 @@ import {VFC} from 'react'
 import Link from 'next/link'
 import {UseCertification} from '@/hooks/useCertification'
 export const Pages: VFC = () => {
-  const {email, setEmail, setPassword, password, signupHandler} =
+  const {email, setEmail, setPassword, password, signinHandler} =
     UseCertification()
   return (
     <Box>
@@ -55,15 +55,15 @@ export const Pages: VFC = () => {
                 py={{lg: 8}}
                 boxShadow="2xl-blue"
                 mb={10}
-                onClick={signupHandler}
+                onClick={signinHandler}
               >
-                新規登録
+                サインイン
               </Button>
             </Box>
             <Box textAlign="center">
-              ログインの方は
-              <Link href="/login">
-                <Links color="blue.500">こちら</Links>
+              初めてのログインはこちら
+              <Link href="user/signup">
+                <Links color="blue.500">新規登録</Links>
               </Link>
             </Box>
           </Box>
