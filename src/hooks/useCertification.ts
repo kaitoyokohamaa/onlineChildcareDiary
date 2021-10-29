@@ -21,12 +21,12 @@ export const UseCertification = () => {
           dispayImage: null,
           birthday: null,
           practicalTraining: null,
-          sex: null
+          sex: null,
         }
         userRef().add(users)
       })
       .then(() => {
-        router.push(`/home`)
+        router.push(`user/walcome`)
       })
       .catch((err) => {
         console.log(err)
@@ -37,7 +37,7 @@ export const UseCertification = () => {
       .auth()
       .signInWithEmailAndPassword(email, password)
       .then(() => {
-        router.push(`/home`)
+        router.push(`user/walcome`)
       })
       .catch((err) => {
         console.log(err)
@@ -49,7 +49,7 @@ export const UseCertification = () => {
     setEmail,
     setPassword,
     email,
-    password
+    password,
   } as const
 }
 
@@ -70,11 +70,11 @@ export const UseInviteCertification = (id: string) => {
     const users = {
       uid: teacherUid,
       name: null,
-      dispayImage: null
+      dispayImage: null,
     }
     invitedUserRef(id).add(users)
 
-    router.push(`/signup/invite/register/${id}`)
+    router.push(`/user/signup/invite/register/${id}`)
   }
 
   return {
@@ -82,7 +82,7 @@ export const UseInviteCertification = (id: string) => {
     setEmail,
     setPassword,
     email,
-    password
+    password,
   } as const
 }
 
@@ -107,6 +107,6 @@ export const UseTeacherCertification = () => {
     setEmail,
     setPassword,
     email,
-    password
+    password,
   } as const
 }

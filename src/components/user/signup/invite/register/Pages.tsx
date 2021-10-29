@@ -5,7 +5,7 @@ import {VFC, useState} from 'react'
 import {Layout} from '@/components/common/layout'
 import {Dropzone} from '@/components/common/dropzone'
 import {invitedUserRef, teacherRef} from '@/lib/firestore'
-
+import {useRouter} from 'next/router'
 export const Pages: VFC<{
   inviteKey: string
   teacherId: string
@@ -17,10 +17,10 @@ export const Pages: VFC<{
   const [post, setPost] = useState<string>('')
   const [number, setNumber] = useState<string>('')
   const [birthday, setBirthday] = useState<string>('')
-
+  const router = useRouter()
   const submitHandler = () => {
     invitedUserRef(inviteKey).doc(teacherId).update({
-      name
+      name,
     })
     teacherRef().add({
       name,
@@ -30,8 +30,9 @@ export const Pages: VFC<{
       number,
       birthday,
       id: teacherId,
-      uid: teacherUid
+      uid: teacherUid,
     })
+    router.push('/teacher/welcome')
   }
   return (
     <Layout isTeacher>
