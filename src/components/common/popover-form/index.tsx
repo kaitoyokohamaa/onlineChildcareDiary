@@ -14,8 +14,8 @@ import {
   Text
 } from '@chakra-ui/react'
 import {EditIcon} from '@chakra-ui/icons'
-import {useState, useContext, useRef, forwardRef} from 'react'
-import FocusLock from 'react-focus-lock'
+import {useState, useRef} from 'react'
+
 import {tablesRef} from '@/lib/firestore'
 const Form = ({onCancel, onSave}) => {
   return (
@@ -42,10 +42,12 @@ export const PopoverForm = ({state, ...props}) => {
       (await tablesRef(props.dockey)
         .doc(props.id)
         .update({childActivitiesFeedback: text}))
+
     props.isAssistance &&
       (await tablesRef(props.dockey)
         .doc(props.id)
         .update({assistanceFeedback: text}))
+
     props.isActivitesAndAwareness &&
       (await tablesRef(props.dockey)
         .doc(props.id)
@@ -63,6 +65,7 @@ export const PopoverForm = ({state, ...props}) => {
       })
     props.setTrainingContent(diaries)
   }
+
   return (
     <>
       <Box display="block">
@@ -92,11 +95,10 @@ export const PopoverForm = ({state, ...props}) => {
               setText(e.target.value)
             }}
           />
-          <FocusLock returnFocus persistentFocus={false}>
-            <PopoverArrow />
-            <PopoverCloseButton />
-            <Form onCancel={onClose} onSave={onSave} />
-          </FocusLock>
+
+          <PopoverArrow />
+          <PopoverCloseButton />
+          <Form onCancel={onClose} onSave={onSave} />
         </PopoverContent>
       </Popover>
     </>

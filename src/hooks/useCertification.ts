@@ -1,7 +1,7 @@
 import {useState} from 'react'
 import {useRouter} from 'next/router'
 import firebase from '@/lib/firebase'
-import {userRef, invitedUserRef} from '@/lib/firestore'
+import {userRef, invitedUserRef, teacherRef} from '@/lib/firestore'
 
 export const UseCertification = () => {
   const [email, setEmail] = useState<string>('')
@@ -21,12 +21,12 @@ export const UseCertification = () => {
           dispayImage: null,
           birthday: null,
           practicalTraining: null,
-          sex: null
+          sex: null,
         }
         userRef().add(users)
       })
       .then(() => {
-        router.push(`/home`)
+        router.push(`user/walcome`)
       })
       .catch((err) => {
         console.log(err)
@@ -37,7 +37,7 @@ export const UseCertification = () => {
       .auth()
       .signInWithEmailAndPassword(email, password)
       .then(() => {
-        router.push(`/home`)
+        router.push(`user/walcome`)
       })
       .catch((err) => {
         console.log(err)
@@ -49,7 +49,7 @@ export const UseCertification = () => {
     setEmail,
     setPassword,
     email,
-    password
+    password,
   } as const
 }
 
@@ -69,21 +69,44 @@ export const UseInviteCertification = (id: string) => {
     await userRef().doc(id).update({uid: newUidArrary})
     const users = {
       uid: teacherUid,
-      email: null,
-      number: null,
       name: null,
       dispayImage: null,
-      birthday: null,
-      post: null
     }
     invitedUserRef(id).add(users)
-    router.push(`/signup/invite/register/${id}`)
+
+    router.push(`/user/signup/invite/register/${id}`)
   }
+
   return {
     signupHandler,
     setEmail,
     setPassword,
     email,
-    password
+    password,
+  } as const
+}
+
+export const UseTeacherCertification = () => {
+  const [email, setEmail] = useState<string>('')
+  const [password, setPassword] = useState<string>('')
+  const router = useRouter()
+  const signinHandler = () => {
+    firebase
+      .auth()
+      .signInWithEmailAndPassword(email, password)
+      .then(() => {
+        router.push(`/home/teacher`)
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+  }
+
+  return {
+    signinHandler,
+    setEmail,
+    setPassword,
+    email,
+    password,
   } as const
 }

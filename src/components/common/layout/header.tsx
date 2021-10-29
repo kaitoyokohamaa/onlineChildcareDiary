@@ -9,7 +9,7 @@ import {
   MenuButton,
   MenuList,
   MenuItem,
-  AvatarBadge
+  AvatarBadge,
 } from '@chakra-ui/react'
 import {VFC, useContext} from 'react'
 import Link from 'next/link'
@@ -45,7 +45,7 @@ export const Header: VFC = () => {
           </MenuButton>
           <MenuList>
             <MenuItem>
-              <Link href={`/profile/${dockey}`}>
+              <Link href={`user/profile/${dockey}`}>
                 <a>プロフィール</a>
               </Link>
             </MenuItem>

@@ -22,11 +22,11 @@ export const DiaryTabel: VFC<DiaryTabelProps> = ({
     if (isTeacher) {
       isTeacher
         ? setKey(router.query.teachers[1])
-        : setKey(router.query.edit[1])
+        : setKey(router.query.teachers[0])
     } else {
       setKey(dockey)
     }
-  }, [key])
+  }, [isTeacher])
   // タイミングやよな。
   useEffect(() => {
     key &&
@@ -50,9 +50,9 @@ export const DiaryTabel: VFC<DiaryTabelProps> = ({
       <Thead border="1px">
         <Tr>
           <Th>時間</Th>
-          <Th>子供の活動</Th>
-          <Th>指導者の援助環境構成</Th>
-          <Th>実習生の活動気づき</Th>
+          <Th>入所児・利用者の 生活の様子</Th>
+          <Th>職員の対応</Th>
+          <Th>実習生としての対応</Th>
         </Tr>
       </Thead>
       {diaries?.map((res) => {
@@ -79,7 +79,7 @@ export const DiaryTabel: VFC<DiaryTabelProps> = ({
                     setTrainingContent={setTrainingContent}
                     trainingContent={trainingContent}
                     isTeacher={isTeacher}
-                    dockey={dockey}
+                    dockey={key}
                   />
                 </Td>
                 <Td border="1px">
@@ -91,7 +91,7 @@ export const DiaryTabel: VFC<DiaryTabelProps> = ({
                     setTrainingContent={setTrainingContent}
                     trainingContent={trainingContent}
                     isTeacher={isTeacher}
-                    dockey={dockey}
+                    dockey={key}
                     correctedContent={res.tableData.assistanceFeedback}
                   />
                 </Td>
@@ -104,7 +104,7 @@ export const DiaryTabel: VFC<DiaryTabelProps> = ({
                     setTrainingContent={setTrainingContent}
                     trainingContent={trainingContent}
                     isTeacher={isTeacher}
-                    dockey={dockey}
+                    dockey={key}
                     correctedContent={
                       res.tableData.activitesAndAwarenessFeedback
                     }

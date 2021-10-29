@@ -162,17 +162,18 @@ const Pages: VFC<{detailDiary: DetailDiary}> = ({detailDiary}) => {
                     </Text>
                   </View>
                   <View style={styles.tableCol}>
+                    <Text>{res.tableData.assistance}</Text>
+
+                    <Text style={styles.correct}>
+                      {res.tableData.assistanceFeedback &&
+                        res.tableData.assistanceFeedback}
+                    </Text>
+                  </View>
+                  <View style={styles.tableCol}>
                     <Text>{res.tableData.activitesAndAwareness}</Text>
                     <Text style={styles.correct}>
                       {res.tableData.activitesAndAwarenessFeedback &&
                         res.tableData.activitesAndAwarenessFeedback}
-                    </Text>
-                  </View>
-                  <View style={styles.tableCol}>
-                    <Text>{res.tableData.assistance}</Text>
-                    <Text style={styles.correct}>
-                      {res.tableData.assistanceFeedback &&
-                        res.tableData.assistanceFeedback}
                     </Text>
                   </View>
                 </View>

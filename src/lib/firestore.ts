@@ -47,6 +47,9 @@ export const invitedUserRef = (docKey: string) => {
   )
 }
 
+export const teacherRef = () => {
+  return firestore().collection('Teacher')
+}
 export const adminRegisterDetailRef = (userKey: string, detailKey: string) => {
   return firestore()
     .collection('User')
