@@ -13,6 +13,7 @@ export type Messages = {
 export type ChatsProps = {
   chatKey: string
   data: Teacher
+  isTeacher?: boolean
 }
 
 export type ChatsTeacherInfo = {

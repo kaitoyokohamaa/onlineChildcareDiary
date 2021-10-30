@@ -19,10 +19,7 @@ export const Pages: VFC<{
   const [birthday, setBirthday] = useState<string>('')
   const router = useRouter()
   const submitHandler = () => {
-    invitedUserRef(inviteKey).doc(teacherId).update({
-      name,
-    })
-    teacherRef().add({
+    teacherRef().doc(teacherId).update({
       name,
       email,
       department,

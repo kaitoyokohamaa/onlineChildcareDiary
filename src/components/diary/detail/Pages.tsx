@@ -11,8 +11,8 @@ import {userRef} from '@/lib/firestore'
 const PDF = dynamic<{detailDiary: DetailDiary}>(
   () => import('./pdf').then((mod) => mod.Pdf),
   {
-    ssr: false
-  }
+    ssr: false,
+  },
 )
 
 const UserOrTeacherLayout = ({children, isUser}) => {
@@ -37,7 +37,6 @@ export const Pages: VFC<isUserDetailDiary> = ({detailDiary}) => {
       (async () => {
         const userInfo = await userRef().doc(uid).get()
         if (userInfo.data().uid[0] === loginUser.uid) {
-          console.log(userInfo.data().uid[0])
           setIsUser(true)
         }
       })()

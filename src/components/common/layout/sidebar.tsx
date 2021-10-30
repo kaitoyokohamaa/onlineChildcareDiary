@@ -12,7 +12,8 @@ import {useRouter} from 'next/router'
 import firebase from '@/lib/firebase'
 import {v1 as uuidv1} from 'uuid'
 export const Sidebar: VFC<{isTeacher?: boolean}> = ({isTeacher}) => {
-  const {dockey} = useContext(AuthContext)
+  const {chatKey, dockey} = useContext(AuthContext)
+  console.log(dockey)
   const router = useRouter()
 
   const signOutHandler = () => {
@@ -141,7 +142,7 @@ export const Sidebar: VFC<{isTeacher?: boolean}> = ({isTeacher}) => {
               <SidebarLink
                 color={router.asPath === '/chat' ? '#84B9D4' : 'white'}
               >
-                <Link href={`/chat/${dockey}`}>
+                <Link href={`/user/chat/${dockey}`}>
                   <a>
                     <Flex
                       justify="center"
@@ -192,14 +193,14 @@ export const Sidebar: VFC<{isTeacher?: boolean}> = ({isTeacher}) => {
               borderLeft={router.asPath === '/chat' && '4px'}
               borderColor={router.asPath === '/chat' && '#56A9D3'}
               bg={
-                router.asPath === '/chat' &&
+                router.asPath === 'chat' &&
                 '#FFFFFF1A 0% 0% no-repeat padding-box'
               }
             >
               <SidebarLink
                 color={router.asPath === '/chat' ? '#84B9D4' : 'white'}
               >
-                <Link href={`/chat/${dockey}`}>
+                <Link href={`/teacher/chat/${chatKey}`}>
                   <a>
                     <Flex
                       justify="center"

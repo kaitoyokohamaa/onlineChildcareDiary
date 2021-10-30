@@ -1,16 +1,26 @@
 import {NextPage} from 'next'
 import {Pages} from '@/components/user/signup/invite/register/Pages'
 import {GetStaticProps, GetStaticPropsContext} from 'next'
-import {invitedUserRef} from '@/lib/nodedb'
+import {teacherRef} from '@/lib/nodedb'
 export const getStaticProps: GetStaticProps = async (
   context: GetStaticPropsContext,
 ) => {
   const inviteKey = context.params.register
-  const teacherInfo = await invitedUserRef(String(inviteKey)).get()
-  const teacherId = teacherInfo.docs.map((res) => res.id)[0]
-  const teacherUid = teacherInfo.docs.map((res) => res.data().uid)[0]
+
+  const teacherInfo = await teacherRef()
+    .where('chatKey', 'array-contains', inviteKey)
+    .get()
+    .then((res) =>
+      res.docs.map((item) => {
+        return {teacherInfo: item.data(), id: item.id}
+      }),
+    )
+
+  const teacherUid = teacherInfo[0].teacherInfo.uid
+  const teacherId = teacherInfo[0].id
+
   return {
-    props: {inviteKey, teacherId, teacherUid},
+    props: {inviteKey, teacherUid, teacherId},
     revalidate: 20,
   }
 }
