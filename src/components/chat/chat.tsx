@@ -6,9 +6,7 @@ import {Messages} from '@/models/chat'
 import {AuthContext} from '@/contexts/AuthContext'
 export const Chat: VFC<{
   chatMessages: Messages[]
-  isTeacher: boolean
-  isSender: boolean
-}> = ({chatMessages, isTeacher, isSender}) => {
+}> = ({chatMessages}) => {
   const {loginUser} = useContext(AuthContext)
   return (
     <>
