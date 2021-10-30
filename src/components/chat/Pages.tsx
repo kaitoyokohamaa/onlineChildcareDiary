@@ -1,4 +1,5 @@
-import {VFC, useState, useEffect} from 'react'
+import {VFC, useState, useEffect, useContext} from 'react'
+
 import {Box, Flex} from '@chakra-ui/layout'
 import {chatRef} from '@/lib/firestore'
 import {ChatSidebar} from '@/components/chat/chatSidebar'
@@ -7,10 +8,12 @@ import {Chat} from '@/components/chat/chat'
 import {ChatForm} from '@/components/chat/chatForm'
 import {Layout} from '@/components/common/layout'
 import {Messages, ChatsProps} from '@/models/chat'
-export const Pages: VFC<ChatsProps> = ({chatKey, data}) => {
+import {AuthContext} from '@/contexts/AuthContext'
+export const Pages: VFC<ChatsProps> = ({chatKey, data, isTeacher}) => {
   const [chatMessages, setChatMessages] = useState<Messages[]>([])
   const [lastMessage, setLastMessage] = useState<string>('')
-
+  const [isSender, setIsSender] = useState<boolean>(false)
+  const {dockey} = useContext(AuthContext)
   useEffect(() => {
     chatRef(chatKey)
       .orderBy('sentAt', 'asc')
@@ -22,8 +25,8 @@ export const Pages: VFC<ChatsProps> = ({chatKey, data}) => {
             chats: {
               senderId: item.data().senderId,
               sentAt: item.data().sentAt,
-              text: item.data().text
-            }
+              text: item.data().text,
+            },
           })
         })
         setChatMessages(chatMessagesArray)
@@ -40,7 +43,10 @@ export const Pages: VFC<ChatsProps> = ({chatKey, data}) => {
   }, [chatKey])
 
   return (
-    <Layout isHeader>
+    <Layout
+      isHeader={isTeacher ? false : true}
+      isTeacher={isTeacher ? true : false}
+    >
       <Box p={0} borderTop="2px" borderColor="#E9E9E9" mt="20px">
         <Flex>
           <ChatSidebar

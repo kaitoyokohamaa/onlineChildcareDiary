@@ -71,8 +71,10 @@ export const UseInviteCertification = (id: string) => {
       uid: teacherUid,
       name: null,
       dispayImage: null,
+      chatKey: [id],
     }
-    invitedUserRef(id).add(users)
+
+    teacherRef().add(users)
 
     router.push(`/user/signup/invite/register/${id}`)
   }
@@ -95,7 +97,7 @@ export const UseTeacherCertification = () => {
       .auth()
       .signInWithEmailAndPassword(email, password)
       .then(() => {
-        router.push(`/home/teacher`)
+        router.push(`/teacher/home`)
       })
       .catch((err) => {
         console.log(err)

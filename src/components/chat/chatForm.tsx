@@ -10,15 +10,15 @@ import firebase from 'firebase/app'
 export const ChatForm: VFC = () => {
   const [text, setText] = useState<string>('')
   const router = useRouter()
-  const {dockey} = useContext(AuthContext)
+  const {dockey, chatKey, loginUser} = useContext(AuthContext)
   const myDocKey = router.query.chat
   const inputEl = useRef(null)
   const submitHandler = () => {
-    dockey === myDocKey &&
+    chatKey === myDocKey &&
       chatRef(String(myDocKey)).add({
         text,
-        senderId: dockey,
-        sentAt: firebase.firestore.Timestamp.now()
+        senderId: loginUser.uid,
+        sentAt: firebase.firestore.Timestamp.now(),
       })
     setText('')
   }

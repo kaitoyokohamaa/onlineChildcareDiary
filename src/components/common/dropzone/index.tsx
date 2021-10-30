@@ -16,18 +16,18 @@ const baseStyle = {
   backgroundColor: '#fafafa',
   color: '#bdbdbd',
   outline: 'none',
-  transition: 'border .24s ease-in-out'
+  transition: 'border .24s ease-in-out',
 }
 
 const activeStyle = {
-  borderColor: '#2196f3'
+  borderColor: '#2196f3',
 }
 
 const acceptStyle = {
-  borderColor: '#00e676'
+  borderColor: '#00e676',
 }
 const rejectStyle = {
-  borderColor: '#ff1744'
+  borderColor: '#ff1744',
 }
 export const Dropzone: VFC<{
   isTeacher?: boolean
@@ -46,18 +46,17 @@ export const Dropzone: VFC<{
           .child(`images/${loginUser?.uid}/${acceptedFiles[0].name}`)
 
         await ref.getDownloadURL().then((dispayImage) => {
-          console.log(dispayImage)
           isTeacher
             ? invitedUserRef(inviteKey).doc(teacherId).update({
-                dispayImage
+                dispayImage,
               })
             : userfiledRef(dockey).update({
-                dispayImage
+                dispayImage,
               })
         })
       }
     },
-    [loginUser]
+    [loginUser],
   )
 
   const {
@@ -65,19 +64,19 @@ export const Dropzone: VFC<{
     getInputProps,
     isDragActive,
     isDragAccept,
-    isDragReject
+    isDragReject,
   } = useDropzone({
     accept: 'image/*',
-    onDrop
+    onDrop,
   })
   const style = useMemo(
     () => ({
       ...baseStyle,
       ...(isDragActive ? activeStyle : {}),
       ...(isDragAccept ? acceptStyle : {}),
-      ...(isDragReject ? rejectStyle : {})
+      ...(isDragReject ? rejectStyle : {}),
     }),
-    [isDragActive, isDragAccept, isDragReject]
+    [isDragActive, isDragAccept, isDragReject],
   )
   return (
     <div {...getRootProps({style})}>
