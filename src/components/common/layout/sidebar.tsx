@@ -13,7 +13,7 @@ import firebase from '@/lib/firebase'
 import {v1 as uuidv1} from 'uuid'
 export const Sidebar: VFC<{isTeacher?: boolean}> = ({isTeacher}) => {
   const {chatKey, dockey} = useContext(AuthContext)
-  console.log(dockey)
+
   const router = useRouter()
 
   const signOutHandler = () => {
