@@ -50,7 +50,8 @@ export const Dropzone: VFC<{
             ? invitedUserRef(inviteKey).doc(teacherId).update({
                 dispayImage,
               })
-            : userfiledRef(dockey).update({
+            : dockey &&
+              userfiledRef(dockey).update({
                 dispayImage,
               })
         })

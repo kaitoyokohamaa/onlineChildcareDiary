@@ -8,7 +8,7 @@ import {
   StyleSheet,
   Text,
   Font,
-  PDFViewer
+  PDFViewer,
 } from '@react-pdf/renderer'
 import {DetailDiary} from '@/models/diary/register'
 const styles = StyleSheet.create({
@@ -19,62 +19,151 @@ const styles = StyleSheet.create({
     margin: 10,
     padding: 10,
     display: 'flex',
-    fontSize: '12px'
+    fontSize: '12px',
   },
   wrapper: {
     width: '96%',
     border: '1px',
     borderLeft: 0,
-    marginTop: '20'
+    marginTop: '20',
   },
   section: {
-    flexDirection: 'row'
+    flexDirection: 'row',
   },
-  children: {
-    width: '100%',
+  dayContainer: {
+    width: '80%',
     borderWidth: 1,
     borderRightWidth: 0,
-    padding: '10 50'
+    textAlign: 'center',
+    paddingVertical: 4,
+  },
+  content: {
+    width: '40%',
+    borderWidth: 1,
+    borderRightWidth: 0,
+    textAlign: 'left',
+    paddingVertical: 4,
+    paddingHorizontal: 2,
+  },
+  children: {
+    width: '40%',
+    borderWidth: 1,
+    borderRightWidth: 0,
+    textAlign: 'center',
+    paddingVertical: 4,
+  },
+  assignedTeameTitle: {
+    width: '21%',
+    borderLeft: 1,
+    borderBottom: 1,
+    paddingVertical: 4,
+    textAlign: 'center',
+  },
+  assignedTeameContent: {
+    width: '59%',
+    borderLeft: 1,
+    borderBottom: 1,
+    paddingVertical: 4,
+    paddingHorizontal: 2,
+  },
+  aimTitle: {
+    width: '15%',
+    borderLeft: 1,
+    borderBottom: 0,
+    paddingVertical: 4,
+    textAlign: 'center',
   },
   aimContent: {
     width: '100%',
     borderLeft: 1,
-    borderBottom: 0
+    borderBottom: 0,
+    paddingVertical: 4,
+    paddingHorizontal: 2,
   },
   pdfWrapper: {
     margin: 'auto',
-    padding: '10px'
+    padding: '10px',
   },
   impressions: {
     width: '100%',
     borderWidth: 1,
-    borderRightWidth: 0
+    borderRightWidth: 0,
+    paddingVertical: 6,
+  },
+  dodText: {
+    backgroundImage:
+      'linearGradient(180deg, #ccc 1px, transparent 1px)' /* 罫線の色と太さ */,
+    backgroundSize: '100% 3em' /* 行の高さ */,
+    lineHeight: '3em' /* 文字の高さ */,
+    paddingBottom: '1px' /* 最終行の下にも罫線を引く */,
+    borderBottom: 'dotted 1px solid',
   },
   // table
   table: {
-    width: '100%'
+    width: '100%',
   },
   tableRow: {
     margin: 'auto',
-    flexDirection: 'row'
+    flexDirection: 'row',
   },
-  tableCol: {
-    width: '25%',
+  dayTableCol: {
+    width: '10%',
     borderStyle: 'solid',
     whiteSpace: 'pre-wrap',
     border: 1,
     borderRightWidth: 0,
     borderTopWidth: 1,
-    borderBottom: 0
+    borderBottom: 1,
+    justifyContent: 'center',
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingVertical: 2,
+  },
+  dayTableContentCol: {
+    width: '10%',
+    borderStyle: 'solid',
+    whiteSpace: 'pre-wrap',
+    border: 1,
+    borderRightWidth: 0,
+    borderTopWidth: 0,
+    borderBottom: 0,
+    justifyContent: 'center',
+    flexDirection: 'row',
+    paddingHorizontal: 4,
+    paddingVertical: 4,
+  },
+  tableCol: {
+    width: '30%',
+    borderStyle: 'solid',
+    whiteSpace: 'pre-wrap',
+    border: 1,
+    borderRightWidth: 0,
+    borderTopWidth: 1,
+    borderBottom: 1,
+    justifyContent: 'center',
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingVertical: 2,
+  },
+  tableContentCol: {
+    width: '30%',
+    borderStyle: 'solid',
+    whiteSpace: 'pre-wrap',
+    border: 1,
+    borderRightWidth: 0,
+    borderTopWidth: 0,
+    borderBottom: 0,
+    paddingVertical: 4,
+    paddingHorizontal: 4,
   },
   tableCell: {
     margin: 'auto',
     marginTop: 5,
-    fontSize: 10
+    fontSize: 10,
   },
   correct: {
-    color: 'red'
-  }
+    color: 'red',
+  },
 })
 const Pages: VFC<{detailDiary: DetailDiary}> = ({detailDiary}) => {
   Font.register({
@@ -83,9 +172,9 @@ const Pages: VFC<{detailDiary: DetailDiary}> = ({detailDiary}) => {
       {
         src: GenShinNormal,
         fontStyle: 'normal',
-        fontWeight: 'normal'
-      }
-    ]
+        fontWeight: 'normal',
+      },
+    ],
   })
 
   return (
@@ -97,48 +186,48 @@ const Pages: VFC<{detailDiary: DetailDiary}> = ({detailDiary}) => {
         </View>
         <View style={styles.wrapper}>
           <View style={styles.section}>
-            <View style={styles.children}>
+            <View style={styles.dayContainer}>
               <Text>9月23日目曜日</Text>
             </View>
             <View style={styles.children}>
               <Text>実習生氏名</Text>
             </View>
-            <View style={styles.children}>
+            <View style={styles.content}>
               <Text>{detailDiary.studentName}</Text>
             </View>
           </View>
           <View style={styles.section}>
-            <View style={styles.children}>
+            <View style={styles.assignedTeameTitle}>
               <Text>配属先</Text>
             </View>
-            <View style={styles.children}>
+            <View style={styles.assignedTeameContent}>
               <Text>{detailDiary.assignedName}</Text>
             </View>
             <View style={styles.children}>
               <Text>指導者氏名</Text>
             </View>
-            <View style={styles.children}>
+            <View style={styles.content}>
               <Text>{detailDiary.leader}</Text>
             </View>
           </View>
           <View style={styles.section}>
-            <View style={styles.aimContent}>
+            <View style={styles.aimTitle}>
               <Text>本日の目標</Text>
             </View>
-          </View>
-          <View style={styles.section}>
             <View style={styles.aimContent}>
               <Text>{detailDiary.goal}</Text>
             </View>
           </View>
+
           {/* 実習内容 */}
           <View style={styles.table}>
             <View style={styles.tableRow}>
-              <View style={styles.tableCol}>
+              <View style={styles.dayTableCol}>
                 <Text>時間</Text>
               </View>
               <View style={styles.tableCol}>
-                <Text>入所児・利用者の 生活の様子</Text>
+                <Text>{`入所児・利用者の 
+                  生活の様子`}</Text>
               </View>
               <View style={styles.tableCol}>
                 <Text>職員の対応</Text>
@@ -151,17 +240,17 @@ const Pages: VFC<{detailDiary: DetailDiary}> = ({detailDiary}) => {
             {detailDiary.trainingContent.map((res, i) => {
               return (
                 <View key={i} style={styles.tableRow}>
-                  <View style={styles.tableCol}>
+                  <View style={styles.dayTableContentCol}>
                     <Text>{res.tableData.date}</Text>
                   </View>
-                  <View style={styles.tableCol}>
+                  <View style={styles.tableContentCol}>
                     <Text>{res.tableData.childActivities}</Text>
                     <Text style={styles.correct}>
                       {res.tableData.childActivitiesFeedback &&
                         res.tableData.childActivitiesFeedback}
                     </Text>
                   </View>
-                  <View style={styles.tableCol}>
+                  <View style={styles.tableContentCol}>
                     <Text>{res.tableData.assistance}</Text>
 
                     <Text style={styles.correct}>
@@ -169,7 +258,7 @@ const Pages: VFC<{detailDiary: DetailDiary}> = ({detailDiary}) => {
                         res.tableData.assistanceFeedback}
                     </Text>
                   </View>
-                  <View style={styles.tableCol}>
+                  <View style={styles.tableContentCol}>
                     <Text>{res.tableData.activitesAndAwareness}</Text>
                     <Text style={styles.correct}>
                       {res.tableData.activitesAndAwarenessFeedback &&
@@ -198,7 +287,7 @@ const Pages: VFC<{detailDiary: DetailDiary}> = ({detailDiary}) => {
             </View>
             <View style={styles.section}>
               <View style={styles.impressions}>
-                <Text>
+                <Text style={styles.dodText}>
                   {detailDiary.feedback
                     ? detailDiary.feedback
                     : 'リンクを保育士に共有して添削と指導者からのことばを書いてもらいましょう。'}
