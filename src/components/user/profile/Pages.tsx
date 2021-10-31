@@ -55,7 +55,7 @@ export const Pages: VFC<{user: User}> = ({user}) => {
                       color="#fff"
                       _hover={{background: '#1c2956'}}
                     >
-                      <Link href={`user/profile${editPath}`}>
+                      <Link href={`/user/profile${editPath}`}>
                         <a>プロフィールを編集する</a>
                       </Link>
                     </Button>

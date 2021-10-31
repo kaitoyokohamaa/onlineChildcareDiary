@@ -7,7 +7,7 @@ import {
   FormLabel,
   Input,
   Button,
-  Textarea
+  Textarea,
 } from '@chakra-ui/react'
 import {EditUser} from '@/models/user'
 import {useRouter} from 'next/router'
@@ -46,10 +46,10 @@ export const Pages: VFC<EditUser> = ({user, id}) => {
       cellphoneNumber,
       sex,
       selfIntroduction,
-      practicalTraining
+      practicalTraining,
     })
 
-    router.push(`/profile/${dockey}`)
+    router.push(`/user/profile/${dockey}`)
   }
   return (
     <Layout isHeader>
@@ -68,7 +68,7 @@ export const Pages: VFC<EditUser> = ({user, id}) => {
             height: '1px',
             left: '13%',
             backgroundColor: '#00000029',
-            content: '" "'
+            content: '" "',
           }}
         >
           プロフィール編集
