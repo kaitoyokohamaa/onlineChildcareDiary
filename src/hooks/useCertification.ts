@@ -26,7 +26,7 @@ export const UseCertification = () => {
         userRef().add(users)
       })
       .then(() => {
-        router.push(`user/walcome`)
+        router.push(`/user/welcome`)
       })
       .catch((err) => {
         console.log(err)
@@ -37,7 +37,7 @@ export const UseCertification = () => {
       .auth()
       .signInWithEmailAndPassword(email, password)
       .then(() => {
-        router.push(`user/walcome`)
+        router.push(`/user/welcome`)
       })
       .catch((err) => {
         console.log(err)

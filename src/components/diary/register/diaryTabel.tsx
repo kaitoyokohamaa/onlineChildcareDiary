@@ -11,7 +11,7 @@ export const DiaryTabel: VFC<DiaryTabelProps> = ({
   projectID,
   setTrainingContent,
   trainingContent,
-  isTeacher
+  isTeacher,
 }) => {
   const [diaries, setDiaries] = useState([])
   const [key, setKey] = useState('')
@@ -26,7 +26,7 @@ export const DiaryTabel: VFC<DiaryTabelProps> = ({
     } else {
       setKey(dockey)
     }
-  }, [isTeacher])
+  }, [isTeacher, router.query.teachers, dockey])
   // タイミングやよな。
   useEffect(() => {
     key &&
@@ -40,10 +40,10 @@ export const DiaryTabel: VFC<DiaryTabelProps> = ({
               trainigContensArray.push({tableID: id, tableData: item.data()})
             }
           })
-
           setDiaries(trainigContensArray)
         })
-  }, [key])
+    console.log(22222)
+  }, [key, projectID])
 
   return (
     <Table border="2px">
