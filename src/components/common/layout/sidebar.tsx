@@ -235,7 +235,7 @@ export const Sidebar: VFC<{isTeacher?: boolean}> = ({isTeacher}) => {
                     >
                       <HStack w="50%">
                         <VscGear size={20} />
-                        <Text py={6}>基本情報</Text>
+                        <Text py={6}>添削済み</Text>
                       </HStack>
                     </Flex>
                   </a>

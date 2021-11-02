@@ -22,7 +22,7 @@ export const Pages: VFC = () => {
           <Box>
             <Flex align="center">
               <Box w="10%">
-                <img src="img/phoenix.png" />
+                <img src="/img/phoenix.png" />
               </Box>
               <Box textAlign="center">
                 <Heading as="h5" size="md" color="#273673">
@@ -62,7 +62,7 @@ export const Pages: VFC = () => {
             </Box>
             <Box textAlign="center">
               ログインの方は
-              <Link href="user/login">
+              <Link href="/user/login">
                 <Links color="blue.500">こちら</Links>
               </Link>
             </Box>

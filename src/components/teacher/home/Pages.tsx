@@ -8,7 +8,7 @@ import {Layout} from '@/components/common/layout'
 export const Pages: VFC = () => {
   const toast = useToast()
   return (
-    <Layout isHeader isTeacher>
+    <Layout isTeacher>
       <Box px={16}></Box>
     </Layout>
   )
