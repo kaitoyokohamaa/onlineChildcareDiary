@@ -8,7 +8,6 @@ export const ChatHeader: VFC<ChatsTeacherInfo> = ({name, image}) => {
     <Box pb="10">
       <Box borderBottom="4px" borderColor="#56A9D3" py={4} px="10">
         <Flex alignItems="center">
-          <ArrowBackIcon w={8} h={5} />
           <Stack direction="row" spacing={4}>
             <Avatar src={image}></Avatar>
           </Stack>

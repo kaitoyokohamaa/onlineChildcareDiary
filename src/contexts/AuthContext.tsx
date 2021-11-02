@@ -56,14 +56,20 @@ export const UseAuthContext = ({children}) => {
             res.forEach((item) => {
               setDocKey(item.id)
               setChatKey(item.id)
-              if (router.asPath === '/signup' || router.asPath === '/login') {
+              if (
+                router.asPath === '/user/signup' ||
+                router.asPath === '/user/login'
+              ) {
                 router.push(`/home/${item.id}`)
               }
             })
           })
         }
-      } else if (router.asPath.indexOf('/invite') === -1) {
-        router.push(`/signup`)
+      } else if (
+        router.asPath.indexOf('/invite') === -1 &&
+        router.asPath !== '/teacher/login'
+      ) {
+        router.push(`/user/signup`)
       }
     })
   }, [dockey])
