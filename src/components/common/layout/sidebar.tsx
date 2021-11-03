@@ -37,7 +37,7 @@ export const Sidebar: VFC<{isTeacher?: boolean}> = ({isTeacher}) => {
       <>
         {!isTeacher ? (
           <>
-            <Box textAlign="center" my={8}>
+            <Box textAlign="center" my={12}>
               <Button_ bg="#9FD0E8" color="white" _hover={{bg: '#54b5e4'}}>
                 <Link href={`/diary/register/${uuidv1()}`}>
                   <a>＋日誌登録</a>
@@ -62,7 +62,7 @@ export const Sidebar: VFC<{isTeacher?: boolean}> = ({isTeacher}) => {
                       justify="center"
                       mx={router.asPath === '/home' && -1.5}
                     >
-                      <HStack w="50%">
+                      <HStack w="60%">
                         <MdHome size={20} />
                         <Text py={6}>ホーム</Text>
                       </HStack>
@@ -71,34 +71,7 @@ export const Sidebar: VFC<{isTeacher?: boolean}> = ({isTeacher}) => {
                 </Link>
               </SidebarLink>
             </Box>
-            {/* TODO 実習先情報の作成(大学生教授用の画面作成までいけた場合のみ)*/}
-            <Box
-              _hover={{bg: '#FFFFFF1A 0% 0% no-repeat padding-box'}}
-              borderLeft={router.asPath === '/school' && '4px'}
-              borderColor={router.asPath === '/school' && '#56A9D3'}
-              bg={
-                router.asPath === '/school' &&
-                '#FFFFFF1A 0% 0% no-repeat padding-box'
-              }
-            >
-              <SidebarLink
-                color={router.asPath === '/school' ? '#84B9D4' : 'white'}
-              >
-                <Link href="/school">
-                  <a>
-                    <Flex
-                      justify="center"
-                      mx={router.asPath === '/school' && -1.5}
-                    >
-                      <HStack w="50%">
-                        <MdBook size={20} />
-                        <Text py={6}>実習しおり</Text>
-                      </HStack>
-                    </Flex>
-                  </a>
-                </Link>
-              </SidebarLink>
-            </Box>
+
             {/* 日誌 */}
             <Box
               _hover={{bg: '#FFFFFF1A 0% 0% no-repeat padding-box'}}
@@ -120,7 +93,7 @@ export const Sidebar: VFC<{isTeacher?: boolean}> = ({isTeacher}) => {
                       justify="center"
                       mx={router.asPath.indexOf('/diary') !== -1 && -1.5}
                     >
-                      <HStack w="50%">
+                      <HStack w="60%">
                         <MdLocalLibrary size={20} />
                         <Text py={6}>日誌</Text>
                       </HStack>
@@ -148,36 +121,9 @@ export const Sidebar: VFC<{isTeacher?: boolean}> = ({isTeacher}) => {
                       justify="center"
                       mx={router.asPath === '/chat' && -1.5}
                     >
-                      <HStack w="50%">
+                      <HStack w="60%">
                         <MdChatBubble size={20} />
                         <Text py={6}>チャット</Text>
-                      </HStack>
-                    </Flex>
-                  </a>
-                </Link>
-              </SidebarLink>
-            </Box>
-            <Box
-              _hover={{bg: '#FFFFFF1A 0% 0% no-repeat padding-box'}}
-              borderLeft={router.asPath === '/edit' && '4px'}
-              borderColor={router.asPath === '/edit' && '#56A9D3'}
-              bg={
-                router.asPath === '/edit' &&
-                '#FFFFFF1A 0% 0% no-repeat padding-box'
-              }
-            >
-              <SidebarLink
-                color={router.asPath === '/edit' ? '#84B9D4' : 'white'}
-              >
-                <Link href="user/edit">
-                  <a>
-                    <Flex
-                      justify="center"
-                      mx={router.asPath === '/edit' && -1.5}
-                    >
-                      <HStack w="50%">
-                        <VscGear size={20} />
-                        <Text py={6}>設定</Text>
                       </HStack>
                     </Flex>
                   </a>
@@ -229,10 +175,7 @@ export const Sidebar: VFC<{isTeacher?: boolean}> = ({isTeacher}) => {
               >
                 <Link href="/edit">
                   <a>
-                    <Flex
-                      justify="center"
-                      mx={router.asPath === '/edit' && -1.5}
-                    >
+                    <Flex justify="center" mx={-1.5}>
                       <HStack w="50%">
                         <VscGear size={20} />
                         <Text py={6}>添削済み</Text>
