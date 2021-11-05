@@ -38,6 +38,11 @@ export const chatRef = (docKey: string) => {
 export const teacherRef = () => {
   return firestore().collection('Teacher')
 }
+export const summaryRef = (docKey: string) => {
+  return (
+    docKey && firestore().collection('User').doc(docKey).collection('summary')
+  )
+}
 export const invitedUserRef = (docKey: string) => {
   return (
     docKey && firestore().collection('User').doc(docKey).collection('teacher')

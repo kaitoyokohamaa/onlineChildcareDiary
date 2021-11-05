@@ -43,7 +43,7 @@ export const Pages: VFC<{inviteKey: string}> = ({inviteKey}) => {
               </Link>
             </Box>
             <Box>
-              <Link href={`/diary/register/${uuidv1()}`}>
+              <Link href={`/diary/summary`}>
                 <a>
                   <Box
                     _hover={{backgroundColor: '#F8F8F8'}}
@@ -69,10 +69,12 @@ export const Pages: VFC<{inviteKey: string}> = ({inviteKey}) => {
               </Link>
             </Box>
             <Box>
-              <Link href={`/diary/register/${uuidv1()}`}>
+              <Link href={`/diary/introspection`}>
                 <a>
                   <Box
-                    _hover={{backgroundColor: '#F8F8F8'}}
+                    _hover={{
+                      backgroundColor: '#F8F8F8',
+                    }}
                     // w="20%"
                     backgroundColor="#F9FBFB"
                     p="24px"

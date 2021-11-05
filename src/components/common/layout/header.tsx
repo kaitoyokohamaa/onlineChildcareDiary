@@ -45,7 +45,7 @@ export const Header: VFC = () => {
           </MenuButton>
           <MenuList>
             <MenuItem>
-              <Link href={`user/profile/${dockey}`}>
+              <Link href={`/user/profile/${dockey}`}>
                 <a>プロフィール</a>
               </Link>
             </MenuItem>
