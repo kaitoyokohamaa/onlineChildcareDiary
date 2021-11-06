@@ -2,7 +2,7 @@ import {NextPage, GetStaticProps, GetStaticPropsContext} from 'next'
 
 import {Pages} from '@/components/chat/Pages'
 import {teacherRef} from '@/lib/nodedb'
-import {ChatsProps} from '@/models/chat'
+
 export const getStaticProps: GetStaticProps = async (
   context: GetStaticPropsContext,
 ) => {

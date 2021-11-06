@@ -1,6 +1,5 @@
 import {VFC} from 'react'
 import GenShinNormal from '@/fonts/GenShinGothic-Normal.ttf'
-
 import {
   Document,
   Page,

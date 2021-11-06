@@ -60,7 +60,7 @@ export const UseAuthContext = ({children}) => {
                 router.asPath === '/user/signup' ||
                 router.asPath === '/user/login'
               ) {
-                router.push(`/home/${item.id}`)
+                router.push(`/user/home/${item.id}`)
               }
             })
           })

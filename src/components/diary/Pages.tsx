@@ -10,7 +10,8 @@ import {
   Th,
   Td,
   Checkbox,
-  useToast
+  useToast,
+  Button,
 } from '@chakra-ui/react'
 import Link from 'next/link'
 import {AlertDialogPop} from '@/components/common/dialog/alertDialog'
@@ -28,7 +29,7 @@ export const Pages: VFC<{diary: Register}> = ({diary}) => {
   const userKey = router.query.diary
   const onClickHandler = (
     e: React.ChangeEvent<HTMLInputElement>,
-    id: string
+    id: string,
   ) => {
     if (e.target.checked) {
       setIsClicked(true)
@@ -41,13 +42,36 @@ export const Pages: VFC<{diary: Register}> = ({diary}) => {
   return (
     <Layout isHeader>
       <Box mt="10" px={16} h="85vh" overflow="scroll">
-        <Flex alignItems="center">
-          <Box bg="#F8F8F8" p="2" borderRadius="md">
-            <MdLocalLibrary color=" #9FD0E8" />
+        <Flex alignItems="center" justifyContent="space-between">
+          <Box>
+            <Flex alignItems="center">
+              <Box bg="#F8F8F8" p="2" borderRadius="md">
+                <MdLocalLibrary color=" #9FD0E8" />
+              </Box>
+
+              <Text ml="7" fontWeight="bold">
+                日誌
+              </Text>
+            </Flex>
           </Box>
-          <Text pl="8" fontWeight="bold">
-            日誌
-          </Text>
+          <Box>
+            <Button
+              background="#263773"
+              color="#fff"
+              _hover={{background: '#1c2956'}}
+              onClick={() => router.push(`/diary/summary/${userKey}`)}
+            >
+              実習のまとめへ
+            </Button>
+            <Button
+              ml="4"
+              background="#263773"
+              color="#fff"
+              _hover={{background: '#1c2956'}}
+            >
+              実習の反省会へ
+            </Button>
+          </Box>
         </Flex>
         <Divider mt="5" />
         <Table>
@@ -69,7 +93,7 @@ export const Pages: VFC<{diary: Register}> = ({diary}) => {
                     key={i}
                     _hover={{
                       background: '#f5f7f9',
-                      p: '14'
+                      p: '14',
                     }}
                   >
                     <Th>
@@ -93,7 +117,7 @@ export const Pages: VFC<{diary: Register}> = ({diary}) => {
                             toast({
                               title: `コピーしました`,
                               position: 'bottom',
-                              isClosable: true
+                              isClosable: true,
                             })
                           }
                         />
