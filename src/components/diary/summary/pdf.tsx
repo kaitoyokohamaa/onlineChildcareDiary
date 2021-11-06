@@ -80,7 +80,7 @@ const Pages = ({summary}) => {
 }
 export const Pdf = ({summary}) => {
   return (
-    <PDFViewer width="80%" height="642" style={styles.pdfWrapper}>
+    <PDFViewer width="80%" height="642">
       <Pages summary={summary} />
     </PDFViewer>
   )
