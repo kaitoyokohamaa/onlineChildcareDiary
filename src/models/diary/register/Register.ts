@@ -28,3 +28,8 @@ export type DetailDiary = {
 export type isUserDetailDiary = {
   detailDiary: DetailDiary
 }
+
+export type DocKeyId = {
+  userKey: string
+  detailKey: string
+}
