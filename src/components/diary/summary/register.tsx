@@ -86,7 +86,6 @@ export const Register = () => {
                 bg="#FCFCFC 0% 0% no-repeat padding-box;"
                 p="10"
               >
-                {/* todo:一時保存機能 */}
                 <Button
                   ml="3"
                   w="32"

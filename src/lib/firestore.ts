@@ -29,6 +29,14 @@ export const summaryRef = (docKey: string) => {
     docKey && firestore().collection('User').doc(docKey).collection('summary')
   )
 }
+
+export const introspectionRef = (docKey: string) => {
+  return (
+    docKey &&
+    firestore().collection('User').doc(docKey).collection('introspection')
+  )
+}
+
 export const chatRef = (docKey: string) => {
   return (
     docKey && firestore().collection('User').doc(docKey).collection('chats')

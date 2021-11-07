@@ -1,28 +1,22 @@
 import {Box, Flex, Text, Divider} from '@chakra-ui/layout'
-import {Input, Textarea, Button} from '@chakra-ui/react'
-
+import {Textarea, Button} from '@chakra-ui/react'
 import {useState, useContext} from 'react'
-import {registerRef, tablesRef} from '@/lib/firestore'
 import firebase from 'firebase/app'
 import {AuthContext} from '@/contexts/AuthContext'
-import {v1 as uuidv1} from 'uuid'
 import {MdLocalLibrary} from 'react-icons/md'
-import {Table} from '@/models/diary'
 import {Layout} from '@/components/common/layout'
+import {introspectionRef} from '@/lib/firestore'
+
 export const Register = () => {
-  const [count, setCount] = useState<string>('')
-  const [day, setDay] = useState<string>('')
-  const [studentName, setStudentName] = useState<string>('')
-  const [assignedName, setAssignedName] = useState<string>('')
-  const [leader, setLeader] = useState<string>('')
-  const [goal, setGoal] = useState<string>('')
-  const [trainingContent, setTrainingContent] = useState<Table[]>([])
-  const [feeling, setFeeling] = useState<string>('')
+  const [introspection, setIntrospection] = useState<string>('')
   const {dockey} = useContext(AuthContext)
-  const addRow = () => {}
 
-  const submitHandler = () => {}
-
+  const submitHandler = () => {
+    introspectionRef(dockey).add({
+      introspection,
+      createdAt: firebase.firestore.Timestamp.now(),
+    })
+  }
   return (
     <Layout isHeader>
       <Box mt="10" px={16}>
@@ -40,9 +34,9 @@ export const Register = () => {
             <Flex mt="2">
               <Textarea
                 size="lg"
-                onChange={(e) => setGoal(e.target.value)}
+                onChange={(e) => setIntrospection(e.target.value)}
                 type="text"
-                placeholder="本日の目標"
+                placeholder="反省会の記録"
               />
             </Flex>
           </Box>

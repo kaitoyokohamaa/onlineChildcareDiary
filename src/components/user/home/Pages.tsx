@@ -16,13 +16,14 @@ export const Pages: VFC<{inviteKey: string}> = ({inviteKey}) => {
         </Box>
         <Divider my="4" />
         <Box w="100%">
-          <Flex w="55%" justifyContent="space-between">
+          <Flex w="60%" justifyContent="space-between">
             <Box>
               <Link href={`/diary/register/${uuidv1()}`}>
                 <a>
                   <Box
                     _hover={{backgroundColor: '#F8F8F8'}}
                     backgroundColor="#F9FBFB"
+                    w="200px"
                     p="24px"
                     borderRadius="md"
                     alignItems="center"
@@ -43,11 +44,11 @@ export const Pages: VFC<{inviteKey: string}> = ({inviteKey}) => {
               </Link>
             </Box>
             <Box>
-              <Link href={`/diary/summary`}>
+              <Link href={`/diary/summary/register`}>
                 <a>
                   <Box
                     _hover={{backgroundColor: '#F8F8F8'}}
-                    w="100%"
+                    w="200px"
                     backgroundColor="#F9FBFB"
                     p="24px"
                     borderRadius="md"
@@ -69,13 +70,13 @@ export const Pages: VFC<{inviteKey: string}> = ({inviteKey}) => {
               </Link>
             </Box>
             <Box>
-              <Link href={`/diary/introspection`}>
+              <Link href={`/diary/introspection/register`}>
                 <a>
                   <Box
                     _hover={{
                       backgroundColor: '#F8F8F8',
                     }}
-                    // w="20%"
+                    w="200px"
                     backgroundColor="#F9FBFB"
                     p="24px"
                     borderRadius="md"
