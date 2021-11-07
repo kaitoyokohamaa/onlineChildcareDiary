@@ -9,6 +9,7 @@ import {Layout} from '@/components/common/layout'
 import {AuthContext} from '@/contexts/AuthContext'
 import {userRef, adminRegisterDetailRef} from '@/lib/firestore'
 import firebase from 'firebase'
+
 const PDF = dynamic<{detailDiary: DetailDiary}>(
   () => import('./pdf').then((mod) => mod.Pdf),
   {
@@ -31,14 +32,15 @@ export const Pages: VFC<DocKeyId> = ({userKey, detailKey}) => {
 
   const {loginUser} = useContext(AuthContext)
   const [isUser, setIsUser] = useState<boolean>(false)
-  const [detailDiary, setDetailDiary] =
-    useState<firebase.firestore.DocumentData>()
+  const [detailDiary, setDetailDiary] = useState<DetailDiary>()
   useEffect(() => {
     detailKey &&
       userKey &&
       adminRegisterDetailRef(String(userKey), String(detailKey)).onSnapshot(
         (res) => {
-          const data = res.data()
+          // firebaseの型周りを調べる。
+          let data = null
+          data = res.data()
           setDetailDiary(data)
         },
       )
