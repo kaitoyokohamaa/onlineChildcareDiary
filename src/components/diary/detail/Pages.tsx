@@ -3,11 +3,12 @@ import dynamic from 'next/dynamic'
 import {MdLocalLibrary} from 'react-icons/md'
 import {Box, Flex, Text, Divider} from '@chakra-ui/layout'
 import {Button} from '@chakra-ui/react'
-import {DetailDiary, isUserDetailDiary} from '@/models/diary/register'
+import {DetailDiary, DocKeyId} from '@/models/diary/register'
 import {useRouter} from 'next/router'
 import {Layout} from '@/components/common/layout'
 import {AuthContext} from '@/contexts/AuthContext'
-import {userRef} from '@/lib/firestore'
+import {userRef, adminRegisterDetailRef} from '@/lib/firestore'
+import firebase from 'firebase'
 const PDF = dynamic<{detailDiary: DetailDiary}>(
   () => import('./pdf').then((mod) => mod.Pdf),
   {
@@ -25,22 +26,32 @@ const UserOrTeacherLayout = ({children, isUser}) => {
   )
 }
 
-export const Pages: VFC<isUserDetailDiary> = ({detailDiary}) => {
+export const Pages: VFC<DocKeyId> = ({userKey, detailKey}) => {
   const router = useRouter()
-  const detailDockey = router.query.slug[0]
-  const uid = router.query.slug[1]
-  const {loginUser, dockey} = useContext(AuthContext)
-  const [isUser, setIsUser] = useState<boolean>(false)
 
+  const {loginUser} = useContext(AuthContext)
+  const [isUser, setIsUser] = useState<boolean>(false)
+  const [detailDiary, setDetailDiary] =
+    useState<firebase.firestore.DocumentData>()
   useEffect(() => {
-    dockey &&
+    detailKey &&
+      userKey &&
+      adminRegisterDetailRef(String(userKey), String(detailKey)).onSnapshot(
+        (res) => {
+          const data = res.data()
+          setDetailDiary(data)
+        },
+      )
+
+    detailKey &&
+      loginUser &&
       (async () => {
-        const userInfo = await userRef().doc(uid).get()
+        const userInfo = await userRef().doc(userKey).get()
         if (userInfo.data().uid[0] === loginUser.uid) {
           setIsUser(true)
         }
       })()
-  }, [dockey])
+  }, [detailKey, userKey, loginUser])
 
   return (
     <UserOrTeacherLayout isUser={isUser}>
@@ -68,7 +79,7 @@ export const Pages: VFC<isUserDetailDiary> = ({detailDiary}) => {
                   color="#5D5A5A"
                   mr="2"
                   onClick={() => {
-                    router.push(`/diary/edit/${detailDockey}/${uid}`)
+                    router.push(`/diary/edit/${detailKey}/${userKey}`)
                   }}
                 >
                   編集する
@@ -77,7 +88,7 @@ export const Pages: VFC<isUserDetailDiary> = ({detailDiary}) => {
                   background="#F5F5F5"
                   color="#5D5A5A"
                   onClick={() => {
-                    router.push(`/diary/${uid}`)
+                    router.push(`/diary/${userKey}`)
                   }}
                 >
                   日誌一覧にもどる
@@ -90,7 +101,7 @@ export const Pages: VFC<isUserDetailDiary> = ({detailDiary}) => {
                   color="#5D5A5A"
                   mr="2"
                   onClick={() => {
-                    router.push(`/diary/for-teachers/${detailDockey}/${uid}`)
+                    router.push(`/diary/for-teachers/${detailKey}/${userKey}`)
                   }}
                 >
                   添削する

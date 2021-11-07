@@ -192,7 +192,7 @@ const Pages: VFC<{detailDiary: DetailDiary}> = ({detailDiary}) => {
               <Text>実習生氏名</Text>
             </View>
             <View style={styles.content}>
-              <Text>{detailDiary.studentName}</Text>
+              <Text>{detailDiary?.studentName}</Text>
             </View>
           </View>
           <View style={styles.section}>
@@ -200,13 +200,13 @@ const Pages: VFC<{detailDiary: DetailDiary}> = ({detailDiary}) => {
               <Text>配属先</Text>
             </View>
             <View style={styles.assignedTeameContent}>
-              <Text>{detailDiary.assignedName}</Text>
+              <Text>{detailDiary?.assignedName}</Text>
             </View>
             <View style={styles.children}>
               <Text>指導者氏名</Text>
             </View>
             <View style={styles.content}>
-              <Text>{detailDiary.leader}</Text>
+              <Text>{detailDiary?.leader}</Text>
             </View>
           </View>
           <View style={styles.section}>
@@ -214,7 +214,7 @@ const Pages: VFC<{detailDiary: DetailDiary}> = ({detailDiary}) => {
               <Text>本日の目標</Text>
             </View>
             <View style={styles.aimContent}>
-              <Text>{detailDiary.goal}</Text>
+              <Text>{detailDiary?.goal}</Text>
             </View>
           </View>
 
@@ -236,7 +236,7 @@ const Pages: VFC<{detailDiary: DetailDiary}> = ({detailDiary}) => {
               </View>
             </View>
             {/* tableの中身 */}
-            {detailDiary.trainingContent.map((res, i) => {
+            {detailDiary?.trainingContent.map((res, i) => {
               return (
                 <View key={i} style={styles.tableRow}>
                   <View style={styles.dayTableContentCol}>
@@ -276,7 +276,7 @@ const Pages: VFC<{detailDiary: DetailDiary}> = ({detailDiary}) => {
             </View>
             <View style={styles.section}>
               <View style={styles.impressions}>
-                <Text>{detailDiary.feeling}</Text>
+                <Text>{detailDiary?.feeling}</Text>
               </View>
             </View>
             <View style={styles.section}>
@@ -287,7 +287,7 @@ const Pages: VFC<{detailDiary: DetailDiary}> = ({detailDiary}) => {
             <View style={styles.section}>
               <View style={styles.impressions}>
                 <Text style={styles.dodText}>
-                  {detailDiary.feedback
+                  {detailDiary?.feedback
                     ? detailDiary.feedback
                     : 'リンクを保育士に共有して添削と指導者からのことばを書いてもらいましょう。'}
                 </Text>
