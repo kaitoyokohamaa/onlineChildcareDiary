@@ -68,6 +68,7 @@ export const Pages: VFC<{diary: Register}> = ({diary}) => {
               background="#263773"
               color="#fff"
               _hover={{background: '#1c2956'}}
+              onClick={() => router.push(`/diary/introspection/${userKey}`)}
             >
               実習の反省会へ
             </Button>
