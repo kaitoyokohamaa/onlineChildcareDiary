@@ -15,20 +15,20 @@ import {Layout} from '@/components/common/layout'
 export const Pages: VFC<EditType> = ({
   detailDiary,
   projectID,
-  registerDetailDocKey
+  registerDetailDocKey,
 }) => {
   const [count, setCount] = useState<string>(detailDiary.count)
   const [day, setDay] = useState<string>(detailDiary.day)
   const [studentName, setStudentName] = useState<string>(
-    detailDiary.studentName
+    detailDiary.studentName,
   )
   const [assignedName, setAssignedName] = useState<string>(
-    detailDiary.assignedName
+    detailDiary.assignedName,
   )
   const [leader, setLeader] = useState<string>(detailDiary.leader)
   const [goal, setGoal] = useState<string>(detailDiary.goal)
   const [trainingContent, setTrainingContent] = useState<Table[]>(
-    detailDiary.trainingContent
+    detailDiary.trainingContent,
   )
   const [feeling, setFeeling] = useState<string>(detailDiary.feeling)
   const {dockey} = useContext(AuthContext)
@@ -41,12 +41,12 @@ export const Pages: VFC<EditType> = ({
       childActivities: '',
       assistance: '',
       activitesAndAwareness: '',
-      createdAt: firebase.firestore.Timestamp.now()
+      createdAt: firebase.firestore.Timestamp.now(),
     })
   }
 
-  const submitHandler = () => {
-    registerRef(dockey).doc(registerDetailDocKey).update({
+  const submitHandler = async () => {
+    await registerRef(dockey).doc(registerDetailDocKey).update({
       count,
       day,
       studentName,
@@ -54,10 +54,10 @@ export const Pages: VFC<EditType> = ({
       leader,
       goal,
       trainingContent,
-      feeling
+      feeling,
     })
 
-    router.push(`/diary/detail/${registerDetailDocKey}/${dockey}`)
+    await router.push(`/diary/detail/${registerDetailDocKey}/${dockey}`)
   }
   // todo react hooks formでバリデーションの追加
 
