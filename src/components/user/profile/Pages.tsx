@@ -1,14 +1,23 @@
-import {VFC} from 'react'
+import {VFC, useEffect, useState} from 'react'
 import {User} from '@/models/user'
-import {Box, Flex, Center, Heading, Text} from '@chakra-ui/layout'
+import {Box, Flex, Heading, Text} from '@chakra-ui/layout'
 import {Avatar, useColorModeValue, Button, Divider} from '@chakra-ui/react'
 import {useRouter} from 'next/router'
 import Link from 'next/link'
 import {Layout} from '@/components/common/layout'
-export const Pages: VFC<{user: User}> = ({user}) => {
+import {userfiledRef} from '@/lib/firestore'
+
+export const Pages: VFC = () => {
+  const [user, setUser] = useState<User>()
   const router = useRouter()
   const docKey = router.query.profile
-
+  useEffect(() => {
+    userfiledRef(String(docKey)).onSnapshot((res) => {
+      let data = null
+      data = res.data()
+      setUser(data)
+    })
+  }, [])
   return (
     <Layout isHeader>
       <Box mt="2" px={16} overflow="scroll" h="85vh">
@@ -36,7 +45,7 @@ export const Pages: VFC<{user: User}> = ({user}) => {
           <Box w="100%" boxShadow={'2xl'} p="14" my="10">
             <Flex>
               <Box mr="10">
-                <Avatar size="2xl" src={user.dispayImage} alt={'Author'} />
+                <Avatar size="2xl" src={user?.dispayImage} alt={'Author'} />
               </Box>
 
               <Box pl="5">
@@ -47,7 +56,7 @@ export const Pages: VFC<{user: User}> = ({user}) => {
                     fontWeight="bold"
                     fontFamily={'body'}
                   >
-                    {user.name ? user.name : '未記入'}
+                    {user?.name ? user.name : '未記入'}
                   </Heading>
                   <Box mt="-4">
                     <Button
@@ -62,7 +71,7 @@ export const Pages: VFC<{user: User}> = ({user}) => {
                   </Box>
                 </Flex>
                 <Text color={'gray.500'} pt="5">
-                  {user.selfIntroduction ? user.selfIntroduction : '未記入'}
+                  {user?.selfIntroduction ? user.selfIntroduction : '未記入'}
                 </Text>
               </Box>
             </Flex>
@@ -93,21 +102,21 @@ export const Pages: VFC<{user: User}> = ({user}) => {
                 <Text fontWeight="bold" color="#273264">
                   性別
                 </Text>
-                <Text pt="2">{user.sex ? user.sex : '未記入'}</Text>
+                <Text pt="2">{user?.sex ? user.sex : '未記入'}</Text>
               </Box>
               {/* 生年月日 */}
               <Box w="25%">
                 <Text fontWeight="bold" color="#273264">
                   生年月日
                 </Text>
-                <Text pt="2">{user.birthday ? user.birthday : '未記入'}</Text>
+                <Text pt="2">{user?.birthday ? user.birthday : '未記入'}</Text>
               </Box>
               {/* メールアドレス */}
               <Box>
                 <Text fontWeight="bold" color="#273264">
                   メールアドレス
                 </Text>
-                <Text pt="2">{user.address ? user.address : '未記入'}</Text>
+                <Text pt="2">{user?.address ? user.address : '未記入'}</Text>
               </Box>
             </Flex>
             <Divider mt="10" colorScheme="blue" size="2xl" />
@@ -118,7 +127,7 @@ export const Pages: VFC<{user: User}> = ({user}) => {
                   電話
                 </Text>
                 <Text pt="2">
-                  {user.cellphoneNumber ? user.cellphoneNumber : '未記入'}
+                  {user?.cellphoneNumber ? user.cellphoneNumber : '未記入'}
                 </Text>
               </Box>
 
@@ -128,7 +137,7 @@ export const Pages: VFC<{user: User}> = ({user}) => {
                   実習先
                 </Text>
                 <Text pt="2">
-                  {user.practicalTraining ? user.practicalTraining : '未記入'}
+                  {user?.practicalTraining ? user.practicalTraining : '未記入'}
                 </Text>
               </Box>
             </Flex>

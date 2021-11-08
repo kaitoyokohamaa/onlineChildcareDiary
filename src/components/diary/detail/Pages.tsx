@@ -8,7 +8,6 @@ import {useRouter} from 'next/router'
 import {Layout} from '@/components/common/layout'
 import {AuthContext} from '@/contexts/AuthContext'
 import {userRef, adminRegisterDetailRef} from '@/lib/firestore'
-import firebase from 'firebase'
 
 const PDF = dynamic<{detailDiary: DetailDiary}>(
   () => import('./pdf').then((mod) => mod.Pdf),
