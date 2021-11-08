@@ -7,10 +7,8 @@ import {EditUser} from '@/models/user'
 export const getStaticProps: GetStaticProps = async (
   context: GetStaticPropsContext,
 ) => {
-  const user = await adminUsersRef(String(context.params.edit)).get()
   return {
     props: {
-      user: user.data(),
       id: context.params.edit,
     },
     revalidate: 20,
@@ -23,8 +21,8 @@ export async function getStaticPaths() {
   }
 }
 
-const Edit: NextPage<EditUser> = ({user, id}) => {
-  return <Pages user={user} id={id} />
+const Edit: NextPage<EditUser> = ({id}) => {
+  return <Pages id={id} />
 }
 
 export default Edit
