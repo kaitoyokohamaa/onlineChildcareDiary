@@ -11,6 +11,5 @@ export type User = {
 }
 
 export type EditUser = {
-  user: User
   id: string
 }

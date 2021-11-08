@@ -17,7 +17,7 @@ export const Pages: VFC = () => {
       data = res.data()
       setUser(data)
     })
-  }, [])
+  }, [docKey])
   return (
     <Layout isHeader>
       <Box mt="2" px={16} overflow="scroll" h="85vh">

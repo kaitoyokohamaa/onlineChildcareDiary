@@ -11,14 +11,14 @@ import {
 } from '@chakra-ui/react'
 import {EditUser} from '@/models/user'
 import {useRouter} from 'next/router'
-import {useState, useContext, useEffect} from 'react'
-import {AuthContext} from '@/contexts/AuthContext'
+import {useState, useEffect} from 'react'
 import {Dropzone} from '@/components/common/dropzone'
 import {userfiledRef} from '@/lib/firestore'
 import {Layout} from '@/components/common/layout'
-export const Pages: VFC<EditUser> = ({user, id}) => {
+import {User} from '@/models/user'
+export const Pages: VFC<EditUser> = ({id}) => {
   const router = useRouter()
-  const {dockey, setDisplayName} = useContext(AuthContext)
+
   const [name, setName] = useState<string>()
   const [address, setAddress] = useState<string>()
   const [birthday, setBirthday] = useState<string>()
@@ -27,17 +27,25 @@ export const Pages: VFC<EditUser> = ({user, id}) => {
   const [sex, setSex] = useState<string>()
   const [selfIntroduction, setSelfIntroduction] = useState<string>()
   const [dispayImage, setDispayImage] = useState<string>()
+  const [user, setUser] = useState<User>()
   useEffect(() => {
-    setName(user.name)
-    setAddress(user.address)
-    setBirthday(user.birthday)
-    setCellphoneNumber(user.cellphoneNumber)
-    setPracticalTraining(user.practicalTraining)
-    setSex(user.sex)
-    setSelfIntroduction(user.selfIntroduction)
-    setDispayImage(user.dispayImage)
+    setName(user?.name)
+    setAddress(user?.address)
+    setBirthday(user?.birthday)
+    setCellphoneNumber(user?.cellphoneNumber)
+    setPracticalTraining(user?.practicalTraining)
+    setSex(user?.sex)
+    setSelfIntroduction(user?.selfIntroduction)
+    setDispayImage(user?.dispayImage)
   }, [user])
 
+  useEffect(() => {
+    userfiledRef(id).onSnapshot((res) => {
+      let data = null
+      data = res.data()
+      setUser(data)
+    })
+  }, [id])
   const submitHandler = async () => {
     await userfiledRef(id).update({
       name,
@@ -49,7 +57,7 @@ export const Pages: VFC<EditUser> = ({user, id}) => {
       practicalTraining,
     })
 
-    router.push(`/user/profile/${dockey}`)
+    router.push(`/user/profile/${id}`)
   }
   return (
     <Layout isHeader>
