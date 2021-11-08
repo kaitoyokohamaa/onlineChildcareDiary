@@ -36,7 +36,7 @@ export const Pages: VFC<EditUser> = ({user, id}) => {
     setSex(user.sex)
     setSelfIntroduction(user.selfIntroduction)
     setDispayImage(user.dispayImage)
-  }, [])
+  }, [user])
 
   const submitHandler = async () => {
     await userfiledRef(id).update({
