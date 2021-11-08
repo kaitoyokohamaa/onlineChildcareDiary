@@ -7,8 +7,8 @@ import Link from 'next/link'
 import {Layout} from '@/components/common/layout'
 export const Pages: VFC<{user: User}> = ({user}) => {
   const router = useRouter()
-  const currentPath = router.asPath
-  const editPath = currentPath.replace('profile', 'edit')
+  const docKey = router.query.profile
+
   return (
     <Layout isHeader>
       <Box mt="2" px={16} overflow="scroll" h="85vh">
@@ -55,7 +55,7 @@ export const Pages: VFC<{user: User}> = ({user}) => {
                       color="#fff"
                       _hover={{background: '#1c2956'}}
                     >
-                      <Link href={`/user/profile${editPath}`}>
+                      <Link href={`/user/profile/edit/${docKey}`}>
                         <a>プロフィールを編集する</a>
                       </Link>
                     </Button>
