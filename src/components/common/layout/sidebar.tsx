@@ -54,13 +54,15 @@ export const Sidebar: VFC<{isTeacher?: boolean}> = ({isTeacher}) => {
               }
             >
               <SidebarLink
-                color={router.asPath === '/home' ? '#84B9D4' : 'white'}
+                color={
+                  router.asPath.indexOf('/home') !== -1 ? '#84B9D4' : 'white'
+                }
               >
                 <Link href={`/user/home/${dockey}`}>
                   <a>
                     <Flex
                       justify="center"
-                      mx={router.asPath === '/home' && -1.5}
+                      mx={router.asPath.indexOf('/home') !== -1 && -1.5}
                     >
                       <HStack w="60%">
                         <MdHome size={20} />
@@ -87,7 +89,7 @@ export const Sidebar: VFC<{isTeacher?: boolean}> = ({isTeacher}) => {
                   router.asPath.indexOf('/diary') !== -1 ? '#84B9D4' : 'white'
                 }
               >
-                <Link href={`/diary/${dockey}`}>
+                <Link href={`/user/diary/${dockey}`}>
                   <a>
                     <Flex
                       justify="center"
@@ -105,15 +107,17 @@ export const Sidebar: VFC<{isTeacher?: boolean}> = ({isTeacher}) => {
 
             <Box
               _hover={{bg: '#FFFFFF1A 0% 0% no-repeat padding-box'}}
-              borderLeft={router.asPath === '/chat' && '4px'}
-              borderColor={router.asPath === '/chat' && '#56A9D3'}
+              borderLeft={router.asPath.indexOf('/chat') !== -1 && '4px'}
+              borderColor={router.asPath.indexOf('/chat') !== -1 && '#56A9D3'}
               bg={
-                router.asPath === '/chat' &&
+                router.asPath.indexOf('/chat') !== -1 &&
                 '#FFFFFF1A 0% 0% no-repeat padding-box'
               }
             >
               <SidebarLink
-                color={router.asPath === '/chat' ? '#84B9D4' : 'white'}
+                color={
+                  router.asPath.indexOf('/chat') !== -1 ? '#84B9D4' : 'white'
+                }
               >
                 <Link href={`/user/chat/${dockey}`}>
                   <a>
@@ -136,21 +140,23 @@ export const Sidebar: VFC<{isTeacher?: boolean}> = ({isTeacher}) => {
             <Box
               mt="20"
               _hover={{bg: '#FFFFFF1A 0% 0% no-repeat padding-box'}}
-              borderLeft={router.asPath === '/chat' && '4px'}
-              borderColor={router.asPath === '/chat' && '#56A9D3'}
+              borderLeft={router.asPath.indexOf('/chat') !== -1 && '4px'}
+              borderColor={router.asPath.indexOf('/chat') !== -1 && '#56A9D3'}
               bg={
-                router.asPath === 'chat' &&
+                router.asPath.indexOf('/chat') !== -1 &&
                 '#FFFFFF1A 0% 0% no-repeat padding-box'
               }
             >
               <SidebarLink
-                color={router.asPath === '/chat' ? '#84B9D4' : 'white'}
+                color={
+                  router.asPath.indexOf('/chat') !== -1 ? '#84B9D4' : 'white'
+                }
               >
                 <Link href={`/teacher/chat/${chatKey}`}>
                   <a>
                     <Flex
                       justify="center"
-                      mx={router.asPath === '/chat' && -1.5}
+                      mx={router.asPath.indexOf('/chat') !== -1 && -1.5}
                     >
                       <HStack w="50%">
                         <MdChatBubble size={20} />
@@ -163,22 +169,22 @@ export const Sidebar: VFC<{isTeacher?: boolean}> = ({isTeacher}) => {
             </Box>
             <Box
               _hover={{bg: '#FFFFFF1A 0% 0% no-repeat padding-box'}}
-              borderLeft={router.asPath === '/edit' && '4px'}
-              borderColor={router.asPath === '/edit' && '#56A9D3'}
+              borderLeft={router.asPath.includes('history') && '4px'}
+              borderColor={router.asPath.includes('history') && '#56A9D3'}
               bg={
-                router.asPath === '/edit' &&
+                router.asPath.includes('history') &&
                 '#FFFFFF1A 0% 0% no-repeat padding-box'
               }
             >
               <SidebarLink
-                color={router.asPath === '/edit' ? '#84B9D4' : 'white'}
+                color={router.asPath.includes('history') ? '#84B9D4' : 'white'}
               >
-                <Link href="/edit">
+                <Link href={`/teacher/history/${dockey}/${chatKey}`}>
                   <a>
                     <Flex justify="center" mx={-1.5}>
                       <HStack w="50%">
                         <VscGear size={20} />
-                        <Text py={6}>添削済み</Text>
+                        <Text py={6}>添削履歴</Text>
                       </HStack>
                     </Flex>
                   </a>

@@ -18,6 +18,13 @@ export const userfiledRef = (docKey: string) => {
   return docKey && firestore().collection('User').doc(docKey)
 }
 
+export const teaherDiaryHistiryRef = (docKey: string) => {
+  return (
+    docKey &&
+    firestore().collection('Teacher').doc(docKey).collection('history')
+  )
+}
+
 export const registerRef = (docKey: string) => {
   return (
     docKey && firestore().collection('User').doc(docKey).collection('register')

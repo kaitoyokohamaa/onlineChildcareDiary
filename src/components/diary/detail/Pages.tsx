@@ -20,7 +20,7 @@ const UserOrTeacherLayout = ({children, isUser}) => {
   return isUser ? (
     <Layout isHeader>{children}</Layout>
   ) : (
-    <Layout>
+    <Layout isTeacher>
       <Box pt="10">{children}</Box>
     </Layout>
   )
@@ -44,10 +44,11 @@ export const Pages: VFC<DocKeyId> = ({userKey, detailKey}) => {
         },
       )
 
-    detailKey &&
+    userKey &&
       loginUser &&
       (async () => {
-        const userInfo = await userRef().doc(userKey).get()
+        const userInfo = await userRef().doc(String(userKey)).get()
+
         if (userInfo.data().uid[0] === loginUser.uid) {
           setIsUser(true)
         }
