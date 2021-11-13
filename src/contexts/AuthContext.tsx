@@ -22,8 +22,12 @@ export const UseAuthContext = ({children}) => {
   useEffect(() => {
     firebase.auth().onAuthStateChanged(async (user: firebase.default.User) => {
       if (user) {
-        setLoginUser(user)
-        if (router.asPath.indexOf('teacher') === 1) {
+        if (
+          router.asPath.includes('teacher') ||
+          router.asPath.includes('for-teachers')
+        ) {
+          setLoginUser(user)
+
           teacherRef()
             .where('uid', '==', user.uid)
             .onSnapshot((res) =>
@@ -44,6 +48,7 @@ export const UseAuthContext = ({children}) => {
               })
             })
         } else {
+          setLoginUser(user)
           userIdRef(user.uid).onSnapshot((res) =>
             res.forEach((item) => {
               return (
@@ -66,7 +71,7 @@ export const UseAuthContext = ({children}) => {
           })
         }
       } else if (
-        router.asPath.indexOf('/invite') === -1 &&
+        !router.asPath.includes('/invite') &&
         router.asPath !== '/teacher/login'
       ) {
         router.push(`/user/signup`)

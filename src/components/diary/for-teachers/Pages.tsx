@@ -2,40 +2,44 @@ import {Box, Flex, Text, Divider} from '@chakra-ui/layout'
 import {Textarea, Button} from '@chakra-ui/react'
 import {DiaryTabel} from '@/components/diary/register/diaryTabel'
 import {useState} from 'react'
-import {registerRef} from '@/lib/firestore'
+import {registerRef, teaherDiaryHistiryRef} from '@/lib/firestore'
 import firebase from 'firebase/app'
 
 import {MdLocalLibrary} from 'react-icons/md'
 import {Table} from '@/models/diary'
-import {VFC} from 'react'
+import {VFC, useContext} from 'react'
 import {EditType} from '@/models/diary/edit'
 import {useRouter} from 'next/router'
-
+import {AuthContext} from '@/contexts/AuthContext'
 export const Pages: VFC<EditType> = ({
   detailDiary,
   projectID,
-  registerDetailDocKey
+  registerDetailDocKey,
 }) => {
   const [trainingContent, setTrainingContent] = useState<Table[]>(
-    detailDiary.trainingContent
+    detailDiary.trainingContent,
   )
 
   const [feedback, setFeedback] = useState<string>(
-    detailDiary.feedback ? detailDiary.feedback : ''
+    detailDiary.feedback ? detailDiary.feedback : '',
   )
 
   const router = useRouter()
+  const {dockey} = useContext(AuthContext)
+  const userDockkey = router.query.teachers[1]
 
-  const dockey = router.query.teachers[1]
-
-  const submitHandler = () => {
-    registerRef(dockey).doc(registerDetailDocKey).update({
+  const submitHandler = async () => {
+    await registerRef(userDockkey).doc(registerDetailDocKey).update({
       feedback,
       trainingContent,
-      updateAt: firebase.firestore.Timestamp.now()
+      updateAt: firebase.firestore.Timestamp.now(),
     })
-
-    router.push(`/diary/detail/${registerDetailDocKey}/${dockey}`)
+    ;(await userDockkey) !== dockey &&
+      teaherDiaryHistiryRef(dockey).add({
+        diaryId: registerDetailDocKey,
+        updateAt: firebase.firestore.Timestamp.now(),
+      })
+    router.push(`/teacher/diary/detail/${registerDetailDocKey}/${userDockkey}`)
   }
   // todo react hooks formでバリデーションの追加
 

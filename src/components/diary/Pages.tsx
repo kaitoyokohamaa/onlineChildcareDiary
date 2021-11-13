@@ -59,7 +59,7 @@ export const Pages: VFC<{diary: Register}> = ({diary}) => {
               background="#263773"
               color="#fff"
               _hover={{background: '#1c2956'}}
-              onClick={() => router.push(`/diary/summary/${userKey}`)}
+              onClick={() => router.push(`/user/diary/summary/${userKey}`)}
             >
               実習のまとめへ
             </Button>
@@ -68,7 +68,9 @@ export const Pages: VFC<{diary: Register}> = ({diary}) => {
               background="#263773"
               color="#fff"
               _hover={{background: '#1c2956'}}
-              onClick={() => router.push(`/diary/introspection/${userKey}`)}
+              onClick={() =>
+                router.push(`/user/diary/introspection/${userKey}`)
+              }
             >
               実習の反省会へ
             </Button>
@@ -89,6 +91,7 @@ export const Pages: VFC<{diary: Register}> = ({diary}) => {
           <Tbody>
             {diary.length ? (
               diary.map((res, i) => {
+                console.log(res)
                 return (
                   <Tr
                     key={i}
@@ -102,7 +105,7 @@ export const Pages: VFC<{diary: Register}> = ({diary}) => {
                     </Th>
 
                     <Td color="#273264" fontWeight="bold" cursor="pointer">
-                      <Link href={`/diary/detail/${res.id}/${userKey}`}>
+                      <Link href={`/user/diary/detail/${res.id}/${userKey}`}>
                         <a>2歳児クラス</a>
                       </Link>
                     </Td>
@@ -111,7 +114,7 @@ export const Pages: VFC<{diary: Register}> = ({diary}) => {
                       <CopyToClipboard
                         cursor="pointer"
                         // 本番環境のパスに入れ替え→もしisUserじゃなかったら保育士の先生が編集できるデザインに変更する。
-                        text={`https://online-childcare-diary-nv53p7fn9-kaitoyokohamaa.vercel.app/diary/detail/${res.id}/${userKey}`}
+                        text={`phoenixdiary.vercel.app/diary/detail/${res.id}/${userKey}`}
                       >
                         <MdContentCopy
                           onClick={() =>
