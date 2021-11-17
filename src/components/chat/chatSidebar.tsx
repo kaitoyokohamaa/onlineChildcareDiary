@@ -5,7 +5,7 @@ import {ChatsSidebarProps} from '@/models/chat'
 export const ChatSidebar: VFC<ChatsSidebarProps> = ({
   lastMessage,
   name,
-  image
+  image,
 }) => {
   return (
     <Flex w="25%">
@@ -22,7 +22,7 @@ export const ChatSidebar: VFC<ChatsSidebarProps> = ({
                 <Box pl="3">
                   <Text fontWeight="bold">{name}</Text>
                   <Text fontSize="sm" color="#707070">
-                    {lastMessage.length > 15
+                    {lastMessage && lastMessage.length > 15
                       ? lastMessage.substr(0, 15) + '...'
                       : lastMessage}
                   </Text>
