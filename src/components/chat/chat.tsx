@@ -5,7 +5,7 @@ import {ChatText} from '@/components/chat/chatText'
 import {Messages} from '@/models/chat'
 import {AuthContext} from '@/contexts/AuthContext'
 export const Chat: VFC<{
-  chatMessages
+  chatMessages: Messages[]
 }> = ({chatMessages}) => {
   const {loginUser} = useContext(AuthContext)
   return (
