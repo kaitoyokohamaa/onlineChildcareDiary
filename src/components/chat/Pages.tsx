@@ -16,11 +16,14 @@ export const Pages: VFC<AllChatContent> = ({
   isTeacher,
   chatData,
 }) => {
-  const {data: chatMessages} = useCollection(`User/${chatKey}/chats/`, {
-    listen: true,
-    orderBy: ['sentAt', 'asc'],
-    initialData: chatData,
-  })
+  const {data: chatMessages} = useCollection<AllChatContent['chatData']>(
+    `User/${chatKey}/chats/`,
+    {
+      listen: true,
+      orderBy: ['sentAt', 'asc'],
+      initialData: chatData,
+    },
+  )
 
   const {data: lastMessage} = useCollection<AllChatContent['chatData']>(
     `User/${chatKey}/chats/`,
