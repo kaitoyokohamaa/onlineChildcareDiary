@@ -19,7 +19,6 @@ export const Pages: VFC<AllChatContent> = ({
   const {data: chatMessages} = useCollection<AllChatContent['chatData']>(
     `User/${chatKey}/chats/`,
     {
-      
       listen: true,
       orderBy: ['sentAt', 'asc'],
       initialData: chatData,

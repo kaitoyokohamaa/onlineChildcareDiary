@@ -6,17 +6,17 @@ export type Chats = {
 }
 
 export type AllChatContent = {
-  chatKey: string
-  teacherData: Teacher
+  chatKey?: string
+  teacherData?: Teacher
   isTeacher?: boolean
-  chatData: Messages
+  chatData?: Messages
 }
 
 export type Messages = {
   senderId: string
   sentAt: Date
   text: string
-  id: number
+  id: string
 }
 
 export type ChatsProps = {
