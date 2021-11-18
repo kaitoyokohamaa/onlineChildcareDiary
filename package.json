@@ -13,7 +13,7 @@
     "@chakra-ui/react": "^1.6.5",
     "@emotion/react": "^11",
     "@emotion/styled": "^11",
-    "@nandorojo/swr-firestore": "^0.16.0",
+    "@nandorojo/swr-firestore": "git+https://github.com/kaitoyokohamaa/swr-firestore.git",
     "@react-pdf/renderer": "^2.0.19",
     "dotenv": "^10.0.0",
     "firebase": "^8.9.1",
