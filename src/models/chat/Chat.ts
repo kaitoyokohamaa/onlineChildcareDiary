@@ -3,16 +3,25 @@ export type Chats = {
   senderId: string
   sentAt: Date
   text: string
-}[]
+}
+
+export type AllChatContent = {
+  chatKey?: string
+  teacherData?: Teacher
+  isTeacher?: boolean
+  chatData?: Messages
+}
 
 export type Messages = {
-  chats: {senderId: string; sentAt: Date; text: string}
-  chatsId: string
+  senderId: string
+  sentAt: Date
+  text: string
+  id: string
 }
 
 export type ChatsProps = {
   chatKey: string
-  data: Teacher
+  teacherData: Teacher
   isTeacher?: boolean
 }
 

@@ -34,7 +34,6 @@ export const Pages: VFC<History> = ({data, userKey}) => {
         diaryIds.includes(item.id) &&
           historyDiariesArray.push({
             diaryDay: item.data().day,
-            // updatedDay: res.updateAt,
             id: item.id,
           })
       })

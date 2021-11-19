@@ -21,7 +21,7 @@ export async function getStaticPaths() {
     fallback: 'blocking',
   }
 }
-const Chat: NextPage<ChatsProps> = ({chatKey, data}) => {
-  return <Pages chatKey={chatKey} data={data} isTeacher />
+const Chat: NextPage<{chatKey: any; data: any}> = ({chatKey, data}) => {
+  return <Pages chatKey={chatKey} teacherData={data} isTeacher />
 }
 export default Chat

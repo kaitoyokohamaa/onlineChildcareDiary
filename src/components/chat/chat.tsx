@@ -10,11 +10,11 @@ export const Chat: VFC<{
   const {loginUser} = useContext(AuthContext)
   return (
     <>
-      {chatMessages?.map((res: Messages) => {
-        return res.chats.senderId === loginUser?.uid ? (
-          <ChatText key={res.chatsId} isSender={true} text={res.chats.text} />
+      {chatMessages?.map(({senderId, id, text}) => {
+        return senderId === loginUser?.uid ? (
+          <ChatText key={id} isSender={true} text={text} />
         ) : (
-          <ChatText key={res.chatsId} isSender={false} text={res.chats.text} />
+          <ChatText key={id} isSender={false} text={text} />
         )
       })}
     </>

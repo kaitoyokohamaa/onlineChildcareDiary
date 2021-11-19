@@ -1,46 +1,47 @@
-import {VFC, useState, useEffect, useContext} from 'react'
+import {VFC} from 'react'
 
 import {Box, Flex} from '@chakra-ui/layout'
-import {chatRef} from '@/lib/firestore'
+
 import {ChatSidebar} from '@/components/chat/chatSidebar'
 import {ChatHeader} from '@/components/chat/chatHeader'
 import {Chat} from '@/components/chat/chat'
 import {ChatForm} from '@/components/chat/chatForm'
 import {Layout} from '@/components/common/layout'
-import {Messages, ChatsProps} from '@/models/chat'
-import {AuthContext} from '@/contexts/AuthContext'
-export const Pages: VFC<ChatsProps> = ({chatKey, data, isTeacher}) => {
-  const [chatMessages, setChatMessages] = useState<Messages[]>([])
-  const [lastMessage, setLastMessage] = useState<string>('')
-  const [isSender, setIsSender] = useState<boolean>(false)
-  const {dockey} = useContext(AuthContext)
-  useEffect(() => {
-    chatRef(chatKey)
-      .orderBy('sentAt', 'asc')
-      .onSnapshot((res) => {
-        let chatMessagesArray: Messages[] = []
-        res.forEach((item) => {
-          chatMessagesArray.push({
-            chatsId: item.id,
-            chats: {
-              senderId: item.data().senderId,
-              sentAt: item.data().sentAt,
-              text: item.data().text,
-            },
-          })
-        })
-        setChatMessages(chatMessagesArray)
-      })
+import {AllChatContent} from '@/models/chat'
+import {Teacher} from '@/models/teacher'
+import {useCollection} from '@nandorojo/swr-firestore'
+export const Pages: VFC<AllChatContent> = ({
+  chatKey,
+  teacherData,
+  isTeacher,
+  chatData,
+}) => {
+  const {data: chatMessages} = useCollection<AllChatContent['chatData']>(
+    `User/${chatKey}/chats/`,
+    {
+      listen: true,
+      orderBy: ['sentAt', 'asc'],
+      initialData: chatData,
+    },
+  )
 
-    chatRef(chatKey)
-      .orderBy('sentAt', 'desc')
-      .limit(1)
-      .onSnapshot((res) => {
-        res.forEach((item) => {
-          setLastMessage(item.data().text)
-        })
-      })
-  }, [chatKey])
+  const {data: lastMessage} = useCollection<AllChatContent['chatData']>(
+    `User/${chatKey}/chats/`,
+    {
+      ignoreFirestoreDocumentSnapshotField: false,
+      limit: 1,
+      orderBy: ['sentAt', 'desc'],
+      listen: true,
+    },
+  )
+
+  const {data: teacherProfile} = useCollection<Teacher>(
+    `Teacher`,
+    {},
+    {
+      initialData: teacherData[0],
+    },
+  )
 
   return (
     <Layout
@@ -50,13 +51,16 @@ export const Pages: VFC<ChatsProps> = ({chatKey, data, isTeacher}) => {
       <Box p={0} borderTop="2px" borderColor="#E9E9E9" mt="20px">
         <Flex>
           <ChatSidebar
-            lastMessage={lastMessage}
-            name={data.name}
-            image={data.dispayImage}
+            lastMessage={lastMessage && lastMessage[0].text}
+            name={teacherProfile && teacherProfile[0]?.name}
+            image={teacherProfile && teacherProfile[0]?.dispayImage}
           />
           <Flex w="75%" justifyContent="center">
             <Box w="95%">
-              <ChatHeader image={data.dispayImage} name={data.name} />
+              <ChatHeader
+                image={teacherProfile && teacherProfile[0]?.dispayImage}
+                name={teacherProfile && teacherProfile[0]?.name}
+              />
               <Box h="65vh" overflow="scroll">
                 <Chat chatMessages={chatMessages} />
               </Box>
