@@ -1,13 +1,13 @@
-import {VFC} from 'react'
-import {Box, Flex, Text, Divider} from '@chakra-ui/layout'
-import {Input, Button, useToast} from '@chakra-ui/react'
-import {MdLocalLibrary} from 'react-icons/md'
-import Link from 'next/link'
-import {Layout} from '@/components/common/layout'
-import {CopyToClipboard} from 'react-copy-to-clipboard'
-import {v1 as uuidv1} from 'uuid'
+import {VFC} from 'react';
+import {Box, Flex, Text, Divider} from '@chakra-ui/layout';
+import {Input, Button, useToast} from '@chakra-ui/react';
+import {MdLocalLibrary} from 'react-icons/md';
+import Link from 'next/link';
+import {Layout} from '@/components/common/layout';
+import {CopyToClipboard} from 'react-copy-to-clipboard';
+import {v1 as uuidv1} from 'uuid';
 export const Pages: VFC<{inviteKey: string}> = ({inviteKey}) => {
-  const toast = useToast()
+  const toast = useToast();
   return (
     <Layout isHeader>
       <Box px={16}>
@@ -29,8 +29,7 @@ export const Pages: VFC<{inviteKey: string}> = ({inviteKey}) => {
                     alignItems="center"
                     border="2px solid #e4eaf1"
                     boxSizing="border-box"
-                    textAlign="center"
-                  >
+                    textAlign="center">
                     <Box display="flex" justifyContent="center">
                       <MdLocalLibrary size="70" color=" #9FD0E8" />
                     </Box>
@@ -44,7 +43,7 @@ export const Pages: VFC<{inviteKey: string}> = ({inviteKey}) => {
               </Link>
             </Box>
             <Box>
-              <Link href={`/diary/summary/register`}>
+              <Link href={`/user/diary/summary/register`}>
                 <a>
                   <Box
                     _hover={{backgroundColor: '#F8F8F8'}}
@@ -55,8 +54,7 @@ export const Pages: VFC<{inviteKey: string}> = ({inviteKey}) => {
                     alignItems="center"
                     border="2px solid #e4eaf1"
                     boxSizing="border-box"
-                    textAlign="center"
-                  >
+                    textAlign="center">
                     <Box display="flex" justifyContent="center">
                       <MdLocalLibrary size="70" color=" #9FD0E8" />
                     </Box>
@@ -70,7 +68,7 @@ export const Pages: VFC<{inviteKey: string}> = ({inviteKey}) => {
               </Link>
             </Box>
             <Box>
-              <Link href={`/diary/introspection/register`}>
+              <Link href={`/user/diary/introspection/register`}>
                 <a>
                   <Box
                     _hover={{
@@ -83,8 +81,7 @@ export const Pages: VFC<{inviteKey: string}> = ({inviteKey}) => {
                     alignItems="center"
                     border="2px solid #e4eaf1"
                     boxSizing="border-box"
-                    textAlign="center"
-                  >
+                    textAlign="center">
                     <Box display="flex" justifyContent="center">
                       <MdLocalLibrary size="70" color=" #9FD0E8" />
                     </Box>
@@ -116,8 +113,7 @@ export const Pages: VFC<{inviteKey: string}> = ({inviteKey}) => {
                       alignItems="center"
                       border="2px solid #e4eaf1"
                       boxSizing="border-box"
-                      textAlign="center"
-                    >
+                      textAlign="center">
                       <Box>
                         <Text fontWeight="bold">日誌一覧</Text>
                       </Box>
@@ -138,8 +134,7 @@ export const Pages: VFC<{inviteKey: string}> = ({inviteKey}) => {
                       alignItems="center"
                       border="2px solid #e4eaf1"
                       boxSizing="border-box"
-                      textAlign="center"
-                    >
+                      textAlign="center">
                       <Box>
                         <Text fontWeight="bold">チャット</Text>
                       </Box>
@@ -163,8 +158,7 @@ export const Pages: VFC<{inviteKey: string}> = ({inviteKey}) => {
               <CopyToClipboard
                 cursor="pointer"
                 // 本番環境のパスに入れ替え→もしisUserじゃなかったら保育士の先生が編集できるデザインに変更する。
-                text={`https://phoenixdiary.vercel.app/user/signup/invite/${inviteKey}`}
-              >
+                text={`https://phoenixdiary.vercel.app/user/signup/invite/${inviteKey}`}>
                 <Button
                   _hover={{backgroundColor: '#F8F8F8'}}
                   backgroundColor="#F9FBFB"
@@ -179,8 +173,7 @@ export const Pages: VFC<{inviteKey: string}> = ({inviteKey}) => {
                       position: 'bottom',
                       isClosable: true,
                     })
-                  }
-                >
+                  }>
                   コピー
                 </Button>
               </CopyToClipboard>
@@ -189,5 +182,5 @@ export const Pages: VFC<{inviteKey: string}> = ({inviteKey}) => {
         </Box>
       </Box>
     </Layout>
-  )
-}
+  );
+};
