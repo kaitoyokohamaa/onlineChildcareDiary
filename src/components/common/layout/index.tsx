@@ -1,15 +1,16 @@
-import {Header} from './header'
-import {Sidebar} from './sidebar'
-import {VFC} from 'react'
-import {Box, Flex} from '@chakra-ui/layout'
+import {Header} from './header';
+import {Sidebar} from './sidebar';
+import {VFC} from 'react';
+import {Box, Flex} from '@chakra-ui/layout';
 
 type Props = {
-  children?: React.ReactNode
-  isHeader?: boolean
-  isTeacher?: boolean
-}
+  children?: React.ReactNode;
+  isHeader?: boolean;
+  isTeacher?: boolean;
+};
 
 export const Layout: VFC<Props> = ({children, isHeader, isTeacher}) => {
+  console.log(isHeader);
   return (
     <Box>
       <Flex w="100%">
@@ -32,5 +33,5 @@ export const Layout: VFC<Props> = ({children, isHeader, isTeacher}) => {
         </Flex>
       </Flex>
     </Box>
-  )
-}
+  );
+};
