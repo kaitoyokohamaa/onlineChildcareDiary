@@ -1,23 +1,46 @@
 import {Box, Flex, Text, Divider} from '@chakra-ui/layout';
 import {Textarea, Button} from '@chakra-ui/react';
-import {useState, useContext} from 'react';
+import {useState, useContext, useEffect} from 'react';
 import firebase from 'firebase/app';
 import {AuthContext} from '@/contexts/AuthContext';
 import {MdLocalLibrary} from 'react-icons/md';
 import {Layout} from '@/components/common/layout';
 import {introspectionRef} from '@/lib/firestore';
 import {useRouter} from 'next/router';
-export const Register = () => {
+
+export const Pages = () => {
   const [introspection, setIntrospection] = useState<string>('');
+  const [introspectionKey, setIntrospectionKey] = useState<string>('');
+  const [introspectionData, setIntrospectionData] =
+    useState<firebase.firestore.DocumentData>();
   const {dockey} = useContext(AuthContext);
   const router = useRouter();
+
+  useEffect(() => {
+    (async () => {
+      const summary = dockey && (await introspectionRef(dockey).get());
+      summary &&
+        summary.docs.map((res) => {
+          const summaryId = res.id;
+          setIntrospectionKey(summaryId);
+          setIntrospectionData(res.data());
+        });
+    })();
+  }, [dockey]);
+
+  useEffect(() => {
+    setIntrospection(introspectionData?.introspection);
+  }, [introspectionData]);
+
   const submitHandler = () => {
-    introspectionRef(dockey).add({
-      introspection,
-      createdAt: firebase.firestore.Timestamp.now(),
-    });
+    introspectionKey &&
+      introspectionRef(dockey).doc(introspectionKey).update({
+        introspection,
+        createdAt: firebase.firestore.Timestamp.now(),
+      });
     router.push(`/user/diary/introspection/${dockey}`);
   };
+
   return (
     <Layout isHeader>
       <Box mt="10" px={16}>
@@ -34,6 +57,7 @@ export const Register = () => {
           <Box my="8">
             <Flex mt="2">
               <Textarea
+                value={introspection}
                 size="lg"
                 onChange={(e) => setIntrospection(e.target.value)}
                 type="text"

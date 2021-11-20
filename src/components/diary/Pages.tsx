@@ -89,7 +89,6 @@ export const Pages: VFC<{diary: Register}> = ({diary}) => {
           <Tbody>
             {diary.length ? (
               diary.map((res, i) => {
-                console.log(res);
                 return (
                   <Tr
                     key={i}
