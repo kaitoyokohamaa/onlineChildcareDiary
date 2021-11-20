@@ -1,5 +1,5 @@
-import {VFC} from 'react'
-import GenShinNormal from '@/fonts/GenShinGothic-Normal.ttf'
+import {VFC} from 'react';
+import GenShinNormal from '@/fonts/GenShinGothic-Normal.ttf';
 import {
   Document,
   Page,
@@ -8,8 +8,8 @@ import {
   Text,
   Font,
   PDFViewer,
-} from '@react-pdf/renderer'
-import {DetailDiary} from '@/models/diary/register'
+} from '@react-pdf/renderer';
+import {DetailDiary} from '@/models/diary/register';
 const styles = StyleSheet.create({
   page: {
     width: '100%',
@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
     border: '1px',
     padding: '10px',
   },
-})
+});
 const Pages = ({summary}) => {
   Font.register({
     family: '源真ゴシック',
@@ -42,7 +42,7 @@ const Pages = ({summary}) => {
         fontWeight: 'normal',
       },
     ],
-  })
+  });
 
   return (
     <Document>
@@ -52,7 +52,7 @@ const Pages = ({summary}) => {
         </View>
         <View>
           <Text>東洋大学ライフデザイン学部</Text>
-          <Text>氏名</Text>
+          <Text>氏名:{summary.displayName}</Text>
         </View>
         <View style={styles.container}>
           <View>
@@ -76,12 +76,12 @@ const Pages = ({summary}) => {
         </View>
       </Page>
     </Document>
-  )
-}
+  );
+};
 export const Pdf = ({summary}) => {
   return (
     <PDFViewer width="80%" height="642">
       <Pages summary={summary} />
     </PDFViewer>
-  )
-}
+  );
+};

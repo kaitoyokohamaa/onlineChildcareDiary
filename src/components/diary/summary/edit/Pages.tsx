@@ -1,29 +1,50 @@
 import {Box, Flex, Text, Divider} from '@chakra-ui/layout';
 import {Textarea, Button} from '@chakra-ui/react';
-import {useState, useContext} from 'react';
+import {useState, useContext, useEffect} from 'react';
 import {summaryRef} from '@/lib/firestore';
 import firebase from 'firebase/app';
 import {AuthContext} from '@/contexts/AuthContext';
 import {MdLocalLibrary} from 'react-icons/md';
 import {Layout} from '@/components/common/layout';
-import {useRouter} from 'next/router';
-export const Register = () => {
+
+export const Pages = () => {
   const [goalAndAchievement, setGoalAndAchievement] = useState<string>('');
   const [experience, setExperience] = useState<string>('');
   const [reflection, setReflection] = useState<string>('');
   const [notice, setNotice] = useState<string>('');
+  const [summaryKey, setSummaryKey] = useState<string>('');
+  const [summaryData, setSummaryData] =
+    useState<firebase.firestore.DocumentData>();
   const {dockey, displayName} = useContext(AuthContext);
-  const router = useRouter();
+
+  useEffect(() => {
+    (async () => {
+      const summary = dockey && (await summaryRef(dockey).get());
+      summary &&
+        summary.docs.map((res) => {
+          const summaryId = res.id;
+          setSummaryKey(summaryId);
+          setSummaryData(res.data());
+        });
+    })();
+  }, [dockey]);
+
+  useEffect(() => {
+    setGoalAndAchievement(summaryData?.goalAndAchievement);
+    setExperience(summaryData?.experience);
+    setReflection(summaryData?.reflection);
+    setNotice(summaryData?.notice);
+  }, [summaryData]);
   const submitHandler = () => {
-    summaryRef(dockey).add({
-      goalAndAchievement,
-      experience,
-      reflection,
-      notice,
-      displayName,
-      createdAt: firebase.firestore.Timestamp.now(),
-    });
-    router.push(`/user/diary/summary/${dockey}`);
+    summaryKey &&
+      summaryRef(dockey).doc(summaryKey).update({
+        goalAndAchievement,
+        experience,
+        reflection,
+        notice,
+        displayName,
+        createdAt: firebase.firestore.Timestamp.now(),
+      });
   };
 
   return (
@@ -43,6 +64,7 @@ export const Register = () => {
             <Text fontWeight="bold">1. 実習の目標とその達成度</Text>
             <Flex mt="2">
               <Textarea
+                value={goalAndAchievement}
                 onChange={(e) => setGoalAndAchievement(e.target.value)}
                 type="text"
                 placeholder="実習の目標とその達成度"
@@ -54,6 +76,7 @@ export const Register = () => {
             <Text fontWeight="bold">2. 実習で感銘を受けた体験</Text>
             <Flex mt="2">
               <Textarea
+                value={experience}
                 onChange={(e) => setExperience(e.target.value)}
                 type="text"
                 placeholder="実習で感銘を受けた体験"
@@ -65,6 +88,7 @@ export const Register = () => {
             <Text fontWeight="bold">3. 実習の反省および新しく発見した課題</Text>
             <Flex mt="2">
               <Textarea
+                value={reflection}
                 onChange={(e) => setReflection(e.target.value)}
                 type="text"
                 placeholder="実習の反省および新しく発見した課題"
@@ -75,6 +99,7 @@ export const Register = () => {
             <Text fontWeight="bold">4. その他気づいたこと</Text>
             <Flex mt="2">
               <Textarea
+                value={notice}
                 onChange={(e) => setNotice(e.target.value)}
                 type="text"
                 placeholder="その他気づいたこと"

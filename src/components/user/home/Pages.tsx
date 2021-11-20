@@ -6,7 +6,8 @@ import Link from 'next/link';
 import {Layout} from '@/components/common/layout';
 import {CopyToClipboard} from 'react-copy-to-clipboard';
 import {v1 as uuidv1} from 'uuid';
-export const Pages: VFC<{inviteKey: string}> = ({inviteKey}) => {
+import {Home} from '@/models/user/home';
+export const Pages: VFC<Home> = ({inviteKey, isSummary, isIntrospection}) => {
   const toast = useToast();
   return (
     <Layout isHeader>
@@ -43,56 +44,60 @@ export const Pages: VFC<{inviteKey: string}> = ({inviteKey}) => {
               </Link>
             </Box>
             <Box>
-              <Link href={`/user/diary/summary/register`}>
-                <a>
-                  <Box
-                    _hover={{backgroundColor: '#F8F8F8'}}
-                    w="200px"
-                    backgroundColor="#F9FBFB"
-                    p="24px"
-                    borderRadius="md"
-                    alignItems="center"
-                    border="2px solid #e4eaf1"
-                    boxSizing="border-box"
-                    textAlign="center">
-                    <Box display="flex" justifyContent="center">
-                      <MdLocalLibrary size="70" color=" #9FD0E8" />
+              {!isSummary && (
+                <Link href={`/user/diary/summary/register`}>
+                  <a>
+                    <Box
+                      _hover={{backgroundColor: '#F8F8F8'}}
+                      w="200px"
+                      backgroundColor="#F9FBFB"
+                      p="24px"
+                      borderRadius="md"
+                      alignItems="center"
+                      border="2px solid #e4eaf1"
+                      boxSizing="border-box"
+                      textAlign="center">
+                      <Box display="flex" justifyContent="center">
+                        <MdLocalLibrary size="70" color=" #9FD0E8" />
+                      </Box>
+                      <Box>
+                        <Text fontWeight="bold" pt="4">
+                          実習のまとめ登録
+                        </Text>
+                      </Box>
                     </Box>
-                    <Box>
-                      <Text fontWeight="bold" pt="4">
-                        実習のまとめ登録
-                      </Text>
-                    </Box>
-                  </Box>
-                </a>
-              </Link>
+                  </a>
+                </Link>
+              )}
             </Box>
             <Box>
-              <Link href={`/user/diary/introspection/register`}>
-                <a>
-                  <Box
-                    _hover={{
-                      backgroundColor: '#F8F8F8',
-                    }}
-                    w="200px"
-                    backgroundColor="#F9FBFB"
-                    p="24px"
-                    borderRadius="md"
-                    alignItems="center"
-                    border="2px solid #e4eaf1"
-                    boxSizing="border-box"
-                    textAlign="center">
-                    <Box display="flex" justifyContent="center">
-                      <MdLocalLibrary size="70" color=" #9FD0E8" />
+              {!isIntrospection && (
+                <Link href={`/user/diary/introspection/register`}>
+                  <a>
+                    <Box
+                      _hover={{
+                        backgroundColor: '#F8F8F8',
+                      }}
+                      w="200px"
+                      backgroundColor="#F9FBFB"
+                      p="24px"
+                      borderRadius="md"
+                      alignItems="center"
+                      border="2px solid #e4eaf1"
+                      boxSizing="border-box"
+                      textAlign="center">
+                      <Box display="flex" justifyContent="center">
+                        <MdLocalLibrary size="70" color=" #9FD0E8" />
+                      </Box>
+                      <Box>
+                        <Text fontWeight="bold" pt="4">
+                          反省会の記録登録
+                        </Text>
+                      </Box>
                     </Box>
-                    <Box>
-                      <Text fontWeight="bold" pt="4">
-                        反省会の記録登録
-                      </Text>
-                    </Box>
-                  </Box>
-                </a>
-              </Link>
+                  </a>
+                </Link>
+              )}
             </Box>
           </Flex>
           <Box mt={10}>

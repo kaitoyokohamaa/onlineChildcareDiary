@@ -1,43 +1,43 @@
-import {Box, Flex, Text, Divider} from '@chakra-ui/layout'
-import {Input, Textarea, Button} from '@chakra-ui/react'
-import {DiaryTabel} from '@/components/diary/register/diaryTabel'
-import {useState, useContext, useEffect} from 'react'
-import {registerRef, tablesRef} from '@/lib/firestore'
-import firebase from 'firebase/app'
-import {AuthContext} from '@/contexts/AuthContext'
-import {v1 as uuidv1} from 'uuid'
-import {MdLocalLibrary} from 'react-icons/md'
-import {Table} from '@/models/diary'
-import {VFC} from 'react'
-import {EditType} from '@/models/diary/edit'
-import {useRouter} from 'next/router'
-import {Layout} from '@/components/common/layout'
+import {Box, Flex, Text, Divider} from '@chakra-ui/layout';
+import {Input, Textarea, Button} from '@chakra-ui/react';
+import {DiaryTabel} from '@/components/diary/register/diaryTabel';
+import {useState, useContext, useEffect} from 'react';
+import {registerRef, tablesRef} from '@/lib/firestore';
+import firebase from 'firebase/app';
+import {AuthContext} from '@/contexts/AuthContext';
+import {v1 as uuidv1} from 'uuid';
+import {MdLocalLibrary} from 'react-icons/md';
+import {Table} from '@/models/diary';
+import {VFC} from 'react';
+import {EditType} from '@/models/diary/edit';
+import {useRouter} from 'next/router';
+import {Layout} from '@/components/common/layout';
 export const Pages: VFC<EditType> = ({
   detailDiary,
   projectID,
   registerDetailDocKey,
 }) => {
-  const [count, setCount] = useState<string>('')
-  const [day, setDay] = useState<string>('')
-  const [studentName, setStudentName] = useState<string>('')
-  const [assignedName, setAssignedName] = useState<string>('')
-  const [leader, setLeader] = useState<string>('')
-  const [goal, setGoal] = useState<string>('')
-  const [trainingContent, setTrainingContent] = useState<Table[]>([])
-  const [feeling, setFeeling] = useState<string>('')
-  const {dockey} = useContext(AuthContext)
-  const router = useRouter()
+  const [count, setCount] = useState<string>('');
+  const [day, setDay] = useState<string>('');
+  const [studentName, setStudentName] = useState<string>('');
+  const [assignedName, setAssignedName] = useState<string>('');
+  const [leader, setLeader] = useState<string>('');
+  const [goal, setGoal] = useState<string>('');
+  const [trainingContent, setTrainingContent] = useState<Table[]>([]);
+  const [feeling, setFeeling] = useState<string>('');
+  const {dockey} = useContext(AuthContext);
+  const router = useRouter();
 
   useEffect(() => {
-    setCount(detailDiary.count)
-    setDay(detailDiary.day)
-    setStudentName(detailDiary.studentName)
-    setAssignedName(detailDiary.assignedName)
-    setLeader(detailDiary.leader)
-    setGoal(detailDiary.goal)
-    setTrainingContent(detailDiary.trainingContent)
-    setFeeling(detailDiary.feeling)
-  }, [])
+    setCount(detailDiary.count);
+    setDay(detailDiary.day);
+    setStudentName(detailDiary.studentName);
+    setAssignedName(detailDiary.assignedName);
+    setLeader(detailDiary.leader);
+    setGoal(detailDiary.goal);
+    setTrainingContent(detailDiary.trainingContent);
+    setFeeling(detailDiary.feeling);
+  }, []);
 
   const addRow = () => {
     tablesRef(dockey).add({
@@ -48,8 +48,8 @@ export const Pages: VFC<EditType> = ({
       assistance: '',
       activitesAndAwareness: '',
       createdAt: firebase.firestore.Timestamp.now(),
-    })
-  }
+    });
+  };
 
   const submitHandler = async () => {
     await registerRef(dockey).doc(registerDetailDocKey).update({
@@ -61,10 +61,10 @@ export const Pages: VFC<EditType> = ({
       goal,
       trainingContent,
       feeling,
-    })
+    });
 
-    await router.push(`/user/diary/detail/${registerDetailDocKey}/${dockey}`)
-  }
+    await router.push(`/user/diary/detail/${registerDetailDocKey}/${dockey}`);
+  };
   // todo react hooks formでバリデーションの追加
 
   return (
@@ -149,15 +149,13 @@ export const Pages: VFC<EditType> = ({
                 textAlign="right"
                 w="100%"
                 bg="#FCFCFC 0% 0% no-repeat padding-box;"
-                p="10"
-              >
+                p="10">
                 <Button
                   w="32"
                   bg="#9FD0E8"
                   color="#fff"
-                  _hover={{bg: '##9FD0E8'}}
-                  onClick={addRow}
-                >
+                  _hover={{bg: '#9FD0E8'}}
+                  onClick={addRow}>
                   + 行を追加
                 </Button>
               </Box>
@@ -183,8 +181,7 @@ export const Pages: VFC<EditType> = ({
                 textAlign="right"
                 w="100%"
                 bg="#FCFCFC 0% 0% no-repeat padding-box;"
-                p="10"
-              >
+                p="10">
                 {/* todo:一時保存機能 */}
                 <Button
                   ml="3"
@@ -194,8 +191,7 @@ export const Pages: VFC<EditType> = ({
                   border="1px"
                   borderColor="#273264"
                   bg="#fff"
-                  color="#273264"
-                >
+                  color="#273264">
                   一時保存
                 </Button>
                 <Button
@@ -204,8 +200,7 @@ export const Pages: VFC<EditType> = ({
                   ml="3"
                   bg="#273264"
                   color="#fff"
-                  _hover={{bg: '#141933'}}
-                >
+                  _hover={{bg: '#141933'}}>
                   編集する
                 </Button>
               </Box>
@@ -214,5 +209,5 @@ export const Pages: VFC<EditType> = ({
         </Box>
       </Box>
     </Layout>
-  )
-}
+  );
+};
