@@ -6,7 +6,7 @@ import firebase from 'firebase/app';
 import {AuthContext} from '@/contexts/AuthContext';
 import {MdLocalLibrary} from 'react-icons/md';
 import {Layout} from '@/components/common/layout';
-
+import {useRouter} from 'next/router';
 export const Pages = () => {
   const [goalAndAchievement, setGoalAndAchievement] = useState<string>('');
   const [experience, setExperience] = useState<string>('');
@@ -16,7 +16,7 @@ export const Pages = () => {
   const [summaryData, setSummaryData] =
     useState<firebase.firestore.DocumentData>();
   const {dockey, displayName} = useContext(AuthContext);
-
+  const router = useRouter();
   useEffect(() => {
     (async () => {
       const summary = dockey && (await summaryRef(dockey).get());
@@ -45,6 +45,8 @@ export const Pages = () => {
         displayName,
         createdAt: firebase.firestore.Timestamp.now(),
       });
+
+    router.push(`/user/diary/summary/${dockey}`);
   };
 
   return (
