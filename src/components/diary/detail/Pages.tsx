@@ -1,20 +1,20 @@
-import React, {VFC, useContext, useEffect, useState} from 'react'
-import dynamic from 'next/dynamic'
-import {MdLocalLibrary} from 'react-icons/md'
-import {Box, Flex, Text, Divider} from '@chakra-ui/layout'
-import {Button} from '@chakra-ui/react'
-import {DetailDiary, DocKeyId} from '@/models/diary/register'
-import {useRouter} from 'next/router'
-import {Layout} from '@/components/common/layout'
-import {AuthContext} from '@/contexts/AuthContext'
-import {userRef, adminRegisterDetailRef} from '@/lib/firestore'
+import React, {VFC, useContext, useEffect, useState} from 'react';
+import dynamic from 'next/dynamic';
+import {MdLocalLibrary} from 'react-icons/md';
+import {Box, Flex, Text, Divider} from '@chakra-ui/layout';
+import {Button} from '@chakra-ui/react';
+import {DetailDiary, DocKeyId} from '@/models/diary/register';
+import {useRouter} from 'next/router';
+import {Layout} from '@/components/common/layout';
+import {AuthContext} from '@/contexts/AuthContext';
+import {userRef, adminRegisterDetailRef} from '@/lib/firestore';
 
 const PDF = dynamic<{detailDiary: DetailDiary}>(
   () => import('./pdf').then((mod) => mod.Pdf),
   {
     ssr: false,
   },
-)
+);
 
 const UserOrTeacherLayout = ({children, isUser}) => {
   return isUser ? (
@@ -23,37 +23,37 @@ const UserOrTeacherLayout = ({children, isUser}) => {
     <Layout isTeacher>
       <Box pt="10">{children}</Box>
     </Layout>
-  )
-}
+  );
+};
 
 export const Pages: VFC<DocKeyId> = ({userKey, detailKey}) => {
-  const router = useRouter()
+  const router = useRouter();
 
-  const {loginUser} = useContext(AuthContext)
-  const [isUser, setIsUser] = useState<boolean>(false)
-  const [detailDiary, setDetailDiary] = useState<DetailDiary>()
+  const {loginUser} = useContext(AuthContext);
+  const [isUser, setIsUser] = useState<boolean>(false);
+  const [detailDiary, setDetailDiary] = useState<DetailDiary>();
   useEffect(() => {
     detailKey &&
       userKey &&
       adminRegisterDetailRef(String(userKey), String(detailKey)).onSnapshot(
         (res) => {
           // firebaseの型周りを調べる。
-          let data = null
-          data = res.data()
-          setDetailDiary(data)
+          let data = null;
+          data = res.data();
+          setDetailDiary(data);
         },
-      )
+      );
 
     userKey &&
       loginUser &&
       (async () => {
-        const userInfo = await userRef().doc(String(userKey)).get()
+        const userInfo = await userRef().doc(String(userKey)).get();
 
         if (userInfo.data().uid[0] === loginUser.uid) {
-          setIsUser(true)
+          setIsUser(true);
         }
-      })()
-  }, [detailKey, userKey, loginUser])
+      })();
+  }, [detailKey, userKey, loginUser]);
 
   return (
     <UserOrTeacherLayout isUser={isUser}>
@@ -81,18 +81,16 @@ export const Pages: VFC<DocKeyId> = ({userKey, detailKey}) => {
                   color="#5D5A5A"
                   mr="2"
                   onClick={() => {
-                    router.push(`/diary/edit/${detailKey}/${userKey}`)
-                  }}
-                >
+                    router.push(`/user/diary/edit/${detailKey}/${userKey}`);
+                  }}>
                   編集する
                 </Button>
                 <Button
                   background="#F5F5F5"
                   color="#5D5A5A"
                   onClick={() => {
-                    router.push(`/diary/${userKey}`)
-                  }}
-                >
+                    router.push(`/user/diary/${userKey}`);
+                  }}>
                   日誌一覧にもどる
                 </Button>
               </>
@@ -103,9 +101,10 @@ export const Pages: VFC<DocKeyId> = ({userKey, detailKey}) => {
                   color="#5D5A5A"
                   mr="2"
                   onClick={() => {
-                    router.push(`/diary/for-teachers/${detailKey}/${userKey}`)
-                  }}
-                >
+                    router.push(
+                      `/teacher/diary/for-teachers/${detailKey}/${userKey}`,
+                    );
+                  }}>
                   添削する
                 </Button>
               </>
@@ -116,5 +115,5 @@ export const Pages: VFC<DocKeyId> = ({userKey, detailKey}) => {
         <PDF detailDiary={detailDiary} />
       </Box>
     </UserOrTeacherLayout>
-  )
-}
+  );
+};
