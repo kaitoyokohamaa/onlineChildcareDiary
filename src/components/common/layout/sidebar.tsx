@@ -15,7 +15,7 @@ export const Sidebar: VFC<{isTeacher?: boolean}> = ({isTeacher}) => {
   const {chatKey, dockey} = useContext(AuthContext);
 
   const router = useRouter();
-  console.log(isTeacher);
+
   const signOutHandler = () => {
     firebase
       .auth()

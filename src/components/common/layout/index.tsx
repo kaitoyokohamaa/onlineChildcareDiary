@@ -10,7 +10,6 @@ type Props = {
 };
 
 export const Layout: VFC<Props> = ({children, isHeader, isTeacher}) => {
-  console.log(isHeader);
   return (
     <Box>
       <Flex w="100%">
