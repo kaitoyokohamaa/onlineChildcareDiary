@@ -1,9 +1,9 @@
-import {NextPage} from 'next'
-import {Pages} from '@/components/user/profile/edit/Pages'
+import {NextPage} from 'next';
+import {Pages} from '@/components/teacher/profile/edit/Pages';
 
-import {adminUsersRef} from '@/lib/nodedb'
-import {GetStaticProps, GetStaticPropsContext} from 'next'
-import {EditUser} from '@/models/user'
+import {adminUsersRef} from '@/lib/nodedb';
+import {GetStaticProps, GetStaticPropsContext} from 'next';
+import {EditUser} from '@/models/user';
 export const getStaticProps: GetStaticProps = async (
   context: GetStaticPropsContext,
 ) => {
@@ -12,17 +12,17 @@ export const getStaticProps: GetStaticProps = async (
       id: context.params.edit,
     },
     revalidate: 20,
-  }
-}
+  };
+};
 export async function getStaticPaths() {
   return {
     paths: [],
     fallback: 'blocking',
-  }
+  };
 }
 
 const Edit: NextPage<EditUser> = ({id}) => {
-  return <Pages id={id} />
-}
+  return <Pages id={id} />;
+};
 
-export default Edit
+export default Edit;
