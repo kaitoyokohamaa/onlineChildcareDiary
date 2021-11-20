@@ -1,49 +1,48 @@
-import {VFC, useContext} from 'react'
-import {Table, Thead, Tbody, Tr, Th, Td} from '@chakra-ui/react'
-import {DiaryForm} from './diaryForm'
-import {DiaryDateForm} from './diaryDateForm'
-import {tablesRef} from '@/lib/firestore'
-import {useEffect, useState} from 'react'
-import {AuthContext} from '@/contexts/AuthContext'
-import {DiaryTabelProps} from '@/models/diary'
-import {useRouter} from 'next/router'
+import {VFC, useContext} from 'react';
+import {Table, Thead, Tbody, Tr, Th, Td} from '@chakra-ui/react';
+import {DiaryForm} from './diaryForm';
+import {DiaryDateForm} from './diaryDateForm';
+import {tablesRef} from '@/lib/firestore';
+import {useEffect, useState} from 'react';
+import {AuthContext} from '@/contexts/AuthContext';
+import {DiaryTabelProps} from '@/models/diary';
+import {useRouter} from 'next/router';
 export const DiaryTabel: VFC<DiaryTabelProps> = ({
   projectID,
   setTrainingContent,
   trainingContent,
   isTeacher,
 }) => {
-  const [diaries, setDiaries] = useState([])
-  const [key, setKey] = useState('')
-  const {dockey} = useContext(AuthContext)
-  const router = useRouter()
+  const [diaries, setDiaries] = useState([]);
+  const [key, setKey] = useState('');
+  const {dockey} = useContext(AuthContext);
+  const router = useRouter();
 
   useEffect(() => {
     if (isTeacher) {
       isTeacher
         ? setKey(router.query.teachers[1])
-        : setKey(router.query.teachers[0])
+        : setKey(router.query.teachers[0]);
     } else {
-      setKey(dockey)
+      setKey(dockey);
     }
-  }, [isTeacher, router.query.teachers, dockey])
+  }, [isTeacher, router.query.teachers, dockey]);
   // タイミングやよな。
   useEffect(() => {
     key &&
       tablesRef(key)
         .orderBy('createdAt', 'asc')
         .onSnapshot((res) => {
-          let trainigContensArray = []
+          let trainigContensArray = [];
           res.forEach((item) => {
             if (item.data().projectID === projectID) {
-              const id = item.id
-              trainigContensArray.push({tableID: id, tableData: item.data()})
+              const id = item.id;
+              trainigContensArray.push({tableID: id, tableData: item.data()});
             }
-          })
-          setDiaries(trainigContensArray)
-        })
-    console.log(22222)
-  }, [key, projectID])
+          });
+          setDiaries(trainigContensArray);
+        });
+  }, [key, projectID]);
 
   return (
     <Table border="2px">
@@ -113,8 +112,8 @@ export const DiaryTabel: VFC<DiaryTabelProps> = ({
               </Tr>
             </Tbody>
           )
-        )
+        );
       })}
     </Table>
-  )
-}
+  );
+};

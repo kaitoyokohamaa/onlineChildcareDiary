@@ -1,37 +1,38 @@
-import {Teacher} from '@/models/teacher'
+import {Teacher} from '@/models/teacher';
+import {User} from '@/models/user';
 export type Chats = {
-  senderId: string
-  sentAt: Date
-  text: string
-}
+  senderId: string;
+  sentAt: Date;
+  text: string;
+};
 
 export type AllChatContent = {
-  chatKey?: string
-  teacherData?: Teacher
-  isTeacher?: boolean
-  chatData?: Messages
-}
+  chatKey?: string;
+  profileData?: Teacher | User;
+  isTeacher?: boolean;
+  chatData?: Messages;
+};
 
 export type Messages = {
-  senderId: string
-  sentAt: Date
-  text: string
-  id: string
-}
+  senderId: string;
+  sentAt: Date;
+  text: string;
+  id: string;
+};
 
 export type ChatsProps = {
-  chatKey: string
-  teacherData: Teacher
-  isTeacher?: boolean
-}
+  chatKey: string;
+  teacherData: Teacher;
+  isTeacher?: boolean;
+};
 
 export type ChatsTeacherInfo = {
-  name: string
-  image: string
-}
+  name: string;
+  image: string;
+};
 
 export type ChatsSidebarProps = {
-  lastMessage: string
-  name: string
-  image: string
-}
+  lastMessage: string;
+  name: string;
+  image: string;
+};

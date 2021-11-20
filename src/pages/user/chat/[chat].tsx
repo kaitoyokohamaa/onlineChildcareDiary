@@ -7,7 +7,7 @@ export const getStaticProps: GetStaticProps = async (
   context: GetStaticPropsContext,
 ) => {
   const chatKey = context.params.chat;
-  const teacherData = await teacherRef()
+  const profileData = await teacherRef()
     .where('chatKey', 'array-contains', chatKey)
     .get()
     .then((res) => {
@@ -30,7 +30,7 @@ export const getStaticProps: GetStaticProps = async (
   const chatData = JSON.parse(JSON.stringify(data));
 
   return {
-    props: {chatKey, teacherData, chatData},
+    props: {chatKey, profileData, chatData},
     revalidate: 30,
   };
 };
@@ -40,9 +40,9 @@ export async function getStaticPaths() {
     fallback: 'blocking',
   };
 }
-const Chat: NextPage<AllChatContent> = ({chatKey, teacherData, chatData}) => {
+const Chat: NextPage<AllChatContent> = ({chatKey, profileData, chatData}) => {
   return (
-    <Pages chatKey={chatKey} teacherData={teacherData} chatData={chatData} />
+    <Pages chatKey={chatKey} profileData={profileData} chatData={chatData} />
   );
 };
 export default Chat;
