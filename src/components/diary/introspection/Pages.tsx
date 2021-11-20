@@ -30,7 +30,16 @@ export const Pages: VFC<{introspection: Introspection}> = ({introspection}) => {
                 反省会の記録
               </Text>
               <Box textAlign="right" m="0 0 0 auto">
-                <Button background="#F5F5F5" color="#5D5A5A" mr="2">
+                <Button
+                  background="#263773"
+                  color="#fff"
+                  _hover={{background: '#1c2956'}}
+                  mr="2"
+                  onClick={() =>
+                    router.push(
+                      `/user/diary/introspection/edit/${introspectionKey}`,
+                    )
+                  }>
                   編集する
                 </Button>
               </Box>

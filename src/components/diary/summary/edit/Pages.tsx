@@ -35,6 +35,7 @@ export const Pages = () => {
     setReflection(summaryData?.reflection);
     setNotice(summaryData?.notice);
   }, [summaryData]);
+
   const submitHandler = () => {
     summaryKey &&
       summaryRef(dockey).doc(summaryKey).update({

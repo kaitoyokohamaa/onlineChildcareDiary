@@ -2,6 +2,7 @@ import {NextPage, GetStaticProps, GetStaticPropsContext} from 'next';
 import {Pages} from '@/components/diary/introspection/Pages';
 import {introspectionRef} from '@/lib/nodedb';
 import {Introspection} from '@/models/diary/introspection';
+
 export const getStaticProps: GetStaticProps = async (
   context: GetStaticPropsContext,
 ) => {
