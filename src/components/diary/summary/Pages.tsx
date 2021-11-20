@@ -23,7 +23,6 @@ export const Pages: VFC<{summary: Summary}> = ({summary}) => {
       <Box mt="10" px={16}>
         {summary ? (
           <>
-            {' '}
             <Flex alignItems="center">
               <Box bg="#F8F8F8" p="2" borderRadius="md">
                 <MdLocalLibrary color=" #9FD0E8" />
@@ -32,7 +31,14 @@ export const Pages: VFC<{summary: Summary}> = ({summary}) => {
                 実習のまとめ
               </Text>
               <Box textAlign="right" m="0 0 0 auto">
-                <Button background="#F5F5F5" color="#5D5A5A" mr="2">
+                <Button
+                  background="#263773"
+                  color="#fff"
+                  _hover={{background: '#1c2956'}}
+                  mr="2"
+                  onClick={() =>
+                    router.push(`/user/diary/summary/edit/${summaryKey}`)
+                  }>
                   編集する
                 </Button>
               </Box>

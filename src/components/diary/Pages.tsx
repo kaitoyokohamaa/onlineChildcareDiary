@@ -1,7 +1,7 @@
-import {useRouter} from 'next/router'
-import {VFC, useState, useEffect} from 'react'
-import {MdLocalLibrary} from 'react-icons/md'
-import {Box, Flex, Text, Divider, Stack} from '@chakra-ui/layout'
+import {useRouter} from 'next/router';
+import {VFC, useState, useEffect} from 'react';
+import {MdLocalLibrary} from 'react-icons/md';
+import {Box, Flex, Text, Divider, Stack} from '@chakra-ui/layout';
 import {
   Table,
   Thead,
@@ -12,33 +12,33 @@ import {
   Checkbox,
   useToast,
   Button,
-} from '@chakra-ui/react'
-import Link from 'next/link'
-import {AlertDialogPop} from '@/components/common/dialog/alertDialog'
-import {Register} from '@/models/diary/register'
-import {CopyToClipboard} from 'react-copy-to-clipboard'
-import {Layout} from '@/components/common/layout'
-import {MdContentCopy} from 'react-icons/md'
+} from '@chakra-ui/react';
+import Link from 'next/link';
+import {AlertDialogPop} from '@/components/common/dialog/alertDialog';
+import {Register} from '@/models/diary/register';
+import {CopyToClipboard} from 'react-copy-to-clipboard';
+import {Layout} from '@/components/common/layout';
+import {MdContentCopy} from 'react-icons/md';
 export const Pages: VFC<{diary: Register}> = ({diary}) => {
-  const [isClicked, setIsClicked] = useState<boolean>(false)
+  const [isClicked, setIsClicked] = useState<boolean>(false);
 
-  const [currentCheckedId, setCurrentCheckedId] = useState<string>('')
-  const toast = useToast()
+  const [currentCheckedId, setCurrentCheckedId] = useState<string>('');
+  const toast = useToast();
 
-  const router = useRouter()
-  const userKey = router.query.diary
+  const router = useRouter();
+  const userKey = router.query.diary;
   const onClickHandler = (
     e: React.ChangeEvent<HTMLInputElement>,
     id: string,
   ) => {
     if (e.target.checked) {
-      setIsClicked(true)
-      setCurrentCheckedId(id)
+      setIsClicked(true);
+      setCurrentCheckedId(id);
     } else {
-      setIsClicked(false)
-      setCurrentCheckedId('')
+      setIsClicked(false);
+      setCurrentCheckedId('');
     }
-  }
+  };
   return (
     <Layout isHeader>
       <Box mt="10" px={16} h="85vh" overflow="scroll">
@@ -59,8 +59,7 @@ export const Pages: VFC<{diary: Register}> = ({diary}) => {
               background="#263773"
               color="#fff"
               _hover={{background: '#1c2956'}}
-              onClick={() => router.push(`/user/diary/summary/${userKey}`)}
-            >
+              onClick={() => router.push(`/user/diary/summary/${userKey}`)}>
               実習のまとめへ
             </Button>
             <Button
@@ -70,8 +69,7 @@ export const Pages: VFC<{diary: Register}> = ({diary}) => {
               _hover={{background: '#1c2956'}}
               onClick={() =>
                 router.push(`/user/diary/introspection/${userKey}`)
-              }
-            >
+              }>
               実習の反省会へ
             </Button>
           </Box>
@@ -91,15 +89,14 @@ export const Pages: VFC<{diary: Register}> = ({diary}) => {
           <Tbody>
             {diary.length ? (
               diary.map((res, i) => {
-                console.log(res)
+                console.log(res);
                 return (
                   <Tr
                     key={i}
                     _hover={{
                       background: '#f5f7f9',
                       p: '14',
-                    }}
-                  >
+                    }}>
                     <Th>
                       <Checkbox onChange={(e) => onClickHandler(e, res.id)} />
                     </Th>
@@ -114,8 +111,7 @@ export const Pages: VFC<{diary: Register}> = ({diary}) => {
                       <CopyToClipboard
                         cursor="pointer"
                         // 本番環境のパスに入れ替え→もしisUserじゃなかったら保育士の先生が編集できるデザインに変更する。
-                        text={`phoenixdiary.vercel.app/diary/detail/${res.id}/${userKey}`}
-                      >
+                        text={`phoenixdiary.vercel.app/diary/detail/${res.id}/${userKey}`}>
                         <MdContentCopy
                           onClick={() =>
                             toast({
@@ -128,7 +124,7 @@ export const Pages: VFC<{diary: Register}> = ({diary}) => {
                       </CopyToClipboard>
                     </Td>
                   </Tr>
-                )
+                );
               })
             ) : (
               <p>日誌はまだ登録されておりません</p>
@@ -147,8 +143,7 @@ export const Pages: VFC<{diary: Register}> = ({diary}) => {
             position="fixed"
             bottom="0"
             alignItems="center"
-            justifyContent="space-evenly"
-          >
+            justifyContent="space-evenly">
             <Box>
               <Text>1件の日誌を選択</Text>
             </Box>
@@ -162,5 +157,5 @@ export const Pages: VFC<{diary: Register}> = ({diary}) => {
         )}
       </Box>
     </Layout>
-  )
-}
+  );
+};

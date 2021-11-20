@@ -17,7 +17,7 @@ export const getStaticProps: GetStaticProps = async (
         return null;
       }
     });
-  console.log(data);
+
   const summary = JSON.parse(JSON.stringify(data));
 
   return {
