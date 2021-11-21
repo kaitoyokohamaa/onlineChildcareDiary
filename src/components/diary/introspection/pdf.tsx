@@ -1,5 +1,5 @@
-import {VFC} from 'react'
-import GenShinNormal from '@/fonts/GenShinGothic-Normal.ttf'
+import {VFC} from 'react';
+import GenShinNormal from '@/fonts/GenShinGothic-Normal.ttf';
 import {
   Document,
   Page,
@@ -8,8 +8,8 @@ import {
   Text,
   Font,
   PDFViewer,
-} from '@react-pdf/renderer'
-import {Introspection} from '@/models/diary/introspection'
+} from '@react-pdf/renderer';
+import {Introspection} from '@/models/diary/introspection';
 const styles = StyleSheet.create({
   page: {
     width: '100%',
@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
     border: '1px',
     padding: '10px',
   },
-})
+});
 const Pages: VFC<{introspection: Introspection}> = ({introspection}) => {
   Font.register({
     family: '源真ゴシック',
@@ -42,10 +42,10 @@ const Pages: VFC<{introspection: Introspection}> = ({introspection}) => {
         fontWeight: 'normal',
       },
     ],
-  })
+  });
 
   return (
-    <Document>
+    <Document title="反省会の記録">
       <Page size="A4" style={styles.page}>
         <View style={styles.container}>
           <View>
@@ -55,12 +55,12 @@ const Pages: VFC<{introspection: Introspection}> = ({introspection}) => {
         </View>
       </Page>
     </Document>
-  )
-}
+  );
+};
 export const Pdf: VFC<{introspection: Introspection}> = ({introspection}) => {
   return (
     <PDFViewer width="80%" height="642">
       <Pages introspection={introspection} />
     </PDFViewer>
-  )
-}
+  );
+};

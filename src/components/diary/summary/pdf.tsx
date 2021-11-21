@@ -45,7 +45,7 @@ const Pages = ({summary}) => {
   });
 
   return (
-    <Document>
+    <Document title="実習のまとめ">
       <Page size="A4" style={styles.page}>
         <View>
           <Text>実習のまとめ</Text>
