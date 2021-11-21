@@ -110,7 +110,7 @@ export const Pages: VFC<{diary: Register}> = ({diary}) => {
                       <CopyToClipboard
                         cursor="pointer"
                         // 本番環境のパスに入れ替え→もしisUserじゃなかったら保育士の先生が編集できるデザインに変更する。
-                        text={`phoenixdiary.vercel.app/diary/detail/${res.id}/${userKey}`}>
+                        text={`phoenixdiary.vercel.app/teacher/diary/detail/${res.id}/${userKey}`}>
                         <MdContentCopy
                           onClick={() =>
                             toast({

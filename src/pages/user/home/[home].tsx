@@ -6,9 +6,9 @@ import {Home} from '@/models/user/home';
 export const getStaticProps: GetStaticProps = async (
   context: GetStaticPropsContext,
 ) => {
-  const inviteKey = context.params.home;
+  const homeKey = context.params.home;
 
-  const isSummary = await summaryRef(String(inviteKey))
+  const isSummary = await summaryRef(String(homeKey))
     .get()
     .then((res) => {
       if (res.size) {
@@ -17,7 +17,7 @@ export const getStaticProps: GetStaticProps = async (
         return false;
       }
     });
-  const isIntrospection = await introspectionRef(String(inviteKey))
+  const isIntrospection = await introspectionRef(String(homeKey))
     .get()
     .then((res) => {
       if (res.size) {
@@ -27,7 +27,7 @@ export const getStaticProps: GetStaticProps = async (
       }
     });
   return {
-    props: {inviteKey, isSummary, isIntrospection},
+    props: {homeKey, isSummary, isIntrospection},
     revalidate: 30,
   };
 };
@@ -37,10 +37,10 @@ export async function getStaticPaths() {
     fallback: 'blocking',
   };
 }
-const HomePage: NextPage<Home> = ({inviteKey, isSummary, isIntrospection}) => {
+const HomePage: NextPage<Home> = ({homeKey, isSummary, isIntrospection}) => {
   return (
     <Pages
-      inviteKey={inviteKey}
+      homeKey={homeKey}
       isSummary={isSummary}
       isIntrospection={isIntrospection}
     />

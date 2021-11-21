@@ -1,5 +1,5 @@
 export type Home = {
-  inviteKey: string;
+  homeKey: string;
   isSummary: boolean;
   isIntrospection: boolean;
 };

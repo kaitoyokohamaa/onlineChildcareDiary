@@ -7,7 +7,7 @@ import {Layout} from '@/components/common/layout';
 import {CopyToClipboard} from 'react-copy-to-clipboard';
 import {v1 as uuidv1} from 'uuid';
 import {Home} from '@/models/user/home';
-export const Pages: VFC<Home> = ({inviteKey, isSummary, isIntrospection}) => {
+export const Pages: VFC<Home> = ({homeKey, isSummary, isIntrospection}) => {
   const toast = useToast();
   return (
     <Layout isHeader>
@@ -19,7 +19,7 @@ export const Pages: VFC<Home> = ({inviteKey, isSummary, isIntrospection}) => {
         <Box w="100%">
           <Flex w="60%" justifyContent="space-between">
             <Box>
-              <Link href={`/diary/register/${uuidv1()}`}>
+              <Link href={`/user/diary/register/${uuidv1()}`}>
                 <a>
                   <Box
                     _hover={{backgroundColor: '#F8F8F8'}}
@@ -107,7 +107,7 @@ export const Pages: VFC<Home> = ({inviteKey, isSummary, isIntrospection}) => {
           <Box w="100%">
             <Flex>
               <Box>
-                <Link href="/diary">
+                <Link href={`/user/diary/${homeKey}`}>
                   <a>
                     <Box
                       _hover={{backgroundColor: '#F8F8F8'}}
@@ -127,7 +127,7 @@ export const Pages: VFC<Home> = ({inviteKey, isSummary, isIntrospection}) => {
                 </Link>
               </Box>
               <Box>
-                <Link href="/chat">
+                <Link href={`/user/chat/${homeKey}`}>
                   <a>
                     <Box
                       ml={'10'}
@@ -156,14 +156,14 @@ export const Pages: VFC<Home> = ({inviteKey, isSummary, isIntrospection}) => {
               {/* 本番環境への書き換えをしよう */}
               <Input
                 w="30%"
-                value={`https://phoenixdiary.vercel.app/user/signup/invite/${inviteKey}`}
+                value={`https://phoenixdiary.vercel.app/user/signup/invite/${homeKey}`}
                 isReadOnly
                 mr="3"
               />
               <CopyToClipboard
                 cursor="pointer"
                 // 本番環境のパスに入れ替え→もしisUserじゃなかったら保育士の先生が編集できるデザインに変更する。
-                text={`https://phoenixdiary.vercel.app/user/signup/invite/${inviteKey}`}>
+                text={`https://phoenixdiary.vercel.app/user/signup/invite/${homeKey}`}>
                 <Button
                   _hover={{backgroundColor: '#F8F8F8'}}
                   backgroundColor="#F9FBFB"
