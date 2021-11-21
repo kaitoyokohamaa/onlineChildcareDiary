@@ -39,7 +39,7 @@ export const Sidebar: VFC<{isTeacher?: boolean}> = ({isTeacher}) => {
           <>
             <Box textAlign="center" my={12}>
               <Button_ bg="#9FD0E8" color="white" _hover={{bg: '#54b5e4'}}>
-                <Link href={`/diary/register/${uuidv1()}`}>
+                <Link href={`/user/diary/register/${uuidv1()}`}>
                   <a>＋日誌登録</a>
                 </Link>
               </Button_>
