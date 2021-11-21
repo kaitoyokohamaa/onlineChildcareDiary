@@ -1,12 +1,12 @@
-import {Button} from '@chakra-ui/button'
-import {Box, Flex, Heading} from '@chakra-ui/layout'
-import {Input, Link as Links} from '@chakra-ui/react'
-import {VFC} from 'react'
-import Link from 'next/link'
-import {UseCertification} from '@/hooks/useCertification'
+import {Button} from '@chakra-ui/button';
+import {Box, Flex, Heading} from '@chakra-ui/layout';
+import {Input, Link as Links} from '@chakra-ui/react';
+import {VFC} from 'react';
+import Link from 'next/link';
+import {UseCertification} from '@/hooks/useCertification';
 export const Pages: VFC = () => {
   const {email, setEmail, setPassword, password, signupHandler} =
-    UseCertification()
+    UseCertification();
   return (
     <Box>
       <Flex>
@@ -55,8 +55,7 @@ export const Pages: VFC = () => {
                 py={{lg: 8}}
                 boxShadow="2xl-blue"
                 mb={10}
-                onClick={signupHandler}
-              >
+                onClick={signupHandler}>
                 新規登録
               </Button>
             </Box>
@@ -70,5 +69,5 @@ export const Pages: VFC = () => {
         </Flex>
       </Flex>
     </Box>
-  )
-}
+  );
+};
