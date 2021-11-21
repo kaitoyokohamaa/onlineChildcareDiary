@@ -1,5 +1,5 @@
-import {VFC} from 'react'
-import GenShinNormal from '@/fonts/GenShinGothic-Normal.ttf'
+import {VFC} from 'react';
+import GenShinNormal from '@/fonts/GenShinGothic-Normal.ttf';
 import {
   Document,
   Page,
@@ -8,8 +8,8 @@ import {
   Text,
   Font,
   PDFViewer,
-} from '@react-pdf/renderer'
-import {DetailDiary} from '@/models/diary/register'
+} from '@react-pdf/renderer';
+import {DetailDiary} from '@/models/diary/register';
 const styles = StyleSheet.create({
   page: {
     width: '100%',
@@ -163,7 +163,7 @@ const styles = StyleSheet.create({
   correct: {
     color: 'red',
   },
-})
+});
 const Pages: VFC<{detailDiary: DetailDiary}> = ({detailDiary}) => {
   Font.register({
     family: '源真ゴシック',
@@ -174,10 +174,10 @@ const Pages: VFC<{detailDiary: DetailDiary}> = ({detailDiary}) => {
         fontWeight: 'normal',
       },
     ],
-  })
+  });
 
   return (
-    <Document>
+    <Document title="実習日誌の記録">
       <Page size="A4" style={styles.page}>
         <View>
           <Text>実習記録(第1日目)</Text>
@@ -265,7 +265,7 @@ const Pages: VFC<{detailDiary: DetailDiary}> = ({detailDiary}) => {
                     </Text>
                   </View>
                 </View>
-              )
+              );
             })}
             <View style={styles.section}>
               <View style={styles.impressions}>
@@ -297,12 +297,12 @@ const Pages: VFC<{detailDiary: DetailDiary}> = ({detailDiary}) => {
         </View>
       </Page>
     </Document>
-  )
-}
+  );
+};
 export const Pdf: VFC<{detailDiary: DetailDiary}> = ({detailDiary}) => {
   return (
     <PDFViewer width="80%" height="642" style={styles.pdfWrapper}>
       <Pages detailDiary={detailDiary} />
     </PDFViewer>
-  )
-}
+  );
+};
