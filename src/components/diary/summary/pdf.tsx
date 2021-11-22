@@ -73,6 +73,14 @@ const Pages = ({summary}) => {
             <Text style={styles.title}>4. その他気づいたこと</Text>
             <Text style={styles.text}>{summary.notice}</Text>
           </View>
+          <View>
+            <Text style={styles.title}>5. 実習指導者からのコメント</Text>
+            <Text style={styles.text}>
+              {summary.comment
+                ? summary.comment
+                : '実習指導者からのコメントをもらいましょう'}
+            </Text>
+          </View>
         </View>
       </Page>
     </Document>
