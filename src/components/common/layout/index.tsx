@@ -1,7 +1,7 @@
 import {Header} from './header';
 import {Sidebar} from './sidebar';
 import {VFC} from 'react';
-import {Box, Flex} from '@chakra-ui/layout';
+import {Box, Flex, HStack} from '@chakra-ui/layout';
 
 type Props = {
   children?: React.ReactNode;
@@ -11,26 +11,24 @@ type Props = {
 
 export const Layout: VFC<Props> = ({children, isHeader, isTeacher}) => {
   return (
-    <Box>
-      <Flex w="100%">
+    <Box w="100%">
+      <HStack m={0}>
         {/* Sidebar */}
-        <Flex h="100vh" bg="#273673">
-          <Box>
-            <Sidebar isTeacher={isTeacher} />
-          </Box>
-        </Flex>
+        <Box w="30%">
+          <Sidebar isTeacher={isTeacher} />
+        </Box>
         {/* contents */}
-        <Flex w="80%">
-          <Box w="100%">
-            {isHeader && (
-              <Box mt="5">
-                <Header />
-              </Box>
-            )}
-            <Box>{children}</Box>
+        <Box w="100%">
+          {isHeader && (
+            <Box mt="5">
+              <Header />
+            </Box>
+          )}
+          <Box ml={-2} w="100%">
+            {children}
           </Box>
-        </Flex>
-      </Flex>
+        </Box>
+      </HStack>
     </Box>
   );
 };

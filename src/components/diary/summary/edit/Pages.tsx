@@ -67,6 +67,7 @@ export const Pages = () => {
             <Text fontWeight="bold">1. 実習の目標とその達成度</Text>
             <Flex mt="2">
               <Textarea
+                w="75%"
                 value={goalAndAchievement}
                 onChange={(e) => setGoalAndAchievement(e.target.value)}
                 type="text"
@@ -79,6 +80,7 @@ export const Pages = () => {
             <Text fontWeight="bold">2. 実習で感銘を受けた体験</Text>
             <Flex mt="2">
               <Textarea
+                w="75%"
                 value={experience}
                 onChange={(e) => setExperience(e.target.value)}
                 type="text"
@@ -91,6 +93,7 @@ export const Pages = () => {
             <Text fontWeight="bold">3. 実習の反省および新しく発見した課題</Text>
             <Flex mt="2">
               <Textarea
+                w="75%"
                 value={reflection}
                 onChange={(e) => setReflection(e.target.value)}
                 type="text"
@@ -102,6 +105,7 @@ export const Pages = () => {
             <Text fontWeight="bold">4. その他気づいたこと</Text>
             <Flex mt="2">
               <Textarea
+                w="75%"
                 value={notice}
                 onChange={(e) => setNotice(e.target.value)}
                 type="text"
