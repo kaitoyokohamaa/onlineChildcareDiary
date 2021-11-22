@@ -15,14 +15,15 @@ export const ChatSidebar: VFC<ChatsSidebarProps> = ({
           borderColor="#56A9D3"
           bg={'#f5f7f9 0% 0% no-repeat padding-box'}
           py={4}
-          px="10">
+          px="10"
+          w="100%">
           <Flex alignItems="center">
             <Stack spacing={4}>
               <Avatar src={image}>
                 <AvatarBadge boxSize="0.9em" bg="green.500" />
               </Avatar>
             </Stack>
-            <Box pl="3">
+            <Box pl="3" w="90%">
               <Text fontWeight="bold">{name}</Text>
               <Text fontSize="sm" color="#707070">
                 {lastMessage && lastMessage.length > 15

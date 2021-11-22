@@ -14,7 +14,7 @@ export const Layout: VFC<Props> = ({children, isHeader, isTeacher}) => {
     <Box w="100%">
       <HStack m={0}>
         {/* Sidebar */}
-        <Box w="30%">
+        <Box w="25%">
           <Sidebar isTeacher={isTeacher} />
         </Box>
         {/* contents */}
