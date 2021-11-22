@@ -4,7 +4,7 @@ import {AuthContext} from '@/contexts/AuthContext';
 import {Button_} from '@/components/common/button';
 import {SidebarLink} from './sidebarLink';
 import {Box, Flex, Heading, HStack, Text} from '@chakra-ui/layout';
-import {MdLocalLibrary, MdChatBubble, MdHome, MdBook} from 'react-icons/md';
+import {MdLocalLibrary, MdChatBubble, MdHome, MdPerson} from 'react-icons/md';
 import {Badge} from '@chakra-ui/react';
 import {IoLogOut} from 'react-icons/io5';
 import {VscGear} from 'react-icons/vsc';
@@ -149,7 +149,7 @@ export const Sidebar: VFC<{isTeacher?: boolean}> = ({isTeacher}) => {
                       justify="center"
                       mx={router.asPath.indexOf('/profile') !== -1 && -1.5}>
                       <HStack w="60%">
-                        <MdChatBubble size={20} />
+                        <MdPerson size={20} />
                         <Text py={6}>プロフィール</Text>
                       </HStack>
                     </Flex>
@@ -213,10 +213,11 @@ export const Sidebar: VFC<{isTeacher?: boolean}> = ({isTeacher}) => {
         bottom={-150}
         position="relative"
         _hover={{bg: '#FFFFFF1A 0% 0% no-repeat padding-box'}}
-        onClick={signOutHandler}>
+        onClick={signOutHandler}
+        cursor="pointer">
         <SidebarLink color="white">
           <Flex justify="center">
-            <HStack w={isTeacher ? '60%' : '50%'}>
+            <HStack w={isTeacher ? '60%' : '60%'}>
               <IoLogOut size={20} />
               <Text py={6}>ログアウト</Text>
             </HStack>
