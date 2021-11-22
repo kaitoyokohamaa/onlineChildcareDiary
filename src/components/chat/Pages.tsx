@@ -1,7 +1,7 @@
 import {VFC} from 'react';
 import {useRouter} from 'next/router';
 import {Box, Flex} from '@chakra-ui/layout';
-import {Button} from '@chakra-ui/react';
+import {Button, HStack} from '@chakra-ui/react';
 import {ChatSidebar} from '@/components/chat/chatSidebar';
 import {ChatHeader} from '@/components/chat/chatHeader';
 import {Chat} from '@/components/chat/chat';
@@ -38,33 +38,38 @@ export const Pages: VFC<AllChatContent> = ({
   const router = useRouter();
   const isTeacherOrUser = isTeacher;
   return (
-    <Layout
-      isHeader={isTeacherOrUser ? false : true}
-      isTeacher={isTeacherOrUser ? true : false}>
+    <Layout isTeacher={isTeacherOrUser ? true : false}>
       {profileData ? (
-        <Box p={0} borderTop="2px" borderColor="#E9E9E9" mt="20px">
-          <Flex>
+        <HStack w="100%" p={0} border="2px" borderColor="#E9E9E9">
+          <Box
+            h="99vh"
+            border="2px"
+            borderTop="0px"
+            borderLeft="0px"
+            borderBottom="0px"
+            borderColor="#E9E9E9">
             <ChatSidebar
               lastMessage={lastMessage && lastMessage[0]?.text}
               name={profileData && profileData?.name}
               image={profileData && profileData?.dispayImage}
             />
-            <Flex w="75%" justifyContent="center">
-              <Box w="95%">
-                <ChatHeader
-                  image={profileData && profileData?.dispayImage}
-                  name={profileData && profileData?.name}
-                />
-                <Box h="65vh" overflow="scroll">
-                  <Chat chatMessages={chatMessages} />
-                </Box>
-                <Box mt="4">
-                  <ChatForm />
-                </Box>
-              </Box>
-            </Flex>
-          </Flex>
-        </Box>
+          </Box>
+          <Box w="78%">
+            <ChatHeader
+              image={profileData && profileData?.dispayImage}
+              name={profileData && profileData?.name}
+            />
+            <Box h="76vh" px="5" overflow="scroll">
+              <Chat
+                image={profileData && profileData?.dispayImage}
+                chatMessages={chatMessages}
+              />
+            </Box>
+            <Box mt="4" px="5">
+              <ChatForm />
+            </Box>
+          </Box>
+        </HStack>
       ) : (
         <>
           <p>実習先の保育士に招待リンクを送って登録してもらいましょう！</p>

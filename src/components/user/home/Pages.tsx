@@ -11,7 +11,7 @@ export const Pages: VFC<Home> = ({homeKey, isSummary, isIntrospection}) => {
   const toast = useToast();
   return (
     <Layout isHeader>
-      <Box px={16}>
+      <Box px={16} h={'85vh'}>
         <Box mt={10}>
           <Text fontWeight="bold">新規作成</Text>
         </Box>

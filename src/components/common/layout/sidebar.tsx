@@ -26,9 +26,9 @@ export const Sidebar: VFC<{isTeacher?: boolean}> = ({isTeacher}) => {
       });
   };
   return (
-    <Box px={4}>
+    <Box w="100%" h="100vh" bg="#273673">
       <Box textAlign="center">
-        <Heading as="h5" size="md" color="white" mt={10}>
+        <Heading textAlign="center" as="h5" size="md" color="white" pt={10}>
           SMART DIARY PHOENIX
         </Heading>
         {isTeacher && <Badge>保育士用</Badge>}

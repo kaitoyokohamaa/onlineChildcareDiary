@@ -1,30 +1,30 @@
-import React, {VFC, useState, useContext, useRef} from 'react'
-import {AuthContext} from '@/contexts/AuthContext'
-import {InputRightElement, InputGroup} from '@chakra-ui/react'
-import {useRouter} from 'next/router'
-import {MdSend, MdAddBox} from 'react-icons/md'
-import {AutoResizeTextarea} from '@/components/common/textarea/AutoResizeTextare'
-import {chatRef} from '@/lib/firestore'
-import firebase from 'firebase/app'
+import React, {VFC, useState, useContext, useRef} from 'react';
+import {AuthContext} from '@/contexts/AuthContext';
+import {InputRightElement, InputGroup} from '@chakra-ui/react';
+import {useRouter} from 'next/router';
+import {MdSend, MdAddBox} from 'react-icons/md';
+import {AutoResizeTextarea} from '@/components/common/textarea/AutoResizeTextare';
+import {chatRef} from '@/lib/firestore';
+import firebase from 'firebase/app';
 
 export const ChatForm: VFC = () => {
-  const [text, setText] = useState<string>('')
-  const router = useRouter()
-  const {dockey, chatKey, loginUser} = useContext(AuthContext)
-  const myDocKey = router.query.chat
-  const inputEl = useRef(null)
+  const [text, setText] = useState<string>('');
+  const router = useRouter();
+  const {dockey, chatKey, loginUser} = useContext(AuthContext);
+  const myDocKey = router.query.chat;
+  const inputEl = useRef(null);
   const submitHandler = () => {
     chatKey === myDocKey &&
       chatRef(String(myDocKey)).add({
         text,
         senderId: loginUser.uid,
         sentAt: firebase.firestore.Timestamp.now(),
-      })
-    setText('')
-  }
+      });
+    setText('');
+  };
   return (
     <>
-      <InputGroup>
+      <InputGroup marginBottom="10px">
         <AutoResizeTextarea
           text={text}
           onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
@@ -37,5 +37,5 @@ export const ChatForm: VFC = () => {
         </InputRightElement>
       </InputGroup>
     </>
-  )
-}
+  );
+};
