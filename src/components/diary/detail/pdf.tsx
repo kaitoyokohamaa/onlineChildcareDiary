@@ -308,7 +308,7 @@ const Pages: VFC<{detailDiary: DetailDiary}> = ({detailDiary}) => {
 
                   <View style={styles.tableContentCol}>
                     <View style={styles.textWrapper}>
-                      <Text s>{res.tableData.activitesAndAwareness}</Text>
+                      <Text>{res.tableData.activitesAndAwareness}</Text>
                     </View>
                     <View style={styles.textWrapper}>
                       <Text style={styles.correct} key={i}>
