@@ -23,7 +23,6 @@ const styles = StyleSheet.create({
   wrapper: {
     width: '96%',
     border: '1px',
-    borderLeft: 0,
     marginTop: '20',
   },
   section: {
@@ -31,50 +30,80 @@ const styles = StyleSheet.create({
   },
   dayContainer: {
     width: '80%',
-    borderWidth: 1,
+    border: 1,
+    borderLeft: 0,
+    borderTop: 0,
     borderRightWidth: 0,
     textAlign: 'center',
     paddingVertical: 4,
   },
   content: {
     width: '40%',
-    borderWidth: 1,
+    border: 1,
+    borderTop: 0,
     borderRightWidth: 0,
     textAlign: 'left',
     paddingVertical: 4,
     paddingHorizontal: 2,
   },
-  children: {
+  leader: {
     width: '40%',
-    borderWidth: 1,
+    border: 1,
+    borderRightWidth: 0,
+    borderTop: 0,
+    textAlign: 'left',
+    paddingVertical: 4,
+    paddingHorizontal: 2,
+  },
+  name: {
+    width: '40%',
+    border: 1,
+    borderTop: 0,
     borderRightWidth: 0,
     textAlign: 'center',
     paddingVertical: 4,
+    paddingHorizontal: 2,
+  },
+  children: {
+    width: '40%',
+    border: 1,
+    borderColo: 'black',
+    borderLeft: 0,
+    borderTop: 0,
+    borderRightWidth: 0,
+    textAlign: 'center',
+    paddingVertical: 4,
+    paddingHorizontal: 2,
   },
   assignedTeameTitle: {
     width: '21%',
-    borderLeft: 1,
+    borderLeft: 0,
     borderBottom: 1,
     paddingVertical: 4,
     textAlign: 'center',
   },
   assignedTeameContent: {
-    width: '59%',
+    width: '59.5%',
     borderLeft: 1,
     borderBottom: 1,
+    border: 1,
+    borderTop: 0,
     paddingVertical: 4,
     paddingHorizontal: 2,
   },
   aimTitle: {
     width: '15%',
-    borderLeft: 1,
+    borderLeft: 0,
     borderBottom: 0,
+    borderRight: 0,
     paddingVertical: 4,
     textAlign: 'center',
   },
   aimContent: {
     width: '100%',
-    borderLeft: 1,
+    border: 1,
+    borderTop: 0,
+    borderRight: 0,
     borderBottom: 0,
     paddingVertical: 4,
     paddingHorizontal: 2,
@@ -84,8 +113,11 @@ const styles = StyleSheet.create({
     padding: '10px',
   },
   impressions: {
+    padding: 10,
     width: '100%',
-    borderWidth: 1,
+    border: 1,
+    borderLeft: 0,
+    borderBottom: 0,
     borderRightWidth: 0,
     paddingVertical: 6,
   },
@@ -113,6 +145,7 @@ const styles = StyleSheet.create({
     borderRightWidth: 0,
     borderTopWidth: 1,
     borderBottom: 1,
+    borderLeft: 0,
     justifyContent: 'center',
     flexDirection: 'row',
     alignItems: 'center',
@@ -122,10 +155,7 @@ const styles = StyleSheet.create({
     width: '10%',
     borderStyle: 'solid',
     whiteSpace: 'pre-wrap',
-    border: 1,
-    borderRightWidth: 0,
-    borderTopWidth: 0,
-    borderBottom: 0,
+
     justifyContent: 'center',
     flexDirection: 'row',
     paddingHorizontal: 4,
@@ -155,6 +185,11 @@ const styles = StyleSheet.create({
     paddingVertical: 4,
     paddingHorizontal: 4,
   },
+  textWrapper: {
+    whiteSpace: 'pew-line',
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+  },
   tableCell: {
     margin: 'auto',
     marginTop: 5,
@@ -175,6 +210,9 @@ const Pages: VFC<{detailDiary: DetailDiary}> = ({detailDiary}) => {
       },
     ],
   });
+  Font.registerHyphenationCallback((word) =>
+    word.length === 1 ? [word] : Array.from(word).map((char) => char),
+  );
 
   return (
     <Document title="実習日誌の記録">
@@ -188,7 +226,7 @@ const Pages: VFC<{detailDiary: DetailDiary}> = ({detailDiary}) => {
             <View style={styles.dayContainer}>
               <Text>9月23日目曜日</Text>
             </View>
-            <View style={styles.children}>
+            <View style={styles.name}>
               <Text>実習生氏名</Text>
             </View>
             <View style={styles.content}>
@@ -205,7 +243,7 @@ const Pages: VFC<{detailDiary: DetailDiary}> = ({detailDiary}) => {
             <View style={styles.children}>
               <Text>指導者氏名</Text>
             </View>
-            <View style={styles.content}>
+            <View style={styles.leader}>
               <Text>{detailDiary?.leader}</Text>
             </View>
           </View>
@@ -243,26 +281,40 @@ const Pages: VFC<{detailDiary: DetailDiary}> = ({detailDiary}) => {
                     <Text>{res.tableData.date}</Text>
                   </View>
                   <View style={styles.tableContentCol}>
-                    <Text>{res.tableData.childActivities}</Text>
-                    <Text style={styles.correct}>
-                      {res.tableData.childActivitiesFeedback &&
-                        res.tableData.childActivitiesFeedback}
-                    </Text>
+                    <View style={styles.textWrapper}>
+                      <Text key={i}>{res.tableData.childActivities}</Text>
+                    </View>
+                    <View style={styles.textWrapper}>
+                      <Text style={styles.correct} key={i}>
+                        {res.tableData.childActivitiesFeedback}
+                      </Text>
+                    </View>
                   </View>
                   <View style={styles.tableContentCol}>
-                    <Text>{res.tableData.assistance}</Text>
-
-                    <Text style={styles.correct}>
+                    <View style={styles.textWrapper}>
+                      <Text>{`${res.tableData.assistance}`}</Text>
+                    </View>
+                    <View style={styles.textWrapper}>
                       {res.tableData.assistanceFeedback &&
-                        res.tableData.assistanceFeedback}
-                    </Text>
+                        Array.from(res.tableData.assistanceFeedback).map(
+                          (char, i) => (
+                            <Text style={styles.correct} key={i}>
+                              {char}
+                            </Text>
+                          ),
+                        )}
+                    </View>
                   </View>
+
                   <View style={styles.tableContentCol}>
-                    <Text>{res.tableData.activitesAndAwareness}</Text>
-                    <Text style={styles.correct}>
-                      {res.tableData.activitesAndAwarenessFeedback &&
-                        res.tableData.activitesAndAwarenessFeedback}
-                    </Text>
+                    <View style={styles.textWrapper}>
+                      <Text s>{res.tableData.activitesAndAwareness}</Text>
+                    </View>
+                    <View style={styles.textWrapper}>
+                      <Text style={styles.correct} key={i}>
+                        {res.tableData.activitesAndAwarenessFeedback}
+                      </Text>
+                    </View>
                   </View>
                 </View>
               );
@@ -276,7 +328,12 @@ const Pages: VFC<{detailDiary: DetailDiary}> = ({detailDiary}) => {
             </View>
             <View style={styles.section}>
               <View style={styles.impressions}>
-                <Text>{detailDiary?.feeling}</Text>
+                <View style={styles.textWrapper}>
+                  {detailDiary?.feeling &&
+                    Array.from(detailDiary?.feeling).map((char, i) => (
+                      <Text key={i}>{char}</Text>
+                    ))}
+                </View>
               </View>
             </View>
             <View style={styles.section}>
@@ -286,11 +343,17 @@ const Pages: VFC<{detailDiary: DetailDiary}> = ({detailDiary}) => {
             </View>
             <View style={styles.section}>
               <View style={styles.impressions}>
-                <Text style={styles.dodText}>
-                  {detailDiary?.feedback
-                    ? detailDiary.feedback
-                    : 'リンクを保育士に共有して添削と指導者からのことばを書いてもらいましょう。'}
-                </Text>
+                <View style={styles.textWrapper}>
+                  {detailDiary?.feedback ? (
+                    Array.from(detailDiary?.feedback).map((char, i) => (
+                      <View key={i}>
+                        <Text>{char}</Text>
+                      </View>
+                    ))
+                  ) : (
+                    <Text>指導者からのことばをいただきましょう。</Text>
+                  )}
+                </View>
               </View>
             </View>
           </View>

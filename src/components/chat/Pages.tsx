@@ -43,23 +43,30 @@ export const Pages: VFC<AllChatContent> = ({
         <HStack w="100%" p={0} border="2px" borderColor="#E9E9E9">
           <Box
             h="99vh"
+            w="25%"
             border="2px"
             borderTop="0px"
             borderLeft="0px"
             borderBottom="0px"
             borderColor="#E9E9E9">
-            <ChatSidebar
-              lastMessage={lastMessage && lastMessage[0]?.text}
-              name={profileData && profileData?.name}
-              image={profileData && profileData?.dispayImage}
-            />
+            <Box
+              px="2"
+              borderLeft="4px"
+              borderColor="#56A9D3"
+              bg={'#f5f7f9 0% 0% no-repeat padding-box'}>
+              <ChatSidebar
+                lastMessage={lastMessage && lastMessage[0]?.text}
+                name={profileData && profileData?.name}
+                image={profileData && profileData?.dispayImage}
+              />
+            </Box>
           </Box>
-          <Box w="78%">
+          <Box w="80%">
             <ChatHeader
               image={profileData && profileData?.dispayImage}
               name={profileData && profileData?.name}
             />
-            <Box h="76vh" px="5" overflow="scroll">
+            <Box id="chatContents" h="76vh" px="5" overflow="scroll">
               <Chat
                 image={profileData && profileData?.dispayImage}
                 chatMessages={chatMessages}

@@ -8,26 +8,20 @@ export const ChatSidebar: VFC<ChatsSidebarProps> = ({
   image,
 }) => {
   return (
-    <Flex borderColor="#E9E9E9">
-      <Box h="87vh" overflow="scroll">
-        <Box
-          borderLeft="4px"
-          borderColor="#56A9D3"
-          bg={'#f5f7f9 0% 0% no-repeat padding-box'}
-          py={4}
-          px="10"
-          w="100%">
+    <Flex w="100%" borderColor="#E9E9E9">
+      <Box overflow="scroll">
+        <Box py={4} w="100%">
           <Flex alignItems="center">
             <Stack spacing={4}>
               <Avatar src={image}>
                 <AvatarBadge boxSize="0.9em" bg="green.500" />
               </Avatar>
             </Stack>
-            <Box pl="3" w="90%">
+            <Box pl="3" w="100%">
               <Text fontWeight="bold">{name}</Text>
               <Text fontSize="sm" color="#707070">
-                {lastMessage && lastMessage.length > 15
-                  ? lastMessage.substr(0, 15) + '...'
+                {lastMessage && lastMessage.length > 25
+                  ? lastMessage.substr(0, 25) + '...'
                   : lastMessage}
               </Text>
             </Box>

@@ -7511,11 +7511,6 @@ react-linkify@^1.0.0-alpha:
     linkify-it "^2.0.3"
     tlds "^1.199.0"
 
-react-native-wrapped-text@^1.2.2:
-  version "1.2.2"
-  resolved "https://registry.yarnpkg.com/react-native-wrapped-text/-/react-native-wrapped-text-1.2.2.tgz#21d1a55b33d6ec03228d2a0346c3b9bfe73ba6ee"
-  integrity sha512-CglzV4GvGfbMV25W/g8DWKbcQfgOS1qG3CXkcZSMF10jKUf4GgSyf3slAeAbMaw6z96u092PeJaZhfkvQtMfyQ==
-
 react-pdf@^5.3.2:
   version "5.3.2"
   resolved "https://registry.yarnpkg.com/react-pdf/-/react-pdf-5.3.2.tgz#517109d2a32ea7450dea49f7e5cc8e10bd2cfc4b"
