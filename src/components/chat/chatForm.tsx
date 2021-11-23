@@ -10,17 +10,20 @@ import firebase from 'firebase/app';
 export const ChatForm: VFC = () => {
   const [text, setText] = useState<string>('');
   const router = useRouter();
-  const {dockey, chatKey, loginUser} = useContext(AuthContext);
-  const myDocKey = router.query.chat;
   const inputEl = useRef(null);
-  const submitHandler = () => {
+  const {chatKey, loginUser} = useContext(AuthContext);
+  const myDocKey = router.query.chat;
+  const submitHandler = async () => {
+    const chatContents = document.getElementById('chatContents');
     chatKey === myDocKey &&
-      chatRef(String(myDocKey)).add({
+      (await chatRef(String(myDocKey)).add({
         text,
         senderId: loginUser.uid,
         sentAt: firebase.firestore.Timestamp.now(),
-      });
+      }));
     setText('');
+
+    chatContents.scrollTop = chatContents.scrollHeight;
   };
   return (
     <>

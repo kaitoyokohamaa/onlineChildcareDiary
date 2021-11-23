@@ -66,7 +66,10 @@ const Pages = ({summary}) => {
       },
     ],
   });
-
+  Font.registerHyphenationCallback((word) => {
+    // Return entire word as unique part
+    return [word];
+  });
   return (
     <Document title="実習のまとめ">
       <Page size="A4" style={styles.page}>
