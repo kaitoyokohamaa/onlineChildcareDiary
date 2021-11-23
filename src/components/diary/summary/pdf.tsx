@@ -45,13 +45,17 @@ const styles = StyleSheet.create({
     borderTop: 0,
     margin: '10px',
   },
+  textWrapper: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+  },
   title: {
     borderBottom: '1px',
     borderTop: '1px',
     padding: '10px',
   },
   text: {
-    padding: '10px',
+    // padding: '10px',
     textAlign: 'justify',
   },
 });
@@ -66,10 +70,10 @@ const Pages = ({summary}) => {
       },
     ],
   });
-  Font.registerHyphenationCallback((word) => {
-    // Return entire word as unique part
-    return [word];
-  });
+  Font.registerHyphenationCallback((word) =>
+    word.length === 1 ? [word] : Array.from(word).map((char) => char),
+  );
+
   return (
     <Document title="実習のまとめ">
       <Page size="A4" style={styles.page}>
@@ -83,33 +87,59 @@ const Pages = ({summary}) => {
         <View style={styles.container}>
           <View>
             <Text style={styles.title}>1. 実習目標とその達成度</Text>
-            <Text style={styles.text}>{summary.goalAndAchievement}</Text>
+            <View style={styles.textWrapper}>
+              {Array.from(summary.goalAndAchievement).map((char, i) => (
+                <Text key={i} style={styles.text}>
+                  {char}
+                </Text>
+              ))}
+            </View>
           </View>
           <View>
             <Text style={styles.title}>2. 実習で感銘を受けた体験</Text>
-            <Text wrap={true} style={styles.text}>
-              {summary.experience}
-            </Text>
+            <View style={styles.textWrapper}>
+              {Array.from(summary.experience).map((char, i) => (
+                <Text key={i} style={styles.text}>
+                  {char}
+                </Text>
+              ))}
+            </View>
           </View>
           <View>
             <Text style={styles.title}>
               3. 実習の反省および新しく発見した課題
             </Text>
-            <Text wrap={true} style={styles.text}>
-              {summary.reflection.replace('-', '')}
-            </Text>
+            <View style={styles.textWrapper}>
+              {Array.from(summary.reflection).map((char, i) => (
+                <Text key={i} style={styles.text}>
+                  {char}
+                </Text>
+              ))}
+            </View>
           </View>
           <View>
             <Text style={styles.title}>4. その他気づいたこと</Text>
-            <Text style={styles.text}>{summary.notice}</Text>
+            <View style={styles.textWrapper}>
+              {Array.from(summary.notice).map((char, i) => (
+                <Text key={i} style={styles.text}>
+                  {char}
+                </Text>
+              ))}
+            </View>
           </View>
           <View>
             <Text style={styles.title}>5. 実習指導者からのコメント</Text>
-            <Text style={styles.text}>
-              {summary.comment
-                ? summary.comment
-                : '実習指導者からのコメントをもらいましょう'}
-            </Text>
+            <View style={styles.textWrapper}>
+              {summary.comment ? (
+                Array.from(summary.comment).map((char, i) => (
+                  <Text key={i} style={styles.text}>
+                    {char}
+                  </Text>
+                ))
+              ) : (
+                <Text>実習指導者からのコメントをもらいましょう</Text>
+              )}
+            </View>
           </View>
         </View>
       </Page>

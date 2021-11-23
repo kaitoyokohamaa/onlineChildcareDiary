@@ -155,6 +155,10 @@ const styles = StyleSheet.create({
     paddingVertical: 4,
     paddingHorizontal: 4,
   },
+  textWrapper: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+  },
   tableCell: {
     margin: 'auto',
     marginTop: 5,
@@ -175,6 +179,9 @@ const Pages: VFC<{detailDiary: DetailDiary}> = ({detailDiary}) => {
       },
     ],
   });
+  Font.registerHyphenationCallback((word) =>
+    word.length === 1 ? [word] : Array.from(word).map((char) => char),
+  );
 
   return (
     <Document title="実習日誌の記録">
@@ -243,26 +250,60 @@ const Pages: VFC<{detailDiary: DetailDiary}> = ({detailDiary}) => {
                     <Text>{res.tableData.date}</Text>
                   </View>
                   <View style={styles.tableContentCol}>
-                    <Text>{res.tableData.childActivities}</Text>
-                    <Text style={styles.correct}>
+                    <View style={styles.textWrapper}>
+                      {Array.from(res.tableData.childActivities).map(
+                        (char, i) => (
+                          <Text key={i}>{char}</Text>
+                        ),
+                      )}
+                    </View>
+                    <View style={styles.textWrapper}>
                       {res.tableData.childActivitiesFeedback &&
-                        res.tableData.childActivitiesFeedback}
-                    </Text>
+                        Array.from(res.tableData.childActivitiesFeedback).map(
+                          (char, i) => (
+                            <Text style={styles.correct} key={i}>
+                              {char}
+                            </Text>
+                          ),
+                        )}
+                    </View>
                   </View>
                   <View style={styles.tableContentCol}>
-                    <Text>{res.tableData.assistance}</Text>
-
-                    <Text style={styles.correct}>
+                    <View style={styles.textWrapper}>
+                      {Array.from(res.tableData.assistance).map((char, i) => (
+                        <Text key={i}>{char}</Text>
+                      ))}
+                    </View>
+                    <View style={styles.textWrapper}>
                       {res.tableData.assistanceFeedback &&
-                        res.tableData.assistanceFeedback}
-                    </Text>
+                        Array.from(res.tableData.assistanceFeedback).map(
+                          (char, i) => (
+                            <Text style={styles.correct} key={i}>
+                              {char}
+                            </Text>
+                          ),
+                        )}
+                    </View>
                   </View>
+
                   <View style={styles.tableContentCol}>
-                    <Text>{res.tableData.activitesAndAwareness}</Text>
-                    <Text style={styles.correct}>
+                    <View style={styles.textWrapper}>
+                      {Array.from(res.tableData.activitesAndAwareness).map(
+                        (char, i) => (
+                          <Text key={i}>{char}</Text>
+                        ),
+                      )}
+                    </View>
+                    <View style={styles.textWrapper}>
                       {res.tableData.activitesAndAwarenessFeedback &&
-                        res.tableData.activitesAndAwarenessFeedback}
-                    </Text>
+                        Array.from(
+                          res.tableData.activitesAndAwarenessFeedback,
+                        ).map((char, i) => (
+                          <Text style={styles.correct} key={i}>
+                            {char}
+                          </Text>
+                        ))}
+                    </View>
                   </View>
                 </View>
               );
@@ -276,7 +317,12 @@ const Pages: VFC<{detailDiary: DetailDiary}> = ({detailDiary}) => {
             </View>
             <View style={styles.section}>
               <View style={styles.impressions}>
-                <Text>{detailDiary?.feeling}</Text>
+                <View style={styles.textWrapper}>
+                  {detailDiary?.feeling &&
+                    Array.from(detailDiary?.feeling).map((char, i) => (
+                      <Text key={i}>{char}</Text>
+                    ))}
+                </View>
               </View>
             </View>
             <View style={styles.section}>
@@ -286,11 +332,15 @@ const Pages: VFC<{detailDiary: DetailDiary}> = ({detailDiary}) => {
             </View>
             <View style={styles.section}>
               <View style={styles.impressions}>
-                <Text style={styles.dodText}>
-                  {detailDiary?.feedback
-                    ? detailDiary.feedback
-                    : 'リンクを保育士に共有して添削と指導者からのことばを書いてもらいましょう。'}
-                </Text>
+                <View style={styles.textWrapper}>
+                  {detailDiary?.feedback ? (
+                    Array.from(detailDiary?.feedback).map((char, i) => (
+                      <Text key={i}>{char}</Text>
+                    ))
+                  ) : (
+                    <Text>指導者からの言葉をいただきましょう。</Text>
+                  )}
+                </View>
               </View>
             </View>
           </View>
