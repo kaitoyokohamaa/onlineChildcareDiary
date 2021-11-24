@@ -1,16 +1,16 @@
-import {Box, Flex, Text, Divider} from '@chakra-ui/layout'
-import {Textarea, Button} from '@chakra-ui/react'
-import {DiaryTabel} from '@/components/diary/register/diaryTabel'
-import {useState} from 'react'
-import {registerRef, teaherDiaryHistiryRef} from '@/lib/firestore'
-import firebase from 'firebase/app'
+import {Box, Flex, Text, Divider} from '@chakra-ui/layout';
+import {Textarea, Button} from '@chakra-ui/react';
+import {DiaryTabel} from '@/components/diary/register/diaryTabel';
+import {useState} from 'react';
+import {registerRef, teaherDiaryHistiryRef} from '@/lib/firestore';
+import firebase from 'firebase/app';
 
-import {MdLocalLibrary} from 'react-icons/md'
-import {Table} from '@/models/diary'
-import {VFC, useContext} from 'react'
-import {EditType} from '@/models/diary/edit'
-import {useRouter} from 'next/router'
-import {AuthContext} from '@/contexts/AuthContext'
+import {MdLocalLibrary} from 'react-icons/md';
+import {Table} from '@/models/diary';
+import {VFC, useContext} from 'react';
+import {EditType} from '@/models/diary/edit';
+import {useRouter} from 'next/router';
+import {AuthContext} from '@/contexts/AuthContext';
 export const Pages: VFC<EditType> = ({
   detailDiary,
   projectID,
@@ -18,29 +18,31 @@ export const Pages: VFC<EditType> = ({
 }) => {
   const [trainingContent, setTrainingContent] = useState<Table[]>(
     detailDiary.trainingContent,
-  )
+  );
 
   const [feedback, setFeedback] = useState<string>(
     detailDiary.feedback ? detailDiary.feedback : '',
-  )
+  );
 
-  const router = useRouter()
-  const {dockey} = useContext(AuthContext)
-  const userDockkey = router.query.teachers[1]
+  const router = useRouter();
+  const {dockey} = useContext(AuthContext);
+  const userDockkey = router.query.teachers[1];
 
   const submitHandler = async () => {
     await registerRef(userDockkey).doc(registerDetailDocKey).update({
       feedback,
       trainingContent,
       updateAt: firebase.firestore.Timestamp.now(),
-    })
-    ;(await userDockkey) !== dockey &&
+    });
+    (await userDockkey) !== dockey &&
       teaherDiaryHistiryRef(dockey).add({
         diaryId: registerDetailDocKey,
         updateAt: firebase.firestore.Timestamp.now(),
-      })
-    router.push(`/teacher/diary/detail/${registerDetailDocKey}/${userDockkey}`)
-  }
+      });
+    router.push(
+      `/teacher/diary/detail/teacher/${registerDetailDocKey}/${userDockkey}`,
+    );
+  };
   // todo react hooks formでバリデーションの追加
 
   return (
@@ -83,16 +85,14 @@ export const Pages: VFC<EditType> = ({
               textAlign="right"
               w="100%"
               bg="#FCFCFC 0% 0% no-repeat padding-box;"
-              p="10"
-            >
+              p="10">
               <Button
                 onClick={submitHandler}
                 w="32"
                 ml="3"
                 bg="#273264"
                 color="#fff"
-                _hover={{bg: '#141933'}}
-              >
+                _hover={{bg: '#141933'}}>
                 保存する
               </Button>
             </Box>
@@ -100,5 +100,5 @@ export const Pages: VFC<EditType> = ({
         </Box>
       </Box>
     </Box>
-  )
-}
+  );
+};
