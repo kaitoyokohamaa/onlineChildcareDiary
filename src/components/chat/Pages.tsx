@@ -8,7 +8,7 @@ import {Chat} from '@/components/chat/chat';
 import {ChatForm} from '@/components/chat/chatForm';
 import {Layout} from '@/components/common/layout';
 import {AllChatContent} from '@/models/chat';
-
+import {Teacher} from '@/models/teacher';
 import {useCollection} from '@nandorojo/swr-firestore';
 export const Pages: VFC<AllChatContent> = ({
   chatKey,
@@ -25,46 +25,26 @@ export const Pages: VFC<AllChatContent> = ({
     },
   );
 
-  const {data: lastMessage} = useCollection<AllChatContent['chatData']>(
-    `User/${chatKey}/chats/`,
-    {
-      ignoreFirestoreDocumentSnapshotField: false,
-      limit: 1,
-      orderBy: ['sentAt', 'desc'],
-      listen: true,
-    },
-  );
+  const {data: profile} = useCollection<Teacher>(`Teacher`, {
+    listen: true,
+    where: ['chatKey', 'array-contains', chatKey],
+    initialData: profileData,
+  });
 
   const router = useRouter();
   const isTeacherOrUser = isTeacher;
   return (
     <Layout isTeacher={isTeacherOrUser ? true : false}>
-      {profileData ? (
+      {profile ? (
         <HStack w="100%" p={0} border="2px" borderColor="#E9E9E9">
-          <Box
-            h="99vh"
-            w="25%"
-            border="2px"
-            borderTop="0px"
-            borderLeft="0px"
-            borderBottom="0px"
-            borderColor="#E9E9E9">
-            <Box
-              px="2"
-              borderLeft="4px"
-              borderColor="#56A9D3"
-              bg={'#f5f7f9 0% 0% no-repeat padding-box'}>
-              <ChatSidebar
-                lastMessage={lastMessage && lastMessage[0]?.text}
-                name={profileData && profileData?.name}
-                image={profileData && profileData?.dispayImage}
-              />
-            </Box>
-          </Box>
-          <Box w="80%">
+          <Box w="100%">
             <ChatHeader
-              image={profileData && profileData?.dispayImage}
-              name={profileData && profileData?.name}
+              image={profile[0] && profile[0]?.dispayImage}
+              name={
+                profile && isTeacher
+                  ? `${profile[0]?.name}(実習生)`
+                  : `${profile[0]?.name}(${profile[0]?.department})`
+              }
             />
             <Box id="chatContents" h="76vh" px="5" overflow="scroll">
               <Chat

@@ -1,25 +1,25 @@
-import {Button} from '@chakra-ui/button'
-import {Box, Heading} from '@chakra-ui/layout'
-import {Input, Divider, FormControl, FormLabel, HStack} from '@chakra-ui/react'
-import {VFC, useState} from 'react'
-import {Layout} from '@/components/common/layout'
-import {Dropzone} from '@/components/common/dropzone'
-import {invitedUserRef, teacherRef} from '@/lib/firestore'
-import {useRouter} from 'next/router'
+import {Button} from '@chakra-ui/button';
+import {Box, Heading} from '@chakra-ui/layout';
+import {Input, Divider, FormControl, FormLabel, HStack} from '@chakra-ui/react';
+import {VFC, useState} from 'react';
+import {Layout} from '@/components/common/layout';
+import {Dropzone} from '@/components/common/dropzone';
+import {invitedUserRef, teacherRef} from '@/lib/firestore';
+import {useRouter} from 'next/router';
 export const Pages: VFC<{
-  inviteKey: string
-  teacherId: string
-  teacherUid: string
+  inviteKey: string;
+  teacherId: string;
+  teacherUid: string;
 }> = ({inviteKey, teacherId, teacherUid}) => {
-  const [name, setName] = useState<string>('')
-  const [email, setEmail] = useState<string>('')
-  const [department, setDepartment] = useState<string>('')
-  const [post, setPost] = useState<string>('')
-  const [number, setNumber] = useState<string>('')
-  const [birthday, setBirthday] = useState<string>('')
-  const router = useRouter()
-  const submitHandler = () => {
-    teacherRef().doc(teacherId).update({
+  const [name, setName] = useState<string>('');
+  const [email, setEmail] = useState<string>('');
+  const [department, setDepartment] = useState<string>('');
+  const [post, setPost] = useState<string>('');
+  const [number, setNumber] = useState<string>('');
+  const [birthday, setBirthday] = useState<string>('');
+  const router = useRouter();
+  const submitHandler = async () => {
+    await teacherRef().doc(teacherId).update({
       name,
       email,
       department,
@@ -28,9 +28,9 @@ export const Pages: VFC<{
       birthday,
       id: teacherId,
       uid: teacherUid,
-    })
-    router.push('/teacher/welcome')
-  }
+    });
+    router.push('/teacher/welcome');
+  };
   return (
     <Layout isTeacher>
       <Box p="10">
@@ -61,8 +61,7 @@ export const Pages: VFC<{
                 onChange={(e) => setEmail(e.target.value)}
                 type="email"
                 placeholder="メールアドレス"
-                variant="flushed"
-              ></Input>
+                variant="flushed"></Input>
             </FormControl>
             {/* </Flex> */}
           </HStack>
@@ -111,12 +110,11 @@ export const Pages: VFC<{
             color="white"
             borderRadius="40"
             px="8"
-            onClick={submitHandler}
-          >
+            onClick={submitHandler}>
             登録する
           </Button>
         </Box>
       </Box>
     </Layout>
-  )
-}
+  );
+};

@@ -38,8 +38,8 @@ export const Pages: VFC<{
         setTeacher(data);
       });
   }, [id]);
-  const submitHandler = () => {
-    teacherRef().doc(id).update({
+  const submitHandler = async () => {
+    await teacherRef().doc(id).update({
       name,
       email,
       department,
