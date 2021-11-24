@@ -193,7 +193,7 @@ export const Sidebar: VFC<{isTeacher?: boolean}> = ({isTeacher}) => {
               }>
               <SidebarLink
                 color={router.asPath.includes('history') ? '#84B9D4' : 'white'}>
-                <Link href={`/teacher/history/${dockey}/${chatKey}`}>
+                <Link href={`/teacher/history/teacher/${dockey}/${chatKey}`}>
                   <a>
                     <Flex justify="center" mx={-1.5}>
                       <HStack w="60%">
