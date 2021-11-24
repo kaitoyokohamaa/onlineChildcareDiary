@@ -22,7 +22,7 @@ export async function getStaticPaths() {
     fallback: 'blocking',
   };
 }
-const Chat: NextPage<{chatKey: string; data: User}> = ({chatKey, data}) => {
-  return <Pages chatKey={chatKey} profileData={data} isTeacher />;
+const Chat: NextPage<{chatKey: string; data: any}> = ({chatKey, data}) => {
+  return <Pages chatKey={chatKey} data={data} isTeacher />;
 };
 export default Chat;

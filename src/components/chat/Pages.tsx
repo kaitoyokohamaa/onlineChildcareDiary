@@ -9,13 +9,14 @@ import {ChatForm} from '@/components/chat/chatForm';
 import {Layout} from '@/components/common/layout';
 import {AllChatContent} from '@/models/chat';
 import {Teacher} from '@/models/teacher';
-import {User} from '@/models/user';
+
 import {useCollection, useDocument} from '@nandorojo/swr-firestore';
 export const Pages: VFC<AllChatContent> = ({
   chatKey,
   profileData,
   isTeacher,
   chatData,
+  data,
 }) => {
   const {data: chatMessages} = useCollection<AllChatContent['chatData']>(
     `User/${chatKey}/chats/`,
@@ -32,11 +33,11 @@ export const Pages: VFC<AllChatContent> = ({
     initialData: profileData,
   });
 
-  const {data: profileUser} = useDocument<User>(`User/${chatKey}`, {
+  const {data: profileUser} = useDocument(`User/${chatKey}`, {
     listen: true,
-    initialData: profileData,
+    initialData: data,
   });
-  console.log(profileUser);
+
   const router = useRouter();
   const isTeacherOrUser = isTeacher;
   return (
@@ -58,7 +59,11 @@ export const Pages: VFC<AllChatContent> = ({
             />
             <Box id="chatContents" h="76vh" px="5" overflow="scroll">
               <Chat
-                image={profileData && profileData?.dispayImage}
+                image={
+                  profile[0] && isTeacher
+                    ? profileUser?.dispayImage
+                    : profile[0]?.dispayImage
+                }
                 chatMessages={chatMessages}
               />
             </Box>
