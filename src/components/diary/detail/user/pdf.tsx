@@ -282,11 +282,12 @@ const Pages: VFC<{detailDiary: DetailDiary}> = ({detailDiary}) => {
                   </View>
                   <View style={styles.tableContentCol}>
                     <View style={styles.textWrapper}>
-                      <Text key={i}>{res.tableData.childActivities}</Text>
+                      <Text>{res.tableData.childActivities}</Text>
                     </View>
                     <View style={styles.textWrapper}>
-                      <Text style={styles.correct} key={i}>
-                        {res.tableData.childActivitiesFeedback}
+                      <Text style={styles.correct}>
+                        {res.tableData?.childActivitiesFeedback &&
+                          res.tableData?.childActivitiesFeedback}
                       </Text>
                     </View>
                   </View>
@@ -295,14 +296,10 @@ const Pages: VFC<{detailDiary: DetailDiary}> = ({detailDiary}) => {
                       <Text>{`${res.tableData.assistance}`}</Text>
                     </View>
                     <View style={styles.textWrapper}>
-                      {res.tableData.assistanceFeedback &&
-                        Array.from(res.tableData.assistanceFeedback).map(
-                          (char, i) => (
-                            <Text style={styles.correct} key={i}>
-                              {char}
-                            </Text>
-                          ),
-                        )}
+                      <Text style={styles.correct}>
+                        {res.tableData?.assistanceFeedback &&
+                          res.tableData.assistanceFeedback}
+                      </Text>
                     </View>
                   </View>
 
@@ -311,8 +308,9 @@ const Pages: VFC<{detailDiary: DetailDiary}> = ({detailDiary}) => {
                       <Text>{res.tableData.activitesAndAwareness}</Text>
                     </View>
                     <View style={styles.textWrapper}>
-                      <Text style={styles.correct} key={i}>
-                        {res.tableData.activitesAndAwarenessFeedback}
+                      <Text style={styles.correct}>
+                        {res.tableData?.activitesAndAwarenessFeedback &&
+                          res.tableData.activitesAndAwarenessFeedback}
                       </Text>
                     </View>
                   </View>

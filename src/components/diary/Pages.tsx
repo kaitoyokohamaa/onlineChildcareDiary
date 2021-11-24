@@ -101,7 +101,8 @@ export const Pages: VFC<{diary: Register}> = ({diary}) => {
                     </Th>
 
                     <Td color="#273264" fontWeight="bold" cursor="pointer">
-                      <Link href={`/user/diary/detail/${res.id}/${userKey}`}>
+                      <Link
+                        href={`/user/diary/detail/user/${res.id}/${userKey}`}>
                         <a>2歳児クラス</a>
                       </Link>
                     </Td>
@@ -110,7 +111,7 @@ export const Pages: VFC<{diary: Register}> = ({diary}) => {
                       <CopyToClipboard
                         cursor="pointer"
                         // 本番環境のパスに入れ替え→もしisUserじゃなかったら保育士の先生が編集できるデザインに変更する。
-                        text={`phoenixdiary.vercel.app/teacher/diary/detail/${res.id}/${userKey}`}>
+                        text={`phoenixdiary.vercel.app/teacher/diary/detail/teacher/${res.id}/${userKey}`}>
                         <MdContentCopy
                           onClick={() =>
                             toast({

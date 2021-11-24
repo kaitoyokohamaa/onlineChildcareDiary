@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import {Button} from '@chakra-ui/button';
 import {Box, Flex, Heading} from '@chakra-ui/layout';
 import {Input, Link as Links} from '@chakra-ui/react';
@@ -22,7 +23,7 @@ export const Pages: VFC = () => {
           <Box>
             <Flex align="center">
               <Box w="10%">
-                <img src="/img/phoenix.png" />
+                <img src="/img/phoenix.png" alt="フェニックス" />
               </Box>
               <Box textAlign="center">
                 <Heading as="h5" size="md" color="#273673">
@@ -61,8 +62,10 @@ export const Pages: VFC = () => {
             </Box>
             <Box textAlign="center">
               初めてのログインはこちら
-              <Link href="user/signup">
-                <Links color="blue.500">新規登録</Links>
+              <Link href="/user/signup">
+                <a>
+                  <Links color="blue.500">新規登録</Links>
+                </a>
               </Link>
             </Box>
           </Box>

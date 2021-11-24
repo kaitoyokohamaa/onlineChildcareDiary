@@ -1,24 +1,26 @@
-import {Box, Flex, Text, Divider} from '@chakra-ui/layout'
-import {Input, Textarea, Button} from '@chakra-ui/react'
-import {DiaryTabel} from './diaryTabel'
-import {useState, useContext} from 'react'
-import {registerRef, tablesRef} from '@/lib/firestore'
-import firebase from 'firebase/app'
-import {AuthContext} from '@/contexts/AuthContext'
-import {v1 as uuidv1} from 'uuid'
-import {MdLocalLibrary} from 'react-icons/md'
-import {Table} from '@/models/diary'
-import {Layout} from '@/components/common/layout'
+import {Box, Flex, Text, Divider} from '@chakra-ui/layout';
+import {Input, Textarea, Button} from '@chakra-ui/react';
+import {DiaryTabel} from './diaryTabel';
+import {useState, useContext} from 'react';
+import {registerRef, tablesRef} from '@/lib/firestore';
+import firebase from 'firebase/app';
+import {AuthContext} from '@/contexts/AuthContext';
+import {v1 as uuidv1} from 'uuid';
+import {MdLocalLibrary} from 'react-icons/md';
+import {Table} from '@/models/diary';
+import {Layout} from '@/components/common/layout';
+import {useRouter} from 'next/router';
 export const Pages = ({projectID}) => {
-  const [count, setCount] = useState<string>('')
-  const [day, setDay] = useState<string>('')
-  const [studentName, setStudentName] = useState<string>('')
-  const [assignedName, setAssignedName] = useState<string>('')
-  const [leader, setLeader] = useState<string>('')
-  const [goal, setGoal] = useState<string>('')
-  const [trainingContent, setTrainingContent] = useState<Table[]>([])
-  const [feeling, setFeeling] = useState<string>('')
-  const {dockey} = useContext(AuthContext)
+  const [count, setCount] = useState<string>('');
+  const [day, setDay] = useState<string>('');
+  const [studentName, setStudentName] = useState<string>('');
+  const [assignedName, setAssignedName] = useState<string>('');
+  const [leader, setLeader] = useState<string>('');
+  const [goal, setGoal] = useState<string>('');
+  const [trainingContent, setTrainingContent] = useState<Table[]>([]);
+  const [feeling, setFeeling] = useState<string>('');
+  const {dockey} = useContext(AuthContext);
+  const router = useRouter();
   const addRow = () => {
     tablesRef(dockey).add({
       projectID,
@@ -30,9 +32,9 @@ export const Pages = ({projectID}) => {
       assistanceFeedback: '',
       activitesAndAwareness: '',
       activitesAndAwarenessFeedback: '',
-      createdAt: firebase.firestore.Timestamp.now()
-    })
-  }
+      createdAt: firebase.firestore.Timestamp.now(),
+    });
+  };
 
   const submitHandler = () => {
     registerRef(dockey).add({
@@ -45,9 +47,10 @@ export const Pages = ({projectID}) => {
       trainingContent,
       feeling,
       createdAt: firebase.firestore.Timestamp.now(),
-      updatedAt: null
-    })
-  }
+      updatedAt: null,
+    });
+    router.push(`/user/diary/${dockey}`);
+  };
 
   return (
     <Layout isHeader>
@@ -68,7 +71,7 @@ export const Pages = ({projectID}) => {
               <Input
                 onChange={(e) => setCount(e.target.value)}
                 type="number"
-                placeholder="第何日目"
+                placeholder="第何日目(半角入力)"
               />
               <Input
                 onChange={(e) => setDay(e.target.value)}
@@ -126,15 +129,13 @@ export const Pages = ({projectID}) => {
                 textAlign="right"
                 w="100%"
                 bg="#FCFCFC 0% 0% no-repeat padding-box;"
-                p="10"
-              >
+                p="10">
                 <Button
                   w="32"
                   bg="#9FD0E8"
                   color="#fff"
                   _hover={{bg: '##9FD0E8'}}
-                  onClick={addRow}
-                >
+                  onClick={addRow}>
                   + 行を追加
                 </Button>
               </Box>
@@ -159,29 +160,16 @@ export const Pages = ({projectID}) => {
                 textAlign="right"
                 w="100%"
                 bg="#FCFCFC 0% 0% no-repeat padding-box;"
-                p="10"
-              >
+                p="10">
                 {/* todo:一時保存機能 */}
-                <Button
-                  ml="3"
-                  w="32"
-                  variant="outline"
-                  colorScheme="blue"
-                  border="1px"
-                  borderColor="#273264"
-                  bg="#fff"
-                  color="#273264"
-                >
-                  一時保存
-                </Button>
+
                 <Button
                   onClick={submitHandler}
                   w="32"
                   ml="3"
                   bg="#273264"
                   color="#fff"
-                  _hover={{bg: '#141933'}}
-                >
+                  _hover={{bg: '#141933'}}>
                   保存する
                 </Button>
               </Box>
@@ -190,5 +178,5 @@ export const Pages = ({projectID}) => {
         </Box>
       </Box>
     </Layout>
-  )
-}
+  );
+};

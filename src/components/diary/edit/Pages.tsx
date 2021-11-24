@@ -63,7 +63,9 @@ export const Pages: VFC<EditType> = ({
       feeling,
     });
 
-    await router.push(`/user/diary/detail/${registerDetailDocKey}/${dockey}`);
+    await router.push(
+      `/user/diary/detail/user/${registerDetailDocKey}/${dockey}`,
+    );
   };
   // todo react hooks formでバリデーションの追加
 
