@@ -6,15 +6,14 @@ import {useRouter} from 'next/router';
 import Link from 'next/link';
 import {Layout} from '@/components/common/layout';
 import {teacherfiledRef} from '@/lib/firestore';
-
+import firebase from 'firebase/app';
 export const Pages: VFC = () => {
-  const [teacher, setTeacher] = useState<Teacher>();
+  const [teacher, setTeacher] = useState<firebase.firestore.DocumentData>();
   const router = useRouter();
   const docKey = router.query.profile;
   useEffect(() => {
     teacherfiledRef(String(docKey)).onSnapshot((res) => {
-      let data = null;
-      data = res.data();
+      const data = res.data();
       setTeacher(data);
     });
   }, [docKey]);

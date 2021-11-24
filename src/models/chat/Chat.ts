@@ -8,7 +8,7 @@ export type Chats = {
 
 export type AllChatContent = {
   chatKey?: string;
-  profileData?: Teacher | User;
+  profileData?: Teacher;
   isTeacher?: boolean;
   chatData?: Messages;
 };
