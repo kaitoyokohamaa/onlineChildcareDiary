@@ -2,7 +2,8 @@ import {NextPage, GetStaticProps, GetStaticPropsContext} from 'next';
 
 import {Pages} from '@/components/chat/Pages';
 import {adminUsersRef} from '@/lib/nodedb';
-import {ChatsProps} from '@/models/chat';
+
+import {User} from '@/models/user';
 export const getStaticProps: GetStaticProps = async (
   context: GetStaticPropsContext,
 ) => {
@@ -21,7 +22,7 @@ export async function getStaticPaths() {
     fallback: 'blocking',
   };
 }
-const Chat: NextPage<{chatKey: any; data: any}> = ({chatKey, data}) => {
+const Chat: NextPage<{chatKey: string; data: User}> = ({chatKey, data}) => {
   return <Pages chatKey={chatKey} profileData={data} isTeacher />;
 };
 export default Chat;

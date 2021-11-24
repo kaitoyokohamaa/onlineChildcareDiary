@@ -1283,7 +1283,7 @@
 
 "@nandorojo/swr-firestore@git+https://github.com/kaitoyokohamaa/swr-firestore.git":
   version "0.16.0"
-  resolved "git+https://github.com/kaitoyokohamaa/swr-firestore.git#def6a1054d9b312f4b9c319ccf89349ac321f44c"
+  resolved "git+https://github.com/kaitoyokohamaa/swr-firestore.git#95b28333ba7f242d7b87b1573e8268c83c255fcd"
   dependencies:
     lodash.get "^4.4.2"
     lodash.set "^4.3.2"
