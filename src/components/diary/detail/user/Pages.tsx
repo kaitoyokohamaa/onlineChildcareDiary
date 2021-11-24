@@ -9,9 +9,12 @@ import {Layout} from '@/components/common/layout';
 import {AuthContext} from '@/contexts/AuthContext';
 import {userRef, adminRegisterDetailRef} from '@/lib/firestore';
 import firebase from 'firebase/app';
-const PDF = dynamic(() => import('./pdf').then((mod) => mod.Pdf), {
-  ssr: false,
-});
+const PDF = dynamic<{detailDiary: firebase.firestore.DocumentData}>(
+  () => import('./pdf').then((mod) => mod.Pdf),
+  {
+    ssr: false,
+  },
+);
 
 export const Pages: VFC<DocKeyId> = ({userKey, detailKey}) => {
   const router = useRouter();
@@ -70,7 +73,7 @@ export const Pages: VFC<DocKeyId> = ({userKey, detailKey}) => {
           </Box>
         </Flex>
         <Divider mt="5" />
-        <PDF />
+        <PDF detailDiary={detailDiary} />
       </Box>
     </Layout>
   );
