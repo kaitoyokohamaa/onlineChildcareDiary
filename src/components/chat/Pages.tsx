@@ -9,12 +9,14 @@ import {ChatForm} from '@/components/chat/chatForm';
 import {Layout} from '@/components/common/layout';
 import {AllChatContent} from '@/models/chat';
 import {Teacher} from '@/models/teacher';
-import {useCollection} from '@nandorojo/swr-firestore';
+
+import {useCollection, useDocument} from '@nandorojo/swr-firestore';
 export const Pages: VFC<AllChatContent> = ({
   chatKey,
   profileData,
   isTeacher,
   chatData,
+  data,
 }) => {
   const {data: chatMessages} = useCollection<AllChatContent['chatData']>(
     `User/${chatKey}/chats/`,
@@ -31,24 +33,37 @@ export const Pages: VFC<AllChatContent> = ({
     initialData: profileData,
   });
 
+  const {data: profileUser} = useDocument(`User/${chatKey}`, {
+    listen: true,
+    initialData: data,
+  });
+
   const router = useRouter();
   const isTeacherOrUser = isTeacher;
   return (
     <Layout isTeacher={isTeacherOrUser ? true : false}>
-      {profile ? (
+      {profile && profile[0] ? (
         <HStack w="100%" p={0} border="2px" borderColor="#E9E9E9">
           <Box w="100%">
             <ChatHeader
-              image={profile[0] && profile[0]?.dispayImage}
+              image={
+                profile[0] && isTeacher
+                  ? profileUser?.dispayImage
+                  : profile[0]?.dispayImage
+              }
               name={
-                profile && isTeacher
-                  ? `${profile[0]?.name}(実習生)`
+                profile[0] && isTeacher
+                  ? `${profileUser?.name}(実習生)`
                   : `${profile[0]?.name}(${profile[0]?.department})`
               }
             />
             <Box id="chatContents" h="76vh" px="5" overflow="scroll">
               <Chat
-                image={profileData && profileData?.dispayImage}
+                image={
+                  profile[0] && isTeacher
+                    ? profileUser?.dispayImage
+                    : profile[0]?.dispayImage
+                }
                 chatMessages={chatMessages}
               />
             </Box>
@@ -58,9 +73,11 @@ export const Pages: VFC<AllChatContent> = ({
           </Box>
         </HStack>
       ) : (
-        <>
-          <p>実習先の保育士に招待リンクを送って登録してもらいましょう！</p>
+        <Box h="85vh" textAlign="center">
+          <p>保育士の登録がまだ完了しておりません。</p>
+          <p>もうしばらくお待ちください。</p>
           <Button
+            mt="2"
             background="#263773"
             color="#fff"
             _hover={{background: '#1c2956'}}
@@ -69,7 +86,7 @@ export const Pages: VFC<AllChatContent> = ({
             rounded="full">
             リンクをコピーしに行く
           </Button>
-        </>
+        </Box>
       )}
     </Layout>
   );

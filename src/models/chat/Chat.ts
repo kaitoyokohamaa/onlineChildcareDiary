@@ -11,6 +11,8 @@ export type AllChatContent = {
   profileData?: Teacher;
   isTeacher?: boolean;
   chatData?: Messages;
+  // swrでエラーが起こるので一旦
+  data?: any;
 };
 
 export type Messages = {
