@@ -1,35 +1,37 @@
-import {Table} from '@/models/diary'
+import {Table} from '@/models/diary';
 export type Register = {
   diaryData: {
-    feeling: string
-    trainingContent: [Table]
-    assignedName: string
-    count: string
-    studentName: string
-    goal: string
-    day: string
-    leader: string
-  }
-  id: string
-}[]
+    feeling: string;
+    trainingContent: [Table];
+    assignedName: string;
+    count: string;
+    studentName: string;
+    goal: string;
+    day: string;
+    trainingClass: string;
+    leader: string;
+  };
+  id: string;
+}[];
 
 export type DetailDiary = {
-  feeling: string
-  trainingContent: Table[]
-  assignedName: string
-  count: string
-  studentName: string
-  goal: string
-  day: string
-  leader: string
-  feedback?: string
-}
+  feeling: string;
+  trainingContent: Table[];
+  assignedName: string;
+  count: string;
+  studentName: string;
+  goal: string;
+  day: string;
+  leader: string;
+  feedback?: string;
+  trainingClass: string;
+};
 
 export type isUserDetailDiary = {
-  detailDiary: DetailDiary
-}
+  detailDiary: DetailDiary;
+};
 
 export type DocKeyId = {
-  userKey: string
-  detailKey: string
-}
+  userKey: string;
+  detailKey: string;
+};

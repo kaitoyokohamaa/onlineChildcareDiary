@@ -100,6 +100,7 @@ export const Pages: VFC<{diary: Register}> = ({diary}) => {
           <Tbody>
             {diaryData ? (
               diaryData.map((res, i) => {
+                const day = res?.day.replace('-', '/').replace('-', '/');
                 return (
                   <Tr
                     key={i}
@@ -114,10 +115,10 @@ export const Pages: VFC<{diary: Register}> = ({diary}) => {
                     <Td color="#273264" fontWeight="bold" cursor="pointer">
                       <Link
                         href={`/user/diary/detail/user/${res.id}/${userKey}`}>
-                        <a>2歳児クラス</a>
+                        <a>{res?.trainingClass}</a>
                       </Link>
                     </Td>
-                    <Td>{`${res?.day}`}</Td>
+                    <Td>{`${day}`}</Td>
                     <Td>
                       <CopyToClipboard
                         cursor="pointer"
