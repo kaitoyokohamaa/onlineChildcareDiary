@@ -11,6 +11,7 @@ export const Pages: VFC<History> = ({data, userKey}) => {
   const [historyDiaries, setHistoryDiaries] = useState([]);
   const [diaryIds, setDiaryIds] = useState([]);
   useEffect(() => {
+    console.log(data);
     const idList = data.map((res) => {
       return res.diaryId;
     });
@@ -22,6 +23,9 @@ export const Pages: VFC<History> = ({data, userKey}) => {
       console.log(res);
       let historyDiariesArray = [];
       res.forEach((item) => {
+        console.log(2222);
+        console.log(diaryIds);
+        console.log(2222);
         diaryIds.includes(item.id) &&
           historyDiariesArray.push({
             diaryDay: item.data().day,
