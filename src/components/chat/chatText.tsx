@@ -19,7 +19,7 @@ export const ChatText = ({isSender, text}) => {
     <>
       {isSender ? (
         <Flex justifyContent="flex-end">
-          <Box bgColor="#56A9D3" color="#fff" p="3" mt="4">
+          <Box bgColor="#56A9D3" color="#fff" p="3" mt="4" pointerEvents="none">
             <Linkify componentDecorator={componentDecorator}>
               <Text whiteSpace="pre-line">{text}</Text>
             </Linkify>
