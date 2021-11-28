@@ -18,7 +18,7 @@ export const getStaticProps: GetStaticProps = async (
   );
 
   return {
-    props: {data, userKey},
+    props: {data, userKey: historyKey},
     revalidate: 30,
   };
 };
