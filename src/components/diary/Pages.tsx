@@ -1,7 +1,8 @@
 import {useRouter} from 'next/router';
-import {VFC, useState, useEffect} from 'react';
+import {VFC, useState} from 'react';
 import {MdLocalLibrary} from 'react-icons/md';
 import {Box, Flex, Text, Divider, Stack} from '@chakra-ui/layout';
+import {useCollection} from '@nandorojo/swr-firestore';
 import {
   Table,
   Thead,
@@ -15,7 +16,7 @@ import {
 } from '@chakra-ui/react';
 import Link from 'next/link';
 import {AlertDialogPop} from '@/components/common/dialog/alertDialog';
-import {Register} from '@/models/diary/register';
+import {Register, DetailDiary} from '@/models/diary/register';
 import {CopyToClipboard} from 'react-copy-to-clipboard';
 import {Layout} from '@/components/common/layout';
 import {MdContentCopy} from 'react-icons/md';
@@ -39,6 +40,16 @@ export const Pages: VFC<{diary: Register}> = ({diary}) => {
       setCurrentCheckedId('');
     }
   };
+
+  const {data: diaryData} = useCollection<DetailDiary>(
+    `User/${userKey}/register/`,
+    {
+      listen: true,
+      orderBy: ['createdAt', 'asc'],
+      initialData: diary,
+    },
+  );
+
   return (
     <Layout isHeader>
       <Box mt="10" px={16} h="85vh" overflow="scroll">
@@ -87,8 +98,9 @@ export const Pages: VFC<{diary: Register}> = ({diary}) => {
             </Tr>
           </Thead>
           <Tbody>
-            {diary.length ? (
-              diary.map((res, i) => {
+            {diaryData ? (
+              diaryData.map((res, i) => {
+                const day = res?.day.replace('-', '/').replace('-', '/');
                 return (
                   <Tr
                     key={i}
@@ -103,10 +115,10 @@ export const Pages: VFC<{diary: Register}> = ({diary}) => {
                     <Td color="#273264" fontWeight="bold" cursor="pointer">
                       <Link
                         href={`/user/diary/detail/user/${res.id}/${userKey}`}>
-                        <a>2歳児クラス</a>
+                        <a>{res?.trainingClass}</a>
                       </Link>
                     </Td>
-                    <Td>{`${res.diaryData.day}`}</Td>
+                    <Td>{`${day}`}</Td>
                     <Td>
                       <CopyToClipboard
                         cursor="pointer"

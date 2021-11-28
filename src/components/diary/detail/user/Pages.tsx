@@ -7,7 +7,7 @@ import {DetailDiary, DocKeyId} from '@/models/diary/register';
 import {useRouter} from 'next/router';
 import {Layout} from '@/components/common/layout';
 import {AuthContext} from '@/contexts/AuthContext';
-import {userRef, adminRegisterDetailRef} from '@/lib/firestore';
+import {adminRegisterDetailRef} from '@/lib/firestore';
 import firebase from 'firebase/app';
 const PDF = dynamic<{detailDiary: firebase.firestore.DocumentData}>(
   () => import('./pdf').then((mod) => mod.Pdf),
@@ -15,7 +15,6 @@ const PDF = dynamic<{detailDiary: firebase.firestore.DocumentData}>(
     ssr: false,
   },
 );
-
 export const Pages: VFC<DocKeyId> = ({userKey, detailKey}) => {
   const router = useRouter();
 
@@ -43,11 +42,11 @@ export const Pages: VFC<DocKeyId> = ({userKey, detailKey}) => {
           </Box>
           <>
             <Text pl="8" fontWeight="bold" color="#707070">
-              2021年１１月２０日（火）
+              {detailDiary?.day}
             </Text>
 
             <Text pl="8" fontWeight="bold" color="#707070">
-              実習記録1日目
+              実習記録{detailDiary?.count}日目
             </Text>
           </>
           <Box textAlign="right" m="0 0 0 auto">

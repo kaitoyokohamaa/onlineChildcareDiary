@@ -13,6 +13,7 @@ import {useRouter} from 'next/router';
 export const Pages = ({projectID}) => {
   const [count, setCount] = useState<string>('');
   const [day, setDay] = useState<string>('');
+  const [trainingClass, setTrainingClass] = useState<string>('');
   const [studentName, setStudentName] = useState<string>('');
   const [assignedName, setAssignedName] = useState<string>('');
   const [leader, setLeader] = useState<string>('');
@@ -26,6 +27,7 @@ export const Pages = ({projectID}) => {
       projectID,
       id: uuidv1(),
       date: '',
+      trainingClass: '',
       childActivities: '',
       childActivitiesFeedback: '',
       assistance: '',
@@ -41,6 +43,7 @@ export const Pages = ({projectID}) => {
       count,
       day,
       studentName,
+      trainingClass,
       assignedName,
       leader,
       goal,
@@ -65,6 +68,16 @@ export const Pages = ({projectID}) => {
         </Flex>
         <Divider mt="5" />
         <Box overflow="scroll" h="79vh">
+          <Box my="8">
+            <Text fontWeight="bold">担当児クラス</Text>
+            <Flex mt="2">
+              <Input
+                onChange={(e) => setTrainingClass(e.target.value)}
+                type="text"
+                placeholder="2歳児クラス"
+              />
+            </Flex>
+          </Box>
           <Box my="8">
             <Text fontWeight="bold">日付／名前</Text>
             <Flex mt="2">

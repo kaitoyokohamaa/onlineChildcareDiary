@@ -1,8 +1,8 @@
 import {VFC} from 'react';
 import {useRouter} from 'next/router';
-import {Box, Flex} from '@chakra-ui/layout';
+import {Box} from '@chakra-ui/layout';
 import {Button, HStack} from '@chakra-ui/react';
-import {ChatSidebar} from '@/components/chat/chatSidebar';
+
 import {ChatHeader} from '@/components/chat/chatHeader';
 import {Chat} from '@/components/chat/chat';
 import {ChatForm} from '@/components/chat/chatForm';
