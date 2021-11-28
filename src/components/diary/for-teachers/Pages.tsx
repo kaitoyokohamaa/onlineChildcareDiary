@@ -34,11 +34,11 @@ export const Pages: VFC<EditType> = ({
       trainingContent,
       updateAt: firebase.firestore.Timestamp.now(),
     });
-    (await userDockkey) !== dockey &&
-      teaherDiaryHistiryRef(dockey).add({
+    userDockkey !== dockey &&
+      (await teaherDiaryHistiryRef(dockey).add({
         diaryId: registerDetailDocKey,
         updateAt: firebase.firestore.Timestamp.now(),
-      });
+      }));
     router.push(
       `/teacher/diary/detail/teacher/${registerDetailDocKey}/${userDockkey}`,
     );
