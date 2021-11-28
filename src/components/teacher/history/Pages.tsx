@@ -18,6 +18,8 @@ export const Pages: VFC<History> = ({data, userKey}) => {
   }, [userKey, data]);
   useEffect(() => {
     registerRef(userKey).onSnapshot((res) => {
+      console.log(userKey);
+      console.log(res);
       let historyDiariesArray = [];
       res.forEach((item) => {
         diaryIds.includes(item.id) &&
