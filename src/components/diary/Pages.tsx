@@ -118,7 +118,7 @@ export const Pages: VFC<{diary: Register}> = ({diary}) => {
                         <a>{res?.trainingClass}</a>
                       </Link>
                     </Td>
-                    <Td>{`${day}`}</Td>
+                    <Td>{`${day ? day : res?.day}`}</Td>
                     <Td>
                       <CopyToClipboard
                         cursor="pointer"
