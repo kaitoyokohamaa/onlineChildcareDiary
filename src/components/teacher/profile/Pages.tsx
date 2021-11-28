@@ -13,8 +13,7 @@ export const Pages: VFC = () => {
   const docKey = router.query.profile;
   useEffect(() => {
     teacherfiledRef(String(docKey)).onSnapshot((res) => {
-      const data = res.data();
-      setTeacher(data);
+      setTeacher(res.data());
     });
   }, [docKey]);
   return (

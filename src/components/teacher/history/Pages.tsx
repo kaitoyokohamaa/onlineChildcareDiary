@@ -1,18 +1,7 @@
 import {VFC, useEffect, useState} from 'react';
 import {Box, Flex, Text, Divider} from '@chakra-ui/layout';
 
-import {
-  Table,
-  Thead,
-  Tbody,
-  Tr,
-  Th,
-  Td,
-  Checkbox,
-  useToast,
-  Button,
-  Input,
-} from '@chakra-ui/react';
+import {Table, Thead, Tbody, Tr, Th, Td} from '@chakra-ui/react';
 import {MdLocalLibrary} from 'react-icons/md';
 import Link from 'next/link';
 import {Layout} from '@/components/common/layout';
@@ -28,19 +17,22 @@ export const Pages: VFC<History> = ({data, userKey}) => {
     setDiaryIds(idList);
   }, [userKey, data]);
   useEffect(() => {
+    console.log(userKey);
     registerRef(userKey).onSnapshot((res) => {
       let historyDiariesArray = [];
       res.forEach((item) => {
         diaryIds.includes(item.id) &&
           historyDiariesArray.push({
             diaryDay: item.data().day,
+            trainingClass: item.data().trainingClass,
             id: item.id,
           });
       });
+
       setHistoryDiaries(historyDiariesArray);
     });
-  }, [diaryIds]);
-
+  }, [userKey, diaryIds]);
+  console.log(historyDiaries);
   return (
     <Layout isTeacher>
       <Box mt="10" px={16} h="85vh" overflow="scroll">
@@ -75,8 +67,9 @@ export const Pages: VFC<History> = ({data, userKey}) => {
                     }}
                     key={i}>
                     <Td color="#273264" fontWeight="bold" cursor="pointer">
-                      <Link href={`/teacher/diary/detail/${res.id}/${userKey}`}>
-                        <a>2歳児クラス</a>
+                      <Link
+                        href={`/teacher/diary/detail/teacher/${res.id}/${userKey}`}>
+                        <a>{res?.trainingClass}</a>
                       </Link>
                     </Td>
                     <Td>{res.diaryDay}</Td>
