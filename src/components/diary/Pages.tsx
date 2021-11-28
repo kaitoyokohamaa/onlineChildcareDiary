@@ -100,7 +100,7 @@ export const Pages: VFC<{diary: Register}> = ({diary}) => {
           <Tbody>
             {diaryData ? (
               diaryData.map((res, i) => {
-                const day = res?.day.replace('-', '/').replace('-', '/');
+                // const day = res?.day.replace('-', '/').replace('-', '/');
                 return (
                   <Tr
                     key={i}

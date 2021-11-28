@@ -213,7 +213,7 @@ const Pages: VFC<{detailDiary: DetailDiary}> = ({detailDiary}) => {
   Font.registerHyphenationCallback((word) =>
     word.length === 1 ? [word] : Array.from(word).map((char) => char),
   );
-  const days = detailDiary?.day.split('-');
+  const days = detailDiary?.day?.split('-');
 
   return (
     <Document title="実習日誌の記録">
@@ -225,7 +225,9 @@ const Pages: VFC<{detailDiary: DetailDiary}> = ({detailDiary}) => {
         <View style={styles.wrapper}>
           <View style={styles.section}>
             <View style={styles.dayContainer}>
-              <Text>{days ? `${days[1]}月${days[2]}日` : detailDiary.day}</Text>
+              <Text>
+                {days ? `${days[1]}月${days[2]}日` : detailDiary?.day}
+              </Text>
             </View>
             <View style={styles.name}>
               <Text>実習生氏名</Text>
