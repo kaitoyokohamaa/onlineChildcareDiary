@@ -7,26 +7,19 @@ import Link from 'next/link';
 import {Layout} from '@/components/common/layout';
 import {registerRef} from '@/lib/firestore';
 import {History} from '@/models/diary/history';
+
 export const Pages: VFC<History> = ({data, userKey}) => {
   const [historyDiaries, setHistoryDiaries] = useState([]);
-  const [diaryIds, setDiaryIds] = useState([]);
+
   useEffect(() => {
-    console.log(data);
     const idList = data.map((res) => {
       return res.diaryId;
     });
-    setDiaryIds(idList);
-  }, [userKey, data]);
-  useEffect(() => {
+
     registerRef(userKey).onSnapshot((res) => {
-      console.log(userKey);
-      console.log(res);
       let historyDiariesArray = [];
       res.forEach((item) => {
-        console.log(2222);
-        console.log(diaryIds);
-        console.log(2222);
-        diaryIds.includes(item.id) &&
+        idList.includes(item.id) &&
           historyDiariesArray.push({
             diaryDay: item.data().day,
             trainingClass: item.data().trainingClass,
@@ -36,8 +29,8 @@ export const Pages: VFC<History> = ({data, userKey}) => {
 
       setHistoryDiaries(historyDiariesArray);
     });
-  }, [userKey, diaryIds]);
-  console.log(historyDiaries);
+  }, [userKey, data]);
+
   return (
     <Layout isTeacher>
       <Box mt="10" px={16} h="85vh" overflow="scroll">
