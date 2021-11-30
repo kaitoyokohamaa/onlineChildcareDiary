@@ -7,7 +7,7 @@ export const getStaticProps: GetStaticProps = async (
 ) => {
   const historyKey = context.params.history[1];
   const userKey = context.params.history[2];
-  console.log(historyKey);
+
   const history = await teacherRef()
     .doc(String(historyKey))
     .collection('history')
