@@ -172,7 +172,7 @@ export const Pages: VFC<EditType> = ({
                 value={feeling}
                 onChange={(e) => setFeeling(e.target.value)}
                 type="text"
-                placeholder="本日の目標"
+                placeholder="実習所感(特に印象に残ったこと、考察、課題、反省など)"
               />
             </Flex>
           </Box>
@@ -184,7 +184,6 @@ export const Pages: VFC<EditType> = ({
                 w="100%"
                 bg="#FCFCFC 0% 0% no-repeat padding-box;"
                 p="10">
-
                 <Button
                   onClick={submitHandler}
                   w="32"
