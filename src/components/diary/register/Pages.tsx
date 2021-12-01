@@ -174,8 +174,6 @@ export const Pages = ({projectID}) => {
                 w="100%"
                 bg="#FCFCFC 0% 0% no-repeat padding-box;"
                 p="10">
-                {/* todo:一時保存機能 */}
-
                 <Button
                   onClick={submitHandler}
                   w="32"
