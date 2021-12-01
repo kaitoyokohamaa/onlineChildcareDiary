@@ -121,17 +121,6 @@ export const Pages = () => {
                 bg="#FCFCFC 0% 0% no-repeat padding-box;"
                 p="10">
                 <Button
-                  ml="3"
-                  w="32"
-                  variant="outline"
-                  colorScheme="blue"
-                  border="1px"
-                  borderColor="#273264"
-                  bg="#fff"
-                  color="#273264">
-                  一時保存
-                </Button>
-                <Button
                   onClick={submitHandler}
                   w="32"
                   ml="3"

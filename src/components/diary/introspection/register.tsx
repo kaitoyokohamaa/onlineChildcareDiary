@@ -49,18 +49,6 @@ export const Register = () => {
                 w="100%"
                 bg="#FCFCFC 0% 0% no-repeat padding-box;"
                 p="10">
-                {/* todo:一時保存機能 */}
-                <Button
-                  ml="3"
-                  w="32"
-                  variant="outline"
-                  colorScheme="blue"
-                  border="1px"
-                  borderColor="#273264"
-                  bg="#fff"
-                  color="#273264">
-                  一時保存
-                </Button>
                 <Button
                   onClick={submitHandler}
                   w="32"
