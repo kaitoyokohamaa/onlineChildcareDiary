@@ -173,7 +173,7 @@ export const Sidebar: VFC<{isTeacher?: boolean}> = ({isTeacher}) => {
                   <a>
                     <Flex
                       justify="center"
-                      mx={router.asPath.indexOf('/chat') !== -1 && -1.5}>
+                      mx={router.asPath.includes('/chat') ? -1.5 : 0}>
                       <HStack w="60%">
                         <MdChatBubble size={20} />
                         <Text py={6}>チャット</Text>
