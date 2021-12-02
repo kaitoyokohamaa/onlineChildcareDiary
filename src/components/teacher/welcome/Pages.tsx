@@ -1,8 +1,8 @@
-import {VFC} from 'react'
-import Image from 'next/image'
-import {Layout} from '@/components/common/layout'
-import {Box, Flex, Heading} from '@chakra-ui/layout'
-import {Text} from '@chakra-ui/react'
+import {VFC} from 'react';
+import Image from 'next/image';
+import {Layout} from '@/components/common/layout';
+import {Box, Flex, Heading} from '@chakra-ui/layout';
+import {Text} from '@chakra-ui/react';
 export const Pages: VFC = () => {
   return (
     <Layout isTeacher>
@@ -18,11 +18,10 @@ export const Pages: VFC = () => {
           pos: 'absolute',
           top: 0,
           right: 0,
-          left: 260,
+          left: 285,
           bottom: 0,
           opacity: 0.2,
-        }}
-      >
+        }}>
         <Box>
           <Image
             src="/img/welcome.png"
@@ -37,5 +36,5 @@ export const Pages: VFC = () => {
         </Box>
       </Flex>
     </Layout>
-  )
-}
+  );
+};
