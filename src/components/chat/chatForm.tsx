@@ -1,6 +1,6 @@
 import React, {VFC, useState, useContext, useRef} from 'react';
 import {AuthContext} from '@/contexts/AuthContext';
-import {InputRightElement, InputGroup} from '@chakra-ui/react';
+import {InputRightElement, InputGroup, Box} from '@chakra-ui/react';
 import {useRouter} from 'next/router';
 import {MdSend, MdAddBox} from 'react-icons/md';
 import {AutoResizeTextarea} from '@/components/common/textarea/AutoResizeTextare';
@@ -26,8 +26,8 @@ export const ChatForm: VFC = () => {
     chatContents.scrollTop = chatContents.scrollHeight;
   };
   return (
-    <>
-      <InputGroup marginBottom="10px">
+    <Box h="10vh">
+      <InputGroup>
         <AutoResizeTextarea
           text={text}
           onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
@@ -39,6 +39,6 @@ export const ChatForm: VFC = () => {
           <MdSend color="#56A9D3" size="30" onClick={submitHandler} />
         </InputRightElement>
       </InputGroup>
-    </>
+    </Box>
   );
 };
