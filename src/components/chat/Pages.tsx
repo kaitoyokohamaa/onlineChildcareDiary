@@ -43,7 +43,13 @@ export const Pages: VFC<AllChatContent> = ({
   return (
     <Layout isTeacher={isTeacherOrUser ? true : false}>
       {profile && profile[0] ? (
-        <HStack w="100%" p={0} border="2px" borderColor="#E9E9E9">
+        <HStack
+          h="100vh"
+          overflow="scroll"
+          w="100%"
+          p={0}
+          border="2px"
+          borderColor="#E9E9E9">
           <Box w="100%">
             <ChatHeader
               image={
@@ -73,7 +79,7 @@ export const Pages: VFC<AllChatContent> = ({
           </Box>
         </HStack>
       ) : (
-        <Box h="85vh" textAlign="center">
+        <Box h="90vh" textAlign="center">
           <p>保育士の登録がまだ完了しておりません。</p>
           <p>もうしばらくお待ちください。</p>
           <Button

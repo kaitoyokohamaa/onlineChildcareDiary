@@ -115,7 +115,9 @@ export const Pages: VFC<{diary: Register}> = ({diary}) => {
                     <Td color="#273264" fontWeight="bold" cursor="pointer">
                       <Link
                         href={`/user/diary/detail/user/${res.id}/${userKey}`}>
-                        <a>{res?.trainingClass}</a>
+                        <a>
+                          {res?.assignedName}({res?.trainingClass})
+                        </a>
                       </Link>
                     </Td>
                     <Td>{`${res?.day}`}</Td>

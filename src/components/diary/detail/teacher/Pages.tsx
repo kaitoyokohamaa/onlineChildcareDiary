@@ -10,7 +10,7 @@ import {AuthContext} from '@/contexts/AuthContext';
 import {adminRegisterDetailRef} from '@/lib/firestore';
 
 const PDF = dynamic<{detailDiary: DetailDiary}>(
-  () => import('./pdf').then((mod) => mod.Pdf),
+  () => import('../user/pdf').then((mod) => mod.Pdf),
   {
     ssr: false,
   },
@@ -44,7 +44,7 @@ export const Pages: VFC<DocKeyId> = ({userKey, detailKey}) => {
           </Box>
 
           <Text pl="8" fontWeight="bold" color="#707070">
-            実習記録1日目
+            実習記録{detailDiary?.count}日目
           </Text>
 
           <Box textAlign="right" m="0 0 0 auto">

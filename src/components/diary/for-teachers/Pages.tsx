@@ -11,6 +11,7 @@ import {VFC, useContext} from 'react';
 import {EditType} from '@/models/diary/edit';
 import {useRouter} from 'next/router';
 import {AuthContext} from '@/contexts/AuthContext';
+import {Layout} from '@/components/common/layout';
 export const Pages: VFC<EditType> = ({
   detailDiary,
   projectID,
@@ -46,59 +47,61 @@ export const Pages: VFC<EditType> = ({
   // todo react hooks formでバリデーションの追加
 
   return (
-    <Box mt="10" px={16}>
-      <Flex alignItems="center">
-        <Box bg="#F8F8F8" p="2" borderRadius="md">
-          <MdLocalLibrary color=" #9FD0E8" />
-        </Box>
-        <Text pl="8" fontWeight="bold">
-          添削する
-        </Text>
-      </Flex>
-      <Divider mt="5" />
-      <Box overflow="scroll" h="79vh">
-        <Box my="8">
-          <Text fontWeight="bold">実習内容</Text>
-          <DiaryTabel
-            isTeacher={true}
-            projectID={projectID}
-            setTrainingContent={setTrainingContent}
-            trainingContent={trainingContent}
-          />
-        </Box>
-
-        <Box my="8">
-          <Text fontWeight="bold">指導者からのことば</Text>
-          <Flex mt="2">
-            <Textarea
-              value={feedback}
-              onChange={(e) => setFeedback(e.target.value)}
-              type="text"
-              placeholder="指導者からのことば"
+    <Layout isTeacher>
+      <Box mt="10" px={16}>
+        <Flex alignItems="center">
+          <Box bg="#F8F8F8" p="2" borderRadius="md">
+            <MdLocalLibrary color=" #9FD0E8" />
+          </Box>
+          <Text pl="8" fontWeight="bold">
+            添削する
+          </Text>
+        </Flex>
+        <Divider mt="5" />
+        <Box overflow="scroll" h="79vh">
+          <Box my="8">
+            <Text fontWeight="bold">実習内容</Text>
+            <DiaryTabel
+              isTeacher={true}
+              projectID={projectID}
+              setTrainingContent={setTrainingContent}
+              trainingContent={trainingContent}
             />
-          </Flex>
-        </Box>
+          </Box>
 
-        <Box my="8">
-          <Flex w="100%" mt="2" gap={6}>
-            <Box
-              textAlign="right"
-              w="100%"
-              bg="#FCFCFC 0% 0% no-repeat padding-box;"
-              p="10">
-              <Button
-                onClick={submitHandler}
-                w="32"
-                ml="3"
-                bg="#273264"
-                color="#fff"
-                _hover={{bg: '#141933'}}>
-                保存する
-              </Button>
-            </Box>
-          </Flex>
+          <Box my="8">
+            <Text fontWeight="bold">指導者からのことば</Text>
+            <Flex mt="2">
+              <Textarea
+                value={feedback}
+                onChange={(e) => setFeedback(e.target.value)}
+                type="text"
+                placeholder="指導者からのことば"
+              />
+            </Flex>
+          </Box>
+
+          <Box my="8">
+            <Flex w="100%" mt="2" gap={6}>
+              <Box
+                textAlign="right"
+                w="100%"
+                bg="#FCFCFC 0% 0% no-repeat padding-box;"
+                p="10">
+                <Button
+                  onClick={submitHandler}
+                  w="32"
+                  ml="3"
+                  bg="#273264"
+                  color="#fff"
+                  _hover={{bg: '#141933'}}>
+                  保存する
+                </Button>
+              </Box>
+            </Flex>
+          </Box>
         </Box>
       </Box>
-    </Box>
+    </Layout>
   );
 };
