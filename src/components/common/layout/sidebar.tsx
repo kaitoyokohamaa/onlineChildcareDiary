@@ -115,7 +115,7 @@ export const Sidebar: VFC<{isTeacher?: boolean}> = ({isTeacher}) => {
                   <a>
                     <Flex
                       justify="center"
-                      mx={router.asPath === '/chat' && -1.5}>
+                      mx={router.asPath.includes('/chat') ? -1.5 : 0}>
                       <HStack w="60%">
                         <MdChatBubble size={20} />
                         <Text py={6}>チャット</Text>
@@ -173,7 +173,7 @@ export const Sidebar: VFC<{isTeacher?: boolean}> = ({isTeacher}) => {
                   <a>
                     <Flex
                       justify="center"
-                      mx={router.asPath.indexOf('/chat') !== -1 && -1.5}>
+                      mx={router.asPath.includes('/chat') ? -1.5 : 0}>
                       <HStack w="60%">
                         <MdChatBubble size={20} />
                         <Text py={6}>チャット</Text>
@@ -195,7 +195,9 @@ export const Sidebar: VFC<{isTeacher?: boolean}> = ({isTeacher}) => {
                 color={router.asPath.includes('history') ? '#84B9D4' : 'white'}>
                 <Link href={`/teacher/history/teacher/${dockey}/${chatKey}`}>
                   <a>
-                    <Flex justify="center" mx={-1.5}>
+                    <Flex
+                      justify="center"
+                      mx={router.asPath.indexOf('/history') !== -1 && -1.5}>
                       <HStack w="60%">
                         <VscGear size={20} />
                         <Text py={6}>添削履歴</Text>
