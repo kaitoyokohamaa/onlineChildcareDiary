@@ -1,9 +1,16 @@
-import {VFC} from 'react';
+import {VFC, useContext} from 'react';
 import Image from 'next/image';
 import {Layout} from '@/components/common/layout';
 import {Box, Flex, Heading} from '@chakra-ui/layout';
 import {Text} from '@chakra-ui/react';
+import {AuthContext} from '@/contexts/AuthContext';
+import {useRouter} from 'next/router';
 export const Pages: VFC = () => {
+  const {dockey} = useContext(AuthContext);
+  const router = useRouter();
+  if (dockey) {
+    router.push(`https://phoenixdiary.vercel.app/teacher/profile/${dockey}`);
+  }
   return (
     <Layout isTeacher>
       <Flex
