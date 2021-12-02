@@ -17,13 +17,23 @@ export const Sidebar: VFC<{isTeacher?: boolean}> = ({isTeacher}) => {
   const router = useRouter();
 
   const signOutHandler = () => {
-    firebase
-      .auth()
-      .signOut()
-      .then(() => {
-        alert('ログアウトしました');
-        router.push('/login');
-      });
+    if (router.asPath.includes('user')) {
+      firebase
+        .auth()
+        .signOut()
+        .then(() => {
+          alert('ログアウトしました');
+          router.push('/user/login');
+        });
+    } else {
+      firebase
+        .auth()
+        .signOut()
+        .then(() => {
+          alert('ログアウトしました');
+          router.push('/teacher/login');
+        });
+    }
   };
   return (
     <Box w="100%" h="100vh" bg="#273673">
