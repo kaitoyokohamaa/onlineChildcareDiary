@@ -12,11 +12,11 @@ import {
   ButtonGroup,
   Button,
   Text,
-} from '@chakra-ui/react'
-import {EditIcon} from '@chakra-ui/icons'
-import {useState, useRef, useEffect} from 'react'
+} from '@chakra-ui/react';
+import {EditIcon} from '@chakra-ui/icons';
+import {useState, useRef, useEffect} from 'react';
 
-import {tablesRef} from '@/lib/firestore'
+import {tablesRef} from '@/lib/firestore';
 const Form = ({onCancel, onSave}) => {
   return (
     <Stack spacing={4}>
@@ -29,18 +29,18 @@ const Form = ({onCancel, onSave}) => {
         </Button>
       </ButtonGroup>
     </Stack>
-  )
-}
+  );
+};
 
 export const PopoverForm = ({state, isTeacher, ...props}) => {
-  const {onOpen, onClose, isOpen} = useDisclosure()
-  const [text, setText] = useState<string>(props.correctedContent)
-  const [studentText, setStudentText] = useState<string>('')
-  const [open, setOpen] = useState<boolean>(false)
+  const {onOpen, onClose, isOpen} = useDisclosure();
+  const [text, setText] = useState<string>(props.correctedContent);
+  const [studentText, setStudentText] = useState<string>('');
+  const [open, setOpen] = useState<boolean>(false);
   useEffect(() => {
-    setStudentText(state)
-  }, [state])
-  const firstFieldRef = useRef(null)
+    setStudentText(state);
+  }, [state]);
+  const firstFieldRef = useRef(null);
 
   const onSave = async () => {
     // teacherとuserでアップデートする箇所の変更
@@ -52,7 +52,7 @@ export const PopoverForm = ({state, isTeacher, ...props}) => {
       ? await tablesRef(props.dockey)
           .doc(props.id)
           .update({childActivities: studentText})
-      : null
+      : null;
 
     props.isAssistance && isTeacher
       ? await tablesRef(props.dockey)
@@ -62,7 +62,7 @@ export const PopoverForm = ({state, isTeacher, ...props}) => {
       ? await tablesRef(props.dockey)
           .doc(props.id)
           .update({assistance: studentText})
-      : null
+      : null;
 
     props.isActivitesAndAwareness && isTeacher
       ? await tablesRef(props.dockey)
@@ -72,22 +72,22 @@ export const PopoverForm = ({state, isTeacher, ...props}) => {
       ? await tablesRef(props.dockey)
           .doc(props.id)
           .update({activitesAndAwareness: studentText})
-      : null
+      : null;
     // dataのアップデート
     tablesRef(props.dockey)
       .orderBy('createdAt', 'asc')
       .onSnapshot((res) => {
-        let diaries = []
+        let diaries = [];
         res.forEach((item) => {
           if (item.data().projectID === props.projectID) {
-            const id = item.id
-            diaries.push({tableID: id, tableData: item.data()})
+            const id = item.id;
+            diaries.push({tableID: id, tableData: item.data()});
           }
-        })
-        props.setTrainingContent(diaries)
-      })
-    setOpen(false)
-  }
+        });
+        props.setTrainingContent(diaries);
+      });
+    onClose();
+  };
 
   return (
     <>
@@ -102,13 +102,12 @@ export const PopoverForm = ({state, isTeacher, ...props}) => {
         </Text>
       </Box>
       <Popover
-        isOpen={open}
+        isOpen={isOpen}
         initialFocusRef={firstFieldRef}
         onOpen={onOpen}
         onClose={onClose}
         placement="right"
-        closeOnBlur={false}
-      >
+        closeOnBlur={false}>
         <PopoverTrigger>
           <IconButton
             onClick={() => setOpen(!open)}
@@ -124,7 +123,7 @@ export const PopoverForm = ({state, isTeacher, ...props}) => {
             onChange={(e) => {
               isTeacher
                 ? setText(e.target.value)
-                : setStudentText(e.target.value)
+                : setStudentText(e.target.value);
             }}
           />
 
@@ -134,5 +133,5 @@ export const PopoverForm = ({state, isTeacher, ...props}) => {
         </PopoverContent>
       </Popover>
     </>
-  )
-}
+  );
+};
