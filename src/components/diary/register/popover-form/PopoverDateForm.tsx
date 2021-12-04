@@ -14,9 +14,13 @@ import {
   Text,
 } from '@chakra-ui/react';
 import {EditIcon} from '@chakra-ui/icons';
-import {useState, useRef, useEffect} from 'react';
+import {useState, useRef, useEffect, useContext} from 'react';
+
+import {Input} from '@chakra-ui/react';
 
 import {tablesRef} from '@/lib/firestore';
+import {AuthContext} from '@/contexts/AuthContext';
+
 const Form = ({onCancel, onSave}) => {
   return (
     <Stack spacing={4}>
@@ -32,49 +36,20 @@ const Form = ({onCancel, onSave}) => {
   );
 };
 
-export const PopoverForm = ({state, isTeacher, ...props}) => {
+export const PopoverDateForm = ({state, isTeacher, ...props}) => {
   const {onOpen, onClose, isOpen} = useDisclosure();
-  const [text, setText] = useState<string>(props.correctedContent);
-  const [studentText, setStudentText] = useState<string>('');
+
+  const [date, setDate] = useState<string>(props.date);
+  const {dockey} = useContext(AuthContext);
   const [open, setOpen] = useState<boolean>(false);
   useEffect(() => {
-    setStudentText(state);
+    setDate(state);
   }, [state]);
   const firstFieldRef = useRef(null);
 
   const onSave = async () => {
-    // teacherとuserでアップデートする箇所の変更
-    props.isChildActivities && isTeacher
-      ? await tablesRef(props.dockey)
-          .doc(props.id)
-          .update({childActivitiesFeedback: text})
-      : props.isChildActivities
-      ? await tablesRef(props.dockey)
-          .doc(props.id)
-          .update({childActivities: studentText})
-      : null;
-
-    props.isAssistance && isTeacher
-      ? await tablesRef(props.dockey)
-          .doc(props.id)
-          .update({assistanceFeedback: text})
-      : props.isAssistance
-      ? await tablesRef(props.dockey)
-          .doc(props.id)
-          .update({assistance: studentText})
-      : null;
-
-    props.isActivitesAndAwareness && isTeacher
-      ? await tablesRef(props.dockey)
-          .doc(props.id)
-          .update({activitesAndAwarenessFeedback: text})
-      : props.isActivitesAndAwareness
-      ? await tablesRef(props.dockey)
-          .doc(props.id)
-          .update({activitesAndAwareness: studentText})
-      : null;
-    // dataのアップデート
-    tablesRef(props.dockey)
+    await tablesRef(dockey).doc(props.id).update({date});
+    tablesRef(dockey)
       .orderBy('createdAt', 'asc')
       .onSnapshot((res) => {
         let diaries = [];
@@ -88,17 +63,11 @@ export const PopoverForm = ({state, isTeacher, ...props}) => {
       });
     onClose();
   };
-
   return (
     <>
       <Box display="block">
-        <Text value={studentText} whiteSpace="pre-wrap">
-          {studentText}
-        </Text>
-      </Box>
-      <Box>
-        <Text color={'red'} whiteSpace="pre-wrap">
-          {text}
+        <Text value={date} whiteSpace="pre-wrap">
+          {date}
         </Text>
       </Box>
       <Popover
@@ -117,13 +86,12 @@ export const PopoverForm = ({state, isTeacher, ...props}) => {
           />
         </PopoverTrigger>
         <PopoverContent p={5}>
-          <Textarea
-            rows={10}
-            value={isTeacher ? text : studentText}
+          <Input
+            value={date}
+            onBlur={onSave}
+            type="time"
             onChange={(e) => {
-              isTeacher
-                ? setText(e.target.value)
-                : setStudentText(e.target.value);
+              setDate(e.target.value);
             }}
           />
 

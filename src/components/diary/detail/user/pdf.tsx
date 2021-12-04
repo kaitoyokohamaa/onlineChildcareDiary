@@ -281,11 +281,11 @@ const Pages: VFC<{detailDiary: DetailDiary}> = ({detailDiary}) => {
               return (
                 <View key={i} style={styles.tableRow}>
                   <View style={styles.dayTableContentCol}>
-                    <Text>{res.tableData.date}</Text>
+                    <Text>{res.tableData?.date}</Text>
                   </View>
                   <View style={styles.tableContentCol}>
                     <View style={styles.textWrapper}>
-                      <Text>{res.tableData.childActivities}</Text>
+                      <Text>{res.tableData?.childActivities}</Text>
                     </View>
                     <View style={styles.textWrapper}>
                       <Text style={styles.correct}>
@@ -296,7 +296,7 @@ const Pages: VFC<{detailDiary: DetailDiary}> = ({detailDiary}) => {
                   </View>
                   <View style={styles.tableContentCol}>
                     <View style={styles.textWrapper}>
-                      <Text>{`${res.tableData.assistance}`}</Text>
+                      <Text>{`${res.tableData?.assistance}`}</Text>
                     </View>
                     <View style={styles.textWrapper}>
                       <Text style={styles.correct}>
