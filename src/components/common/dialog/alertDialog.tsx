@@ -1,4 +1,4 @@
-import React, {VFC} from 'react'
+import React, {VFC} from 'react';
 import {
   AlertDialogOverlay,
   AlertDialog,
@@ -6,23 +6,24 @@ import {
   AlertDialogContent,
   AlertDialogHeader,
   AlertDialogBody,
-  AlertDialogFooter
-} from '@chakra-ui/react'
-import {adminRegisterDetailRef} from '@/lib/firestore'
-import {useRouter} from 'next/router'
+  AlertDialogFooter,
+} from '@chakra-ui/react';
+import {adminRegisterDetailRef} from '@/lib/firestore';
+import {useRouter} from 'next/router';
 type Props = {
-  currentCheckedId: string
-  userKey: string | string[]
-}
+  currentCheckedId: string;
+  userKey: string | string[];
+};
 export const AlertDialogPop: VFC<Props> = ({currentCheckedId, userKey}) => {
-  const router = useRouter()
-  const [isOpen, setIsOpen] = React.useState(false)
-  const onClose = () => setIsOpen(false)
-  const onDeleteHandler = () => {
-    adminRegisterDetailRef(String(userKey), currentCheckedId).delete()
-    router.push(`/diary/${userKey}`)
-  }
-  const cancelRef = React.useRef()
+  const router = useRouter();
+  const [isOpen, setIsOpen] = React.useState(false);
+  const onClose = () => setIsOpen(false);
+  const onDeleteHandler = async () => {
+    await adminRegisterDetailRef(String(userKey), currentCheckedId).delete();
+    router.push(`/user/diary/${userKey}`);
+    setIsOpen(false);
+  };
+  const cancelRef = React.useRef();
 
   return (
     <>
@@ -30,16 +31,14 @@ export const AlertDialogPop: VFC<Props> = ({currentCheckedId, userKey}) => {
         color="#555d65"
         border="1px solid #d9e0e8"
         background="#fff"
-        onClick={() => setIsOpen(true)}
-      >
+        onClick={() => setIsOpen(true)}>
         日誌を削除する
       </Button>
 
       <AlertDialog
         isOpen={isOpen}
         leastDestructiveRef={cancelRef}
-        onClose={onClose}
-      >
+        onClose={onClose}>
         <AlertDialogOverlay>
           <AlertDialogContent>
             <AlertDialogHeader fontSize="lg" fontWeight="bold">
@@ -60,5 +59,5 @@ export const AlertDialogPop: VFC<Props> = ({currentCheckedId, userKey}) => {
         </AlertDialogOverlay>
       </AlertDialog>
     </>
-  )
-}
+  );
+};
