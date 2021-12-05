@@ -14,7 +14,7 @@ export const Pages: VFC = () => {
         <Flex h="100vh" bg="#273673" w="50%" pt="25%" pl="3">
           <Box>
             <Heading as="h3" size="lg" color="white" mb={5}>
-              保育実習生のためのオンライン日誌
+              オンライン日誌
             </Heading>
           </Box>
         </Flex>
