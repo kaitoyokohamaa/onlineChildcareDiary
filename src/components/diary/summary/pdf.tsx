@@ -48,6 +48,7 @@ const styles = StyleSheet.create({
   textWrapper: {
     flexDirection: 'row',
     flexWrap: 'wrap',
+    padding: '10px',
   },
   title: {
     borderBottom: '1px',
