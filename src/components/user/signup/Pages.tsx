@@ -1,6 +1,6 @@
 import {Button} from '@chakra-ui/button';
 import {Box, Flex, Heading} from '@chakra-ui/layout';
-import {Input, Link as Links, Spinner} from '@chakra-ui/react';
+import {Input, Link as Links} from '@chakra-ui/react';
 import {VFC} from 'react';
 import Link from 'next/link';
 import {UseCertification} from '@/hooks/useCertification';

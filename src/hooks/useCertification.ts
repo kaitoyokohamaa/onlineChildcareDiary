@@ -36,11 +36,11 @@ export const UseCertification = () => {
       });
   };
   const signinHandler = () => {
+    setIsLoading(true);
     firebase
       .auth()
       .signInWithEmailAndPassword(email, password)
       .then(() => {
-        setIsLoading(true);
         router.push(`/user/welcome`);
       })
       .catch((err) => {
