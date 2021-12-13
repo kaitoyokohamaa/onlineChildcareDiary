@@ -1,12 +1,12 @@
-import {Button} from '@chakra-ui/button'
-import {Box, Flex, Heading} from '@chakra-ui/layout'
-import {Input} from '@chakra-ui/react'
-import {VFC} from 'react'
-
-import {UseInviteCertification} from '@/hooks/useCertification'
+import {Button} from '@chakra-ui/button';
+import {Box, Flex, Heading} from '@chakra-ui/layout';
+import {Input} from '@chakra-ui/react';
+import {VFC} from 'react';
+import {UseInviteCertification} from '@/hooks/useCertification';
+import {BeatLoader} from 'react-spinners';
 export const Pages: VFC<{inviteKey: string}> = ({inviteKey}) => {
-  const {email, setEmail, setPassword, password, signupHandler} =
-    UseInviteCertification(inviteKey)
+  const {email, setEmail, setPassword, password, signupHandler, isLoading} =
+    UseInviteCertification(inviteKey);
 
   return (
     <Box>
@@ -46,6 +46,8 @@ export const Pages: VFC<{inviteKey: string}> = ({inviteKey}) => {
             </Box>
             <Box>
               <Button
+                isLoading={isLoading}
+                spinner={<BeatLoader size={8} color="white" />}
                 colorScheme="blue"
                 bg="#273673"
                 size="lg"
@@ -53,8 +55,7 @@ export const Pages: VFC<{inviteKey: string}> = ({inviteKey}) => {
                 py={{lg: 8}}
                 boxShadow="2xl-blue"
                 mb={10}
-                onClick={signupHandler}
-              >
+                onClick={signupHandler}>
                 新規登録
               </Button>
             </Box>
@@ -62,5 +63,5 @@ export const Pages: VFC<{inviteKey: string}> = ({inviteKey}) => {
         </Flex>
       </Flex>
     </Box>
-  )
-}
+  );
+};
