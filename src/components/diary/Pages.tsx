@@ -59,12 +59,12 @@ export const Pages: VFC<{ diary: Register }> = ({ diary }) => {
       },
       {
         label: "山田花子",
-        data: [30, 65, 77, 61, 95, 50],
+        data: [70, 65, 77, 61, 95, 50],
         borderColor: "red",
       },
       {
         label: "namiki",
-        data: [90, 25, 37, 21, 85, 30],
+        data: [80, 65, 57, 56, 85, 60],
         borderColor: "black",
       },
     ],
@@ -106,7 +106,7 @@ export const Pages: VFC<{ diary: Register }> = ({ diary }) => {
 
   return (
     <Layout>
-      <Box mt="10" px={16} h="85vh" overflow="scroll">
+      <Box px={16} h="85vh" overflow="scroll">
         <Box>
           <Flex alignItems="center">
             <Text ml="7" fontWeight="bold">
@@ -114,7 +114,6 @@ export const Pages: VFC<{ diary: Register }> = ({ diary }) => {
             </Text>
           </Flex>
         </Box>
-
         <Line
           height={300}
           width={300}
@@ -122,7 +121,6 @@ export const Pages: VFC<{ diary: Register }> = ({ diary }) => {
           options={options}
           id="chart-key"
         />
-
       </Box>
 
     </Layout>
