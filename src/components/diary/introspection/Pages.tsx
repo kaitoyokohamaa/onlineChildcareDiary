@@ -18,7 +18,7 @@ export const Pages: VFC<{introspection: Introspection}> = ({introspection}) => {
   const router = useRouter();
   const introspectionKey = router.query.introspection;
   return (
-    <Layout isHeader>
+    <Layout>
       <Box mt="10" px={16}>
         {introspection ? (
           <>

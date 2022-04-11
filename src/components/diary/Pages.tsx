@@ -51,7 +51,7 @@ export const Pages: VFC<{diary: Register}> = ({diary}) => {
   );
 
   return (
-    <Layout isHeader>
+    <Layout>
       <Box mt="10" px={16} h="85vh" overflow="scroll">
         <Flex alignItems="center" justifyContent="space-between">
           <Box>
@@ -112,7 +112,7 @@ export const Pages: VFC<{diary: Register}> = ({diary}) => {
                       <Checkbox onChange={(e) => onClickHandler(e, res.id)} />
                     </Th>
 
-                    <Td color="#273264" fontWeight="bold" cursor="pointer">
+                    <Td color="#273673" fontWeight="bold" cursor="pointer">
                       <Link
                         href={`/user/diary/detail/user/${res.id}/${userKey}`}>
                         <a>

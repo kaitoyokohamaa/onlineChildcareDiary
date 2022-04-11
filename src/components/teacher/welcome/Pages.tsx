@@ -9,7 +9,7 @@ export const Pages: VFC = () => {
   const {dockey} = useContext(AuthContext);
   const router = useRouter();
   if (dockey) {
-    router.push(`https://phoenixdiary.vercel.app/teacher/profile/${dockey}`);
+    router.push(`http://localhost:3000/teacher/profile/${dockey}`);
   }
   return (
     <Layout isTeacher>
@@ -36,7 +36,7 @@ export const Pages: VFC = () => {
             height="330"
             alt="welcome"
           />
-          <Heading>SMART DIARY PHOENIXへようこそ</Heading>
+          <Heading>MENTAL OFFICEへようこそ</Heading>
           <Text pt="10" fontWeight="bold">
             チャットから実習生の保育日誌にコメントしてみましょう
           </Text>

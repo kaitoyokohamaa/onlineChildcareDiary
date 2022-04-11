@@ -1,4 +1,4 @@
-import {Avatar} from '@/components/common/avator'
+import {Avatar} from '@/components/common/avator';
 import {
   Input,
   Box,
@@ -10,16 +10,16 @@ import {
   MenuList,
   MenuItem,
   AvatarBadge,
-} from '@chakra-ui/react'
-import {VFC, useContext} from 'react'
-import Link from 'next/link'
+} from '@chakra-ui/react';
+import {VFC, useContext} from 'react';
+import Link from 'next/link';
 
-import {AuthContext} from '@/contexts/AuthContext'
-import {MdNotifications} from 'react-icons/md'
+import {AuthContext} from '@/contexts/AuthContext';
+import {MdNotifications} from 'react-icons/md';
 export const Header: VFC = () => {
-  const {loginUser, dockey, displayName, image} = useContext(AuthContext)
-  const address = loginUser?.email
-  const subName = address?.substring(0, address.indexOf('@'))
+  const {loginUser, dockey, displayName, image} = useContext(AuthContext);
+  const address = loginUser?.email;
+  const subName = address?.substring(0, address.indexOf('@'));
 
   return (
     <Box w="100%" px={16}>
@@ -27,8 +27,7 @@ export const Header: VFC = () => {
         <MdNotifications
           cursor="pointer"
           color="#263773"
-          size={30}
-        ></MdNotifications>
+          size={30}></MdNotifications>
         <Menu>
           <MenuButton as={Button} background="#fff">
             <Box>
@@ -38,7 +37,7 @@ export const Header: VFC = () => {
                   <Text fontSize="md" fontWeight="bold">
                     {displayName ? displayName : subName}
                   </Text>
-                  <Text fontSize="sm">東洋大学</Text>
+                  <Text fontSize="sm">menu開発本部</Text>
                 </Box>
               </Flex>
             </Box>
@@ -54,5 +53,5 @@ export const Header: VFC = () => {
         </Menu>
       </Flex>
     </Box>
-  )
-}
+  );
+};

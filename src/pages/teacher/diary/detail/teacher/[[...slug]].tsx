@@ -1,8 +1,6 @@
 import React from 'react';
-
 import {Pages} from '@/components/diary/detail/teacher/Pages';
 import {NextPage, GetStaticProps, GetStaticPropsContext} from 'next';
-import {adminRegisterDetailRef} from '@/lib/nodedb';
 import {DocKeyId} from '@/models/diary/register';
 export const getStaticProps: GetStaticProps = async (
   context: GetStaticPropsContext,

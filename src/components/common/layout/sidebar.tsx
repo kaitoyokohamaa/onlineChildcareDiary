@@ -39,7 +39,7 @@ export const Sidebar: VFC<{isTeacher?: boolean}> = ({isTeacher}) => {
     <Box w="100%" h="100vh" bg="#273673">
       <Box textAlign="center">
         <Heading textAlign="center" as="h5" size="md" color="white" pt={10}>
-          SMART DIARY PHOENIX
+          MENTAL OFFICE
         </Heading>
         {isTeacher && <Badge>保育士用</Badge>}
       </Box>
@@ -47,13 +47,7 @@ export const Sidebar: VFC<{isTeacher?: boolean}> = ({isTeacher}) => {
       <>
         {!isTeacher && router.asPath.includes('user') ? (
           <>
-            <Box textAlign="center" my={12}>
-              <Button_ bg="#9FD0E8" color="white" _hover={{bg: '#54b5e4'}}>
-                <Link href={`/user/diary/register/${uuidv1()}`}>
-                  <a>＋日誌登録</a>
-                </Link>
-              </Button_>
-            </Box>
+            <Box textAlign="center" my={12}></Box>
             <Box
               _hover={{bg: '#FFFFFF1A 0% 0% no-repeat padding-box'}}
               borderLeft={router.asPath.indexOf('/home') !== -1 && '4px'}
@@ -72,8 +66,7 @@ export const Sidebar: VFC<{isTeacher?: boolean}> = ({isTeacher}) => {
                       justify="center"
                       mx={router.asPath.indexOf('/home') !== -1 && -1.5}>
                       <HStack w="60%">
-                        <MdHome size={20} />
-                        <Text py={6}>ホーム</Text>
+                        <Text py={6}>社員のストレス値</Text>
                       </HStack>
                     </Flex>
                   </a>
@@ -100,35 +93,7 @@ export const Sidebar: VFC<{isTeacher?: boolean}> = ({isTeacher}) => {
                       justify="center"
                       mx={router.asPath.indexOf('/diary') !== -1 && -1.5}>
                       <HStack w="60%">
-                        <MdLocalLibrary size={20} />
-                        <Text py={6}>日誌</Text>
-                      </HStack>
-                    </Flex>
-                  </a>
-                </Link>
-              </SidebarLink>
-            </Box>
-
-            <Box
-              _hover={{bg: '#FFFFFF1A 0% 0% no-repeat padding-box'}}
-              borderLeft={router.asPath.indexOf('/chat') !== -1 && '4px'}
-              borderColor={router.asPath.indexOf('/chat') !== -1 && '#56A9D3'}
-              bg={
-                router.asPath.indexOf('/chat') !== -1 &&
-                '#FFFFFF1A 0% 0% no-repeat padding-box'
-              }>
-              <SidebarLink
-                color={
-                  router.asPath.indexOf('/chat') !== -1 ? '#84B9D4' : 'white'
-                }>
-                <Link href={`/user/chat/${dockey}`}>
-                  <a>
-                    <Flex
-                      justify="center"
-                      mx={router.asPath.includes('/chat') ? -1.5 : 0}>
-                      <HStack w="60%">
-                        <MdChatBubble size={20} />
-                        <Text py={6}>チャット</Text>
+                        <Text py={6}>社員のストレスグラフ</Text>
                       </HStack>
                     </Flex>
                   </a>

@@ -1,25 +1,25 @@
-import {VFC, useEffect, useState} from 'react'
-import {User} from '@/models/user'
-import {Box, Flex, Heading, Text} from '@chakra-ui/layout'
-import {Avatar, useColorModeValue, Button, Divider} from '@chakra-ui/react'
-import {useRouter} from 'next/router'
-import Link from 'next/link'
-import {Layout} from '@/components/common/layout'
-import {userfiledRef} from '@/lib/firestore'
+import {VFC, useEffect, useState} from 'react';
+import {User} from '@/models/user';
+import {Box, Flex, Heading, Text} from '@chakra-ui/layout';
+import {Avatar, useColorModeValue, Button, Divider} from '@chakra-ui/react';
+import {useRouter} from 'next/router';
+import Link from 'next/link';
+import {Layout} from '@/components/common/layout';
+import {userfiledRef} from '@/lib/firestore';
 
 export const Pages: VFC = () => {
-  const [user, setUser] = useState<User>()
-  const router = useRouter()
-  const docKey = router.query.profile
+  const [user, setUser] = useState<User>();
+  const router = useRouter();
+  const docKey = router.query.profile;
   useEffect(() => {
     userfiledRef(String(docKey)).onSnapshot((res) => {
-      let data = null
-      data = res.data()
-      setUser(data)
-    })
-  }, [docKey])
+      let data = null;
+      data = res.data();
+      setUser(data);
+    });
+  }, [docKey]);
   return (
-    <Layout isHeader>
+    <Layout>
       <Box mt="2" px={16} overflow="scroll" h="85vh">
         <Text
           fontWeight="bold"
@@ -36,8 +36,7 @@ export const Pages: VFC = () => {
             left: '13%',
             backgroundColor: '#00000029',
             content: '" "',
-          }}
-        >
+          }}>
           プロフィール
         </Text>
 
@@ -54,16 +53,14 @@ export const Pages: VFC = () => {
                     color={useColorModeValue('gray.700', 'white')}
                     fontSize={'2xl'}
                     fontWeight="bold"
-                    fontFamily={'body'}
-                  >
+                    fontFamily={'body'}>
                     {user?.name ? user.name : '未記入'}
                   </Heading>
                   <Box mt="-4">
                     <Button
                       background="#263773"
                       color="#fff"
-                      _hover={{background: '#1c2956'}}
-                    >
+                      _hover={{background: '#1c2956'}}>
                       <Link href={`/user/profile/edit/${docKey}`}>
                         <a>プロフィールを編集する</a>
                       </Link>
@@ -83,37 +80,29 @@ export const Pages: VFC = () => {
                   fontSize={'2xl'}
                   fontWeight="bold"
                   fontFamily={'body'}
-                  mb="10"
-                >
+                  mb="10">
                   基本情報
                 </Heading>
               </Box>
             </Flex>
             <Flex>
-              {/* 大学名 */}
-              <Box w="25%">
-                <Text fontWeight="bold" color="#273264">
-                  大学
-                </Text>
-                <Text pt="2">東洋大学</Text>
-              </Box>
               {/* 性別 */}
               <Box w="25%">
-                <Text fontWeight="bold" color="#273264">
+                <Text fontWeight="bold" color="#273673">
                   性別
                 </Text>
                 <Text pt="2">{user?.sex ? user.sex : '未記入'}</Text>
               </Box>
               {/* 生年月日 */}
               <Box w="25%">
-                <Text fontWeight="bold" color="#273264">
+                <Text fontWeight="bold" color="#273673">
                   生年月日
                 </Text>
                 <Text pt="2">{user?.birthday ? user.birthday : '未記入'}</Text>
               </Box>
               {/* メールアドレス */}
               <Box>
-                <Text fontWeight="bold" color="#273264">
+                <Text fontWeight="bold" color="#273673">
                   メールアドレス
                 </Text>
                 <Text pt="2">{user?.address ? user.address : '未記入'}</Text>
@@ -123,7 +112,7 @@ export const Pages: VFC = () => {
             <Flex py="10">
               {/* 電話アドレス */}
               <Box w="25%">
-                <Text fontWeight="bold" color="#273264">
+                <Text fontWeight="bold" color="#273673">
                   電話
                 </Text>
                 <Text pt="2">
@@ -133,8 +122,8 @@ export const Pages: VFC = () => {
 
               {/* 実習先*/}
               <Box>
-                <Text fontWeight="bold" color="#273264">
-                  実習先
+                <Text fontWeight="bold" color="#273673">
+                  配属先
                 </Text>
                 <Text pt="2">
                   {user?.practicalTraining ? user.practicalTraining : '未記入'}
@@ -145,5 +134,5 @@ export const Pages: VFC = () => {
         </Flex>
       </Box>
     </Layout>
-  )
-}
+  );
+};

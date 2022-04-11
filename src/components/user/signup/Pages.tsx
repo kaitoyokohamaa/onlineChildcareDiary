@@ -14,7 +14,7 @@ export const Pages: VFC = () => {
         <Flex h="100vh" bg="#273673" w="50%" pt="25%" pl="3">
           <Box>
             <Heading as="h3" size="lg" color="white" mb={5}>
-              オンライン保育実習日誌
+              mental office
             </Heading>
           </Box>
         </Flex>
@@ -22,12 +22,9 @@ export const Pages: VFC = () => {
         <Flex w="50%" pt="15%" justify="center">
           <Box>
             <Flex align="center">
-              <Box w="10%">
-                <img src="/img/phoenix.png" />
-              </Box>
               <Box textAlign="center">
                 <Heading as="h5" size="md" color="#273673">
-                  SMART DIARY PHOENIX
+                  MENTAL OFFICE
                 </Heading>
               </Box>
             </Flex>
@@ -55,6 +52,7 @@ export const Pages: VFC = () => {
                 bg="#273673"
                 size="lg"
                 px="40"
+                _hover={{bg: '#273673'}}
                 py={{lg: 8}}
                 boxShadow="2xl-blue"
                 mb={10}

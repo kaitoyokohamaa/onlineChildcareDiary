@@ -1,190 +1,183 @@
 import {VFC} from 'react';
-import {Box, Flex, Text, Divider} from '@chakra-ui/layout';
-import {Input, Button, useToast} from '@chakra-ui/react';
-import {MdLocalLibrary} from 'react-icons/md';
 import Link from 'next/link';
 import {Layout} from '@/components/common/layout';
-import {CopyToClipboard} from 'react-copy-to-clipboard';
-import {v1 as uuidv1} from 'uuid';
 import {Home} from '@/models/user/home';
-export const Pages: VFC<Home> = ({homeKey, isSummary, isIntrospection}) => {
-  const toast = useToast();
+import {
+  Table,
+  Thead,
+  Tbody,
+  Tr,
+  Th,
+  Td,
+  Box,
+  Flex,
+  Text,
+} from '@chakra-ui/react';
+export const Pages: VFC<Home> = ({}) => {
   return (
-    <Layout isHeader>
-      <Box px={16} h={'85vh'}>
-        <Box mt={10}>
-          <Text fontWeight="bold">新規作成</Text>
-        </Box>
-        <Divider my="4" />
-        <Box w="100%">
-          <Flex w="60%" justifyContent="space-between">
-            <Box>
-              <Link href={`/user/diary/register/${uuidv1()}`}>
-                <a>
-                  <Box
-                    _hover={{backgroundColor: '#F8F8F8'}}
-                    backgroundColor="#F9FBFB"
-                    w="200px"
-                    p="24px"
-                    borderRadius="md"
-                    alignItems="center"
-                    border="2px solid #e4eaf1"
-                    boxSizing="border-box"
-                    textAlign="center">
-                    <Box display="flex" justifyContent="center">
-                      <MdLocalLibrary size="70" color=" #9FD0E8" />
-                    </Box>
-                    <Box>
-                      <Text fontWeight="bold" pt="4">
-                        日誌登録
-                      </Text>
-                    </Box>
-                  </Box>
-                </a>
-              </Link>
-            </Box>
-            <Box>
-              {!isSummary && (
-                <Link href={`/user/diary/summary/register`}>
-                  <a>
-                    <Box
-                      _hover={{backgroundColor: '#F8F8F8'}}
-                      w="200px"
-                      backgroundColor="#F9FBFB"
-                      p="24px"
-                      borderRadius="md"
-                      alignItems="center"
-                      border="2px solid #e4eaf1"
-                      boxSizing="border-box"
-                      textAlign="center">
-                      <Box display="flex" justifyContent="center">
-                        <MdLocalLibrary size="70" color=" #9FD0E8" />
-                      </Box>
-                      <Box>
-                        <Text fontWeight="bold" pt="4">
-                          実習のまとめ登録
-                        </Text>
-                      </Box>
-                    </Box>
-                  </a>
+    <Layout>
+      <Box>
+        <Flex alignItems="center">
+          <Text ml="7" fontWeight="bold">
+            社員のストレス値
+          </Text>
+        </Flex>
+      </Box>
+      <Box mx="10px">
+        <Table>
+          <Thead>
+            <Tr>
+              <Th>名前</Th>
+              <Th>今のストレス状態</Th>
+              <Th>必要なアクション</Th>
+            </Tr>
+          </Thead>
+          <Tbody>
+            <Tr
+              _hover={{
+                background: '#f5f7f9',
+                p: '14',
+              }}>
+              <Td color="#273673" fontWeight="bold" cursor="pointer">
+                <Link href="">
+                  <a>横浜海斗</a>
                 </Link>
-              )}
-            </Box>
-            <Box>
-              {!isIntrospection && (
-                <Link href={`/user/diary/introspection/register`}>
-                  <a>
-                    <Box
-                      _hover={{
-                        backgroundColor: '#F8F8F8',
-                      }}
-                      w="200px"
-                      backgroundColor="#F9FBFB"
-                      p="24px"
-                      borderRadius="md"
-                      alignItems="center"
-                      border="2px solid #e4eaf1"
-                      boxSizing="border-box"
-                      textAlign="center">
-                      <Box display="flex" justifyContent="center">
-                        <MdLocalLibrary size="70" color=" #9FD0E8" />
-                      </Box>
-                      <Box>
-                        <Text fontWeight="bold" pt="4">
-                          反省会の記録登録
-                        </Text>
-                      </Box>
-                    </Box>
-                  </a>
+              </Td>
+              <Td color="red">かなり悪い</Td>
+              <Td color="#273673">休みが必要です</Td>
+            </Tr>{' '}
+            <Tr
+              _hover={{
+                background: '#f5f7f9',
+                p: '14',
+              }}>
+              <Td color="#273673" fontWeight="bold" cursor="pointer">
+                <Link href="">
+                  <a>服部半蔵</a>
                 </Link>
-              )}
-            </Box>
-          </Flex>
-          <Box mt={10}>
-            <Text fontWeight="bold">一覧</Text>
-          </Box>
-          <Divider my="4" />
-          <Box w="100%">
-            <Flex>
-              <Box>
-                <Link href={`/user/diary/${homeKey}`}>
-                  <a>
-                    <Box
-                      _hover={{backgroundColor: '#F8F8F8'}}
-                      w="152px"
-                      backgroundColor="#F9FBFB"
-                      p="14px"
-                      borderRadius="md"
-                      alignItems="center"
-                      border="2px solid #e4eaf1"
-                      boxSizing="border-box"
-                      textAlign="center">
-                      <Box>
-                        <Text fontWeight="bold">日誌一覧</Text>
-                      </Box>
-                    </Box>
-                  </a>
+              </Td>
+              <Td color="red">かなり悪い</Td>
+              <Td color="#273673">休みが必要です</Td>
+            </Tr>{' '}
+            <Tr
+              _hover={{
+                background: '#f5f7f9',
+                p: '14',
+              }}>
+              <Td color="#273673" fontWeight="bold" cursor="pointer">
+                <Link href="">
+                  <a>横浜流星</a>
                 </Link>
-              </Box>
-              <Box>
-                <Link href={`/user/chat/${homeKey}`}>
-                  <a>
-                    <Box
-                      ml={'10'}
-                      _hover={{backgroundColor: '#F8F8F8'}}
-                      w="152px"
-                      backgroundColor="#F9FBFB"
-                      p="14px"
-                      borderRadius="md"
-                      alignItems="center"
-                      border="2px solid #e4eaf1"
-                      boxSizing="border-box"
-                      textAlign="center">
-                      <Box>
-                        <Text fontWeight="bold">チャット</Text>
-                      </Box>
-                    </Box>
-                  </a>
+              </Td>
+              <Td color="red">かなり悪い</Td>
+              <Td color="#273673">休みが必要です</Td>
+            </Tr>{' '}
+            <Tr
+              _hover={{
+                background: '#f5f7f9',
+                p: '14',
+              }}>
+              <Td color="#273673" fontWeight="bold" cursor="pointer">
+                <Link href="">
+                  <a>菅田将暉</a>
                 </Link>
-              </Box>
-            </Flex>
-            <Box mt={10}>
-              <Text fontWeight="bold">招待URL作成</Text>
-            </Box>
-            <Divider my="4" />
-            <Flex>
-              {/* 本番環境への書き換えをしよう */}
-              <Input
-                w="30%"
-                value={`https://phoenixdiary.vercel.app/user/signup/invite/${homeKey}`}
-                isReadOnly
-                mr="3"
-              />
-              <CopyToClipboard
-                cursor="pointer"
-                // 本番環境のパスに入れ替え→もしisUserじゃなかったら保育士の先生が編集できるデザインに変更する。
-                text={`https://phoenixdiary.vercel.app/user/signup/invite/${homeKey}`}>
-                <Button
-                  _hover={{backgroundColor: '#F8F8F8'}}
-                  backgroundColor="#F9FBFB"
-                  borderRadius="md"
-                  alignItems="center"
-                  border="2px solid #e4eaf1"
-                  boxSizing="border-box"
-                  textAlign="center"
-                  onClick={() =>
-                    toast({
-                      title: `コピーしました`,
-                      position: 'bottom',
-                      isClosable: true,
-                    })
-                  }>
-                  コピー
-                </Button>
-              </CopyToClipboard>
-            </Flex>
-          </Box>
-        </Box>
+              </Td>
+              <Td color="red">かなり悪い</Td>
+              <Td color="#273673">休みが必要です</Td>
+            </Tr>{' '}
+            <Tr
+              _hover={{
+                background: '#f5f7f9',
+                p: '14',
+              }}>
+              <Td color="#273673" fontWeight="bold" cursor="pointer">
+                <Link href="">
+                  <a>有村架純</a>
+                </Link>
+              </Td>
+              <Td color="red">かなり悪い</Td>
+              <Td color="#273673">休みが必要です</Td>
+            </Tr>
+            <Tr
+              _hover={{
+                background: '#f5f7f9',
+                p: '14',
+              }}>
+              <Td color="#273673" fontWeight="bold" cursor="pointer">
+                <Link href="">
+                  <a>井上尚弥</a>
+                </Link>
+              </Td>
+              <Td color="red">かなり悪い</Td>
+              <Td color="#273673">休みが必要です</Td>
+            </Tr>
+            <Tr
+              _hover={{
+                background: '#f5f7f9',
+                p: '14',
+              }}>
+              <Td color="#273673" fontWeight="bold" cursor="pointer">
+                <Link href="">
+                  <a>マニーパッキャオ</a>
+                </Link>
+              </Td>
+              <Td color="red">かなり悪い</Td>
+              <Td color="#273673">休みが必要です</Td>
+            </Tr>
+            <Tr
+              _hover={{
+                background: '#f5f7f9',
+                p: '14',
+              }}>
+              <Td color="#273673" fontWeight="bold" cursor="pointer">
+                <Link href="">
+                  <a>中川大志</a>
+                </Link>
+              </Td>
+              <Td color="red">かなり悪い</Td>
+              <Td color="#273673">休みが必要です</Td>
+            </Tr>
+            <Tr
+              _hover={{
+                background: '#f5f7f9',
+                p: '14',
+              }}>
+              <Td color="#273673" fontWeight="bold" cursor="pointer">
+                <Link href="">
+                  <a>佐々木拓</a>
+                </Link>
+              </Td>
+              <Td color="red">かなり悪い</Td>
+              <Td color="#273673">休みが必要です</Td>
+            </Tr>
+            <Tr
+              _hover={{
+                background: '#f5f7f9',
+                p: '14',
+              }}>
+              <Td color="#273673" fontWeight="bold" cursor="pointer">
+                <Link href="">
+                  <a>新垣結衣</a>
+                </Link>
+              </Td>
+              <Td color="#273673">絶好調</Td>
+              <Td color="#273673">特になし</Td>
+            </Tr>
+            <Tr
+              _hover={{
+                background: '#f5f7f9',
+                p: '14',
+              }}>
+              <Td color="#273673" fontWeight="bold" cursor="pointer">
+                <Link href="">
+                  <a>アーノルドシュワルツェネッガー</a>
+                </Link>
+              </Td>
+              <Td color="red">かなり悪い</Td>
+              <Td color="#273673">休みが必要です</Td>
+            </Tr>
+          </Tbody>
+        </Table>
       </Box>
     </Layout>
   );

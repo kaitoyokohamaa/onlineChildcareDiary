@@ -2,7 +2,7 @@ import firebase from 'firebase'
 import 'firebase/app'
 import 'firebase/firestore'
 import 'firebase/auth'
-
+console.log(process.env.NEXT_PUBLIC_FIREBASE_KEY)
 export const initalFirebase = {
   apiKey: process.env.NEXT_PUBLIC_FIREBASE_KEY,
   authDomain: process.env.NEXT_PUBLIC_FIREBASE_DOMAIN,

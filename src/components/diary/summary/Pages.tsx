@@ -23,7 +23,7 @@ export const Pages: VFC<{summary: Summary; isTeacher?: boolean}> = ({
   const toast = useToast();
 
   return (
-    <Layout isHeader>
+    <Layout>
       <Box mt="10" px={16}>
         {summary ? (
           <>

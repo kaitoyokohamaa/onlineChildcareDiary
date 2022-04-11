@@ -92,7 +92,7 @@ export const Pages: VFC<EditType> = ({
                   onClick={submitHandler}
                   w="32"
                   ml="3"
-                  bg="#273264"
+                  bg="#273673"
                   color="#fff"
                   _hover={{bg: '#141933'}}>
                   保存する
