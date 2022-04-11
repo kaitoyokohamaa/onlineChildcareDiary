@@ -12,6 +12,8 @@ import {
   Box,
   Flex,
   Text,
+  Tag,
+  TagLabel,
 } from '@chakra-ui/react';
 export const Pages: VFC<Home> = ({}) => {
   return (
@@ -43,8 +45,26 @@ export const Pages: VFC<Home> = ({}) => {
                   <a>横浜海斗</a>
                 </Link>
               </Td>
-              <Td color="red">かなり悪い</Td>
-              <Td color="#273673">休みが必要です</Td>
+              <Td color="red">
+                {' '}
+                <Tag
+                  size={'sm'}
+                  borderRadius="full"
+                  variant="solid"
+                  colorScheme="red">
+                  <TagLabel>悪い</TagLabel>
+                </Tag>
+              </Td>
+              <Td color="#273673">
+                {' '}
+                <Tag
+                  size={'sm'}
+                  borderRadius="full"
+                  variant="solid"
+                  colorScheme="red">
+                  <TagLabel>休みが必要です</TagLabel>
+                </Tag>
+              </Td>
             </Tr>{' '}
             <Tr
               _hover={{
@@ -56,8 +76,26 @@ export const Pages: VFC<Home> = ({}) => {
                   <a>服部半蔵</a>
                 </Link>
               </Td>
-              <Td color="red">かなり悪い</Td>
-              <Td color="#273673">休みが必要です</Td>
+              <Td color="red">
+                {' '}
+                <Tag
+                  size={'sm'}
+                  borderRadius="full"
+                  variant="solid"
+                  colorScheme="red">
+                  <TagLabel>悪い</TagLabel>
+                </Tag>
+              </Td>
+              <Td color="#273673">
+                {' '}
+                <Tag
+                  size={'sm'}
+                  borderRadius="full"
+                  variant="solid"
+                  colorScheme="red">
+                  <TagLabel>休みが必要です</TagLabel>
+                </Tag>
+              </Td>
             </Tr>{' '}
             <Tr
               _hover={{
@@ -69,8 +107,25 @@ export const Pages: VFC<Home> = ({}) => {
                   <a>横浜流星</a>
                 </Link>
               </Td>
-              <Td color="red">かなり悪い</Td>
-              <Td color="#273673">休みが必要です</Td>
+              <Td color="red">
+                {' '}
+                <Tag
+                  size={'sm'}
+                  borderRadius="full"
+                  variant="solid"
+                  colorScheme="red">
+                  <TagLabel>悪い</TagLabel>
+                </Tag>
+              </Td>
+              <Td color="#273673">
+                <Tag
+                  size={'sm'}
+                  borderRadius="full"
+                  variant="solid"
+                  colorScheme="red">
+                  <TagLabel>休みが必要です</TagLabel>
+                </Tag>
+              </Td>
             </Tr>{' '}
             <Tr
               _hover={{
@@ -82,8 +137,26 @@ export const Pages: VFC<Home> = ({}) => {
                   <a>菅田将暉</a>
                 </Link>
               </Td>
-              <Td color="red">かなり悪い</Td>
-              <Td color="#273673">休みが必要です</Td>
+              <Td color="red">
+                {' '}
+                <Tag
+                  size={'sm'}
+                  borderRadius="full"
+                  variant="solid"
+                  colorScheme="red">
+                  <TagLabel>悪い</TagLabel>
+                </Tag>
+              </Td>
+              <Td color="#273673">
+                {' '}
+                <Tag
+                  size={'sm'}
+                  borderRadius="full"
+                  variant="solid"
+                  colorScheme="red">
+                  <TagLabel>休みが必要です</TagLabel>
+                </Tag>
+              </Td>
             </Tr>{' '}
             <Tr
               _hover={{
@@ -95,8 +168,26 @@ export const Pages: VFC<Home> = ({}) => {
                   <a>有村架純</a>
                 </Link>
               </Td>
-              <Td color="red">かなり悪い</Td>
-              <Td color="#273673">休みが必要です</Td>
+              <Td color="red">
+                {' '}
+                <Tag
+                  size={'sm'}
+                  borderRadius="full"
+                  variant="solid"
+                  colorScheme="red">
+                  <TagLabel>悪い</TagLabel>
+                </Tag>
+              </Td>
+              <Td color="#273673">
+                {' '}
+                <Tag
+                  size={'sm'}
+                  borderRadius="full"
+                  variant="solid"
+                  colorScheme="red">
+                  <TagLabel>休みが必要です</TagLabel>
+                </Tag>
+              </Td>
             </Tr>
             <Tr
               _hover={{
@@ -108,8 +199,26 @@ export const Pages: VFC<Home> = ({}) => {
                   <a>井上尚弥</a>
                 </Link>
               </Td>
-              <Td color="red">かなり悪い</Td>
-              <Td color="#273673">休みが必要です</Td>
+              <Td color="red">
+                {' '}
+                <Tag
+                  size={'sm'}
+                  borderRadius="full"
+                  variant="solid"
+                  colorScheme="red">
+                  <TagLabel>悪い</TagLabel>
+                </Tag>
+              </Td>
+              <Td color="#273673">
+                {' '}
+                <Tag
+                  size={'sm'}
+                  borderRadius="full"
+                  variant="solid"
+                  colorScheme="red">
+                  <TagLabel>休みが必要です</TagLabel>
+                </Tag>
+              </Td>
             </Tr>
             <Tr
               _hover={{
@@ -121,8 +230,26 @@ export const Pages: VFC<Home> = ({}) => {
                   <a>マニーパッキャオ</a>
                 </Link>
               </Td>
-              <Td color="red">かなり悪い</Td>
-              <Td color="#273673">休みが必要です</Td>
+              <Td color="red">
+                {' '}
+                <Tag
+                  size={'sm'}
+                  borderRadius="full"
+                  variant="solid"
+                  colorScheme="red">
+                  <TagLabel>悪い</TagLabel>
+                </Tag>
+              </Td>
+              <Td color="#273673">
+                {' '}
+                <Tag
+                  size={'sm'}
+                  borderRadius="full"
+                  variant="solid"
+                  colorScheme="red">
+                  <TagLabel>休みが必要です</TagLabel>
+                </Tag>
+              </Td>
             </Tr>
             <Tr
               _hover={{
@@ -134,8 +261,26 @@ export const Pages: VFC<Home> = ({}) => {
                   <a>中川大志</a>
                 </Link>
               </Td>
-              <Td color="red">かなり悪い</Td>
-              <Td color="#273673">休みが必要です</Td>
+              <Td color="red">
+                {' '}
+                <Tag
+                  size={'sm'}
+                  borderRadius="full"
+                  variant="solid"
+                  colorScheme="red">
+                  <TagLabel>悪い</TagLabel>
+                </Tag>
+              </Td>
+              <Td color="#273673">
+                {' '}
+                <Tag
+                  size={'sm'}
+                  borderRadius="full"
+                  variant="solid"
+                  colorScheme="red">
+                  <TagLabel>休みが必要です</TagLabel>
+                </Tag>
+              </Td>
             </Tr>
             <Tr
               _hover={{
@@ -147,8 +292,26 @@ export const Pages: VFC<Home> = ({}) => {
                   <a>佐々木拓</a>
                 </Link>
               </Td>
-              <Td color="red">かなり悪い</Td>
-              <Td color="#273673">休みが必要です</Td>
+              <Td color="red">
+                {' '}
+                <Tag
+                  size={'sm'}
+                  borderRadius="full"
+                  variant="solid"
+                  colorScheme="red">
+                  <TagLabel>悪い</TagLabel>
+                </Tag>
+              </Td>
+              <Td color="#273673">
+                {' '}
+                <Tag
+                  size={'sm'}
+                  borderRadius="full"
+                  variant="solid"
+                  colorScheme="red">
+                  <TagLabel>休みが必要です</TagLabel>
+                </Tag>
+              </Td>
             </Tr>
             <Tr
               _hover={{
@@ -160,8 +323,26 @@ export const Pages: VFC<Home> = ({}) => {
                   <a>新垣結衣</a>
                 </Link>
               </Td>
-              <Td color="#273673">絶好調</Td>
-              <Td color="#273673">特になし</Td>
+              <Td color="#273673">
+                {' '}
+                <Tag
+                  size={'sm'}
+                  borderRadius="full"
+                  variant="solid"
+                  colorScheme="green">
+                  <TagLabel>絶好調</TagLabel>
+                </Tag>
+              </Td>
+              <Td color="#273673">
+                {' '}
+                <Tag
+                  size={'sm'}
+                  borderRadius="full"
+                  variant="solid"
+                  colorScheme="green">
+                  <TagLabel>特になし！</TagLabel>
+                </Tag>
+              </Td>
             </Tr>
             <Tr
               _hover={{
@@ -173,8 +354,26 @@ export const Pages: VFC<Home> = ({}) => {
                   <a>アーノルドシュワルツェネッガー</a>
                 </Link>
               </Td>
-              <Td color="red">かなり悪い</Td>
-              <Td color="#273673">休みが必要です</Td>
+              <Td color="red">
+                {' '}
+                <Tag
+                  size={'sm'}
+                  borderRadius="full"
+                  variant="solid"
+                  colorScheme="red">
+                  <TagLabel>悪い</TagLabel>
+                </Tag>
+              </Td>
+              <Td color="#273673">
+                {' '}
+                <Tag
+                  size={'sm'}
+                  borderRadius="full"
+                  variant="solid"
+                  colorScheme="red">
+                  <TagLabel>休みが必要です</TagLabel>
+                </Tag>
+              </Td>
             </Tr>
           </Tbody>
         </Table>
