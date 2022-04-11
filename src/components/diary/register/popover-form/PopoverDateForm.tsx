@@ -66,9 +66,7 @@ export const PopoverDateForm = ({state, isTeacher, ...props}) => {
   return (
     <>
       <Box display="block">
-        <Text value={date} whiteSpace="pre-wrap">
-          {date}
-        </Text>
+        <Text whiteSpace="pre-wrap">{date}</Text>
       </Box>
       <Popover
         isOpen={isOpen}

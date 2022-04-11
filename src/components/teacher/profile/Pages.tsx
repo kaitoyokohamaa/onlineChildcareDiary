@@ -42,7 +42,7 @@ export const Pages: VFC = () => {
           <Box w="100%" boxShadow={'2xl'} p="14" my="10">
             <Flex>
               <Box mr="10">
-                <Avatar size="2xl" src={teacher?.dispayImage} alt={'Author'} />
+                <Avatar size="2xl" src={teacher?.dispayImage} />
               </Box>
 
               <Box pl="5">

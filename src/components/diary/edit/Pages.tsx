@@ -101,7 +101,6 @@ export const Pages: VFC<EditType> = ({
               <Input
                 value={studentName}
                 onChange={(e) => setStudentName(e.target.value)}
-                type="text"
                 placeholder="実習生氏名"
                 ml="10"
               />
@@ -113,13 +112,11 @@ export const Pages: VFC<EditType> = ({
               <Input
                 value={assignedName}
                 onChange={(e) => setAssignedName(e.target.value)}
-                type="text"
                 placeholder="配属先"
               />
               <Input
                 value={leader}
                 onChange={(e) => setLeader(e.target.value)}
-                type="text"
                 placeholder="指導者名"
                 ml="10"
               />
@@ -131,7 +128,6 @@ export const Pages: VFC<EditType> = ({
               <Textarea
                 value={goal}
                 onChange={(e) => setGoal(e.target.value)}
-                type="text"
                 placeholder="本日の目標"
               />
             </Flex>
@@ -171,7 +167,6 @@ export const Pages: VFC<EditType> = ({
               <Textarea
                 value={feeling}
                 onChange={(e) => setFeeling(e.target.value)}
-                type="text"
                 placeholder="実習所感(特に印象に残ったこと、考察、課題、反省など)"
               />
             </Flex>

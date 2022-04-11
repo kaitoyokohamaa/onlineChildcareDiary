@@ -50,7 +50,6 @@ export const Pages: VFC<{summaryDocKey: string}> = ({summaryDocKey}) => {
               <Textarea
                 value={comment}
                 onChange={(e) => setComment(e.target.value)}
-                type="text"
                 placeholder="実習指導者からのコメント"
               />
             </Flex>

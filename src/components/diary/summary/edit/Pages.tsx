@@ -70,7 +70,6 @@ export const Pages = () => {
                 w="75%"
                 value={goalAndAchievement}
                 onChange={(e) => setGoalAndAchievement(e.target.value)}
-                type="text"
                 placeholder="実習の目標とその達成度"
               />
             </Flex>
@@ -83,7 +82,6 @@ export const Pages = () => {
                 w="75%"
                 value={experience}
                 onChange={(e) => setExperience(e.target.value)}
-                type="text"
                 placeholder="実習で感銘を受けた体験"
               />
             </Flex>
@@ -96,7 +94,6 @@ export const Pages = () => {
                 w="75%"
                 value={reflection}
                 onChange={(e) => setReflection(e.target.value)}
-                type="text"
                 placeholder="実習の反省および新しく発見した課題"
               />
             </Flex>
@@ -108,7 +105,6 @@ export const Pages = () => {
                 w="75%"
                 value={notice}
                 onChange={(e) => setNotice(e.target.value)}
-                type="text"
                 placeholder="その他気づいたこと"
               />
             </Flex>

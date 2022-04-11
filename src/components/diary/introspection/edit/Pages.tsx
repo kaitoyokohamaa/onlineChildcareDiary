@@ -60,7 +60,6 @@ export const Pages = () => {
                 value={introspection}
                 size="lg"
                 onChange={(e) => setIntrospection(e.target.value)}
-                type="text"
                 placeholder="反省会の記録"
               />
             </Flex>

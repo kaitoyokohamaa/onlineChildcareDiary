@@ -75,7 +75,6 @@ export const Pages: VFC<EditType> = ({
               <Textarea
                 value={feedback}
                 onChange={(e) => setFeedback(e.target.value)}
-                type="text"
                 placeholder="指導者からのことば"
               />
             </Flex>
