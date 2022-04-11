@@ -1,7 +1,7 @@
-import {VFC} from 'react';
+import { VFC } from 'react';
 import Link from 'next/link';
-import {Layout} from '@/components/common/layout';
-import {Home} from '@/models/user/home';
+import { Layout } from '@/components/common/layout';
+import { Home } from '@/models/user/home';
 import {
   Table,
   Thead,
@@ -15,7 +15,7 @@ import {
   Tag,
   TagLabel,
 } from '@chakra-ui/react';
-export const Pages: VFC<Home> = ({}) => {
+export const Pages: VFC<Home> = ({ }) => {
   return (
     <Layout>
       <Box>
@@ -82,8 +82,8 @@ export const Pages: VFC<Home> = ({}) => {
                   size={'sm'}
                   borderRadius="full"
                   variant="solid"
-                  colorScheme="red">
-                  <TagLabel>悪い</TagLabel>
+                  colorScheme="yellow">
+                  <TagLabel>ふつう</TagLabel>
                 </Tag>
               </Td>
               <Td color="#273673">
@@ -92,8 +92,8 @@ export const Pages: VFC<Home> = ({}) => {
                   size={'sm'}
                   borderRadius="full"
                   variant="solid"
-                  colorScheme="red">
-                  <TagLabel>休みが必要です</TagLabel>
+                  colorScheme="yellow">
+                  <TagLabel>適宜休憩を</TagLabel>
                 </Tag>
               </Td>
             </Tr>{' '}
@@ -113,8 +113,8 @@ export const Pages: VFC<Home> = ({}) => {
                   size={'sm'}
                   borderRadius="full"
                   variant="solid"
-                  colorScheme="red">
-                  <TagLabel>悪い</TagLabel>
+                  colorScheme="green">
+                  <TagLabel>好調</TagLabel>
                 </Tag>
               </Td>
               <Td color="#273673">
@@ -122,8 +122,8 @@ export const Pages: VFC<Home> = ({}) => {
                   size={'sm'}
                   borderRadius="full"
                   variant="solid"
-                  colorScheme="red">
-                  <TagLabel>休みが必要です</TagLabel>
+                  colorScheme="green">
+                  <TagLabel>タスクを振ってみよう</TagLabel>
                 </Tag>
               </Td>
             </Tr>{' '}
@@ -144,7 +144,7 @@ export const Pages: VFC<Home> = ({}) => {
                   borderRadius="full"
                   variant="solid"
                   colorScheme="red">
-                  <TagLabel>悪い</TagLabel>
+                  <TagLabel>かなり悪い</TagLabel>
                 </Tag>
               </Td>
               <Td color="#273673">
@@ -154,7 +154,7 @@ export const Pages: VFC<Home> = ({}) => {
                   borderRadius="full"
                   variant="solid"
                   colorScheme="red">
-                  <TagLabel>休みが必要です</TagLabel>
+                  <TagLabel>カウンセリングをお勧めします</TagLabel>
                 </Tag>
               </Td>
             </Tr>{' '}
@@ -174,8 +174,8 @@ export const Pages: VFC<Home> = ({}) => {
                   size={'sm'}
                   borderRadius="full"
                   variant="solid"
-                  colorScheme="red">
-                  <TagLabel>悪い</TagLabel>
+                  colorScheme="green">
+                  <TagLabel>好調</TagLabel>
                 </Tag>
               </Td>
               <Td color="#273673">
@@ -184,8 +184,8 @@ export const Pages: VFC<Home> = ({}) => {
                   size={'sm'}
                   borderRadius="full"
                   variant="solid"
-                  colorScheme="red">
-                  <TagLabel>休みが必要です</TagLabel>
+                  colorScheme="green">
+                  <TagLabel>タスクを振ってみよう</TagLabel>
                 </Tag>
               </Td>
             </Tr>
@@ -206,7 +206,7 @@ export const Pages: VFC<Home> = ({}) => {
                   borderRadius="full"
                   variant="solid"
                   colorScheme="red">
-                  <TagLabel>悪い</TagLabel>
+                  <TagLabel>やや悪い</TagLabel>
                 </Tag>
               </Td>
               <Td color="#273673">
@@ -216,7 +216,7 @@ export const Pages: VFC<Home> = ({}) => {
                   borderRadius="full"
                   variant="solid"
                   colorScheme="red">
-                  <TagLabel>休みが必要です</TagLabel>
+                  <TagLabel>休憩を促しましょう</TagLabel>
                 </Tag>
               </Td>
             </Tr>
@@ -236,8 +236,8 @@ export const Pages: VFC<Home> = ({}) => {
                   size={'sm'}
                   borderRadius="full"
                   variant="solid"
-                  colorScheme="red">
-                  <TagLabel>悪い</TagLabel>
+                  colorScheme="green">
+                  <TagLabel>好調</TagLabel>
                 </Tag>
               </Td>
               <Td color="#273673">
@@ -246,8 +246,8 @@ export const Pages: VFC<Home> = ({}) => {
                   size={'sm'}
                   borderRadius="full"
                   variant="solid"
-                  colorScheme="red">
-                  <TagLabel>休みが必要です</TagLabel>
+                  colorScheme="green">
+                  <TagLabel>タスクを振ってみよう</TagLabel>
                 </Tag>
               </Td>
             </Tr>
@@ -303,7 +303,7 @@ export const Pages: VFC<Home> = ({}) => {
                 </Tag>
               </Td>
               <Td color="#273673">
-                {' '}
+
                 <Tag
                   size={'sm'}
                   borderRadius="full"
@@ -324,7 +324,6 @@ export const Pages: VFC<Home> = ({}) => {
                 </Link>
               </Td>
               <Td color="#273673">
-                {' '}
                 <Tag
                   size={'sm'}
                   borderRadius="full"
@@ -334,13 +333,12 @@ export const Pages: VFC<Home> = ({}) => {
                 </Tag>
               </Td>
               <Td color="#273673">
-                {' '}
                 <Tag
                   size={'sm'}
                   borderRadius="full"
                   variant="solid"
                   colorScheme="green">
-                  <TagLabel>特になし！</TagLabel>
+                  <TagLabel>タスクを振ってみよう</TagLabel>
                 </Tag>
               </Td>
             </Tr>
@@ -355,7 +353,6 @@ export const Pages: VFC<Home> = ({}) => {
                 </Link>
               </Td>
               <Td color="red">
-                {' '}
                 <Tag
                   size={'sm'}
                   borderRadius="full"
