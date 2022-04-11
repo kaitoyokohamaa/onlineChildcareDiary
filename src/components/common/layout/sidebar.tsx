@@ -39,7 +39,7 @@ export const Sidebar: VFC<{isTeacher?: boolean}> = ({isTeacher}) => {
     <Box w="100%" h="100vh" bg="#273673">
       <Box textAlign="center">
         <Heading textAlign="center" as="h5" size="md" color="white" pt={10}>
-          MENTAL OFFICE
+        HEALTHY OFFICE
         </Heading>
         {isTeacher && <Badge>保育士用</Badge>}
       </Box>

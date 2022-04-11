@@ -36,7 +36,7 @@ export const Pages: VFC = () => {
             height="330"
             alt="welcome"
           />
-          <Heading>MENTAL OFFICEへようこそ</Heading>
+          <Heading>HEALTHY OFFICEへようこそ</Heading>
           <Text pt="10" fontWeight="bold">
             早速日誌を登録してみましょう
           </Text>

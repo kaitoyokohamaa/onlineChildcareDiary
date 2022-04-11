@@ -15,7 +15,7 @@ export const Pages: VFC = () => {
         <Flex h="100vh" bg="#273673" w="50%" pt="25%" pl="3">
           <Box>
             <Heading as="h3" size="lg" color="white" mb={5}>
-              mental office
+              HEALTHY OFFICE
             </Heading>
           </Box>
         </Flex>
@@ -25,7 +25,7 @@ export const Pages: VFC = () => {
             <Flex align="center">
               <Box textAlign="center">
                 <Heading as="h5" size="md" color="#273673">
-                  MENTAL OFFICE
+                  HEALTHY OFFICE
                 </Heading>
               </Box>
             </Flex>
