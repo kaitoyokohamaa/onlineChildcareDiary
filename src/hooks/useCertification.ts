@@ -6,10 +6,8 @@ import {userRef, invitedUserRef, teacherRef} from '@/lib/firestore';
 export const UseCertification = () => {
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
-  const [isLoading, setIsLoading] = useState<boolean>(false);
   const router = useRouter();
   const signupHandler = () => {
-    setIsLoading(true);
     firebase
       .auth()
       .createUserWithEmailAndPassword(email, password)
@@ -32,11 +30,9 @@ export const UseCertification = () => {
       })
       .catch((err) => {
         console.log(err);
-        setIsLoading(false);
       });
   };
   const signinHandler = () => {
-    setIsLoading(true);
     firebase
       .auth()
       .signInWithEmailAndPassword(email, password)
@@ -44,7 +40,6 @@ export const UseCertification = () => {
         router.push(`/user/welcome`);
       })
       .catch((err) => {
-        setIsLoading(false);
         console.log(err);
       });
   };
@@ -55,17 +50,14 @@ export const UseCertification = () => {
     setPassword,
     email,
     password,
-    isLoading,
   } as const;
 };
 
 export const UseInviteCertification = (id: string) => {
-  const [isLoading, setIsLoading] = useState<boolean>(false);
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const router = useRouter();
   const signupHandler = async () => {
-    setIsLoading(true);
     const signUp = await firebase
       .auth()
       .createUserWithEmailAndPassword(email, password);
@@ -93,17 +85,14 @@ export const UseInviteCertification = (id: string) => {
     setPassword,
     email,
     password,
-    isLoading,
   } as const;
 };
 
 export const UseTeacherCertification = () => {
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
-  const [isLoading, setIsLoading] = useState<boolean>(false);
   const router = useRouter();
   const signinHandler = () => {
-    setIsLoading(true);
     firebase
       .auth()
       .signInWithEmailAndPassword(email, password)
@@ -112,7 +101,6 @@ export const UseTeacherCertification = () => {
       })
       .catch((err) => {
         console.log(err);
-        setIsLoading(false);
       });
   };
 
@@ -122,6 +110,5 @@ export const UseTeacherCertification = () => {
     setPassword,
     email,
     password,
-    isLoading,
   } as const;
 };
