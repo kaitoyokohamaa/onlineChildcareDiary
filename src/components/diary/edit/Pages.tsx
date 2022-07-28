@@ -70,7 +70,7 @@ export const Pages: VFC<EditType> = ({
   // todo react hooks formでバリデーションの追加
 
   return (
-    <Layout isHeader>
+    <Layout>
       <Box mt="10" px={16}>
         <Flex alignItems="center">
           <Box bg="#F8F8F8" p="2" borderRadius="md">
@@ -101,7 +101,6 @@ export const Pages: VFC<EditType> = ({
               <Input
                 value={studentName}
                 onChange={(e) => setStudentName(e.target.value)}
-                type="text"
                 placeholder="実習生氏名"
                 ml="10"
               />
@@ -113,13 +112,11 @@ export const Pages: VFC<EditType> = ({
               <Input
                 value={assignedName}
                 onChange={(e) => setAssignedName(e.target.value)}
-                type="text"
                 placeholder="配属先"
               />
               <Input
                 value={leader}
                 onChange={(e) => setLeader(e.target.value)}
-                type="text"
                 placeholder="指導者名"
                 ml="10"
               />
@@ -131,7 +128,6 @@ export const Pages: VFC<EditType> = ({
               <Textarea
                 value={goal}
                 onChange={(e) => setGoal(e.target.value)}
-                type="text"
                 placeholder="本日の目標"
               />
             </Flex>
@@ -171,7 +167,6 @@ export const Pages: VFC<EditType> = ({
               <Textarea
                 value={feeling}
                 onChange={(e) => setFeeling(e.target.value)}
-                type="text"
                 placeholder="実習所感(特に印象に残ったこと、考察、課題、反省など)"
               />
             </Flex>
@@ -188,7 +183,7 @@ export const Pages: VFC<EditType> = ({
                   onClick={submitHandler}
                   w="32"
                   ml="3"
-                  bg="#273264"
+                  bg="#273673"
                   color="#fff"
                   _hover={{bg: '#141933'}}>
                   編集する

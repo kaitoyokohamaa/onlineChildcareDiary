@@ -16,7 +16,7 @@ export const Pages: VFC = () => {
         <Box h="100vh" bg="#273673" w="50%" pl="3">
           <Box textAlign="left" pt="10" pl="10">
             <Heading as="h5" size="md" color="white">
-              SMART DIARY PHOENIX <Badge>保育士用</Badge>
+              HEALTHY OFFICE <Badge>保育士用</Badge>
             </Heading>
           </Box>
           <Box pt="48">

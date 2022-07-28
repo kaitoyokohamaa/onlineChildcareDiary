@@ -1,8 +1,10 @@
-import {useRouter} from 'next/router';
-import {VFC, useState} from 'react';
-import {MdLocalLibrary} from 'react-icons/md';
-import {Box, Flex, Text, Divider, Stack} from '@chakra-ui/layout';
-import {useCollection} from '@nandorojo/swr-firestore';
+import { useRouter } from 'next/router';
+import { VFC, useState } from 'react';
+import { MdLocalLibrary } from 'react-icons/md';
+import { Box, Flex, Text, Divider, Stack } from '@chakra-ui/layout';
+import HighchartsReact from 'highcharts-react-official';
+import { useCollection } from '@nandorojo/swr-firestore';
+import { Line } from "react-chartjs-2";
 import {
   Table,
   Thead,
@@ -15,12 +17,64 @@ import {
   Button,
 } from '@chakra-ui/react';
 import Link from 'next/link';
-import {AlertDialogPop} from '@/components/common/dialog/alertDialog';
-import {Register, DetailDiary} from '@/models/diary/register';
-import {CopyToClipboard} from 'react-copy-to-clipboard';
-import {Layout} from '@/components/common/layout';
-import {MdContentCopy} from 'react-icons/md';
-export const Pages: VFC<{diary: Register}> = ({diary}) => {
+import { AlertDialogPop } from '@/components/common/dialog/alertDialog';
+import { Register, DetailDiary } from '@/models/diary/register';
+import { CopyToClipboard } from 'react-copy-to-clipboard';
+import { Layout } from '@/components/common/layout';
+import { MdContentCopy } from 'react-icons/md';
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend,
+} from 'chart.js'
+import { Chart } from 'react-chartjs-2'
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend
+)
+export const Pages: VFC<{ diary: Register }> = ({ diary }) => {
+  const labels = ["10:00", "12:00", "14:00", "16:00", "18:00"];
+  const graphData = {
+    labels: labels,
+    datasets: [
+      {
+        label: "横浜海斗",
+        data: [65, 59, 60, 81, 56, 55],
+        borderColor: "rgb(75, 192, 192)",
+      },
+      {
+        label: "阿部寛",
+        data: [60, 55, 57, 61, 75, 50],
+        borderColor: "rgb(75, 100, 192)",
+      },
+      {
+        label: "山田花子",
+        data: [70, 65, 77, 61, 95, 50],
+        borderColor: "red",
+      },
+      {
+        label: "namiki",
+        data: [80, 65, 57, 56, 85, 60],
+        borderColor: "black",
+      },
+    ],
+  };
+
+  const options: {} = {
+    maintainAspectRatio: false,
+  };
+
+
   const [isClicked, setIsClicked] = useState<boolean>(false);
 
   const [currentCheckedId, setCurrentCheckedId] = useState<string>('');
@@ -41,7 +95,7 @@ export const Pages: VFC<{diary: Register}> = ({diary}) => {
     }
   };
 
-  const {data: diaryData} = useCollection<DetailDiary>(
+  const { data: diaryData } = useCollection<DetailDiary>(
     `User/${userKey}/register/`,
     {
       listen: true,
@@ -51,125 +105,24 @@ export const Pages: VFC<{diary: Register}> = ({diary}) => {
   );
 
   return (
-    <Layout isHeader>
-      <Box mt="10" px={16} h="85vh" overflow="scroll">
-        <Flex alignItems="center" justifyContent="space-between">
-          <Box>
-            <Flex alignItems="center">
-              <Box bg="#F8F8F8" p="2" borderRadius="md">
-                <MdLocalLibrary color=" #9FD0E8" />
-              </Box>
-
-              <Text ml="7" fontWeight="bold">
-                日誌
-              </Text>
-            </Flex>
-          </Box>
-          <Box>
-            <Button
-              background="#263773"
-              color="#fff"
-              _hover={{background: '#1c2956'}}
-              onClick={() => router.push(`/user/diary/summary/${userKey}`)}>
-              実習のまとめへ
-            </Button>
-            <Button
-              ml="4"
-              background="#263773"
-              color="#fff"
-              _hover={{background: '#1c2956'}}
-              onClick={() =>
-                router.push(`/user/diary/introspection/${userKey}`)
-              }>
-              実習の反省会へ
-            </Button>
-          </Box>
-        </Flex>
-        <Divider mt="5" />
-        <Table>
-          <Thead>
-            <Tr>
-              <Th>
-                <Checkbox />
-              </Th>
-              <Th>担当クラス</Th>
-              <Th>実習日</Th>
-              <Th>リンクをコピー</Th>
-            </Tr>
-          </Thead>
-          <Tbody>
-            {diaryData ? (
-              diaryData.map((res, i) => {
-                // const day = res?.day.replace('-', '/').replace('-', '/');
-                return (
-                  <Tr
-                    key={i}
-                    _hover={{
-                      background: '#f5f7f9',
-                      p: '14',
-                    }}>
-                    <Th>
-                      <Checkbox onChange={(e) => onClickHandler(e, res.id)} />
-                    </Th>
-
-                    <Td color="#273264" fontWeight="bold" cursor="pointer">
-                      <Link
-                        href={`/user/diary/detail/user/${res.id}/${userKey}`}>
-                        <a>
-                          {res?.assignedName}({res?.trainingClass})
-                        </a>
-                      </Link>
-                    </Td>
-                    <Td>{`${res?.day}`}</Td>
-                    <Td>
-                      <CopyToClipboard
-                        cursor="pointer"
-                        // 本番環境のパスに入れ替え→もしisUserじゃなかったら保育士の先生が編集できるデザインに変更する。
-                        text={`phoenixdiary.vercel.app/teacher/diary/detail/teacher/${res.id}/${userKey}`}>
-                        <MdContentCopy
-                          onClick={() =>
-                            toast({
-                              title: `コピーしました`,
-                              position: 'bottom',
-                              isClosable: true,
-                            })
-                          }
-                        />
-                      </CopyToClipboard>
-                    </Td>
-                  </Tr>
-                );
-              })
-            ) : (
-              <p>日誌はまだ登録されておりません</p>
-            )}
-          </Tbody>
-        </Table>
-        {isClicked && (
-          <Stack
-            direction={['column', 'row']}
-            spacing="24px"
-            ml="-16"
-            px="10"
-            w="full"
-            py="8"
-            background="#fcf2e0"
-            position="fixed"
-            bottom="0"
-            alignItems="center"
-            justifyContent="space-evenly">
-            <Box>
-              <Text>1件の日誌を選択</Text>
-            </Box>
-            <Box>
-              <AlertDialogPop
-                currentCheckedId={currentCheckedId}
-                userKey={userKey}
-              />
-            </Box>
-          </Stack>
-        )}
+    <Layout>
+      <Box px={16} h="85vh" overflow="scroll">
+        <Box>
+          <Flex alignItems="center">
+            <Text ml="7" fontWeight="bold">
+              本日の社員ストレスグラフ
+            </Text>
+          </Flex>
+        </Box>
+        <Line
+          height={300}
+          width={300}
+          data={graphData}
+          options={options}
+          id="chart-key"
+        />
       </Box>
+
     </Layout>
   );
 };

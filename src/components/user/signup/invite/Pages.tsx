@@ -24,7 +24,7 @@ export const Pages: VFC<{inviteKey: string}> = ({inviteKey}) => {
             <Flex align="center">
               <Box textAlign="center">
                 <Heading as="h5" size="md" color="#273673">
-                  SMART DIARY PHOENIX
+                  HEALTHY OFFICE
                 </Heading>
               </Box>
             </Flex>

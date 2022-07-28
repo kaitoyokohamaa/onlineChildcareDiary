@@ -1,6 +1,6 @@
-import { Tabs, TabList, TabPanels, Tab, TabPanel } from "@chakra-ui/react";
-import { Box, Flex, Text, Divider } from "@chakra-ui/layout";
-import { MdSchool } from "react-icons/md";
+import {Tabs, TabList, TabPanels, Tab, TabPanel} from '@chakra-ui/react';
+import {Box, Flex, Text, Divider} from '@chakra-ui/layout';
+import {MdSchool} from 'react-icons/md';
 export const Pages = () => {
   return (
     <Box mt="10" px={16}>
@@ -9,45 +9,42 @@ export const Pages = () => {
           <MdSchool color=" #9FD0E8" />
         </Box>
         <Text pl="8" fontWeight="bold">
-          実習先情報
+          配属先情報
         </Text>
       </Flex>
       <Divider mt="5" />
       <Box my="10">
         <Text fontSize="xl" fontWeight="bold">
-          ひまわり保育園
+          menu開発本部
         </Text>
       </Box>
       <Tabs>
         <TabList>
           <Tab
-            _selected={{ color: "white", bg: "#9FD0E8" }}
+            _selected={{color: 'white', bg: '#9FD0E8'}}
             border="1px"
             color="#9FD0E8"
             borderColor="#9FD0E8"
             roundedTopRight="md"
-            roundedTopLeft="md"
-          >
+            roundedTopLeft="md">
             基本情報
           </Tab>
           <Tab
-            _selected={{ color: "white", bg: "#9FD0E8" }}
+            _selected={{color: 'white', bg: '#9FD0E8'}}
             border="1px"
             color="#9FD0E8"
             borderColor="#9FD0E8"
             roundedTopRight="md"
-            roundedTopLeft="md"
-          >
+            roundedTopLeft="md">
             過去の実習生
           </Tab>
           <Tab
-            _selected={{ color: "white", bg: "#9FD0E8" }}
+            _selected={{color: 'white', bg: '#9FD0E8'}}
             border="1px"
             color="#9FD0E8"
             borderColor="#9FD0E8"
             roundedTopRight="md"
-            roundedTopLeft="md"
-          >
+            roundedTopLeft="md">
             過去の実習生のクチコミ
           </Tab>
         </TabList>

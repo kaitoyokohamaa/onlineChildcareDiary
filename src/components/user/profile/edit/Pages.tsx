@@ -1,5 +1,5 @@
-import {VFC} from 'react'
-import {Box, Flex, Center, Heading, Text} from '@chakra-ui/layout'
+import {VFC} from 'react';
+import {Box, Flex, Center, Heading, Text} from '@chakra-ui/layout';
 import {
   Select,
   useColorModeValue,
@@ -8,44 +8,44 @@ import {
   Input,
   Button,
   Textarea,
-} from '@chakra-ui/react'
-import {EditUser} from '@/models/user'
-import {useRouter} from 'next/router'
-import {useState, useEffect} from 'react'
-import {Dropzone} from '@/components/common/dropzone'
-import {userfiledRef} from '@/lib/firestore'
-import {Layout} from '@/components/common/layout'
-import {User} from '@/models/user'
+} from '@chakra-ui/react';
+import {EditUser} from '@/models/user';
+import {useRouter} from 'next/router';
+import {useState, useEffect} from 'react';
+import {Dropzone} from '@/components/common/dropzone';
+import {userfiledRef} from '@/lib/firestore';
+import {Layout} from '@/components/common/layout';
+import {User} from '@/models/user';
 export const Pages: VFC<EditUser> = ({id}) => {
-  const router = useRouter()
+  const router = useRouter();
 
-  const [name, setName] = useState<string>()
-  const [address, setAddress] = useState<string>()
-  const [birthday, setBirthday] = useState<string>()
-  const [cellphoneNumber, setCellphoneNumber] = useState<string>()
-  const [practicalTraining, setPracticalTraining] = useState<string>()
-  const [sex, setSex] = useState<string>()
-  const [selfIntroduction, setSelfIntroduction] = useState<string>()
-  const [dispayImage, setDispayImage] = useState<string>()
-  const [user, setUser] = useState<User>()
+  const [name, setName] = useState<string>();
+  const [address, setAddress] = useState<string>();
+  const [birthday, setBirthday] = useState<string>();
+  const [cellphoneNumber, setCellphoneNumber] = useState<string>();
+  const [practicalTraining, setPracticalTraining] = useState<string>();
+  const [sex, setSex] = useState<string>();
+  const [selfIntroduction, setSelfIntroduction] = useState<string>();
+  const [dispayImage, setDispayImage] = useState<string>();
+  const [user, setUser] = useState<User>();
   useEffect(() => {
-    setName(user?.name)
-    setAddress(user?.address)
-    setBirthday(user?.birthday)
-    setCellphoneNumber(user?.cellphoneNumber)
-    setPracticalTraining(user?.practicalTraining)
-    setSex(user?.sex)
-    setSelfIntroduction(user?.selfIntroduction)
-    setDispayImage(user?.dispayImage)
-  }, [user])
+    setName(user?.name);
+    setAddress(user?.address);
+    setBirthday(user?.birthday);
+    setCellphoneNumber(user?.cellphoneNumber);
+    setPracticalTraining(user?.practicalTraining);
+    setSex(user?.sex);
+    setSelfIntroduction(user?.selfIntroduction);
+    setDispayImage(user?.dispayImage);
+  }, [user]);
 
   useEffect(() => {
     userfiledRef(id).onSnapshot((res) => {
-      let data = null
-      data = res.data()
-      setUser(data)
-    })
-  }, [id])
+      let data = null;
+      data = res.data();
+      setUser(data);
+    });
+  }, [id]);
   const submitHandler = async () => {
     await userfiledRef(id).update({
       name,
@@ -55,12 +55,12 @@ export const Pages: VFC<EditUser> = ({id}) => {
       sex,
       selfIntroduction,
       practicalTraining,
-    })
+    });
 
-    router.push(`/user/profile/${id}`)
-  }
+    router.push(`/user/profile/${id}`);
+  };
   return (
-    <Layout isHeader>
+    <Layout>
       <Box mt="10" px={16} overflow="scroll" h="85vh">
         <Text
           fontWeight="bold"
@@ -77,8 +77,7 @@ export const Pages: VFC<EditUser> = ({id}) => {
             left: '13%',
             backgroundColor: '#00000029',
             content: '" "',
-          }}
-        >
+          }}>
           プロフィール編集
         </Text>
 
@@ -89,8 +88,7 @@ export const Pages: VFC<EditUser> = ({id}) => {
             boxShadow={'2xl'}
             rounded={'2xl'}
             overflow={'hidden'}
-            p="14"
-          >
+            p="14">
             <Flex>
               <Box>
                 <Dropzone />
@@ -103,16 +101,16 @@ export const Pages: VFC<EditUser> = ({id}) => {
                   fontSize={'2xl'}
                   fontWeight="bold"
                   fontFamily={'body'}
-                  onChange={(e) => setName(e.target.value)}
-                ></Input>
+                  onChange={(e) => setName(e.target.value)}></Input>
                 <Textarea
                   w="full"
                   rows={10}
                   value={selfIntroduction}
                   color={'gray.500'}
                   mt="5"
-                  onChange={(e) => setSelfIntroduction(e.target.value)}
-                ></Textarea>
+                  onChange={(e) =>
+                    setSelfIntroduction(e.target.value)
+                  }></Textarea>
               </Box>
             </Flex>
           </Box>
@@ -123,8 +121,7 @@ export const Pages: VFC<EditUser> = ({id}) => {
           boxShadow={'2xl'}
           rounded={'2xl'}
           overflow={'hidden'}
-          p="14"
-        >
+          p="14">
           <Flex>
             <Box>
               <Heading
@@ -132,8 +129,7 @@ export const Pages: VFC<EditUser> = ({id}) => {
                 fontSize={'2xl'}
                 fontWeight="bold"
                 fontFamily={'body'}
-                mb="10"
-              >
+                mb="10">
                 基本情報
               </Heading>
             </Box>
@@ -146,10 +142,9 @@ export const Pages: VFC<EditUser> = ({id}) => {
               </FormLabel>
               <Select
                 fontWeight="bold"
-                color="#273264"
+                color="#273673"
                 pt="2"
-                onChange={(e) => setSex(e.target.value)}
-              >
+                onChange={(e) => setSex(e.target.value)}>
                 <option value="">選んでください</option>
                 <option value="男">男</option>
                 <option value="女">女</option>
@@ -164,10 +159,9 @@ export const Pages: VFC<EditUser> = ({id}) => {
                 value={birthday}
                 type="date"
                 fontWeight="bold"
-                color="#273264"
+                color="#273673"
                 mt="2"
-                onChange={(e) => setBirthday(e.target.value)}
-              ></Input>
+                onChange={(e) => setBirthday(e.target.value)}></Input>
             </FormControl>
             {/* メールアドレス */}
             <FormControl pl="4" w="20%">
@@ -178,10 +172,9 @@ export const Pages: VFC<EditUser> = ({id}) => {
                 value={address}
                 onChange={(e) => setAddress(e.target.value)}
                 fontWeight="bold"
-                color="#273264"
+                color="#273673"
                 mt="2"
-                w="full"
-              ></Input>
+                w="full"></Input>
             </FormControl>
           </Flex>
           <Flex mt="10">
@@ -195,23 +188,21 @@ export const Pages: VFC<EditUser> = ({id}) => {
                 value={cellphoneNumber}
                 onChange={(e) => setCellphoneNumber(e.target.value)}
                 fontWeight="bold"
-                color="#273264"
-                mt="2"
-              ></Input>
+                color="#273673"
+                mt="2"></Input>
             </FormControl>
 
             {/* 実習先*/}
             <FormControl pl="4" w="20%">
               <FormLabel fontWeight="bold" color="#5D5A5A">
-                実習先
+                配属先
               </FormLabel>
               <Input
                 value={practicalTraining}
                 onChange={(e) => setPracticalTraining(e.target.value)}
                 fontWeight="bold"
-                color="#273264"
-                mt="2"
-              ></Input>
+                color="#273673"
+                mt="2"></Input>
             </FormControl>
           </Flex>
         </Box>
@@ -223,12 +214,11 @@ export const Pages: VFC<EditUser> = ({id}) => {
             textAlign="right"
             mt="10"
             mb="10"
-            onClick={submitHandler}
-          >
+            onClick={submitHandler}>
             プロフィールを保存する
           </Button>
         </Box>
       </Box>
     </Layout>
-  )
-}
+  );
+};

@@ -42,7 +42,7 @@ export const Pages: VFC = () => {
           <Box w="100%" boxShadow={'2xl'} p="14" my="10">
             <Flex>
               <Box mr="10">
-                <Avatar size="2xl" src={teacher?.dispayImage} alt={'Author'} />
+                <Avatar size="2xl" src={teacher?.dispayImage} />
               </Box>
 
               <Box pl="5">
@@ -82,7 +82,7 @@ export const Pages: VFC = () => {
             </Flex>
             <Flex>
               <Box w="25%">
-                <Text fontWeight="bold" color="#273264">
+                <Text fontWeight="bold" color="#273673">
                   所属園
                 </Text>
                 <Text pt="2">
@@ -91,14 +91,14 @@ export const Pages: VFC = () => {
               </Box>
 
               <Box w="25%">
-                <Text fontWeight="bold" color="#273264">
+                <Text fontWeight="bold" color="#273673">
                   役職
                 </Text>
                 <Text pt="2">{teacher?.post ? teacher.post : '未記入'}</Text>
               </Box>
 
               <Box w="25%">
-                <Text fontWeight="bold" color="#273264">
+                <Text fontWeight="bold" color="#273673">
                   生年月日
                 </Text>
                 <Text pt="2">
@@ -107,7 +107,7 @@ export const Pages: VFC = () => {
               </Box>
 
               <Box>
-                <Text fontWeight="bold" color="#273264">
+                <Text fontWeight="bold" color="#273673">
                   メールアドレス
                 </Text>
                 <Text pt="2">{teacher?.email ? teacher.email : '未記入'}</Text>
@@ -116,7 +116,7 @@ export const Pages: VFC = () => {
             <Divider mt="10" colorScheme="blue" size="2xl" />
             <Flex py="10">
               <Box w="25%">
-                <Text fontWeight="bold" color="#273264">
+                <Text fontWeight="bold" color="#273673">
                   電話番号
                 </Text>
                 <Text pt="2">

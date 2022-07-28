@@ -64,7 +64,7 @@ export const Pages: VFC<History> = ({data, userKey}) => {
                       p: '14',
                     }}
                     key={i}>
-                    <Td color="#273264" fontWeight="bold" cursor="pointer">
+                    <Td color="#273673" fontWeight="bold" cursor="pointer">
                       <Link
                         href={`/teacher/diary/detail/teacher/${res.id}/${userKey}`}>
                         <a>{res?.trainingClass}</a>

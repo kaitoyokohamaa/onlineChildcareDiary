@@ -1,18 +1,18 @@
-import {VFC, useContext} from 'react';
+import { VFC, useContext } from 'react';
 import Link from 'next/link';
-import {AuthContext} from '@/contexts/AuthContext';
-import {Button_} from '@/components/common/button';
-import {SidebarLink} from './sidebarLink';
-import {Box, Flex, Heading, HStack, Text} from '@chakra-ui/layout';
-import {MdLocalLibrary, MdChatBubble, MdHome, MdPerson} from 'react-icons/md';
-import {Badge} from '@chakra-ui/react';
-import {IoLogOut} from 'react-icons/io5';
-import {VscGear} from 'react-icons/vsc';
-import {useRouter} from 'next/router';
+import { AuthContext } from '@/contexts/AuthContext';
+import { Button_ } from '@/components/common/button';
+import { SidebarLink } from './sidebarLink';
+import { Box, Flex, Heading, HStack, Text } from '@chakra-ui/layout';
+import { MdLocalLibrary, MdChatBubble, MdHome, MdPerson } from 'react-icons/md';
+import { Badge } from '@chakra-ui/react';
+import { IoLogOut } from 'react-icons/io5';
+import { VscGear } from 'react-icons/vsc';
+import { useRouter } from 'next/router';
 import firebase from '@/lib/firebase';
-import {v1 as uuidv1} from 'uuid';
-export const Sidebar: VFC<{isTeacher?: boolean}> = ({isTeacher}) => {
-  const {chatKey, dockey} = useContext(AuthContext);
+import { v1 as uuidv1 } from 'uuid';
+export const Sidebar: VFC<{ isTeacher?: boolean }> = ({ isTeacher }) => {
+  const { chatKey, dockey } = useContext(AuthContext);
 
   const router = useRouter();
 
@@ -39,7 +39,7 @@ export const Sidebar: VFC<{isTeacher?: boolean}> = ({isTeacher}) => {
     <Box w="100%" h="100vh" bg="#273673">
       <Box textAlign="center">
         <Heading textAlign="center" as="h5" size="md" color="white" pt={10}>
-          SMART DIARY PHOENIX
+          HEALTHY OFFICE
         </Heading>
         {isTeacher && <Badge>保育士用</Badge>}
       </Box>
@@ -47,15 +47,10 @@ export const Sidebar: VFC<{isTeacher?: boolean}> = ({isTeacher}) => {
       <>
         {!isTeacher && router.asPath.includes('user') ? (
           <>
-            <Box textAlign="center" my={12}>
-              <Button_ bg="#9FD0E8" color="white" _hover={{bg: '#54b5e4'}}>
-                <Link href={`/user/diary/register/${uuidv1()}`}>
-                  <a>＋日誌登録</a>
-                </Link>
-              </Button_>
-            </Box>
+            <Box textAlign="center" my={12}></Box>
             <Box
-              _hover={{bg: '#FFFFFF1A 0% 0% no-repeat padding-box'}}
+              mt="30"
+              _hover={{ bg: '#FFFFFF1A 0% 0% no-repeat padding-box' }}
               borderLeft={router.asPath.indexOf('/home') !== -1 && '4px'}
               borderColor={router.asPath.indexOf('/home') !== -1 && '#56A9D3'}
               bg={
@@ -72,8 +67,7 @@ export const Sidebar: VFC<{isTeacher?: boolean}> = ({isTeacher}) => {
                       justify="center"
                       mx={router.asPath.indexOf('/home') !== -1 && -1.5}>
                       <HStack w="60%">
-                        <MdHome size={20} />
-                        <Text py={6}>ホーム</Text>
+                        <Text py={6}>社員のストレス値</Text>
                       </HStack>
                     </Flex>
                   </a>
@@ -83,7 +77,7 @@ export const Sidebar: VFC<{isTeacher?: boolean}> = ({isTeacher}) => {
 
             {/* 日誌 */}
             <Box
-              _hover={{bg: '#FFFFFF1A 0% 0% no-repeat padding-box'}}
+              _hover={{ bg: '#FFFFFF1A 0% 0% no-repeat padding-box' }}
               borderLeft={router.asPath.indexOf('/diary') !== -1 && '4px'}
               borderColor={router.asPath.indexOf('/diary') !== -1 && '#56A9D3'}
               bg={
@@ -100,35 +94,7 @@ export const Sidebar: VFC<{isTeacher?: boolean}> = ({isTeacher}) => {
                       justify="center"
                       mx={router.asPath.indexOf('/diary') !== -1 && -1.5}>
                       <HStack w="60%">
-                        <MdLocalLibrary size={20} />
-                        <Text py={6}>日誌</Text>
-                      </HStack>
-                    </Flex>
-                  </a>
-                </Link>
-              </SidebarLink>
-            </Box>
-
-            <Box
-              _hover={{bg: '#FFFFFF1A 0% 0% no-repeat padding-box'}}
-              borderLeft={router.asPath.indexOf('/chat') !== -1 && '4px'}
-              borderColor={router.asPath.indexOf('/chat') !== -1 && '#56A9D3'}
-              bg={
-                router.asPath.indexOf('/chat') !== -1 &&
-                '#FFFFFF1A 0% 0% no-repeat padding-box'
-              }>
-              <SidebarLink
-                color={
-                  router.asPath.indexOf('/chat') !== -1 ? '#84B9D4' : 'white'
-                }>
-                <Link href={`/user/chat/${dockey}`}>
-                  <a>
-                    <Flex
-                      justify="center"
-                      mx={router.asPath.includes('/chat') ? -1.5 : 0}>
-                      <HStack w="60%">
-                        <MdChatBubble size={20} />
-                        <Text py={6}>チャット</Text>
+                        <Text py={18}>社員のストレスグラフ</Text>
                       </HStack>
                     </Flex>
                   </a>
@@ -140,7 +106,7 @@ export const Sidebar: VFC<{isTeacher?: boolean}> = ({isTeacher}) => {
           <>
             <Box
               mt="20"
-              _hover={{bg: '#FFFFFF1A 0% 0% no-repeat padding-box'}}
+              _hover={{ bg: '#FFFFFF1A 0% 0% no-repeat padding-box' }}
               borderLeft={router.asPath.indexOf('/profile') !== -1 && '4px'}
               borderColor={
                 router.asPath.indexOf('/profile') !== -1 && '#56A9D3'
@@ -168,7 +134,7 @@ export const Sidebar: VFC<{isTeacher?: boolean}> = ({isTeacher}) => {
               </SidebarLink>
             </Box>
             <Box
-              _hover={{bg: '#FFFFFF1A 0% 0% no-repeat padding-box'}}
+              _hover={{ bg: '#FFFFFF1A 0% 0% no-repeat padding-box' }}
               borderLeft={router.asPath.indexOf('/chat') !== -1 && '4px'}
               borderColor={router.asPath.indexOf('/chat') !== -1 && '#56A9D3'}
               bg={
@@ -194,7 +160,7 @@ export const Sidebar: VFC<{isTeacher?: boolean}> = ({isTeacher}) => {
               </SidebarLink>
             </Box>
             <Box
-              _hover={{bg: '#FFFFFF1A 0% 0% no-repeat padding-box'}}
+              _hover={{ bg: '#FFFFFF1A 0% 0% no-repeat padding-box' }}
               borderLeft={router.asPath.includes('history') && '4px'}
               borderColor={router.asPath.includes('history') && '#56A9D3'}
               bg={
@@ -222,9 +188,9 @@ export const Sidebar: VFC<{isTeacher?: boolean}> = ({isTeacher}) => {
       </>
 
       <Box
-        bottom={-150}
+        bottom={-550}
         position="relative"
-        _hover={{bg: '#FFFFFF1A 0% 0% no-repeat padding-box'}}
+        _hover={{ bg: '#FFFFFF1A 0% 0% no-repeat padding-box' }}
         onClick={signOutHandler}
         cursor="pointer">
         <SidebarLink color="white">

@@ -42,7 +42,7 @@ export const Pages = () => {
   };
 
   return (
-    <Layout isHeader>
+    <Layout>
       <Box mt="10" px={16}>
         <Flex alignItems="center">
           <Box bg="#F8F8F8" p="2" borderRadius="md">
@@ -60,7 +60,6 @@ export const Pages = () => {
                 value={introspection}
                 size="lg"
                 onChange={(e) => setIntrospection(e.target.value)}
-                type="text"
                 placeholder="反省会の記録"
               />
             </Flex>
@@ -77,7 +76,7 @@ export const Pages = () => {
                   onClick={submitHandler}
                   w="32"
                   ml="3"
-                  bg="#273264"
+                  bg="#273673"
                   color="#fff"
                   _hover={{bg: '#141933'}}>
                   保存する

@@ -51,7 +51,7 @@ export const Pages = () => {
   };
 
   return (
-    <Layout isHeader>
+    <Layout>
       <Box mt="10" px={16}>
         <Flex alignItems="center">
           <Box bg="#F8F8F8" p="2" borderRadius="md">
@@ -70,7 +70,6 @@ export const Pages = () => {
                 w="75%"
                 value={goalAndAchievement}
                 onChange={(e) => setGoalAndAchievement(e.target.value)}
-                type="text"
                 placeholder="実習の目標とその達成度"
               />
             </Flex>
@@ -83,7 +82,6 @@ export const Pages = () => {
                 w="75%"
                 value={experience}
                 onChange={(e) => setExperience(e.target.value)}
-                type="text"
                 placeholder="実習で感銘を受けた体験"
               />
             </Flex>
@@ -96,7 +94,6 @@ export const Pages = () => {
                 w="75%"
                 value={reflection}
                 onChange={(e) => setReflection(e.target.value)}
-                type="text"
                 placeholder="実習の反省および新しく発見した課題"
               />
             </Flex>
@@ -108,7 +105,6 @@ export const Pages = () => {
                 w="75%"
                 value={notice}
                 onChange={(e) => setNotice(e.target.value)}
-                type="text"
                 placeholder="その他気づいたこと"
               />
             </Flex>
@@ -124,7 +120,7 @@ export const Pages = () => {
                   onClick={submitHandler}
                   w="32"
                   ml="3"
-                  bg="#273264"
+                  bg="#273673"
                   color="#fff"
                   _hover={{bg: '#141933'}}>
                   保存する

@@ -34,7 +34,7 @@ export const Pages: VFC<DocKeyId> = ({userKey, detailKey}) => {
   }, [detailKey, userKey, loginUser]);
 
   return (
-    <Layout isHeader>
+    <Layout>
       <Box mt="10" px={16}>
         <Flex alignItems="center">
           <Box bg="#F8F8F8" p="2" borderRadius="md">

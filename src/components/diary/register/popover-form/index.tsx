@@ -92,9 +92,7 @@ export const PopoverForm = ({state, isTeacher, ...props}) => {
   return (
     <>
       <Box display="block">
-        <Text value={studentText} whiteSpace="pre-wrap">
-          {studentText}
-        </Text>
+        <Text whiteSpace="pre-wrap">{studentText}</Text>
       </Box>
       <Box>
         <Text color={'red'} whiteSpace="pre-wrap">
