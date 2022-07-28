@@ -5,9 +5,8 @@ import {Input, Link as Links} from '@chakra-ui/react';
 import {VFC} from 'react';
 import Link from 'next/link';
 import {UseCertification} from '@/hooks/useCertification';
-import {BeatLoader} from 'react-spinners';
 export const Pages: VFC = () => {
-  const {email, setEmail, setPassword, password, signinHandler, isLoading} =
+  const {email, setEmail, setPassword, password, signinHandler} =
     UseCertification();
   return (
     <Box>
@@ -50,8 +49,6 @@ export const Pages: VFC = () => {
             </Box>
             <Box>
               <Button
-                isLoading={isLoading}
-                spinner={<BeatLoader size={8} color="white" />}
                 colorScheme="blue"
                 bg="#273673"
                 size="lg"

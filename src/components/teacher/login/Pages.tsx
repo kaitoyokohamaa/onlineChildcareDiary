@@ -1,15 +1,14 @@
-import {Button} from '@chakra-ui/button';
-import {Box, Flex, Heading} from '@chakra-ui/layout';
-import {Input, Link as Links} from '@chakra-ui/react';
-import {VFC} from 'react';
-import Link from 'next/link';
-import {UseTeacherCertification} from '@/hooks/useCertification';
-import Image from 'next/image';
-import {Badge} from '@chakra-ui/react';
-import {BeatLoader} from 'react-spinners';
+import {Button} from '@chakra-ui/button'
+import {Box, Flex, Heading} from '@chakra-ui/layout'
+import {Input, Link as Links} from '@chakra-ui/react'
+import {VFC} from 'react'
+import Link from 'next/link'
+import {UseTeacherCertification} from '@/hooks/useCertification'
+import Image from 'next/image'
+import {Badge} from '@chakra-ui/react'
 export const Pages: VFC = () => {
-  const {email, setEmail, setPassword, password, signinHandler, isLoading} =
-    UseTeacherCertification();
+  const {email, setEmail, setPassword, password, signinHandler} =
+    UseTeacherCertification()
   return (
     <Box>
       <Flex>
@@ -54,8 +53,6 @@ export const Pages: VFC = () => {
             </Box>
             <Box>
               <Button
-                isLoading={isLoading}
-                spinner={<BeatLoader size={8} color="white" />}
                 colorScheme="blue"
                 bg="#273673"
                 size="lg"
@@ -63,7 +60,8 @@ export const Pages: VFC = () => {
                 py={{lg: 8}}
                 boxShadow="2xl-blue"
                 mb={10}
-                onClick={signinHandler}>
+                onClick={signinHandler}
+              >
                 サインイン
               </Button>
             </Box>
@@ -71,5 +69,5 @@ export const Pages: VFC = () => {
         </Flex>
       </Flex>
     </Box>
-  );
-};
+  )
+}
